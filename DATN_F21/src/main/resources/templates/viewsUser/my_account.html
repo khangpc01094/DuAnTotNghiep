@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
+<body>
+	<main>
+		<!-- WISHLIST AREA START -->
+		<div class="liton__wishlist-area pb-70">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<!-- PRODUCT TAB AREA START -->
+						<div class="ltn__product-tab-area">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="ltn__tab-menu-list mb-50">
+											<div class="nav">
+												<a href="/form">Trang Chủ<i class="fas fa-home"></i></a> <a
+													class="active show" data-toggle="tab" href="#liton_tab_1_5">Hồ
+													Sơ<i class="fas fa-user"></i>
+												</a> <a data-toggle="tab" href="#liton_tab_1_4">Địa Chỉ <i
+													class="fas fa-map-marker-alt"></i></a> <a data-toggle="tab"
+													href="#liton_tab_1_6">Đổi Mật Khẩu<i
+													class="fas fa-user-edit"></i></a> <a data-toggle="tab"
+													href="#liton_tab_1_8">Đơn Hàng<i
+													class="fas fa-file-alt"></i></a> <a data-toggle="tab"
+													href="#liton_tab_1_9">Ví Điện Tử<i
+													class="fas fa-money-bill"></i></a> <a href="#">Đăng Xuất <i
+													class="fas fa-sign-out-alt"></i></a>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-8">
+										<div class="tab-content">
+
+
+											<div class="tab-pane fade" id="liton_tab_1_4">
+												<div class="ltn__myaccount-tab-content-inner">
+													<p>Các địa chỉ sau sẽ được sử dụng trên trang thanh
+														toán</p>
+													<div class="row">
+														<div class="col-md-12 col-12 learts-mb-30">
+															<h4>
+																Địa chỉ 1: <small><a data-toggle="tab"
+																	href="#liton_tab_1_7">chỉnh sửa</a></small>
+															</h4>
+															<p>356 Thơi Nông, Nông Thôn, Thôn Nữ, Cần Thơ</p>
+														</div>
+														<div class="col-md-12 col-12 learts-mb-30">
+															<h4>
+																Địa chỉ 2: <small><a data-toggle="tab"
+																	href="#liton_tab_1_7">chỉnh sửa</a></small>
+															</h4>
+															<p>356 Thơi Nông, Nông Thôn, Thôn Nữ, Cần Thơ</p>
+														</div>
+														<div class="col-md-12 col-12 learts-mb-30">
+															<h4>
+																Địa chỉ 3: <small><a data-toggle="tab"
+																	href="#liton_tab_1_7">chỉnh sửa</a></small>
+															</h4>
+															<p>356 Thơi Nông, Nông Thôn, Thôn Nữ, Cần Thơ</p>
+														</div>
+														<div class="col-md-12 col-12 learts-mb-30">
+															<h4>
+																Địa chỉ 4: <small><a data-toggle="tab"
+																	href="#liton_tab_1_7">chỉnh sửa</a></small>
+															</h4>
+															<p>356 Thơi Nông, Nông Thôn, Thôn Nữ, Cần Thơ</p>
+														</div>
+														<a type="submit" data-toggle="tab" href="#liton_tab_1_7"
+															class="btn theme-btn-1 btn-effect-1 text-uppercase">THÊM
+															ĐỊA CHỈ MỚI</a>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade active show" id="liton_tab_1_5">
+												<div class="ltn__myaccount-tab-content-inner">
+													<div class="ltn__myaccount-tab-content-inner">
+														<div class="ltn__form-box">
+															<form action="#">
+																<fieldset>
+																	<legend>Thông Tin</legend>
+																	<div class="row">
+																		<div class="col-md-12">
+																			<div class="text-center">
+																				<img src="/img/user_default.png" alt=""></br>
+																				<button type="submit"
+																					class="btn theme-btn-3 btn-effect-1 text-uppercase mt-2">Chọn
+																					Ảnh</button>
+																				<p>Dụng lượng file tối đa 1 MB. Định dạng:.JPEG,
+																					.PNG</p>
+																			</div>
+																			<label>Tài khoản (Chỉ được cập nhật một lần
+																				duy nhất):</label> <input type="text" name="ltn__name">
+																			<label>Họ và tên:</label> <input type="text"
+																				name="ltn__name"> <label>Email:</label> <input
+																				type="email" name="ltn__name"> <label>Giới
+																				tính:</label></br>
+																			<div class="gender">
+																				<div class="mt-15">
+																					<input type="radio" value="true" name="gender">
+																					Nam <input class="ml-30" type="radio" value="false"
+																						name="gender"> Nữ
+																				</div>
+																			</div>
+																			<label>Ngày sinh:</label> <input type="date"
+																				name="ltn__name">
+
+																		</div>
+																	</div>
+																	<div class="btn-wrapper text-center">
+																		<button type="submit"
+																			class="btn theme-btn-1 btn-effect-1 text-uppercase">LƯU
+																			THAY ĐỔI</button>
+																	</div>
+																</fieldset>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="liton_tab_1_6">
+												<div class="ltn__myaccount-tab-content-inner">
+													<div class="ltn__form-box">
+														<form action="#">
+															<fieldset>
+																<legend>Đổi Mật Khẩu</legend>
+																<p>Để đảm bảo tài khoản, vui lòng không chia sẽ mật
+																	khẩu cho người khác.</p>
+																<div class="row">
+																	<div class="col-md-12">
+																		<label>Mật khẩu hiện tại*:</label> <input
+																			type="password" name="ltn__name"> <label>Mật
+																			khẩu mới*:</label> <input type="password"
+																			name="ltn__lastname"> <label>Xác nhận
+																			mật khẩu mới*:</label> <input type="password"
+																			name="ltn__lastname">
+																	</div>
+																</div>
+																<div class="btn-wrapper text-center">
+																	<button type="submit"
+																		class="btn theme-btn-1 btn-effect-1 text-uppercase">ĐỔI
+																		MẬT KHẨU</button>
+																</div>
+																<div class="by-agree ">
+																	<a href="/fogot_password">QUYÊN MẬT KHẨU</a>
+																</div>
+															</fieldset>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="liton_tab_1_7">
+												<div class="ltn__myaccount-tab-content-inner">
+													<div class="ltn__form-box">
+														<form action="#">
+															<fieldset>
+																<legend>Địa Chỉ</legend>
+																<div class="row">
+																	<div class="col-md-12">
+																		<label>Địa Chỉ Của Bạn *:</label> <input type="text"
+																			name="ltn__name">
+																	</div>
+																</div>
+																<div class="btn-wrapper text-center">
+																	<a data-toggle="tab" href="#liton_tab_1_4"
+																		type="submit"
+																		class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu
+																		Địa Chỉ</a>
+																</div>
+																<div class="by-agree ">
+																	<a data-toggle="tab" href="#liton_tab_1_4">TRỞ VỀ</a>
+																</div>
+															</fieldset>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="liton_tab_1_8">
+												<div class="ltn__myaccount-tab-content-inner">
+													<div class="table-responsive">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th>Đơn hàng</th>
+																	<th>Ngày đặt</th>
+																	<th>Trạng thái</th>
+																	<th>Tổng số tiền</th>
+																	<th>Hành động</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>1</td>
+																	<td>Jun 22, 2019</td>
+																	<td>Đã giao</td>
+																	<td>$3000</td>
+																	<td><a href="cart.html">Xem</a></td>
+																</tr>
+																<tr>
+																	<td>2</td>
+																	<td>Nov 22, 2019</td>
+																	<td>Đã giao</td>
+																	<td>$200</td>
+																	<td><a href="cart.html">Xem</a></td>
+																</tr>
+																<tr>
+																	<td>3</td>
+																	<td>Jan 12, 2020</td>
+																	<td>Đang chờ</td>
+																	<td>$990</td>
+																	<td><a href="cart.html">Xem</a></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="liton_tab_1_9">
+												<div class="ltn__myaccount-tab-content-inner">
+													<p>Bạn cần liên kết tài khoản ngân hàng với ví điện tử
+														để có thể thanh toán hàng hóa.</p>
+													<div class="ltn__form-box">
+														<h4>Chi tiết thẻ</h4>
+														<form action="#">
+															<div class="row mb-50">
+																<div class="col-md-12">
+																	<label>Họ tên trên thẻ:</label> <input type="text"
+																		name="ltn__name">
+																</div>
+																<div class="col-md-12">
+																	<label>Số thẻ:</label> <input type="text"
+																		name="ltn__lastname">
+																</div>
+																<div class="col-md-12">
+																	<label>Chọn loại thẻ:</label>
+																	<div class="form-check">
+																		<input class="form-check-input" type="radio"
+																			name="exampleRadios" id="exampleRadios1"
+																			value="option1" checked> <label
+																			class="form-check-label" for="exampleRadios1">
+																			Visa</label>
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<label>Ngày hết hạn:</label> <input type="text"
+																		name="ltn__lastname"
+																		placeholder="Ngày hết hạn (MM/YY)">
+																</div>
+																<div class="col-md-6">
+																	<label>Mã CVV:</label> <input type="text"
+																		name="ltn__lastname" placeholder="Mã CVV">
+																</div>
+																<!-- <h4>Địa chỉ đăng ký thẻ Tín dụng/Ghi nợ</h4>
+                                                            <div class="col-md-12">
+                                                                <label>Địa chỉ hóa đơn:</label>
+                                                                <input type="text" name="ltn__lastname">
+                                                            </div> -->
+																<div class="col-md-12">
+																	<label>Postal code:</label> <input type="text"
+																		name="ltn__lastname">
+																</div>
+															</div>
+															<!-- <fieldset>
+                                                            <legend>Password change</legend>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label>Current password (leave blank to leave unchanged):</label>
+                                                                    <input type="password" name="ltn__name">
+                                                                    <label>New password (leave blank to leave unchanged):</label>
+                                                                    <input type="password" name="ltn__lastname">
+                                                                    <label>Confirm new password:</label>
+                                                                    <input type="password" name="ltn__lastname">
+                                                                </div>
+                                                            </div>
+                                                        </fieldset> -->
+															<div class="btn-wrapper" style="float: right;">
+																<button type="submit"
+																	class="btn theme-btn-1 btn-effect-1 text-uppercase">Hủy</button>
+																<button type="submit"
+																	class="btn theme-btn-1 btn-effect-1 text-uppercase">Submit</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- PRODUCT TAB AREA END -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- WISHLIST AREA START -->
+
+	</main>
+</body>
+</html>
