@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-
 	
-	@GetMapping("/form")
+	@GetMapping("index")
 	public String getform() {
 		return "/viewsUser/list";
 	}
@@ -16,4 +15,5 @@ public class HomeController {
 	public String getformAd() {
 		return "/viewsAdmin/list";
 	}
+	
 }
