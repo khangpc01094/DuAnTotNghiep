@@ -14,7 +14,7 @@ public class HomeController {
 	
 	@GetMapping("/formAd")
 	public String getformAd() {
-		return "/viewsAdmin/list";
+		return "/viewsAdmin/ListUser";
 	}
 	
 }
