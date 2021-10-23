@@ -1,5 +1,7 @@
 .container_Admin {
-	margin: 2px;
+	margin-left: 2px;
+	margin-top: 3px;
+	background-color: #f6f6f6;
 }
 
 .item {
@@ -24,6 +26,12 @@
 
 .headers img {
 	margin-top: 4px;
+}
+
+.headers .rounded-circle
+{
+	margin-top: 20px;
+	margin-left: -10px;
 }
 /*-----------------------------------------------
                 Header end
@@ -195,8 +203,9 @@
 /*List End*/
 /*CreateUser*/
 .containerUs {
-	margin: 10px;
+	margin-top: 10px;
 	background-color: white;
+	max-width: 1117px;
 }
 
 .containerUs .row .hello h5{
@@ -364,6 +373,7 @@
 	font-size: 35px;
 	margin: 20px;
 	font-family: Helvetica, Arial, sans-serif;
+	background-color: white;
 }
 
 .container_Category .searchCategory {
@@ -511,7 +521,8 @@
   -----------------------------------------------*/
 /*StatisticalAd*/
 .container_statistical {
-	margin: 30px;
+	margin: 10px;
+	max-height: 800px;
 }
 
 .container_statistical .titel {
@@ -527,7 +538,7 @@
 .container_statistical .search_statistical .row .date_statis {
 	width: 180px;
 	height: 40px;
-	border: 2px solid #aaa;
+	border: 1px solid #aaa;
 	border-radius: 4px;
 	margin: 8px 0;
 	outline: none;

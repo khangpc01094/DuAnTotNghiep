@@ -22,4 +22,22 @@ public class HomeController {
 	{
 		return "viewsAdmin/EditUser";
 	}
+	
+	@GetMapping("formCategory")
+	public String getformCategory()
+	{
+		return "viewsAdmin/Category";
+	}
+	
+	@GetMapping("formStore")
+	public String getformStore()
+	{
+		return "viewsAdmin/StoreAd";
+	}
+	
+	@GetMapping("formStati")
+	public String getformStatistical()
+	{
+		return "viewsAdmin/StatisticalAd";
+	}
 }
