@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
+
+<body>
+	<main>
+		<div class="containerUs">
+			<form action="" method="">
+				<div class="row">
+					<div class="hello">
+						<h5>Chỉnh sửa người dùng</h5>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="col-sm-8">
+						<div class="thongtin_1">
+							<div class="input-data">
+								<input type="text" required>
+								<div class="underline"></div>
+								<label for="">ID người dùng</label>
+							</div>
+							<div class="input-data">
+								<input type="text" required>
+								<div class="underline"></div>
+								<label for="">Tên đăng nhập</label>
+							</div>
+							<div class="input-data">
+								<input type="password" required>
+								<div class="underline"></div>
+								<label for="">Mật khẩu</label>
+							</div>
+							<div class="input-data">
+								<input type="text" required>
+								<div class="underline"></div>
+								<label for="">Họ và tên</label>
+							</div>
+							<div class="input-data">
+								<input type="text" required>
+								<div class="underline"></div>
+								<label for="">Email</label>
+							</div>
+							<div class="input-data">
+								<input type="text" required>
+								<div class="underline"></div>
+								<label for="">Số điện thoại</label>
+							</div>
+							<div class="input-data">
+								<input type="text" required>
+								<div class="underline"></div>
+								<label for="">Ngày sinh</label>
+							</div>
+							<div>Gender</div>
+							<div class="gender">
+								<input type="radio" checked class="gender_radio_1" name="gender"
+									value=""><label class="gender_lable">Nam</label> <input
+									type="radio" class="gender_radio_2" name="gender" id=""><label
+									class="gender_lable">Nữ</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="thongtin_2">
+							<div class="image">
+								<img src="css/images/userim.jpg"
+									class="img-thumbnail rounded-circle" alt="userimage"
+									width="250px" height="">
+							</div>
+							<div class="file">
+								<input type="file" name="" id="">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="btna">
+					<button class="btn1" type="submit">Thêm</button>
+					<button class="btn2" type="submit">Cập Nhật</button>
+				</div>
+			</form>
+		</div>
+	</main>
+</body>
+</html>

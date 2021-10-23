@@ -17,4 +17,9 @@ public class HomeController {
 		return "/viewsAdmin/ListUser";
 	}
 	
+	@GetMapping("formEdit")
+	public String getformEdit()
+	{
+		return "viewsAdmin/EditUser";
+	}
 }
