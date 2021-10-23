@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 	
 	@GetMapping("index")
-	public String getform() {
+	public String index() {
 		return "/viewsUser/list";
+	}
+	
+	@GetMapping("index/product-detail")
+	public String getProductDetail() {
+		return "/viewsUser/product-detail";
 	}
 	
 	@GetMapping("/formAd")
