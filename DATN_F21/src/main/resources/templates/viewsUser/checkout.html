@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
+
+<body>
+    <main>
+        <!-- BREADCRUMB AREA START -->
+        <div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image"
+            data-bg="img/bg/9.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ltn__breadcrumb-inner ltn__breadcrumb-inner-2 justify-content-between">
+                            <div class="section-title-area ltn__section-title-2">
+                                <h6 class="section-subtitle ltn__secondary-color">// Chào mừng bạn đến với shop của
+                                    chúng tôi</h6>
+                                <h1 class="section-title white-color">Thanh toán</h1>
+                            </div>
+                            <div class="ltn__breadcrumb-list">
+                                <ul>
+                                    <li><a href="index.html">Trang chủ</a></li>
+                                    <li>Thanh toán</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BREADCRUMB AREA END -->
+
+        <!-- WISHLIST AREA START -->
+        <div class="ltn__checkout-area mb-105">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ltn__checkout-inner">
+                            <div class="ltn__checkout-single-content ltn__returning-customer-wrap">
+                                <!-- <h5>Returning customer? <a class="ltn__secondary-color" href="#ltn__returning-customer-login" data-toggle="collapse">Click here to login</a></h5>
+                                <div id="ltn__returning-customer-login" class="collapse ltn__checkout-single-content-info">
+                                    <div class="ltn_coupon-code-form ltn__form-box">
+                                        <p>Please login your accont.</p>
+                                        <form action="#">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-name ltn__custom-icon">
+                                                        <input type="text" name="ltn__name" placeholder="Enter your name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-email ltn__custom-icon">
+                                                        <input type="email" name="ltn__email" placeholder="Enter email address">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn theme-btn-1 btn-effect-1 text-uppercase">Login</button>
+                                            <label class="input-info-save mb-0"><input type="checkbox" name="agree"> Remember me</label>
+                                            <p class="mt-30"><a href="register.html">Lost your password?</a></p>
+                                        </form>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="ltn__checkout-single-content mt-50">
+                                <h4 class="title-2">Chi tiết thanh toán</h4>
+                                <div class="ltn__checkout-single-content-info">
+                                    <form action="#">
+                                        <h6>Thông tin cá nhân</h6>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-item input-item-name ltn__custom-icon">
+                                                    <input type="text" name="ltn__name" placeholder="Họ và tên"
+                                                        id="txtHoten" disabled="disabled">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-item input-item-email ltn__custom-icon">
+                                                    <input type="email" name="ltn__email" placeholder="Email"
+                                                        id="txtEmail" disabled="disabled">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-item input-item-phone ltn__custom-icon">
+                                                    <input type="text" name="ltn__phone" placeholder="Số điện thoại"
+                                                        id="txtSdt" disabled="disabled">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-6">
+                                                <div class="input-item input-item-website ltn__custom-icon">
+                                                    <input type="text" name="ltn__phone" placeholder="Company address (optional)">
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <div class="row">
+                                            <!-- <div class="col-lg-4 col-md-6">
+                                                <h6>Country</h6>
+                                                <div class="input-item">
+                                                    <select class="nice-select">
+                                                    <option>Select Country</option>
+                                                    <option>Australia</option>
+                                                    <option>Canada</option>
+                                                    <option>China</option>
+                                                    <option>Morocco</option>
+                                                    <option>Saudi Arabia</option>
+                                                    <option>United Kingdom (UK)</option>
+                                                    <option>United States (US)</option>
+                                                </select>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-lg-12 col-md-12">
+                                                <h6>Địa chỉ</h6>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="input-item">
+                                                            <input type="text" placeholder="Địa chỉ của bạn"
+                                                                disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase"
+                                                    type="submit" style="float: right">Thay đổi</button>
+                                            </div>
+                                        </div>
+                                        <!-- <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Create an account?</label></p>
+                                        <h6>Order Notes (optional)</h6>
+                                        <div class="input-item input-item-textarea ltn__custom-icon">
+                                            <textarea name="ltn__message" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                        </div> -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-lg-12">
+                            <div class="shoping-cart-total">
+                                <h4 class="title-2">Tổng số mặt hàng</h4>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">First</th>
+                                                        <th scope="col">Last</th>
+                                                        <th scope="col">Handle</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Mark</td>
+                                                        <td>Otto</td>
+                                                        <td>@mdo</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>Jacob</td>
+                                                        <td>Thornton</td>
+                                                        <td>@fat</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>Larry</td>
+                                                        <td>the Bird</td>
+                                                        <td>@twitter</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Vegetables Juices <strong>× 2</strong></td>
+                                            <td>$298.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Orange Sliced Mix <strong>× 2</strong></td>
+                                            <td>$170.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Red Hot Tomato <strong>× 2</strong></td>
+                                            <td>$150.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping and Handing</td>
+                                            <td>$15.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Tổng tiền đơn hàng</strong></td>
+                                            <td><strong>$633.00</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-12">
+                        <h4 class="title-2">Tổng số mặt hàng</h4>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sản phẩm</th>
+                                    <th scope="col">Đơn giá</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <th scope="row" colspan="4" style="text-align: left; color: red">Shop: Tên cửa hàng</th>
+                                <div class="card-body">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                </div>
+                                <th colspan="4" style="text-align: right;">Phí vận chuyển : <b
+                                        style="color: red">....</b></th>
+
+                            </tbody>
+                            <tbody>
+                                <th colspan="4" style="text-align: right;">Tổng tiền: <b style="color: red">....</b>
+                                </th>
+                            </tbody>
+                            <tbody>
+                                <hr>
+                                <th scope="row" colspan="4" style="text-align: left; color: red">Shop: Tên cửa hàng 2
+                                </th>
+                                <div class="card-body">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <th colspan="4" style="text-align: right;">Phí vận chuyển : <b
+                                            style="color: red">....</b></th>
+                                </div>
+                            </tbody>
+                            <tbody>
+                                <th colspan="4" style="text-align: right;">Tổng tiền: <b style="color: red">....</b>
+                                </th>
+                            </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover bg-light">
+                            <tbody>
+                                <tr>
+                                    <td>Tổng tiền hàng </td>
+                                    <td><strong>$150.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Phí vận chuyển</td>
+                                    <td><strong>$15.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tổng tiền đơn hàng</strong></td>
+                                    <td><strong>$633.00</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="ltn__checkout-payment-method">
+                            <h4 class="title-2">Phương thức thanh toán</h4>
+                            <div id="checkout_accordion_1">
+                                <!-- card -->
+                                <div class="card">
+                                    <h5 class="collapsed ltn__card-title" data-toggle="collapse"
+                                        data-target="#faq-item-2-3" aria-expanded="false">
+                                        Ví điện tử <img src="/img/icons/payment-3.png" alt="#">
+                                    </h5>
+                                    <div id="faq-item-2-3" class="collapse" data-parent="#checkout_accordion_1">
+                                        <div class="card-body">
+                                            <p>Bạn sẽ sử dụng ví điện tử của mình để thanh toán các mặt hàng trên.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ltn__payment-note mt-30 mb-30">
+                                <!-- <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p> -->
+                                <p>Dữ liệu cá nhân của bạn sẽ được sử dụng để xử lý đơn đặt hàng, hỗ trợ trải nghiệm của
+                                    bạn trên toàn bộ trang web này và cho các mục đích khác được mô tả trong chính sách
+                                    bảo mật của chúng tôi.</p>
+                            </div>
+                            <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit"
+                                style="float: right">Đặt hàng</button>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <!-- WISHLIST AREA END -->
+
+        <!-- FEATURE AREA START ( Feature - 3) -->
+        <div class="ltn__feature-area before-bg-bottom-2 mb--30--- plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ltn__feature-item-box-wrap ltn__border-between-column white-bg">
+                            <div class="row">
+                                <div class="col-xl-6 col-md-12 col-12">
+                                    <div class="ltn__feature-item ltn__feature-item-8">
+                                        <div class="ltn__feature-icon">
+                                            <img src="/img/icons/icon-img/13.png" alt="#">
+                                        </div>
+                                        <div class="ltn__feature-info">
+                                            <h4>Thực phẩm từ tự nhiên</h4>
+                                            <p>Shop cho bạn đổi trả trong vòng 2 giờ sau khi thanh toán.</p>
+                                            <p>Sau 2 giờ shop không giải quyết bất kỳ vấn đề nào về sản phẩm.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-12 col-12">
+                                    <div class="ltn__feature-item ltn__feature-item-8">
+                                        <div class="ltn__feature-icon">
+                                            <img src="/img/icons/icon-img/14.png" alt="#">
+                                        </div>
+                                        <div class="ltn__feature-info">
+                                            <h4>Giao hàng nhanh chóng</h4>
+                                            <p>Chúng tôi sẽ ưu tiên vấn đề thời gian để tối ưu chất lượng sản phẩm, mong
+                                                mang lại cho bạn nguồn thực phẩm tốt nhất.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FEATURE AREA END -->
+    </main>
+</body>
+
+</html>

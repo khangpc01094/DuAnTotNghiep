@@ -6,14 +6,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 	
-	@GetMapping("index")
-	public String index() {
-		return "/viewsUser/list";
+	@GetMapping("/index")
+	public String getIndex() {
+		return "/viewsUser/index";
 	}
 	
-	@GetMapping("index/product-detail")
+	@GetMapping("/index/product-detail")
 	public String getProductDetail() {
 		return "/viewsUser/product-detail";
+	}
+	
+	@GetMapping("/index/cart")
+	public String getCart() {
+		return "/viewsUser/cart";
+	}
+
+	@GetMapping("/index/checkout")
+	public String getCheckout() {
+		return "/viewsUser/checkout";
+	}
+
+	@GetMapping("/index/account")
+	public String getAccount() {
+		return "/viewsUser/account";
 	}
 	
 	@GetMapping("/formAd")
