@@ -7,20 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
 	
-	@GetMapping("/form")
-	public String getform() {
-		return "/viewsUser/list";
-	}
+	/*@GetMapping("/form")
 	
-	@GetMapping("/formAd")
-	public String getformAd() {
-		return "/viewsAdmin/list";
-	}
-	
-	@GetMapping("/menu")
-	public String getMenu() {
-		return "/viewsUser/menu";
-	}
+	 * public String getform() { return "/viewsUser/list"; }
+	 * 
+	 * @GetMapping("/formAd") public String getformAd() { return "/viewsAdmin/list";
+	 * }
+	 * 
+	 * @GetMapping("/menu") public String getMenu() { return "/viewsUser/menu"; }
+	 */
 	
 	@GetMapping("/login")
 	public String getLogin() {
