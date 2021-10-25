@@ -310,9 +310,10 @@
 /* footer */
 
 .chantrang {
+  
+  margin-top: 20px;
   border-top: 4px solid var(--primary-color);
   background-color: white;
-  margin-top: 10px;
   width: 100%;
 }
 
