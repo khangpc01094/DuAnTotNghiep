@@ -30,24 +30,20 @@
 	
 
 	<div class="row">
-		<!-- <div class="side-bar">
-			<div th:replace="/layoutSeller/_category.html"></div>
-		</div> -->
 		<article class="col-sm-3">
 			<div class="side-bar">
 				<div th:replace="/layoutSeller/list.html"></div>
 			</div>
-		</article> 
+		</article>
 		<aside class="col-sm-9">
 			<div class="side-bar2">
 				<div th:replace="${main}"></div>
 			</div>
 		</aside>
 	</div>
-
-	<div class="row">
+	
 		<div th:replace="/layoutSeller/_footer.html"></div>
-	</div>
+	
 	
 </body>
 </html>
