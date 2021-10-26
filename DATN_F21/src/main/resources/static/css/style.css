@@ -16744,7 +16744,7 @@ input.cart-plus-minus-box {
 }
 
 .theme-btn-1:hover {
-    background-color: var(--ltn__primary-color);
+    background-color: #388E3C;
     color: var(--white);
 }
 

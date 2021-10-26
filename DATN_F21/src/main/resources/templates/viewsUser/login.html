@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
+<body>
+	<main>
+		<!-- LOGIN AREA START -->
+		<div class="ltn__login-area pb-65">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="text-center mt--90">
+							<img src="/img/banner/menu-banner-1.png" alt="404">
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="account-login-inner">
+							<h1 class="section-title text-center">Đăng Nhập</h1>
+							<form action="#" class="ltn__form-box contact-form-box">
+								<input type="text" name="email" placeholder="Email*"> <input
+									type="password" name="password" placeholder="Mật Khẩu*">
+								<div class="go-to-btn mt--30">
+									<a href="/fogot_password"><small>QUÊN MẬT KHẨU?</small></a>
+								</div>
+								<div class="btn-wrapper mt-20">
+									<button class="theme-btn-1 btn btn-block" type="submit">ĐĂNG
+										NHẬP</button>
+								</div>
+								<div class="btn-wrapper mt-10">
+									<button class="theme-btn-3 btn btn-block" type="submit"
+										title="Facebook">
+										<i class="fab fa-facebook"></i> Facebook
+									</button>
+								</div>
+								<div class="btn-wrapper mt-10">
+									<button class="theme-btn-3 btn btn-block" type="submit">
+										<i class="fab fa-google-plus"></i> Google +
+									</button>
+								</div>
+								<div class="go-to-btn mt-20">
+									<a href="/register"><small>TẠO TÀI KHOẢN</small></a>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- LOGIN AREA END -->
+
+	</main>
+</body>
+</html>
