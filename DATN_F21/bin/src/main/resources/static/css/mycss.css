@@ -1,0 +1,19 @@
+.menu-center {
+	margin-left: 480px;
+	margin-top: -30px;
+	margin-bottom: -30px;
+}
+
+.input-find {
+	width: 100%;
+	float: left;
+}
+
+.btn-find {
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-left: -57px;
+	margin-top: 8px;
+	background-color: #58ed58;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nguoi ban</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+
+ <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+ -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script> -->
+
+<link href="/css/seller.css" rel="stylesheet">
+
+</head>
+<body style="background-color: #f6f6f6;">
+
+	
+		<div th:replace="/layoutSeller/_menu.html"></div>
+	
+
+	<div class="row">
+		<article class="col-sm-3">
+			<div class="side-bar">
+				<div th:replace="/layoutSeller/list.html"></div>
+			</div>
+		</article>
+		<aside class="col-sm-9">
+			<div class="side-bar2">
+				<div th:replace="${main}"></div>
+			</div>
+		</aside>
+	</div>
+	
+		<div th:replace="/layoutSeller/_footer.html"></div>
+	
+	
+</body>
+</html>
