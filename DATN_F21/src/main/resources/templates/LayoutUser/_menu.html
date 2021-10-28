@@ -11,13 +11,9 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul>
-                                        <li class="menu-icon"><a href="/form">Home</a></li>
-                                        <li class="menu-icon"><a href="#">News</a>
-                                            <ul>
-                                                <li><a href="blog.html">News</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/contact">Contact</a></li>
+                                        <li class="menu-icon"><a href="/formAd">Admin</a></li>
+                                   
+                                        <li><a href="/formSeller">Seller</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -28,33 +24,32 @@
                     <div class="col-lg-4" style="margin-left: -100px">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img th:src="@{|/img/logo4.png|}" alt="Logo" height="85px;" width="100%"></a>
+                                <a href="/index"><img th:src="@{|/img/logo4.png|}" alt="Logo" height="85px;" width="100%"></a>
 
                         </div>
                     </div>
-                    <div class="col">                       
+                    <!-- <div class="col">                       
                             <form id="#" method="get"  action="#" class="mt-30">
                                 <input class="input-find" type="text" name="ltn__name" required="required" placeholder="Tìm kiếm sản phẩm...">                                  
                                 <button class="theme-btn-1 btn-find" type="submit"><i class="icon-search"></i></button>                                                                   
                             </form>
-                    </div>
+                    </div> -->
                     <div class="ltn__header-options ltn__header-options-2">                      
                         <div class="ltn__drop-menu user-menu">
                             <ul>
                                 <li>
                                     <a href="#"><i class="icon-user"></i></a>
                                     <ul>
-                                        <li><a href="/login">Ä�Äƒng nháº­p</a></li>
-                                        <li><a href="/register">Ä�Äƒng kÃ½</a></li>
-                                        <li><a href="/my_account">TÃ i khoáº£n</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/login">Đăng nhập</a></li>
+                                        <li><a href="/register">Đăng kí</a></li>
+                                        <li><a href="/my_account">Tài khoản</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                         <!-- mini-cart -->
                         <div class="mini-cart-icon">
-                            <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                            <a th:href="@{|/index/cart|}">
                                 <i class="icon-shopping-cart"></i>
                                 <sup>2</sup>
                             </a>
