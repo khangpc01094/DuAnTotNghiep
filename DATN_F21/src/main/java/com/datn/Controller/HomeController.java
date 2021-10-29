@@ -26,10 +26,6 @@ public class HomeController {
 		return "/viewsUser/checkout";
 	}
 
-	@GetMapping("/index/account")
-	public String getAccount() {
-		return "/viewsUser/account";
-	}
 	
 	@GetMapping("/login")
 	public String getLogin() {
@@ -55,5 +51,5 @@ public class HomeController {
 	public String getFogotPassword() {
 		return "/viewsUser/fogot_password";
 	}
-
+	
 }
