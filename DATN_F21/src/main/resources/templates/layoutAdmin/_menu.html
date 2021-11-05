@@ -1,15 +1,35 @@
 <div xmlns:th="http://www.thymeleaf.org">
    <main>
-      <div class="headers">
-          <header class="row">
-              <div class="col-sm-9">
-                  <a href="/index"><img th:src="@{|/img/logo.jpg|}" alt="no" ></a>
-              </div>
-              <div class="col-sm-3">
-                  <img th:src="@{|/img/cai.jpg|}" class="img-thumbnail rounded-circle" width="80px" height="60px" alt="">
-                  Admin
-              </div>
-          </header>
-      </div>
+      <nav class="navbar header-navbar pcoded-header"  style="height: 90px">
+		<div class="navbar-wrapper">
+
+			<div class="navbar-logo" style="background-color: #00FF7F; margin-left: -20px; margin-top: -8px; width: 274px; height: 90px">
+				<a class="mobile-menu" id="mobile-collapse" href="#!"> <i
+					class="ti-menu"></i>
+				</a> <a th:href="@{|/index|}"> <img th:src="@{|/img/logo4.png|}"
+					class="logo" alt=""  width="200">
+				</a> <a class="mobile-options"> <i class="ti-more"></i>
+				</a>
+			</div>
+
+			<div class="navbar-container container-fluid">
+				<ul class="nav-left">
+					<li>
+						<div class="sidebar_toggle">
+							<a href="javascript:void(0)"><i class="ti-menu"></i></a>
+						</div>
+					</li>
+				</ul>
+				<ul class="nav-right">
+
+					<li class="user-profile header-notification"><a href="#!">
+                        <img th:src="@{|/img/cai.jpg|}" class="img-thumbnail rounded-circle" width="80px" height="60px" alt="">
+                        Admin
+					</a>
+				</ul>
+
+			</div>
+		</div>
+	</nav>
   </main>
 </div>

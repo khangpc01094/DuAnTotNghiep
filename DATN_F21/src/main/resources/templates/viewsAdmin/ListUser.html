@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
-<body>
+
 	<main class="main_UserList">
 		<div class="UserList">
 			<div class="taital">
-				<h2>Danh Sach nguoi Dùng</h2>
+				<h2  style="color: orange; margin-top: 20px; font-size: 30px">Danh sách người dùng</h2>
 			</div>
 			<div class="container__UL">
-				<div class="search_wrap">
-					<form action="" method="" id="">
-					<div class="input-group mb-3">
-						<h5>Tìm kiếm </h5>
-						<input type="text" class="form-control" placeholder="Search........."
-							aria-label="Recipient's username" aria-describedby="button-addon2">
-						
-					</div>
+				<div class=" row search_wrap">
+					<div class="col-sm-12">
+					<form action="" method="">
+						<label class="lable_Search">Tìm kiếm </label> 
+						<input type="text" style="width: 60%"
+							name="" id="" placeholder="Nhập tên cửa hàng...."
+							class="input_search_store" required>
 					</form>
+					</div>
+					
 				</div>
+				
 			</div>
 			<div class="tableUL">
 				<table class="table">
@@ -42,7 +44,7 @@
 							<td>Mark</td>
 							<td>Otto</td>
 							<td>@mdo</td>
-							<td><a href="#">Edit</a></td>
+							<td><a th:href="@{|/formEdit|}">Edit</a></td>
 						</tr>
 						<tr>
 							<th scope="row">1</th>
@@ -52,7 +54,7 @@
 							<td>Mark</td>
 							<td>Otto</td>
 							<td>@mdo</td>
-							<td><a href="#">Edit</a></td>
+							<td><a th:href="@{|/formEdit|}">Edit</a></td>
 						</tr>
 						<tr>
 							<th scope="row">1</th>
@@ -62,7 +64,7 @@
 							<td>Mark</td>
 							<td>Otto</td>
 							<td>@mdo</td>
-							<td><a href="#">Edit</a></td>
+							<td><a th:href="@{|/formEdit|}">Edit</a></td>
 						</tr>
 						<tr>
 							<th scope="row">1</th>
@@ -111,5 +113,5 @@
 			  </nav>
 		</div>
 	</main>
-</body>
+
 </html>

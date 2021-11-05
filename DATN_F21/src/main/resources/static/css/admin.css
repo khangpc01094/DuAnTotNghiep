@@ -36,6 +36,16 @@
 /*-----------------------------------------------
                 Header end
   -----------------------------------------------*/
+  /*auth*/
+  .Auth table tbody tr td
+  {
+  	text-align: center;
+  }
+  
+  
+  /*end auth*/
+  
+  
 
 /*-----------------------------------------------
                 Category
@@ -160,13 +170,33 @@
 .main_UserList .UserList .container__UL .search_wrap h5
 {
 	margin-top: 10px;
-	margin-right: 20px;
 }
 
 .main_UserList .UserList .container__UL .search_wrap input
 {
 	height: 40px;
+	width: 50%;
 }
+
+.main_UserList .UserList .container__UL .search_wrap .input_search_store {
+	width: 50%;
+	height: 40px;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	margin: 8px 0;
+	outline: none;
+	padding: 8px;
+	box-sizing: border-box;
+	transition: .3s;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.main_UserList .UserList .container__UL .search_wrap .input_search_store:focus {
+	border-color: dodgerblue;
+	box-shadow: 0 0 8px 0 dodgerblue;
+}
+
 
 .taital h2 {
 	margin-top: 10px;
@@ -445,6 +475,8 @@
 	overflow: hidden;
 	text-align: center;
 	margin-top: 25px;
+	width: 120px;
+	margin-left: 50px
 }
 
 .container_Category .border .foodter .btnc button:hover
@@ -489,7 +521,7 @@
 	margin: 20px;
 }
 
-.container_Store .row .lable_Search {
+.container_Store .row  {
 	font-size: 18px;
 }
 

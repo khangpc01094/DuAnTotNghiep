@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SellerController {
 	
+
+	@GetMapping("/demo")
+	public String demo() {
+		return "/viewsSeller/demo";
+	}
+	
 	@GetMapping("/formSeller")
 	public String getformSeller() {
 		return "/viewsSeller/allProduct";

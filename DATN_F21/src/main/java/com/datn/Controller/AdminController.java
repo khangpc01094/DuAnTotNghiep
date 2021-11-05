@@ -6,12 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 
-	
-	@GetMapping("/form")
-	public String getform() {
-		return "/viewsUser/list";
-	}
-	
 	@GetMapping("/formAd")
 	public String getformAd() {
 		return "/viewsAdmin/ListUser";
@@ -21,6 +15,11 @@ public class AdminController {
 	public String getformEdit()
 	{
 		return "viewsAdmin/EditUser";
+	}
+	
+	@GetMapping("/formAuth")
+	public String getformAuth() {
+		return "viewsAdmin/Authorization";
 	}
 	
 	@GetMapping("formCategory")
