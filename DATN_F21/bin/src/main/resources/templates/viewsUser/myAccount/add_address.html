@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
+<body>
+	<main>	
+	<div class="tab-pane fade active show">
+           <div class="ltn__myaccount-tab-content-inner">
+               <div class="ltn__form-box">
+                   <form action="#"> 
+                       <fieldset>
+                           <legend>Địa Chỉ</legend>                         
+                           <div class="row">
+                               <div class="col-md-12">
+                                   <label>Địa Chỉ Của Bạn *:</label>
+                                   <input type="text" name="ltn__name">
+                               </div>
+                           </div>
+                           <div class="btn-wrapper text-center">
+                               <a href="/account/address" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu Địa Chỉ</a>
+                           </div>
+                           <div class="by-agree ">
+                               <a href="/account/address">TRỞ VỀ</a>
+                           </div>
+                       </fieldset> 
+                   </form>
+               </div>
+           </div>
+  	 	</div>
+  	 </main>
+</body>
+</html>

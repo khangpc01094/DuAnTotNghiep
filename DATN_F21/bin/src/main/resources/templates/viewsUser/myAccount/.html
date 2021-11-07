@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
+	<div class="tab-pane fade active show" id="liton_tab_1_1">
+	    <div class="ltn__myaccount-tab-content-inner">       
+	        <div class="ltn__myaccount-tab-content-inner">
+	            <div class="ltn__form-box">
+	                <form action="#"> 
+	                    <fieldset>
+	                        <legend>Thông Tin</legend>
+	                        <div class="row">
+	                            <div class="col-md-12">
+	                                <div class="text-center">
+	                                    <img src="/img/user_default.png" alt=""></br>
+	                                    <button type="submit" class="btn theme-btn-3 btn-effect-1 text-uppercase mt-2">Chọn Ảnh</button>
+	                                    <p>Dụng lượng file tối đa 1 MB. Định dạng:.JPEG, .PNG</p>
+	                                </div>
+	                                <label>Tài khoản (Chỉ được cập nhật một lần duy nhất):</label>
+	                                <input type="text" name="ltn__name">
+	                                <label>Họ và tên:</label>
+	                                <input type="text" name="ltn__name">
+	                                <label>Email:</label>
+	                                <input type="email" name="ltn__name">
+	                                <label>Số điện thoại:</label>
+	                                <input type="text" name="ltn__name">
+	                                <label>Giới tính:</label></br>
+	                                <div class="gender">
+	                                    <div class="mt-15">
+	                                        <input type="radio" value="true" name="gender"> Nam
+	                                        <input class="ml-30" type="radio" value="false" name="gender"> Nữ 
+	                                    </div>
+	                                </div>
+	                                <label>Ngày sinh:</label>
+	                                <input type="date" name="ltn__name">
+	                                
+	                            </div>
+	                        </div>
+	                        <div class="btn-wrapper text-center">
+	                            <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">LƯU THAY ĐỔI</button>
+	                        </div>
+	                    </fieldset> 
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</html>
