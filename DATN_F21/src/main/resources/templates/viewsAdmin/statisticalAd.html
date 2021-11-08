@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
+<body>
+    <main style="background-color: white; min-height: 744px;">
+      <div class="container_statistical">
+        <div class="search_statistical">
+          <label class="titel"  style="color: orange; margin-top: 20px; font-size: 30px">Thống kê doanh thu</label>
+          <div class="row">
+            <div class="col-sm-8">
+              <form action="" method="">
+              <label>Từ</label>
+              <input class="date_statis" required type="text" name="" id="">
+              <label>Đến</label>
+              <input class="date_statis" required type="text" name="" id="">
+              <button class="btn_search" type="submit">search</button>
+            </form>
+            </div>
+            <div class="col-sm-4">
+              <label>Tổng cộng</label>
+              <input class="date_statis" type="text" readonly value="100000000" name="" id="">
+            </div>
+          </div>
+        </div>
+      <hr>
+        <div class="table_statiscal">
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Mã hóa đơn</th>
+                    <th scope="col">Chiết khấu</th>
+                    <th scope="col">Thành tiền</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>1020</td>
+                    <td>5%</td>
+                    <td>32.000</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>1220</td>
+                    <td>5%</td>
+                    <td>12.000</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>1320</td>
+                    <td>5%</td>
+                    <td>52.000</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        </div>
+    </main>
+</body>
+</html>

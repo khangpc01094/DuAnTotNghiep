@@ -1,40 +1,122 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)" class="no-js" lang="zxx">
-
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Broccoli - Organic Food HTML Template</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Place favicon.png in the root directory -->
-    <link rel="icon" href="/img/faviconlogo.ico" type="image/x-icon" />
-    <!-- Font Icons css -->
-    <link rel="stylesheet" href="/css/font-icons.css">
-    <!-- plugins css -->
-    <link rel="stylesheet" href="/css/plugins.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="/css/responsive.css">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Broccoli - Organic Food HTML Template</title>
+<meta name="robots" content="noindex, follow" />
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     -->
+
+	<!--My's part-->
+<!-- Place favicon.png in the root directory -->
+<link rel="shortcut icon" href="/img/faviconlogo.ico" type="image/x-icon" />
+<!-- Font Icons css -->
+
+<link href="/css/font-icons.css" rel="stylesheet">
+
+<link href="/css/plugins.css" rel="stylesheet">
+
+<link href="/css/style.css" rel="stylesheet">
+
+<link href="/css/responsive.css" rel="stylesheet">
+
+<!-- Trung thêm -->
+<link href="/css/mycss.css" rel="stylesheet">
+
+<link href="/css/seller.css" rel="stylesheet">
+
 </head>
 <body>
-    <div class="">
-        <nav>
-            <div th:replace="/layoutUser/_menu.html"></div>
-        </nav>
-        <div>
-            <div th:replace="${main}"></div>
-        </div>
-        <footer>
-            <div th:replace="/layoutUser/_footer.html"></div>
-        </footer>
-    </div>
-    <!-- All JS Plugins -->
-    <script src="/js/plugins.js"></script>
-    <!-- Main JS -->
-    <script src="/js/main.js"></script>
+	<div class="body-wrapper">
+		<nav>
+			<div th:replace="/layoutUser/_menu.html"></div>
+		</nav>
+
+		<div>
+			<div th:replace="${main}"></div>
+		</div>
+
+		<footer>
+			<div th:replace="/layoutUser/_footer.html"></div>
+		</footer>
+	</div>
+
+	<!-- Body main wrapper end -->
+
+	<!-- preloader area start -->
+	<div class="preloader d-none" id="preloader">
+		<div class="preloader-inner">
+			<div class="spinner">
+				<div class="dot1"></div>
+				<div class="dot2"></div>
+			</div>
+		</div>
+	</div>
+	<!-- preloader area end -->
+
+	<!-- All JS Plugins -->
+	<script src="/js/plugins.js"></script>
+	<!-- Main JS -->
+	<script src="/js/main.js"></script>
+
+	<!-- Code injected by live-server -->
+	<script type="text/javascript">
+		// <![CDATA[  <-- For SVG support
+		if ('WebSocket' in window) {
+			(function() {
+				function refreshCSS() {
+					var sheets = [].slice.call(document
+							.getElementsByTagName("link"));
+					var head = document.getElementsByTagName("head")[0];
+					for (var i = 0; i < sheets.length; ++i) {
+						var elem = sheets[i];
+						var parent = elem.parentElement || head;
+						parent.removeChild(elem);
+						var rel = elem.rel;
+						if (elem.href && typeof rel != "string"
+								|| rel.length == 0
+								|| rel.toLowerCase() == "stylesheet") {
+							var url = elem.href.replace(
+									/(&|\?)_cacheOverride=\d+/, '');
+							elem.href = url
+									+ (url.indexOf('?') >= 0 ? '&' : '?')
+									+ '_cacheOverride='
+									+ (new Date().valueOf());
+						}
+						parent.appendChild(elem);
+					}
+				}
+				var protocol = window.location.protocol === 'http:' ? 'ws://'
+						: 'wss://';
+				var address = protocol + window.location.host
+						+ window.location.pathname + '/ws';
+				var socket = new WebSocket(address);
+				socket.onmessage = function(msg) {
+					if (msg.data == 'reload')
+						window.location.reload();
+					else if (msg.data == 'refreshcss')
+						refreshCSS();
+				};
+				if (sessionStorage
+						&& !sessionStorage
+								.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+					console.log('Live reload enabled.');
+					sessionStorage.setItem(
+							'IsThisFirstTime_Log_From_LiveServer', true);
+				}
+			})();
+		} else {
+			console
+					.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+		}
+		// ]]>
+	</script>
 </body>
 
 </html>

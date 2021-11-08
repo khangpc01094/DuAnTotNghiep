@@ -1,38 +1,64 @@
 package com.datn.entity;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Users implements Serializable {
 	@Id
-//	@GeneratedValue
-	@Column(name = "Userid")
-	String userId;
-	@Column(name = "Username")
-	String userName;
-	@Column(name = "Password")
-	String password;
-	@Column(name = "Fullname")
-	String fullName;
-	@Column(name = "Picture")
-	String picture;
-	@Column(name = "Email")
-	String email;
-	@Column(name = "Gender")
-	Boolean gender;
-	@Column(name = "Birthday")
-	String birthday;
-	@Column(name = "Phone")
-	String phone;
+	private String userid;
+	private String username;
+	private String password;
+	private String fullname;
+	private String picture;
+	private String email;
+	private Boolean gender;
+	@Temporal(TemporalType.DATE)
+	private Date birthday;
+	private String phone;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<Address> addresss;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<Authorization> authorization;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<Order> orders;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<ShoppingCart> shoppingCart;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<Store> store;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<Wallet> wallet;
 }

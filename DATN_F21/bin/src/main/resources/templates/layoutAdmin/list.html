@@ -1,0 +1,70 @@
+<div xmlns:th="http://www.thymeleaf.org">
+
+	<nav class="pcoded-navbar">
+		<div class="sidebar_toggle">
+			<a href="#"><i class="icon-close icons"></i></a>
+		</div>
+		<div class="pcoded-inner-navbar main-menu">
+			<div class="">
+				<div class="main-menu-header">
+					<img class="img-40 img-radius" src="/img/cachua.jpg"
+						alt="User-Profile-Image">
+					<div class="user-details">
+						<span>John Doe</span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="pcoded-navigatio-lavel"
+				data-i18n="nav.category.navigation">Quản lý người dùng</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li class="active"><a  th:href="@{|/formAd|}"> <span
+						class="pcoded-micon"><i class="ti-home"></i><b>D</b></span> <span
+						class="pcoded-mtext" data-i18n="nav.dash.main">Danh sách người dùng</span> <span
+						class="pcoded-mcaret"></span>
+				</a></li>
+				<li class="pcoded-hasmenu"><a th:href="@{|/formEdit|}"> <span
+						class="pcoded-micon"><i class="ti-layers"></i></span> <span
+						class="pcoded-mtext" data-i18n="nav.basic-components.main">Thêm &amp; cập nhật người dùng</span>
+						<span class="pcoded-mcaret"></span>
+				</a></li>
+				<li class="pcoded-item pcoded-left-item"><a th:href="@{|/formAuth|}"><span
+						class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span> <span
+						class="pcoded-mtext" data-i18n="nav.form-components.main">Phân quyền</span>
+						<span class="pcoded-mcaret"></span>
+				</a></li>
+					
+			</ul>
+			<div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Quản lý loại sản phẩm</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li><a th:href="@{|/formCategory|}"> <span
+						class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span> <span
+						class="pcoded-mtext" data-i18n="nav.form-components.main">Tất cả loại sản phẩm</span> <span class="pcoded-mcaret"></span>
+				</a></li>
+			</ul>
+			<div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Quản lý cửa hàng</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li><a th:href="@{|/formStore|}"> <span
+						class="pcoded-micon"><i class="ti-angle-right"></i><b>FC</b></span> <span
+						class="pcoded-mtext" data-i18n="nav.form-components.main">Tất cả cửa hàng</span> <span class="pcoded-mcaret"></span>
+				</a></li>
+			</ul>
+			<div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Quản lý loại sản phẩm</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li><a th:href="@{|/formCategory|}"> <span
+						class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span> <span
+						class="pcoded-mtext" data-i18n="nav.form-components.main">Tất cả loại sản phẩm</span> <span class="pcoded-mcaret"></span>
+				</a></li>
+			</ul>
+			<div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Thống kê</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li><a th:href="@{|/formStati|}"> <span
+						class="pcoded-micon"><i class="ti-angle-right"></i><b>FC</b></span> <span
+						class="pcoded-mtext" data-i18n="nav.form-components.main">Doanh thu</span> <span class="pcoded-mcaret"></span>
+				</a></li>
+			</ul>
+			<div></div>
+		</div>
+	</nav>
+</div>
+	
