@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/index2 :: dynamic(~{:: main})}">
+<body>
+	<main>
+		<!-- WISHLIST AREA START -->
+		<div class="liton__wishlist-area pb-70">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<!-- PRODUCT TAB AREA START -->
+						<div class="ltn__product-tab-area">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="ltn__tab-menu-list mb-50">
+											<div class="nav">
+												<a href="/form">Trang Chá»§<i class="fas fa-home"></i></a> <a
+													class="active show" data-toggle="tab" href="#liton_tab_1_5">Há»“
+													SÆ¡<i class="fas fa-user"></i>
+												</a> <a data-toggle="tab" href="#liton_tab_1_4">Ä�á»‹a Chá»‰ <i
+													class="fas fa-map-marker-alt"></i></a> <a data-toggle="tab"
+													href="#liton_tab_1_6">Ä�á»•i Máº­t Kháº©u<i
+													class="fas fa-user-edit"></i></a> <a data-toggle="tab"
+													href="#liton_tab_1_8">Ä�Æ¡n HÃ ng<i
+													class="fas fa-file-alt"></i></a> <a data-toggle="tab"
+													href="#liton_tab_1_9">VÃ­ Ä�iá»‡n Tá»­<i
+													class="fas fa-money-bill"></i></a> <a href="#">Ä�Äƒng Xuáº¥t <i
+													class="fas fa-sign-out-alt"></i></a>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-8">
+										<div class="tab-content">
+
+
+											<div class="tab-pane fade" id="liton_tab_1_4">
+												<div class="ltn__myaccount-tab-content-inner">
+													<p>CÃ¡c Ä‘á»‹a chá»‰ sau sáº½ Ä‘Æ°á»£c sá»­ dá»¥ng trÃªn trang thanh
+														toÃ¡n</p>
+													<div class="row">
+														<div class="col-md-12 col-12 learts-mb-30">
+															<h4>
+																Ä�á»‹a chá»‰ 1: <small><a data-toggle="tab"
+																	href="#liton_tab_1_7">chá»‰nh sá»­a</a></small>
+															</h4>
+															<p>356 ThÆ¡i NÃ´ng, NÃ´ng ThÃ´n, ThÃ´n Ná»¯, Cáº§n ThÆ¡</p>
+														</div>
+														<div class="col-md-12 col-12 learts-mb-30">
+															<h4>
+																Ä�á»‹a chá»‰ 2: <small><a data-toggle="tab"
+																	href="#liton_tab_1_7">chá»‰nh sá»­a</a></small>
+															</h4>
+															<p>356 ThÆ¡i NÃ´ng, NÃ´ng ThÃ´n, ThÃ´n Ná»¯, Cáº§n ThÆ¡</p>
+														</div>
+														<div class="col-md-12 col-12 learts-mb-30">
+															<h4>
+																Ä�á»‹a chá»‰ 3: <small><a data-toggle="tab"
+																	href="#liton_tab_1_7">chá»‰nh sá»­a</a></small>
+															</h4>
+															<p>356 ThÆ¡i NÃ´ng, NÃ´ng ThÃ´n, ThÃ´n Ná»¯, Cáº§n ThÆ¡</p>
+														</div>
+														<div class="col-md-12 col-12 learts-mb-30">
+															<h4>
+																Ä�á»‹a chá»‰ 4: <small><a data-toggle="tab"
+																	href="#liton_tab_1_7">chá»‰nh sá»­a</a></small>
+															</h4>
+															<p>356 ThÆ¡i NÃ´ng, NÃ´ng ThÃ´n, ThÃ´n Ná»¯, Cáº§n ThÆ¡</p>
+														</div>
+														<a type="submit" data-toggle="tab" href="#liton_tab_1_7"
+															class="btn theme-btn-1 btn-effect-1 text-uppercase">THÃŠM
+															Ä�á»ŠA CHá»ˆ Má»šI</a>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade active show" id="liton_tab_1_5">
+												<div class="ltn__myaccount-tab-content-inner">
+													<div class="ltn__myaccount-tab-content-inner">
+														<div class="ltn__form-box">
+															<form action="#">
+																<fieldset>
+																	<legend>ThÃ´ng Tin</legend>
+																	<div class="row">
+																		<div class="col-md-12">
+																			<div class="text-center">
+																				<img src="/img/user_default.png" alt=""></br>
+																				<button type="submit"
+																					class="btn theme-btn-3 btn-effect-1 text-uppercase mt-2">Chá»�n
+																					áº¢nh</button>
+																				<p>Dá»¥ng lÆ°á»£ng file tá»‘i Ä‘a 1 MB. Ä�á»‹nh dáº¡ng:.JPEG,
+																					.PNG</p>
+																			</div>
+																			<label>TÃ i khoáº£n (Chá»‰ Ä‘Æ°á»£c cáº­p nháº­t má»™t láº§n
+																				duy nháº¥t):</label> <input type="text" name="ltn__name">
+																			<label>Há»� vÃ  tÃªn:</label> <input type="text"
+																				name="ltn__name"> <label>Email:</label> <input
+																				type="email" name="ltn__name"> <label>Giá»›i
+																				tÃ­nh:</label></br>
+																			<div class="gender">
+																				<div class="mt-15">
+																					<input type="radio" value="true" name="gender">
+																					Nam <input class="ml-30" type="radio" value="false"
+																						name="gender"> Ná»¯
+																				</div>
+																			</div>
+																			<label>NgÃ y sinh:</label> <input type="date"
+																				name="ltn__name">
+
+																		</div>
+																	</div>
+																	<div class="btn-wrapper text-center">
+																		<button type="submit"
+																			class="btn theme-btn-1 btn-effect-1 text-uppercase">LÆ¯U
+																			THAY Ä�á»”I</button>
+																	</div>
+																</fieldset>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="liton_tab_1_6">
+												<div class="ltn__myaccount-tab-content-inner">
+													<div class="ltn__form-box">
+														<form action="#">
+															<fieldset>
+																<legend>Ä�á»•i Máº­t Kháº©u</legend>
+																<p>Ä�á»ƒ Ä‘áº£m báº£o tÃ i khoáº£n, vui lÃ²ng khÃ´ng chia sáº½ máº­t
+																	kháº©u cho ngÆ°á»�i khÃ¡c.</p>
+																<div class="row">
+																	<div class="col-md-12">
+																		<label>Máº­t kháº©u hiá»‡n táº¡i*:</label> <input
+																			type="password" name="ltn__name"> <label>Máº­t
+																			kháº©u má»›i*:</label> <input type="password"
+																			name="ltn__lastname"> <label>XÃ¡c nháº­n
+																			máº­t kháº©u má»›i*:</label> <input type="password"
+																			name="ltn__lastname">
+																	</div>
+																</div>
+																<div class="btn-wrapper text-center">
+																	<button type="submit"
+																		class="btn theme-btn-1 btn-effect-1 text-uppercase">Ä�á»”I
+																		Máº¬T KHáº¨U</button>
+																</div>
+																<div class="by-agree ">
+																	<a href="/fogot_password">QUYÃŠN Máº¬T KHáº¨U</a>
+																</div>
+															</fieldset>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="liton_tab_1_7">
+												<div class="ltn__myaccount-tab-content-inner">
+													<div class="ltn__form-box">
+														<form action="#">
+															<fieldset>
+																<legend>Ä�á»‹a Chá»‰</legend>
+																<div class="row">
+																	<div class="col-md-12">
+																		<label>Ä�á»‹a Chá»‰ Cá»§a Báº¡n *:</label> <input type="text"
+																			name="ltn__name">
+																	</div>
+																</div>
+																<div class="btn-wrapper text-center">
+																	<a data-toggle="tab" href="#liton_tab_1_4"
+																		type="submit"
+																		class="btn theme-btn-1 btn-effect-1 text-uppercase">LÆ°u
+																		Ä�á»‹a Chá»‰</a>
+																</div>
+																<div class="by-agree ">
+																	<a data-toggle="tab" href="#liton_tab_1_4">TRá»ž Vá»€</a>
+																</div>
+															</fieldset>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="liton_tab_1_8">
+												<div class="ltn__myaccount-tab-content-inner">
+													<div class="table-responsive">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th>Ä�Æ¡n hÃ ng</th>
+																	<th>NgÃ y Ä‘áº·t</th>
+																	<th>Tráº¡ng thÃ¡i</th>
+																	<th>Tá»•ng sá»‘ tiá»�n</th>
+																	<th>HÃ nh Ä‘á»™ng</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>1</td>
+																	<td>Jun 22, 2019</td>
+																	<td>Ä�Ã£ giao</td>
+																	<td>$3000</td>
+																	<td><a href="cart.html">Xem</a></td>
+																</tr>
+																<tr>
+																	<td>2</td>
+																	<td>Nov 22, 2019</td>
+																	<td>Ä�Ã£ giao</td>
+																	<td>$200</td>
+																	<td><a href="cart.html">Xem</a></td>
+																</tr>
+																<tr>
+																	<td>3</td>
+																	<td>Jan 12, 2020</td>
+																	<td>Ä�ang chá»�</td>
+																	<td>$990</td>
+																	<td><a href="cart.html">Xem</a></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="liton_tab_1_9">
+												<div class="ltn__myaccount-tab-content-inner">
+													<p>Báº¡n cáº§n liÃªn káº¿t tÃ i khoáº£n ngÃ¢n hÃ ng vá»›i vÃ­ Ä‘iá»‡n tá»­
+														Ä‘á»ƒ cÃ³ thá»ƒ thanh toÃ¡n hÃ ng hÃ³a.</p>
+													<div class="ltn__form-box">
+														<h4>Chi tiáº¿t tháº»</h4>
+														<form action="#">
+															<div class="row mb-50">
+																<div class="col-md-12">
+																	<label>Há»� tÃªn trÃªn tháº»:</label> <input type="text"
+																		name="ltn__name">
+																</div>
+																<div class="col-md-12">
+																	<label>Sá»‘ tháº»:</label> <input type="text"
+																		name="ltn__lastname">
+																</div>
+																<div class="col-md-12">
+																	<label>Chá»�n loáº¡i tháº»:</label>
+																	<div class="form-check">
+																		<input class="form-check-input" type="radio"
+																			name="exampleRadios" id="exampleRadios1"
+																			value="option1" checked> <label
+																			class="form-check-label" for="exampleRadios1">
+																			Visa</label>
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<label>NgÃ y háº¿t háº¡n:</label> <input type="text"
+																		name="ltn__lastname"
+																		placeholder="NgÃ y háº¿t háº¡n (MM/YY)">
+																</div>
+																<div class="col-md-6">
+																	<label>MÃ£ CVV:</label> <input type="text"
+																		name="ltn__lastname" placeholder="MÃ£ CVV">
+																</div>
+																<!-- <h4>Ä�á»‹a chá»‰ Ä‘Äƒng kÃ½ tháº» TÃ­n dá»¥ng/Ghi ná»£</h4>
+                                                            <div class="col-md-12">
+                                                                <label>Ä�á»‹a chá»‰ hÃ³a Ä‘Æ¡n:</label>
+                                                                <input type="text" name="ltn__lastname">
+                                                            </div> -->
+																<div class="col-md-12">
+																	<label>Postal code:</label> <input type="text"
+																		name="ltn__lastname">
+																</div>
+															</div>
+															<!-- <fieldset>
+                                                            <legend>Password change</legend>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label>Current password (leave blank to leave unchanged):</label>
+                                                                    <input type="password" name="ltn__name">
+                                                                    <label>New password (leave blank to leave unchanged):</label>
+                                                                    <input type="password" name="ltn__lastname">
+                                                                    <label>Confirm new password:</label>
+                                                                    <input type="password" name="ltn__lastname">
+                                                                </div>
+                                                            </div>
+                                                        </fieldset> -->
+															<div class="btn-wrapper" style="float: right;">
+																<button type="submit"
+																	class="btn theme-btn-1 btn-effect-1 text-uppercase">Há»§y</button>
+																<button type="submit"
+																	class="btn theme-btn-1 btn-effect-1 text-uppercase">Submit</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- PRODUCT TAB AREA END -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- WISHLIST AREA START -->
+
+	</main>
+</body>
+</html>

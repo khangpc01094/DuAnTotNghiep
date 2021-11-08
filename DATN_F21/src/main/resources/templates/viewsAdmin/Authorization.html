@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
+<body>
+	<main class="Auth" style="background-color: white; min-height: 500px">
+		<div style="text-align: center;">
+		<label  style="color: orange; margin-top: 8px; font-size: 30px">Phân quyền người dùng</label>
+		</div>
+		<div style="margin-top: 10px">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Tên người dùng</th>
+						<th scope="col">Khách hàng</th>
+						<th scope="col">Người bán</th>
+						<th scope="col">Admin</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">Phuong</th>
+						<td><input type="checkbox" name="" id=""></td>
+						<td><input type="checkbox" name="" id=""></td>
+						<td><input type="checkbox" name="" id=""></td>
+					</tr>
+					<tr>
+						<th scope="row">Khang</th>
+						<td><input type="checkbox" name="" id=""></td>
+						<td><input type="checkbox" name="" id=""></td>
+						<td><input type="checkbox" name="" id=""></td>
+					</tr>
+					<tr>
+						<th scope="row">Hau</th>
+						<td><input type="checkbox" name="" id=""></td>
+						<td><input type="checkbox" name="" id=""></td>
+						<td><input type="checkbox" name="" id=""></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</main>
+
+</body>
+</html>

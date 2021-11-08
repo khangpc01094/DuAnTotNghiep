@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
+
+<body>
+    <main style="background-color: white; margin-top: 10px">
+        <div class="row container_Category">
+            <div class="col-sm-6">
+                <h5 style="color: orange; margin-top: 20px; font-size: 30px">Loại Sản Phẩm</h5>
+                <hr>
+                
+                <div class="tableCategory">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Hinh anh</th>
+                                <th scope="col">Id Loai</th>
+                                <th scope="col">Ten Loai</th>
+                                <th scope="col">Trang thai</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img th:src="@{|/img/cai.jpg|}" class="img-thumbnail rounded-circle" alt=""></td>
+                                <td>001</td>
+                                <td>Cải</td>
+                                <td>hoat dong</td>
+                                <td><a href="#">Sửa</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td><img th:src="@{|/img/carot.jpg|}" class="img-thumbnail rounded-circle" alt=""></td>
+                                <td>002</td>
+                                <td>Củ</td>
+                                <td>hoat dong</td>
+                                <td><a href="#">Sửa</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td><img th:src="@{|/img/cachua.jpg|}" class="img-thumbnail rounded-circle" alt=""></td>
+                                <td>003</td>
+                                <td>Cà</td>
+                                <td>hoat dong</td>
+                                <td><a href="#">Sửa</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="btn_dieuhuong">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="border">
+                    <label class="Deatail" style="color: orange; margin-top: 8px; font-size: 30px">Thông tin chi tiết</label>
+                    <hr>
+                    <form action="" method="">
+                        <label class="image">Hình ảnh</label>
+                        <div class="header">
+
+                            <img th:src="@{|/img/cachua.jpg|}" class="img-thumbnail" alt="">
+                        </div>
+                        <div class="body">
+                            <label for="">ID loại</label>
+                            <input type="text" class="form-control">
+                            <label for="">Tên loại</label>
+                            <input type="text" class="form-control">
+                            <label for="">Trạng thái</label> <br>
+                            <input type="radio" checked class="radioCate" name="Category" value="true"><label
+                                class="namecategory">Kích hoạt</label>
+                            <input type="radio" class="radioCate" name="Category" value="false"><label
+                                class="namecategory">Không kích hoạt</label>
+                        </div>
+                        <div class="foodter">
+                            <div class="btnc">
+                                <button class="btn2" type="submit">Cập Nhật</button>
+                                <button class="btn2" type="submit">Thêm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

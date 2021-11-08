@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
+
+<body>
+	<main
+		style="margin-top: -10px; background-color: white; min-height: 744px;">
+		<div class="container_Store">
+			<div class="row">
+				<div class="col-sm-5"></div>
+				<label style="color: orange; margin-top: 20px; font-size: 30px;">Quản
+					lý cửa hàng </label>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<form action="" method="">
+						<label class="lable_Search">Tìm kiếm </label> <input type="text"
+							name="" id="" placeholder="Nhập tên cửa hàng...."
+							class="input_search_store" required>
+					</form>
+				</div>
+				<div class="col-sm-6"></div>
+			</div>
+			<hr>
+			<div class="table_Store">
+				<table class="table">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">id</th>
+							<th scope="col">Tên Cửa Hàng</th>
+							<th scope="col">Chủ cửa hàng</th>
+							<th scope="col">Tổng sản phẩm</th>
+							<th scope="col">Ngày đăng kí</th>
+							<th scope="col">Trạng thái</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>HelloShop</td>
+							<td>KhangVh</td>
+							<td>32</td>
+							<td>12/10/2021</td>
+							<td>Hoạt động</td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td>GoodShop</td>
+							<td>Phuongtty</td>
+							<td>32</td>
+							<td>15/10/2021</td>
+							<td>Hoạt động</td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td>HappyShop</td>
+							<td>Myph</td>
+							<td>39</td>
+							<td>21/10/2021</td>
+							<td>Hoạt động</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutSeller/index :: dynamic(~{:: main})}">
+<body>
+<main>
+	<div class="xacnhan" style="text-align: center;">
+	<label class="title3" style="color: orange; margin-top: 20px; font-size: 30px">Đơn Hàng Chờ Xác Nhận</label>
+            <div class="search2">
+                <nav class="navbar">
+                    <form class="form-inline">
+                        <label for="" style="margin-right: 5px;">Tìm kiếm </label>
+                        <input class="form-control mr-sm-2">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </nav>
+            </div>
+            <div class="bang2">
+                <table class="table tablea">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="id">Id đơn hàng</th>
+                            <th class="sanpham">Sản phẩm</th>
+                            <th class="tongtien">Tổng tiền</th>
+                            <th class="thao-tac">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">1</td>
+                            <td>Cà rốt Đà Lạt</td>
+                            <td>25.000</td>
+                            <td>
+                                <button class="btn btn-info">Xác nhận</button>
+                                <button class="btn btn-danger">Hủy đơn</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutSeller/index :: dynamic(~{:: main})}">
+<body>
+<main>
+	<div class="xacnhan">
+	<h3 style="text-align: center; color: orange; margin-top: 20px">Đơn Hàng Đã Hủy</h3>
+            <div class="bang2">
+                <table class="table tablea">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="id">Mã đơn hàng</th>
+                            <th class="tongtien">Tổng tiền</th>
+                            <th class="sanpham">Xem chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">1</td>
+                            <td>265.000</td>
+                            <td><a th:href="@{|/viewsSeller/detail|}">Chi tiết</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</main>
+</body>
+</html>
