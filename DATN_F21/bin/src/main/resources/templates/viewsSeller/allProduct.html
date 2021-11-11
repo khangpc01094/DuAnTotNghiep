@@ -2,13 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layoutSeller/index :: dynamic(~{:: main})}">
 <body>
-	<main style="width: 960px; margin-left: 15px; margin-top: 40px">
+	<main style="margin-left: 15px; margin-top: 40px">
+	<div style="text-align: center;">
+	<label style="text-align: center; color: orange; font-size: 30px">Tất cả sản phẩm</label>
+	</div>
 		<div class="search">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <div class="row">
                         <div class="col-sm-4">
-                            <label for="inputPassword4">Tên sản phẩm</label>
+                            <label for="inputPassword4" style="margin-top: 10px">Tên sản phẩm</label>
                         </div>
                         <div class="col-sm-8">
                             <input type="text" class="form-control  input">
@@ -18,10 +21,10 @@
 
                 <div class="form-group col-md-6">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <label for="inputPassword4">Loại sản phẩm</label>
+                        <div class="col-sm-6">
+                            <label for="inputPassword4" style="margin-left: 100px; margin-top: 10px">Loại sản phẩm</label>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <select class="custom-select   input">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
@@ -32,8 +35,8 @@
                     </div>
                 </div>
                 <div class="button">
-                    <button type="button" class="btn btn-tim">Tìm</button>
-                    <button type="button" class="btn btn-moi">Làm mới</button>
+                    <button type="submit" class="btn btn-tim">Tìm</button>
+                    <button type="submit" class="btn btn-moi">Làm mới</button>
                 </div>
             </div>
         </div>

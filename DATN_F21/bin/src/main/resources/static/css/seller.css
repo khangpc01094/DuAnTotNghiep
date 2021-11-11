@@ -13,6 +13,11 @@
     margin-left: 20px;
   }
 
+  .main-body .page-header .row .col-lg-6 img
+  {
+    margin: 5px;
+  }
+
   /* ben trai */
 
   *{
@@ -148,7 +153,6 @@
 .btn-tim {
   background-color: #00D084;
   color: white;
-  margin-left: -220px;
 }
 
 .btn-tim:hover {
@@ -259,53 +263,55 @@
 
 /* thong ke loai */
 
-.side-bar2 .title2 {
+
+.loai .title2 {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 30px;
 }
 
-.side-bar2 .search3 .from {
+.loai .search3 .from {
   width: 150px;
   margin-left: 30px;
   margin-top: -40px;
 }
 
-.side-bar2 .search3 .to {
+.loai .search3 .to {
   width: 150px;
   margin-left: 40px;
   margin-top: -40px;
 }
 
-.side-bar2 .search3 .tim {
+.loai .search3 .tim {
   margin-left: 15px;
 }
 
-.side-bar2 .search3 .den {
+.loai .search3 .den {
   margin-left: 20px;
 }
 
-.side-bar2 .search3 .tim .btn_tim {
+.loai .search3 .tim .btn_tim {
   margin-left: 10px;
   margin-top: -7px;
 }
 
-.side-bar2 .search3 .tong .tien {
+.loai .search3 .tong .tien {
   width: 130px;
   margin-left: 80px;
   margin-top: -40px;
 }
 
-.side-bar2 .search3 .custom-select {
+.loai .search3 .custom-select {
   width: 210px;
   margin-left: 240px;
   margin-top: -60px;
 }
 
-.side-bar2 .loai .bang3 {
+ .loai .bang3 {
   margin-left: 20px;
   margin-right: 20px;
 }
+
 
 /* footer */
 
