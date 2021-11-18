@@ -2,9 +2,12 @@ package com.datn.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+// @RequestMapping("/buyer/account")
 public class MyAccountController {
+
 	@GetMapping("/account/information")
 	public String getInformation() {
 		return "/viewsUser/myAccount/information";
@@ -15,7 +18,7 @@ public class MyAccountController {
 		return "/viewsUser/myAccount/address";
 	}
 	
-	@GetMapping("/account/add_address")
+	@GetMapping("/account/addaddress")
 	public String getAddAddress() {
 		return "/viewsUser/myAccount/add_address";
 	}

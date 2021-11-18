@@ -2,7 +2,6 @@ package com.datn.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,12 +25,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Role implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String role;	
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "roleid")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "roles")
 	private Authorization authorization;
 }

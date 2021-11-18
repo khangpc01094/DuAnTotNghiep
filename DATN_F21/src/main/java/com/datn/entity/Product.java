@@ -3,7 +3,6 @@ package com.datn.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,33 +29,33 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Product implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String name;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "caregoryid")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "categoryid")
 	private Category category;
 	
 	private Double price;
 	private String description;
 	private Boolean status;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "storeid")
 	private Store store;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private List<OrderDetail> orderDetails;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private List<ProductImage> productImages;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private List<ShoppingCart> shoppingCarts;
 	
 }

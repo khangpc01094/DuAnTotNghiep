@@ -16,13 +16,13 @@
                     <div class="account-login-inner">
                         <h1 class="section-title text-center">Đăng Ký <br>Tài Khoản Của Bạn</h1> 
                         <form action="#" class="ltn__form-box contact-form-box">
-                            <input type="text" name="lastname" placeholder="Họ Và Tên*">
-                            <input type="text" name="email" placeholder="Email*">
-                            <input type="password" name="password" placeholder="Mật Khẩu*">
-                            <input type="password" name="confirmpassword" placeholder="Xác Nhận Mật Khẩu*">
+                            <input type="text" ng-model="form.username" placeholder="Tên đăng nhập*">
+                            <input type="text" ng-model="form.email" placeholder="Email*">
+                            <input type="password" ng-model="form.password" placeholder="Mật Khẩu*">
+                            <!-- <input type="password" ng-model="form.confirm" name="confirmpassword" placeholder="Xác Nhận Mật Khẩu*"> -->
                           
                             <div class="btn-wrapper">
-                                <button class="theme-btn-1 btn reverse-color btn-block" type="submit">TẠO TÀI KHOẢN</button>
+                                <button class="theme-btn-1 btn reverse-color" ng-click="regis()">TẠO TÀI KHOẢN</button>
                             </div>
                         </form>
                         <div class="by-agree text-center">

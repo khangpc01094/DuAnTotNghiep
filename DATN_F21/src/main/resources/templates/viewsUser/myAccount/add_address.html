@@ -6,23 +6,31 @@
 	<div class="tab-pane fade active show">
            <div class="ltn__myaccount-tab-content-inner">
                <div class="ltn__form-box">
-                   <form action="#"> 
                        <fieldset>
                            <legend>Địa Chỉ</legend>                         
                            <div class="row">
-                               <div class="col-md-12">
-                                   <label>Địa Chỉ Của Bạn *:</label>
-                                   <input type="text" name="ltn__name">
-                               </div>
+                                <div class="col-md-6">
+                                   <label>Họ và tên *:</label>
+                                   <input type="text" ng-model="form.fullname">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Số điện thoại *:</label>
+                                    <input type="text" ng-model="form.phone">
+                                 </div>
+                                 <div class="col-md-12">
+                                    <label>Địa chỉ cụ thể *:</label>
+                                    <input type="text" ng-model="form.address">
+                                 </div>
                            </div>
                            <div class="btn-wrapper text-center">
-                               <a href="/account/address" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu Địa Chỉ</a>
+                               <a ng-click="hello()" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Lưu Địa Chỉ</a>
                            </div>
+
                            <div class="by-agree ">
-                               <a href="/account/address">TRỞ VỀ</a>
+                               <!-- <a href="/account/address">TRỞ VỀ</a> -->
+                               <button ng-click="hello()" type="submit" class="btn btn-primary">helu</button>
                            </div>
                        </fieldset> 
-                   </form>
                </div>
            </div>
   	 	</div>

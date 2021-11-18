@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,26 +38,26 @@ public class Users implements Serializable {
 	private String phone;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Address> addresss;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Authorization> authorization;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Order> orders;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<ShoppingCart> shoppingCart;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Store> store;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Wallet> wallet;
 }
