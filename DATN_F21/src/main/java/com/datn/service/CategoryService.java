@@ -1,5 +1,8 @@
 package com.datn.service;
 
-public interface CategoryService {
+import java.util.List;
 
+import com.datn.entity.Category;
+public interface CategoryService {
+	List<Category> findAll();
 }

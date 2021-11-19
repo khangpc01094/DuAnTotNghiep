@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
 
 <body>
-	<main>
+	<main th:object="${item}">
 		<!-- BREADCRUMB AREA START -->
 		<div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image"
 			data-bg="/img/bg/9.jpg">
@@ -38,71 +38,26 @@
 									<div class="ltn__shop-details-img-gallery">
 										<div class="ltn__shop-details-large-img">
 											<div class="single-large-img">
-												<a href="img/product/1.png" data-rel="lightcase:myCollection">
-													<img src="/img/product/1.png" alt="Image">
-												</a>
-											</div>
-											<div class="single-large-img">
-												<a href="/img/product/2.png" data-rel="lightcase:myCollection">
-													<img src="/img/product/2.png" alt="Image">
-												</a>
-											</div>
-											<div class="single-large-img">
-												<a href="/img/product/3.png" data-rel="lightcase:myCollection">
-													<img src="/img/product/3.png" alt="Image">
-												</a>
-											</div>
-											<div class="single-large-img">
-												<a href="/img/product/4.png" data-rel="lightcase:myCollection">
-													<img src="/img/product/4.png" alt="Image">
-												</a>
-											</div>
-											<div class="single-large-img">
-												<a href="/img/product/5.png" data-rel="lightcase:myCollection">
-													<img src="/img/product/5.png" alt="Image">
-												</a>
-											</div>
-											<div class="single-large-img">
-												<a href="/img/product/6.png" data-rel="lightcase:myCollection">
-													<img src="/img/product/6.png" alt="Image">
-												</a>
-											</div>
-											<div class="single-large-img">
-												<a href="/img/product/7.png" data-rel="lightcase:myCollection">
-													<img src="/img/product/7.png" alt="Image">
+												<a th:object="${onePro}" data-rel="lightcase:myCollection">
+													<img th:src="@{|/assets/images/${onePro}|}" alt="Image">
 												</a>
 											</div>
 										</div>
 										<div class="ltn__shop-details-small-img slick-arrow-2">
-											<div class="single-small-img">
-												<img src="/img/product/1.png" alt="Image">
-											</div>
-											<div class="single-small-img">
-												<img src="/img/product/2.png" alt="Image">
-											</div>
-											<div class="single-small-img">
-												<img src="/img/product/3.png" alt="Image">
-											</div>
-											<div class="single-small-img">
-												<img src="/img/product/4.png" alt="Image">
-											</div>
-											<div class="single-small-img">
-												<img src="/img/product/5.png" alt="Image">
-											</div>
-											<div class="single-small-img">
-												<img src="/img/product/6.png" alt="Image">
-											</div>
-											<div class="single-small-img">
-												<img src="/img/product/7.png" alt="Image">
+											<div th:each="pro : ${pro}" th:object="${pro}" class="single-small-img">
+												<label>
+													<img width="135" height="135" th:src="@{|/assets/images/${pro}|}"
+														alt="Image">
+												</label>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="modal-product-info shop-details-info pl-0">
-										<h2>Rau củ</h2>
+										<h2 th:text="*{name}"></h2>
 										<div class="product-price">
-											<span>$49.00</span>
+											<span th:text="*{price}"></span>
 										</div>
 										<div class="ltn__product-details-menu-2">
 											<ul>
@@ -133,7 +88,8 @@
 											<div class="tab-content">
 												<div class="tab-pane fade active show" id="liton_tab_details_1_1">
 													<div class="ltn__shop-details-tab-content-inner">
-														<h4 class="title-2">Trái cây và những lợi ích</h4>
+														<h4 class="title-2" th:text="*{description}">Trái cây và những
+															lợi ích</h4>
 														<p>Trái cây có rất nhiều chất dinh dưỡng, chất xơ và các vitamin
 															nên nó sẽ giúp bạn khỏe mạnh cả về thể chất lẫn tinh thần,
 															giảm nguy cơ mắc bệnh tật. Ngoài ra nó còn 1 số lợi ích khác
@@ -174,46 +130,9 @@
 				<div class="row ltn__related-product-slider-one-active slick-arrow-1">
 					<!-- ltn__product-item -->
 					<div class="col-lg-12">
-						<div class="ltn__product-item ltn__product-item-3 text-center">
+						<div  th:each="sp : ${sp}" class="ltn__product-item ltn__product-item-3 text-center">
 							<div class="product-img">
-								<a href="/index/product-detail"><img src="/img/product/7.png" alt="#"></a>
-								<div class="product-badge">
-									<ul>
-										<li class="sale-badge">New</li>
-									</ul>
-								</div>
-								<div class="product-hover-action">
-									<ul>
-										<li>
-											<a href="/index/product-detail" title="Quick View">
-												<i class="far fa-eye"></i>
-											</a>
-										</li>
-										<li>
-											<a href="/index/cart" title="Add to Cart">
-												<i class="fas fa-shopping-cart"></i>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="product-info">
-								<div class="product-ratting">
-									<ul>
-									</ul>
-								</div>
-								<h2 class="product-title"><a href="/index/product-detail">Red Hot Tomato</a></h2>
-								<div class="product-price">
-									<span>$149.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- ltn__product-item -->
-					<div class="col-lg-12">
-						<div class="ltn__product-item ltn__product-item-3 text-center">
-							<div class="product-img">
-								<a href="/index/product-detail"><img src="/img/product/8.png" alt="#"></a>
+								<a th:href="@{|/index/product-detail/${sp.id}|}"><img th:src="@{|/assets/images/${sp.hinhanh}|}" alt="#"></a>
 								<div class="product-badge">
 									<ul>
 										<li class="sale-badge">New</li>
@@ -246,189 +165,14 @@
 									<ul>
 									</ul>
 								</div>
-								<h2 class="product-title"><a href="/index/product-detail">Vegetables Juices</a></h2>
+								<h2 class="product-title"><a href="/index/product-detail">[(${sp.name})]</a></h2>
 								<div class="product-price">
-									<span>$62.00</span>
+									<span>[(${sp.price})]</span>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- ltn__product-item -->
-					<div class="col-lg-12">
-						<div class="ltn__product-item ltn__product-item-3 text-center">
-							<div class="product-img">
-								<a href="/index/product-detail"><img src="/img/product/9.png" alt="#"></a>
-								<div class="product-badge">
-									<ul>
-										<li class="sale-badge">New</li>
-									</ul>
-								</div>
-								<div class="product-hover-action">
-									<ul>
-										<li>
-											<a href="#" title="Quick View" data-toggle="modal"
-												data-target="#quick_view_modal">
-												<i class="far fa-eye"></i>
-											</a>
-										</li>
-										<li>
-											<a href="/index/cart" title="Add to Cart" data-toggle="modal"
-												data-target="#add_to_cart_modal">
-												<i class="fas fa-shopping-cart"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#" title="Wishlist" data-toggle="modal"
-												data-target="#liton_wishlist_modal">
-												<i class="far fa-heart"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="product-info">
-								<div class="product-ratting">
-									<ul>
-									</ul>
-								</div>
-								<h2 class="product-title"><a href="/index/product-detail">Orange Fresh Juice</a></h2>
-								<div class="product-price">
-									<span>$75.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- ltn__product-item -->
-					<div class="col-lg-12">
-						<div class="ltn__product-item ltn__product-item-3 text-center">
-							<div class="product-img">
-								<a href="/index/product-detail"><img src="/img/product/10.png" alt="#"></a>
-								<div class="product-badge">
-									<ul>
-										<li class="sale-badge">New</li>
-									</ul>
-								</div>
-								<div class="product-hover-action">
-									<ul>
-										<li>
-											<a href="#" title="Quick View" data-toggle="modal"
-												data-target="#quick_view_modal">
-												<i class="far fa-eye"></i>
-											</a>
-										</li>
-										<li>
-											<a href="/index/cart" title="Add to Cart" data-toggle="modal"
-												data-target="#add_to_cart_modal">
-												<i class="fas fa-shopping-cart"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#" title="Wishlist" data-toggle="modal"
-												data-target="#liton_wishlist_modal">
-												<i class="far fa-heart"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="product-info">
-								<div class="product-ratting">
-									<ul>
-									</ul>
-								</div>
-								<h2 class="product-title"><a href="/index/product-detail">Poltry Farm Meat</a></h2>
-								<div class="product-price">
-									<span>$78.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- ltn__product-item -->
-					<div class="col-lg-12">
-						<div class="ltn__product-item ltn__product-item-3 text-center">
-							<div class="product-img">
-								<a href="/index/product-detail"><img src="/img/product/5.png" alt="#"></a>
-								<div class="product-badge">
-									<ul>
-										<li class="sale-badge">New</li>
-									</ul>
-								</div>
-								<div class="product-hover-action">
-									<ul>
-										<li>
-											<a href="#" title="Quick View" data-toggle="modal"
-												data-target="#quick_view_modal">
-												<i class="far fa-eye"></i>
-											</a>
-										</li>
-										<li>
-											<a href="/index/cart" title="Add to Cart" data-toggle="modal"
-												data-target="#add_to_cart_modal">
-												<i class="fas fa-shopping-cart"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#" title="Wishlist" data-toggle="modal"
-												data-target="#liton_wishlist_modal">
-												<i class="far fa-heart"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="product-info">
-								<div class="product-ratting">
-									<ul>
-									</ul>
-								</div>
-								<h2 class="product-title"><a href="/index/product-detail">Fresh Butter Cake</a></h2>
-								<div class="product-price">
-									<span>$150.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- ltn__product-item -->
-					<div class="col-lg-12">
-						<div class="ltn__product-item ltn__product-item-3 text-center">
-							<div class="product-img">
-								<a href="/index/product-detail"><img src="/img/product/6.png" alt="#"></a>
-								<div class="product-badge">
-									<ul>
-										<li class="sale-badge">New</li>
-									</ul>
-								</div>
-								<div class="product-hover-action">
-									<ul>
-										<li>
-											<a href="#" title="Quick View" data-toggle="modal"
-												data-target="#quick_view_modal">
-												<i class="far fa-eye"></i>
-											</a>
-										</li>
-										<li>
-											<a href="/index/cart" title="Add to Cart" data-toggle="modal"
-												data-target="#add_to_cart_modal">
-												<i class="fas fa-shopping-cart"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#" title="Wishlist" data-toggle="modal"
-												data-target="#liton_wishlist_modal">
-												<i class="far fa-heart"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="product-info">
-								<div class="product-ratting">
-									<ul>
-									</ul>
-								</div>
-								<h2 class="product-title"><a href="/index/product-detail">Orange Sliced Mix</a></h2>
-								<div class="product-price">
-									<span>$150.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 					<!--  -->
 				</div>
 			</div>

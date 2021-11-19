@@ -1,5 +1,15 @@
 package com.datn.service;
 
-public interface ProductService {
+import java.util.List;
 
+import com.datn.entity.Product;
+
+public interface ProductService {
+	
+	List<Product> findAll();
+
+	List<Product> findByCategoryId(Integer id);
+//	List<Product> findByCategoryId(Integer cid);
+	Product findById(Integer id);
+	
 }

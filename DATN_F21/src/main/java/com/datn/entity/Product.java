@@ -20,43 +20,41 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
 @SuppressWarnings("serial")
 @Data
-@Entity 
+@Entity
 @Table(name = "product")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	
-	private String name;
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "caregoryid")
-	private Category category;
-	
-	private Double price;
-	private String description;
-	private Boolean status;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer id;
+
+	public String name;
+
+	@ManyToOne()
+	@JoinColumn(name = "categoryid")
+	public Category category;
+
+	public Double price;
+	public String description;
+	public Boolean status;
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "storeid")
-	private Store store;
-	
+	public Store store;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "product", cascade = { CascadeType.ALL })
-	private List<OrderDetail> orderDetails;
-	
+	public List<OrderDetail> orderDetails;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "productid")
+	public List<ProductImage> productImages;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
-	private List<ProductImage> productImages;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "product")
-	private List<ShoppingCart> shoppingCarts;
-	
+	public List<ShoppingCart> shoppingCarts;
+	public String hinhanh;
 }

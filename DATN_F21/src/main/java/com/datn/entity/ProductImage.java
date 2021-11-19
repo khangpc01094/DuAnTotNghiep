@@ -16,8 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
 @SuppressWarnings("serial")
 @Data
 @Entity 
@@ -25,14 +23,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductImage implements Serializable {
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "productid")
-	private Product product;
+	public Product productid;
 	
-	String picture;
+	public String picture;
 	
 }
