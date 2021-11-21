@@ -12,29 +12,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
 
 @SuppressWarnings("serial")
 @Data
-@Entity 
-@Table(name = "wallet")
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "wallets")
 public class Wallet implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer id;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "userid")
-	private Users user;
-	private String cardnumber;
-	private String cardbrand;
-	private String holdername;
-	private Integer cvv;
-	private String cardexpiry;
-	private Double money;	
+	public Users user;
+	public String cardnumber;
+	public String cardbrand;
+	public String holdername;
+	public Integer cvv;
+	public String cardexpiry;
+	public Double money;
 }

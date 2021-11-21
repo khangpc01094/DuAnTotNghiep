@@ -1,6 +1,7 @@
 package com.datn.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,39 +14,42 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 
 @SuppressWarnings("serial")
 @Data
-@Entity 
-@Table(name = "order")
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "orders")
 public class Order implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "storeid")
-//	private Store store;
-	String address;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "userid")
-	private Users user;
-	private Boolean status;
-	private Double totalamount;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer id;
+
+	@ManyToOne
+	@JoinColumn(name = "storeid")
+	public Store store;
+
+	public String address;
+
+	@Temporal(TemporalType.DATE)
+	public Date bookingdate = new Date();
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "userid", referencedColumnName = "userid")
+	// @JsonIgnoreProperties(value = { "applications", "hibernateLazyInitializar" })
+	public Users user;
+
+	public int status;
+
+	public Double totalamount;
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "order", cascade = { CascadeType.ALL })
-	private List<OrderDetail> orderDetails;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "order", cascade = { CascadeType.ALL })
-	private List<Store> stores;
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+	public List<OrderDetail> orderDetails;
+
 }

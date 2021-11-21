@@ -3,8 +3,8 @@ package com.datn.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -14,50 +14,43 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name = "users")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Users implements Serializable {
 	@Id
-	private String userid;
-	private String username;
-	private String password;
-	private String fullname;
-	private String picture;
-	private String email;
-	private Boolean gender;
+	public String userid;
+	public String username;
+	public String password;
+	public String fullname;
+	public String picture;
+	public String email;
+	public Boolean gender;
 	@Temporal(TemporalType.DATE)
-	private Date birthday;
-	private String phone;
+	public Date birthday;
+	public String phone;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private List<Address> addresss;
+	@OneToMany(mappedBy = "user")
+	public List<Address> addresss;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private List<Authorization> authorization;
+	@OneToMany(mappedBy = "user")
+	public List<Authorization> authorization;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private List<Order> orders;
+	@OneToMany(mappedBy = "user")
+	List<Order> orders;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private List<ShoppingCart> shoppingCart;
+	@OneToMany(mappedBy = "user")
+	public Set<ShoppingCart> shoppingCart;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private List<Store> store;
+	@OneToMany(mappedBy = "user")
+	public List<Store> store;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private List<Wallet> wallet;
 }

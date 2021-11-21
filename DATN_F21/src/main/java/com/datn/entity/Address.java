@@ -11,26 +11,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
 
 @SuppressWarnings("serial")
 @Data
-@Entity 
+@Entity
 @Table(name = "address")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Address implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Integer id;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "userid")
-	private Users user;
-	
-	private String address;
+	public Users user;
+
+	public String address;
 }
