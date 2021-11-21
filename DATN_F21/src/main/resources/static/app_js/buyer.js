@@ -1,7 +1,7 @@
 var app = angular.module("buyer-app", []);
 app.controller("buyer-ctrl", function($scope, $http) {
 
-  $scope.datacart = {};
+  $scope.datacart = [];
 
    $scope.cart = {
 
@@ -30,8 +30,8 @@ app.controller("buyer-ctrl", function($scope, $http) {
 			} else {
         alert(id)
         $http.get(`/rest/product/${id}`).then( resp => {
-          this.datacart = resp.data;
-          console.log(datacart)
+          $scope.datacart = resp.data;
+         console.log(datacart)
         })
         //var itemu = angular.copy($scope.datacart);
 				// $http.post(`/rest/createCart`, itemu).then(resp => {
