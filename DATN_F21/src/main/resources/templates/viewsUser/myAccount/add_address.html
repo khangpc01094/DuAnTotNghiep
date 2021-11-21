@@ -1,39 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
+
 <body>
-	<main>	
-	<div class="tab-pane fade active show">
-           <div class="ltn__myaccount-tab-content-inner">
-               <div class="ltn__form-box">
-                       <fieldset>
-                           <legend>Địa Chỉ</legend>                         
-                           <div class="row">
+    <main>
+        <div class="tab-pane fade active show">
+            <div class="ltn__myaccount-tab-content-inner">
+                <div class="ltn__form-box">
+                    <form action="#" th:action="@{/account/createaddress}" method="post" th:object="${address}">
+                        <fieldset>
+                            <legend>Địa Chỉ</legend>
+                            <div class="row">
                                 <div class="col-md-6">
-                                   <label>Họ và tên *:</label>
-                                   <input type="text" ng-model="form.fullname">
+                                    <label>Họ và tên *:</label>
+                                    <input th:field="*{fullname}" type="text">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Số điện thoại *:</label>
-                                    <input type="text" ng-model="form.phone">
-                                 </div>
-                                 <div class="col-md-12">
+                                    <input th:field="*{phone}" type="text">
+                                </div>
+                                <div class="col-md-12">
                                     <label>Địa chỉ cụ thể *:</label>
-                                    <input type="text" ng-model="form.address">
-                                 </div>
-                           </div>
-                           <div class="btn-wrapper text-center">
-                               <a ng-click="hello()" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Lưu Địa Chỉ</a>
-                           </div>
+                                    <input type="text" th:field="*{address}">
+                                </div>
+                                <div class="col-md-12" th:object="${user}">
+                                    <label>userid:</label>
+                                    <input  type="text" th:value="*{userid}">
+                                </div>
+                            </div>
+                            <div class="btn-wrapper text-center">
+                                <a class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Lưu Địa Chỉ</a>
+                            </div>
+                    </form>
+                    <!-- <div class="by-agree ">
+                        <a href="/account/address">TRỞ VỀ</a>
+                        <button ng-click="hello()" type="submit" class="btn btn-primary">helu</button>
+                    </div> -->
+                    </fieldset>
 
-                           <div class="by-agree ">
-                               <!-- <a href="/account/address">TRỞ VỀ</a> -->
-                               <button ng-click="hello()" type="submit" class="btn btn-primary">helu</button>
-                           </div>
-                       </fieldset> 
-               </div>
-           </div>
-  	 	</div>
-  	 </main>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

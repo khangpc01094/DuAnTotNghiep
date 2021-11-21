@@ -8,7 +8,7 @@ public interface ProductService {
 
     List<Product> findByName(String string);
 
-    Product findByNameOne(String name);
+    // Product findByNameOne(String name);
 
 	List<Product> getAll();
 

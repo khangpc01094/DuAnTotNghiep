@@ -162,7 +162,7 @@
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
                                         <!-- ltn__product-item -->
-                                        <div class="col-lg-12">
+                                        <!-- <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
                                                     <a href="/index/product-detail"><img src="img/product/11.png"
@@ -238,9 +238,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- ltn__product-item -->
-                                        <div class="col-lg-12">
+                                        <!-- <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
                                                     <a href="/index/product-detail"><img src="img/product/12.png"
@@ -319,9 +319,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- ltn__product-item -->
-                                        <div class="col-lg-12">
+                                        <!-- <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
                                                     <a href="/index/product-detail"><img src="img/product/13.png"
@@ -400,9 +400,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- ltn__product-item -->
-                                        <div class="col-lg-12">
+                                        <!-- <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
                                                     <a href="/index/product-detail"><img src="img/product/14.png"
@@ -481,9 +481,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- ltn__product-item -->
-                                        <div class="col-lg-12">
+                                        <!-- <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
                                                     <a href="/index/product-detail"><img src="img/product/15.png"
@@ -561,12 +561,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- ltn__product-item -->
-                                        <div class="col-lg-12">
+                                        <div class="col-sm-4" th:each="p:${sp}">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
-                                                    <a href="/index/product-detail"><img src="img/product/7.png"
+                                                    <a href="/index/product-detail"><img th:src="@{|/img/product/${p.images}|}"
                                                             alt="#"></a>
                                                     <div class="product-badge">
                                                         <ul>
@@ -595,53 +595,15 @@
                                                         <ul>
                                                         </ul>
                                                     </div>
-                                                    <h2 class="product-title"><a href="/index/product-detail">Orange
-                                                            Sliced Mix</a></h2>
+                                                    <h2 class="product-title"><a href="/index/product-detail">[[${p.name}]]</a></h2>
                                                     <div class="product-price">
-                                                        <span>$150.00</span>
+                                                        <span th:text="${p.price}">đ</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="ltn__product-item ltn__product-item-3 text-center">
-                                                <div class="product-img">
-                                                    <a href="/index/product-detail"><img src="img/product/11.png"
-                                                            alt="#"></a>
-                                                    <div class="product-badge">
-                                                        <ul>
-                                                            <li class="sale-badge">New</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-hover-action">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#" title="Quick View" data-toggle="modal"
-                                                                    data-target="#quick_view_modal">
-                                                                    <i class="far fa-eye"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="Add to Cart" data-toggle="modal"
-                                                                    data-target="#add_to_cart_modal">
-                                                                    <i class="fas fa-shopping-cart"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="product-info">
-                                                    <div class="product-ratting">
-                                                        <ul>
-                                                        </ul>
-                                                    </div>
-                                                    <h2 class="product-title"><a href="/index/product-detail">Carrots
-                                                            Group Scal</a></h2>
-                                                    <div class="product-price">
-                                                        <span>$32.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--  -->
+                                            
+                                        </div> 
+                                        
                                     </div>
                                 </div>
                             </div>

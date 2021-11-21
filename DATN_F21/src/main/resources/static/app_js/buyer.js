@@ -28,9 +28,9 @@ app.controller("buyer-ctrl", function($scope, $http) {
         })
     }
 
-    $scope.hello = function(){
-        alert("hello")
-    }
+    // $scope.hello = function(){
+    //     alert("hello")
+    // }
 
     // $scope.address = function () {
     //     var item = angular.copy($scope.form);
@@ -44,11 +44,21 @@ app.controller("buyer-ctrl", function($scope, $http) {
     //     }).catch(error => {
     //         return Swal.fire({
     //             width: '400px',
-    //             title: 'Lỗi đăng ký!',
+    //             title: 'Lỗi thêm!',
     //             icon: 'error'
     //         })
-    //         // console.log("Error", error);
+    //         console.log("Error", error);
     //     })
     // }
+
+    // $scope.search = function() {
+	// 	var item = angular.copy($scope.form);
+	// 	$http.get(`/rest/search/${item.name}`).then(resp => {
+	// 		this.items = resp.data;
+    //         console.log(this.items);
+    //     }).catch(error => {
+    //         console.log(error)
+    //     })
+	// }
 
 })

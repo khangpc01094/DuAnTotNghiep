@@ -41,6 +41,8 @@ public class Product implements Serializable {
 	private Double price;
 	private String description;
 	private Boolean status;
+
+	private String images;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "storeid")
@@ -57,5 +59,6 @@ public class Product implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private List<ShoppingCart> shoppingCarts;
+
 	
 }

@@ -36,5 +36,10 @@ public class UserServiceImpl implements UserService{
     
         return generatedString;
     }
+
+    @Override
+    public Users getByid(String id) {
+        return daoUser.findById(id).get();
+    }
     
 }

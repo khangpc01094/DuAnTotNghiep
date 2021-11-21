@@ -17,8 +17,8 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
     @Query("SELECT o FROM Product o WHERE o.name LIKE ?1")
     List<Product> findByName(String name);
 
-    @Query("SELECT o FROM Product o WHERE o.name = ?1")
-    Product findByNameOne(String name);
+    // @Query("SELECT o FROM Product o WHERE o.name = ?1")
+    // Product findByNameOne(String name);
 
     // @Query("select c from Product c where c.name like ?1")
     // List<Product> findByName(String name);
