@@ -47,13 +47,14 @@ public class MyAccountController {
 	@PostMapping("/account/createaddress")
 	public String Create(Model m, Address address) {
 		svAddress.create(address);
+		System.out.println(address);
 		return "/viewsUser/myAccount/add_address";
 	}
 	
 	@GetMapping("/account/edit_address/{id}")
 	public String getAddAddress(Model m, @PathVariable ("id") Integer id, Address address) {
 		Address adr = svAddress.findByIdd(id);
-		svAddress.create(address);
+		//svAddress.create(address);
 		m.addAttribute("adda", adr);
 		return "/viewsUser/myAccount/edit_address";
 	}
@@ -62,7 +63,7 @@ public class MyAccountController {
 	public String loaisp(Model m) {
 		Users user = svUser.getByid("user2");
 		m.addAttribute("user", user);
-		m.addAttribute("address", new Address());
+		m.addAttribute("address2", new Address());
 		return "";
 	}
 	

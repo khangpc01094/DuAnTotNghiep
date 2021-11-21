@@ -6,7 +6,7 @@
         <div class="tab-pane fade active show">
             <div class="ltn__myaccount-tab-content-inner">
                 <div class="ltn__form-box">
-                    <form action="#" th:action="@{/account/createaddress}" method="post" th:object="${address}">
+                    <form action="#" th:action="@{/account/createaddress}" method="post" th:object="${address2}">
                         <fieldset>
                             <legend>Địa Chỉ</legend>
                             <div class="row">
@@ -18,17 +18,18 @@
                                     <label>Số điện thoại *:</label>
                                     <input th:field="*{phone}" type="text">
                                 </div>
-                                <div class="col-md-12">
+                                <!-- <div class="col-md-12">
                                     <label>Địa chỉ cụ thể *:</label>
                                     <input type="text" th:field="*{address}">
-                                </div>
-                                <div class="col-md-12" th:object="${user}">
+                                </div> -->
+                                <div class="col-md-12">
                                     <label>userid:</label>
-                                    <input  type="text" th:value="*{userid}">
+                                    <input type="text" th:field="*{user}">
                                 </div>
                             </div>
                             <div class="btn-wrapper text-center">
-                                <a class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Lưu Địa Chỉ</a>
+                                <!-- <a class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Lưu Địa Chỉ</a> -->
+                                <button class="btn bg-primary" type="submit">Lưu</button>
                             </div>
                     </form>
                     <!-- <div class="by-agree ">

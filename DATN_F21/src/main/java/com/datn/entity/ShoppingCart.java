@@ -31,5 +31,6 @@ public class ShoppingCart implements Serializable {
 	private Product product;
 	
 	private Integer quantity;
+	private Integer storeid;
 
 }
