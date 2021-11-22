@@ -31,7 +31,8 @@ app.controller("buyer-ctrl", function($scope, $http) {
         alert(id)
         $http.get(`/rest/product/${id}`).then( resp => {
           $scope.datacart = resp.data;
-         console.log(datacart)
+          // console.log(datacart)
+          Console.WriteLine(datacart);
         })
         //var itemu = angular.copy($scope.datacart);
 				// $http.post(`/rest/createCart`, itemu).then(resp => {
@@ -51,9 +52,6 @@ app.controller("buyer-ctrl", function($scope, $http) {
    $scope.cart.loadCart();
 
 });
-
-
-
 
 
 
