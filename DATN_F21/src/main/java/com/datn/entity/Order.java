@@ -34,7 +34,9 @@ public class Order implements Serializable {
 	@JoinColumn(name = "storeid")
 	public Store store;
 
-	public String address;
+	@ManyToOne
+	@JoinColumn(name ="addressid")
+	public Address address;
 
 	@Temporal(TemporalType.DATE)
 	public Date bookingdate = new Date();

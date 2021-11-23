@@ -57,13 +57,14 @@
 									</td>
 									<td class="cart-product-price">{{detail.product.price}} đ</td>
 									<td class="cart-product-quantity">
-										<div class="cart-plus-minus">
-											<input type="number" value="{{detail.quantity}}" name="qtybutton"
-												class="cart-plus-minus-box">
-										</div>
+										<div class="input-group mb-3">
+											<input type="submit" ng-click="cart.apartquantity(detail.id)" value="-" style="width: 10px;">
+											<input type="submit" readonly value="{{detail.quantity}}" style="width: 10px;">
+											<input type="submit" ng-click="cart.addquantity(detail.id)" value="+" style="width: 10px;">
+										  </div>
 									</td>
 									<td class="cart-product-subtotal">{{detail.product.price * detail.quantity}} đ</td>
-									<td class="cart-product-remove">x</td>
+									<td class="cart-product-remove" >xóa</td>
 								</tr>
 								
 							</tbody>

@@ -16,6 +16,10 @@ public interface ShoppingCartService {
 
     ShoppingCart update(ShoppingCart shoppingCart);
 
+    ShoppingCart getCartPr(String idu, Integer idp);
+
     void delete(Integer id);
+
+    ShoppingCart getById(Integer id);
 
 }

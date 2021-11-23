@@ -45,4 +45,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         daoCart.deleteById(id);
     }
 
+    @Override
+    public ShoppingCart getCartPr(String idu, Integer idp) {
+        return daoCart.getCartUser(idu, idp);
+    }
+
+    @Override
+    public ShoppingCart getById(Integer id) {
+        return daoCart.findById(id).get();
+    }
+
 }

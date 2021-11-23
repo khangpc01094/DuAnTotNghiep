@@ -44,92 +44,29 @@
 										<th class="cart-product-subtotal">Số tiền</th>
 										<th class="cart-product-remove">Xóa</th>
 									</thead>
-									<tbody>
-										<th scope="row" colspan="4" style="text-align: left; color: red">Shop: Tên cửa
-											hàng 2</th>
-										<tr>
-											<td><input type="checkbox" name="" id=""></td>
-											<td class="cart-product-image">
-												<a href="index/product-detail"><img src="/img/product/2.png"
-														alt="#"></a>
-											</td>
-											<td class="cart-product-info">
-												<h4><a href="index/product-detail">Orange Sliced Mix</a></h4>
-											</td>
-											<td class="cart-product-price">$85.00</td>
-											<td class="cart-product-quantity">
-												<div class="cart-plus-minus">
-													<input type="text" value="02" name="qtybutton"
-														class="cart-plus-minus-box">
-												</div>
-											</td>
-											<td class="cart-product-subtotal">$170.00</td>
-											<td class="cart-product-remove">x</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" name="" id=""></td>
-											<td class="cart-product-image">
-												<a href="index/product-detail"><img src="/img/product/3.png"
-														alt="#"></a>
-											</td>
-											<td class="cart-product-info">
-												<h4><a href="index/product-detail">Red Hot Tomato</a></h4>
-											</td>
-											<td class="cart-product-price">$75.00</td>
-											<td class="cart-product-quantity">
-												<div class="cart-plus-minus">
-													<input type="text" value="02" name="qtybutton"
-														class="cart-plus-minus-box">
-												</div>
-											</td>
-											<td class="cart-product-subtotal">$150.00</td>
-											<td class="cart-product-remove">x</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<th scope="row" colspan="4" style="text-align: left; color: red">Shop: Tên cửa
-											hàng 3</th>
-										<tr>
-											<td><input type="checkbox" name="" id=""></td>
-											<td class="cart-product-image">
-												<a href="index/product-detail"><img src="/img/product/1.png"
-														alt="#"></a>
-											</td>
-											<td class="cart-product-info">
-												<h4><a href="index/product-detail">Vegetables Juices</a></h4>
-											</td>
-											<td class="cart-product-price">$149.00</td>
-											<td class="cart-product-quantity">
-												<div class="cart-plus-minus">
-													<input type="text" value="02" name="qtybutton"
-														class="cart-plus-minus-box">
-												</div>
-											</td>
-											<td class="cart-product-subtotal">$298.00</td>
-											<td class="cart-product-remove">x</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" name="" id=""></td>
-											<td class="cart-product-image">
-												<a href="index/product-detail"><img src="/img/product/3.png"
-														alt="#"></a>
-											</td>
-											<td class="cart-product-info">
-												<h4><a href="index/product-detail">Red Hot Tomato</a></h4>
-											</td>
-											<td class="cart-product-price">$75.00</td>
-											<td class="cart-product-quantity">
-												<div class="cart-plus-minus">
-													<input type="text" value="02" name="qtybutton"
-														class="cart-plus-minus-box">
-												</div>
-											</td>
-											<td class="cart-product-subtotal">$150.00</td>
-											<td class="cart-product-remove">x</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+									
+							<tbody ng-repeat="detail in cart.items | groupBy:'storeid'">
+								<th scope="row"  ng-show="detail.group_by_key" colspan="4" style="text-align: left; color: red">{{detail.product.store.name}}</th>
+								<tr>
+									<td><input type="checkbox" name="" id=""></td>
+									<td class="cart-product-image">
+										<a href="index/product-detail"><img th:src="@{|/img/product/{{detail.product.images}}|}" alt="{{detail.product.images}}"></a>
+									</td>
+									<td class="cart-product-info">
+										<h4><a href="index/product-detail">{{detail.product.name}}</a></h4>
+									</td>
+									<td class="cart-product-price">{{detail.product.price}} đ</td>
+									<td class="cart-product-quantity">
+										<div class="cart-plus-minus">
+											<input type="number" value="{{detail.quantity}}" name="qtybutton"
+												class="cart-plus-minus-box">
+										</div>
+									</td>
+									<td class="cart-product-subtotal">{{detail.product.price * detail.quantity}} đ</td>
+									<td class="cart-product-remove">x</td>
+								</tr>
+								
+							</tbody>
 							<div class="shoping-cart-total mt-50">
 								<h4>Tổng sản phẩm thanh toán</h4>
 								<table class="table">

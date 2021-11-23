@@ -2,17 +2,18 @@ package com.datn.rest.controller;
 
 import java.util.List;
 
+import com.datn.entity.Product;
 import com.datn.entity.ShoppingCart;
+import com.datn.entity.Users;
+import com.datn.service.ProductService;
 import com.datn.service.ShoppingCartService;
+import com.datn.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rest")
 public class ShoppingCartRestController {
+
+	@Autowired
+    UserService svUser;
+	
+	@Autowired
+	ProductService svPro;
 
     @Autowired
     ShoppingCartService svCartService;
@@ -29,13 +36,24 @@ public class ShoppingCartRestController {
         return svCartService.GetAll();
     }
 
-    @PostMapping("createCart")
-    public ShoppingCart createCart(@RequestBody ShoppingCart shoppingCart) {
+    @GetMapping("createCart/{idp}")
+    public ShoppingCart createCart(@PathVariable("idp") Integer idp) {
+    	 ShoppingCart shoppingCart = new ShoppingCart();
+        //Users u = svUser.findByid(req.getRemoteUser());
+    	Users u = svUser.findByid("user1");
+    	Product a = svPro.getById(idp);
+    	shoppingCart.setUser(u);
+    	shoppingCart.setProduct(a);
+    	shoppingCart.setQuantity(1);
+    	shoppingCart.setStoreid(a.getStore().id);
         return svCartService.create(shoppingCart);
     }
 
-    @PutMapping("cart/{id}")
-    public ShoppingCart updateCart(@PathVariable("id") Integer id, @RequestBody ShoppingCart shoppingCart) {
+    @GetMapping("putcart/{id}")
+    public ShoppingCart updateCart(@PathVariable("id") Integer id) {
+        //Users u = svUser.findByid(req.getRemoteUser());
+        ShoppingCart shoppingCart = svCartService.getCartPr("user1", id);;
+        shoppingCart.setQuantity(shoppingCart.quantity+=1);
         return svCartService.update(shoppingCart);
     }
 
@@ -52,6 +70,25 @@ public class ShoppingCartRestController {
     @GetMapping("/cart/{id}")
     public List<ShoppingCart> getStore(@PathVariable("id") String id) {
         return svCartService.findByStore(id);
+    }
+
+    @GetMapping("/addquantity/{id}")
+    public ShoppingCart addquantity(@PathVariable("id") Integer id){
+        ShoppingCart a = svCartService.getById(id);
+        a.setQuantity(a.quantity+=1);
+        return svCartService.update(a);
+    }
+
+    @GetMapping("/apartquantity/{id}")
+    public ShoppingCart apartquantity(@PathVariable("id") Integer id){
+        ShoppingCart a = svCartService.getById(id);
+        if(a.getQuantity() == 1){
+            svCartService.delete(id);
+            return null;
+        }else{
+        a.setQuantity(a.quantity-1);
+        return svCartService.update(a);
+        }
     }
 
 }
