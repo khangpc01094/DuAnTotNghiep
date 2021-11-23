@@ -43,7 +43,7 @@ public class Users implements Serializable {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private List<Authorization> authorization;
+	public List<Authorization> authorization;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })

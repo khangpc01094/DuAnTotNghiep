@@ -1,13 +1,19 @@
 package com.datn.Controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
+@Autowired HttpServletRequest req;
 	
 	@GetMapping("/index")
 	public String getIndex() {
+		//user dang nhap 
+		System.err.println(req.getRemoteUser());
 		return "/viewsUser/index";
 	}
 	
@@ -27,10 +33,7 @@ public class HomeController {
 	}
 
 	
-	@GetMapping("/login")
-	public String getLogin() {
-		return "/viewsUser/login";
-	}
+	
 	
 	@GetMapping("/register")
 	public String getRegister() {

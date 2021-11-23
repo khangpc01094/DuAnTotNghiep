@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,17 +26,17 @@ import lombok.NoArgsConstructor;
 @Table(name = "wallet")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(value = { "id" })
 public class Wallet implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name = "userid")
 	private Users user;
-	private String cardnumber;
 	private String cardbrand;
 	private String holdername;
 	private Integer cvv;
-	private String cardexpiry;
 	private Double money;	
+	private Integer cardnumber;
 }

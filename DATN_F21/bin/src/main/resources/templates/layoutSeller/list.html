@@ -1,54 +1,79 @@
 <div xmlns:th="http://www.thymeleaf.org">
-  <div class="menu">
-            <div class="item">
-                <a class="sub-btn"><i class="fas fa-table"></i>Quản Lý Sản Phẩm<i
-                        class="fas fa-angle-up dropdown"></i></a>
-                <div class="sub-menu">
-                    <a th:href="@{|/viewsSeller/allProduct|}" class="sub-item">Tất cả sản phẩm</a>
-                    <a th:href="@{|/viewsSeller/createProduct|}" class="sub-item">Thêm - Sửa sản phẩm</a>
-                </div>
-            </div>
-            <div class="item">
-                <a class="sub-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
-                        <path
-                            d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zM11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
-                        <path
-                            d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293 2.354.646zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118l.137-.274z" />
-                    </svg>
-                    Quản Lý Đơn Hàng<i class="fas fa-angle-up dropdown"></i> </a>
-                <div class="sub-menu">
-                    <a th:href="@{|/viewsSeller/wait|}" class="sub-item">Chờ xác nhận</a>
-                    <a th:href="@{|/viewsSeller/sent|}" class="sub-item">Đã giao</a>
-                    <a th:href="@{|/viewsSeller/cancel|}" class="sub-item">Đã hủy</a>
-                </div>
-            </div>
-            <div class="item">
-                <a class="sub-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-clipboard-data" viewBox="0 0 16 16">
-                        <path
-                            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
-                        <path
-                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-                        <path
-                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
-                    </svg>
-                    Thống Kê<i class="fas fa-angle-up dropdown"></i> </a>
-                <div class="sub-menu">
-                    <a th:href="@{|/viewsSeller/statisCate|}" class="sub-item">Theo loại</a>
-                    <a th:href="@{|/viewsSeller/statisInvoice|}" class="sub-item">Đơn hàng</a>
-                </div>
-            </div>
-        </div>
-        
-        <script type="text/javascript">
-        $(document).ready(function () {
-            $('.sub-btn').click(function () {
-                $(this).next('.sub-menu').slideToggle();
-                $(this).find('.dropdown').toggleClass('rotate');
-            })
-        })
-    </script>
+	<nav class="pcoded-navbar">
+		<div class="sidebar_toggle">
+			<a href="#"><i class="icon-close icons"></i></a>
+		</div>
+		<div class="pcoded-inner-navbar main-menu">
+
+			<div class="pcoded-navigatio-lavel"
+				data-i18n="nav.category.navigation">Quản lý cửa hàng</div>
+			<ul class="pcoded-item pcoded-left-item">
+				<li class="pcoded-hasmenu active pcoded-trigger"><a
+					href="javascript:void(0)"> <span class="pcoded-micon"><i
+							class="ti-home"></i><b>D</b></span> <span class="pcoded-mtext"
+						data-i18n="nav.basic-components.main">Quản lý sản phẩm</span> <span
+						class="pcoded-mcaret"></span>
+				</a>
+					<ul class="pcoded-submenu">
+						<li class=" "><a  th:href="@{|/viewsSeller/allProduct|}"> <span
+								class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+								class="pcoded-mtext" data-i18n="nav.basic-components.alert">Tất
+									cả sản phẩm</span> <span class="pcoded-mcaret"></span>
+						</a></li>
+						<li class=" "><a th:href="@{|/viewsSeller/createProduct|}"> <span
+								class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+								class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Thêm - sửa
+									sản phẩm</span> <span class="pcoded-mcaret"></span>
+						</a></li>
+
+					</ul></li>
+				<li class="pcoded-hasmenu active pcoded-trigger"><a
+					href="javascript:void(0)"> <span class="pcoded-micon"><i
+							class="ti-layout-grid2-alt"></i></span> <span class="pcoded-mtext"
+						data-i18n="nav.basic-components.main">Quản lý đơn hàng</span> <span
+						class="pcoded-mcaret"></span>
+				</a>
+					<ul class="pcoded-submenu">
+						<li class=" "><a th:href="@{|/viewsSeller/wait|}"> <span
+								class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+								class="pcoded-mtext" data-i18n="nav.basic-components.alert">Đơn
+									chờ xác nhận</span> <span class="pcoded-mcaret"></span>
+						</a></li>
+						<li class=" "><a th:href="@{|/viewsSeller/sent|}"> <span
+								class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+								class="pcoded-mtext"
+								data-i18n="nav.basic-components.breadcrumbs">Đơn hàng đã
+									giao</span> <span class="pcoded-mcaret"></span>
+						</a></li>
+						<li class=" "><a th:href="@{|/viewsSeller/cancel|}"> <span
+								class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+								class="pcoded-mtext"
+								data-i18n="nav.basic-components.breadcrumbs">Đơn hàng đã
+									hủy</span> <span class="pcoded-mcaret"></span>
+						</a></li>
+					</ul></li>
+				<li class="pcoded-hasmenu active pcoded-trigger"><a
+					href="javascript:void(0)"> <span class="pcoded-micon"><i
+							class="ti-layout-grid2-alt"></i></span> <span class="pcoded-mtext"
+						data-i18n="nav.basic-components.main">Thống kê</span> <span
+						class="pcoded-mcaret"></span>
+				</a>
+					<ul class="pcoded-submenu">
+						<li class=" "><a  th:href="@{|/viewsSeller/statisCate|}"> <span
+								class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+								class="pcoded-mtext" data-i18n="nav.basic-components.alert">Theo
+									loại</span> <span class="pcoded-mcaret"></span>
+						</a></li>
+						<li class=" "><a th:href="@{|/viewsSeller/statisInvoice|}"> <span
+								class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+								class="pcoded-mtext"
+								data-i18n="nav.basic-components.breadcrumbs">Đơn hàng</span> <span
+								class="pcoded-mcaret"></span>
+						</a></li>
+
+					</ul></li>
+			</ul>
+
+		</div>
+	</nav>
 </div>

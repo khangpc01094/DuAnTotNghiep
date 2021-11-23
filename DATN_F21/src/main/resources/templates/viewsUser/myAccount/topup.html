@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
+<body>
+	<main>	
+	<div class="tab-pane fade active show" ng-controller="topup-ctrl">
+            <div class="ltn__myaccount-tab-content-inner">
+                <p>Bạn cần xác thực thông tin trước khi nạp tiền.</p>
+                <div class="ltn__form-box">
+                    <h4>Thông tin thẻ</h4>
+                    <form name="form_topup">
+                        <div class="row mb-50">
+                        	<div class="col-md-12">
+                                <label>Số thẻ:</label>
+                                <span style="color: red;" ng-hide="form_topup.txtCardnumber.$valid">Không được để trống và phải là số</span>
+                                <input class="gender" ng-model="form.cardnumber" type="number" name="txtCardnumber" required>
+                            </div> 
+                            <div class="col-md-12">
+                                <label>Họ tên trên thẻ:</label>
+                                <span style="color: red;" ng-hide="form_topup.txtHoldername.$valid">Không được để trống</span>
+                                <input ng-model="form.holdername" type="text" name="txtHoldername" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Mã CVV:</label>
+                                <span style="color: red;" ng-hide="form_topup.txtCvv.$valid">Không được để trống</span>
+                                <input ng-model="form.cvv" type="password" name="txtCvv" required>
+                            </div>
+                            <div class="col-md-12">
+                            	<label>Chọn loại thẻ:</label>  
+                            	<span style="color: red;" ng-hide="form_topup.brank.$valid">Bạn chưa chọn</span>
+                                <div class="row">                  
+                                     <div class="col-md-3" ng-repeat="cb in cardbrand">
+                                     	<input ng-model="form.cardbrand" type="radio" ng-value="cb.id" name="brank" required> <label>{{cb.name}}</label>
+                                     </div>
+                                 </div>
+                            </div>             
+                        <div class="btn-wrapper" style="float:right;">
+                            <button ng-click="contineu_money()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Tiếp theo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>    
+</html>

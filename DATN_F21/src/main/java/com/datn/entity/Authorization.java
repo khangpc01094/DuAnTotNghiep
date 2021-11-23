@@ -23,19 +23,20 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "authorization")
+@Table(name = "authorities")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Authorization implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	public Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "userid")
-	private Users user;
+	@JoinColumn(name = "Userid")
+	public Users user;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "authorization", cascade = { CascadeType.ALL })
-	private List<Role> roles;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "Roleid")
+	public Role role;
+	
 }
