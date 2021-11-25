@@ -35,29 +35,23 @@ public class HomeController {
 
 	@RequestMapping("/index")
 	public String loadProduct(Model model, @RequestParam("cid") Optional<Integer> cid) {
-		System.err.println("id "+cid);
 		if (cid.isPresent()) {
-			Integer articleId = cid.get();
-			System.err.println("haha... : ))");
-			System.err.println(articleId);
 			List<Product> list = svProduct.findByCategoryId(cid.get()); // cid.get() để lấy được id
 			model.addAttribute("sp", list);
 		} else {
-//			List<Product> list = svProduct.findAll();
-//			model.addAttribute("sp", list);
+			List<Product> list = svProduct.findAll();
+			model.addAttribute("sp", list);
 		}
 		return "viewsUser/index";
 	}
 
 	@GetMapping("/index/product-detail/{id}")
-	public String getProductDetail(Model model, @PathVariable("id") Integer id, String idd,
+	public String getProductDetail(Model model, @PathVariable("id") Integer id,
 			@RequestParam("cid") Optional<Integer> cid) {
+		
 		Product item = svProduct.findById(id);
 		model.addAttribute("item", item);
-//		if (cid.isPresent()) {
-		List<Product> list = svProduct.findByCategoryId(id); // cid.get() để lấy được id
-		model.addAttribute("sp", list);
-//		}
+
 		String onePro = svProductImageService.findByOne(id);
 		model.addAttribute("onePro", onePro);
 

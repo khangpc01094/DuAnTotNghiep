@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
 
 <body>
 	<main th:object="${item}">
 		<!-- BREADCRUMB AREA START -->
-		<div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image"
+		<div
+			class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image"
 			data-bg="/img/bg/9.jpg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="ltn__breadcrumb-inner ltn__breadcrumb-inner-2 justify-content-between">
+						<div
+							class="ltn__breadcrumb-inner ltn__breadcrumb-inner-2 justify-content-between">
 							<div class="section-title-area ltn__section-title-2">
-								<h6 class="section-subtitle ltn__secondary-color">Chào mừng bạn đến với shop của chúng
-									tôi</h6>
+								<h6 class="section-subtitle ltn__secondary-color">Chào mừng
+									bạn đến với shop của chúng tôi</h6>
 								<h1 class="section-title white-color">Chi tiết sản phẩm</h1>
 							</div>
 							<div class="ltn__breadcrumb-list">
@@ -44,10 +47,10 @@
 											</div>
 										</div>
 										<div class="ltn__shop-details-small-img slick-arrow-2">
-											<div th:each="pro : ${pro}" th:object="${pro}" class="single-small-img">
-												<label>
-													<img width="135" height="135" th:src="@{|/assets/images/${pro}|}"
-														alt="Image">
+											<div th:each="pro : ${pro}" th:object="${pro}"
+												class="single-small-img">
+												<label> <img width="135" height="135"
+													th:src="@{|/assets/images/${pro}|}" alt="Image">
 												</label>
 											</div>
 										</div>
@@ -67,37 +70,36 @@
 															class="cart-plus-minus-box">
 													</div>
 												</li>
-												<li>
-													<a href="/index/cart" class="theme-btn-1 btn btn-effect-1"
-														title="Add to Cart">
-														<i class="fas fa-shopping-cart"></i>
-														<span>ADD TO CART</span>
-													</a>
-												</li>
+												<li><a href="/index/cart"
+													class="theme-btn-1 btn btn-effect-1" title="Add to Cart">
+														<i class="fas fa-shopping-cart"></i> <span>ADD TO
+															CART</span>
+												</a></li>
 											</ul>
 										</div>
 										<!-- Shop Tab Start -->
-										<div class="ltn__shop-details-tab-inner ltn__shop-details-tab-inner-2">
+										<div
+											class="ltn__shop-details-tab-inner ltn__shop-details-tab-inner-2">
 											<div class="ltn__shop-details-tab-menu">
 												<div class="nav">
 													<a class="active show" data-toggle="tab"
 														href="#liton_tab_details_1_1">Mô tả</a>
-													<!-- <a data-toggle="tab" href="#liton_tab_details_1_2" class="">Reviews</a> -->
 												</div>
 											</div>
 											<div class="tab-content">
-												<div class="tab-pane fade active show" id="liton_tab_details_1_1">
+												<div class="tab-pane fade active show"
+													id="liton_tab_details_1_1">
 													<div class="ltn__shop-details-tab-content-inner">
-														<h4 class="title-2" th:text="*{description}">Trái cây và những
-															lợi ích</h4>
-														<p>Trái cây có rất nhiều chất dinh dưỡng, chất xơ và các vitamin
-															nên nó sẽ giúp bạn khỏe mạnh cả về thể chất lẫn tinh thần,
-															giảm nguy cơ mắc bệnh tật. Ngoài ra nó còn 1 số lợi ích khác
-															như: Tránh ung
-															thư, Ngăn chặn các bệnh mãn tính, Tăng cường trí não, Giảm
-															cân, Làm đẹp da, Tăng cường miễn dịch..v..v.. </p>
-														<p>Bạn có thể an tâm mua trái cây tại shop chúng tôi để đảm bảo
-															sức khỏe...</p>
+														<h4 class="title-2" th:text="*{description}">Trái cây
+															và những lợi ích</h4>
+														<p>Trái cây có rất nhiều chất dinh dưỡng, chất xơ và
+															các vitamin nên nó sẽ giúp bạn khỏe mạnh cả về thể chất
+															lẫn tinh thần, giảm nguy cơ mắc bệnh tật. Ngoài ra nó còn
+															1 số lợi ích khác như: Tránh ung thư, Ngăn chặn các bệnh
+															mãn tính, Tăng cường trí não, Giảm cân, Làm đẹp da, Tăng
+															cường miễn dịch..v..v..</p>
+														<p>Bạn có thể an tâm mua trái cây tại shop chúng tôi
+															để đảm bảo sức khỏe...</p>
 													</div>
 												</div>
 											</div>
@@ -123,16 +125,21 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="section-title-area ltn__section-title-2">
-							<h1 class="section-title"><span>Sản phẩm tương tự</span></h1>
+							<h1 class="section-title">
+								<span>Sản phẩm tương tự</span>
+							</h1>
 						</div>
 					</div>
 				</div>
-				<div class="row ltn__related-product-slider-one-active slick-arrow-1">
+				<div
+					class="row ltn__related-product-slider-one-active slick-arrow-1">
 					<!-- ltn__product-item -->
 					<div class="col-lg-12">
-						<div  th:each="sp : ${sp}" class="ltn__product-item ltn__product-item-3 text-center">
+						<div th:each="sp : *{category.products}"
+							class="ltn__product-item ltn__product-item-3 text-center">
 							<div class="product-img">
-								<a th:href="@{|/index/product-detail/${sp.id}|}"><img th:src="@{|/assets/images/${sp.hinhanh}|}" alt="#"></a>
+								<a th:href="@{|/index/product-detail/${sp.id}|}"><img
+									th:src="@{|/assets/images/${sp.images}|}" alt="#"></a>
 								<div class="product-badge">
 									<ul>
 										<li class="sale-badge">New</li>
@@ -140,23 +147,16 @@
 								</div>
 								<div class="product-hover-action">
 									<ul>
-										<li>
-											<a href="#" title="Quick View" data-toggle="modal"
-												data-target="#quick_view_modal">
-												<i class="far fa-eye"></i>
-											</a>
-										</li>
-										<li>
-											<a href="/index/cart" title="Add to Cart" data-toggle="modal"
-												data-target="#add_to_cart_modal">
-												<i class="fas fa-shopping-cart"></i>
-											</a>
-										</li>
-										<li>
-											<a href="#" title="Wishlist" data-toggle="modal"
-												data-target="#liton_wishlist_modal">
-												<i class="far fa-heart"></i></a>
-										</li>
+										<li><a href="#" title="Quick View" data-toggle="modal"
+											data-target="#quick_view_modal"> <i class="far fa-eye"></i>
+										</a></li>
+										<li><a href="/index/cart" title="Add to Cart"
+											data-toggle="modal" data-target="#add_to_cart_modal"> <i
+												class="fas fa-shopping-cart"></i>
+										</a></li>
+										<li><a href="#" title="Wishlist" data-toggle="modal"
+											data-target="#liton_wishlist_modal"> <i
+												class="far fa-heart"></i></a></li>
 									</ul>
 								</div>
 							</div>
@@ -165,14 +165,16 @@
 									<ul>
 									</ul>
 								</div>
-								<h2 class="product-title"><a href="/index/product-detail">[(${sp.name})]</a></h2>
+								<h2 class="product-title">
+									<a th:href="@{|/index/product-detail/${sp.id}|}">[(${sp.name})]</a>
+								</h2>
 								<div class="product-price">
 									<span>[(${sp.price})]</span>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<!--  -->
 				</div>
 			</div>
@@ -183,7 +185,8 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="ltn__feature-item-box-wrap ltn__border-between-column white-bg">
+						<div
+							class="ltn__feature-item-box-wrap ltn__border-between-column white-bg">
 							<div class="row">
 								<div class="col-xl-6 col-md-12 col-12">
 									<div class="ltn__feature-item ltn__feature-item-8">
@@ -192,8 +195,10 @@
 										</div>
 										<div class="ltn__feature-info">
 											<h4>Thực phẩm từ tự nhiên</h4>
-											<p>Shop cho bạn đổi trả trong vòng 2 giờ sau khi thanh toán.</p>
-											<p>Sau 2 giờ shop không giải quyết bất kỳ vấn đề nào về sản phẩm.</p>
+											<p>Shop cho bạn đổi trả trong vòng 2 giờ sau khi thanh
+												toán.</p>
+											<p>Sau 2 giờ shop không giải quyết bất kỳ vấn đề nào về
+												sản phẩm.</p>
 										</div>
 									</div>
 								</div>
@@ -204,8 +209,9 @@
 										</div>
 										<div class="ltn__feature-info">
 											<h4>Giao hàng nhanh chóng</h4>
-											<p>Chúng tôi sẽ ưu tiên vấn đề thời gian để tối ưu chất lượng sản phẩm, mong
-												mang lại cho bạn nguồn thực phẩm tốt nhất.</p>
+											<p>Chúng tôi sẽ ưu tiên vấn đề thời gian để tối ưu chất
+												lượng sản phẩm, mong mang lại cho bạn nguồn thực phẩm tốt
+												nhất.</p>
 										</div>
 									</div>
 								</div>
