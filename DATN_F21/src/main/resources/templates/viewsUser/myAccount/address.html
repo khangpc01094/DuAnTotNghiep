@@ -6,21 +6,49 @@
 		<div class="tab-pane fade active show">
 		    <div class="ltn__myaccount-tab-content-inner">
 		        <p>Các địa chỉ sau sẽ được sử dụng trên trang thanh toán</p>
-		        <div class="row" th:each="adr:${address}">
+		        <div class="row" ng-repeat="item in address">
 		            <div class=" col-3 learts-mb-30">
 						<div style="color: rgba(85,85,85,.8); text-align: right;">Họ Và Tên</div>
 						<div style="color: rgba(85,85,85,.8); text-align: right;">Số Điện Thoại</div>
 						<div style="color: rgba(85,85,85,.8); text-align: right;">Địa chỉ</div>
 		            </div>
 					<div class=" col-6 learts-mb-30">
-		                <div th:text="${adr.fullname}"></div>
-						<div th:text="${adr.phone}"></div>
-						<div th:text="${adr.address}"></div>
+		                <div>{{item.fullname}}</div>
+						<div>{{item.phone}}</div>
+						<div>{{item.address}}</div>
 		            </div>
-					<div class=" col-3 learts-mb-30">
-					<a th:href="@{|/account/edit_address/${adr.id}|}" style="margin-right: 15px;">Sửa</a>
+					<!-- <div class=" col-3 learts-mb-30">
+						<a th:href="@{|/account/edit_address|}" ng-click="editaddress(item)" style="margin-right: 15px;">Sửa</a>
 						<a href="/account/add_address">Xóa</a>										
-		            </div><hr>       
+		            </div><hr> -->
+
+					<div class=" col-3 learts-mb-30">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+							Launch demo modal
+						  </button>
+						<a href="/account/add_address">Xóa</a>										
+		            </div><hr>
+
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							  </button>
+							</div>
+							<div class="modal-body">
+							  ...
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							  <button type="button" class="btn btn-primary">Save changes</button>
+							</div>
+						  </div>
+						</div>
+					  </div>
+
 				</div><hr>
 		            
 				<a type="submit" href="/account/addaddress" class="btn theme-btn-1 btn-effect-1 text-uppercase">THÊM ĐỊA CHỈ MỚI</a>

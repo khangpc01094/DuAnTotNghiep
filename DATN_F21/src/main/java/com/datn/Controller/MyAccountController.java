@@ -1,6 +1,6 @@
 package com.datn.Controller;
 
-import java.util.List;
+// import java.util.List;
 
 import com.datn.entity.Address;
 import com.datn.entity.Users;
@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 // import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,10 +32,8 @@ public class MyAccountController {
 		return "/viewsUser/myAccount/information";
 	}
 	
-	@GetMapping("/account/address/{id}")
-	public String getAddress(Model m, @PathVariable("id") String id) {
-		List<Address> list = svAddress.findByUserid(id);
-		m.addAttribute("address", list);
+	@GetMapping("/account/address")
+	public String getAddress() {
 		return "/viewsUser/myAccount/address";
 	}
 
@@ -44,18 +42,14 @@ public class MyAccountController {
 		return "/viewsUser/myAccount/add_address";
 	}
 
-	@PostMapping("/account/createaddress")
-	public String Create(Model m, Address address) {
+	@PostMapping("/account/editaddress")
+	public String Create(Address address) {
 		svAddress.create(address);
-		System.out.println(address);
 		return "/viewsUser/myAccount/add_address";
 	}
 	
-	@GetMapping("/account/edit_address/{id}")
-	public String getAddAddress(Model m, @PathVariable ("id") Integer id, Address address) {
-		Address adr = svAddress.findByIdd(id);
-		//svAddress.create(address);
-		m.addAttribute("adda", adr);
+	@GetMapping("/account/edit_address")
+	public String getAddAddress() {
 		return "/viewsUser/myAccount/edit_address";
 	}
 
