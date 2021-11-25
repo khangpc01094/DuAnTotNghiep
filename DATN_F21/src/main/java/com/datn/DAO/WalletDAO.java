@@ -1,9 +1,17 @@
 package com.datn.DAO;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.datn.entity.Wallet;
 
-public interface WalletDAO extends JpaRepository<Wallet, Integer>{
+public interface WalletDAO extends JpaRepository<Wallet, Integer> {
 
+	@Query("SELECT w FROM Wallet w WHERE w.userid.userid=?1")
+	List<Wallet> findWalletByUserId(String userid);
+
+	@Query(value = "select * from wallet where userid = ?1", nativeQuery = true)
+	List<Wallet> findWalletByUser(String userid);
 }

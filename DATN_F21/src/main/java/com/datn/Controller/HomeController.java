@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.datn.DAO.ProductDAO;
-import com.datn.entity.Category;
 import com.datn.entity.Product;
-import com.datn.entity.ProductImage;
+import com.datn.entity.Wallet;
 import com.datn.service.CategoryService;
 import com.datn.service.ProductImageService;
 import com.datn.service.ProductService;
+import com.datn.service.WalletService;
 
 @Controller
 public class HomeController {
@@ -30,46 +30,39 @@ public class HomeController {
 	CategoryService svCategory;
 	@Autowired
 	ProductImageService svProductImageService;
+	@Autowired
+	WalletService svWalletService;
 
 	@RequestMapping("/index")
-	public String loadProduct(Model model, @RequestParam("cid") Optional<Integer> cid, Integer id) {
-		List<Category> listCategory = svCategory.findAll();
-		model.addAttribute("cates", listCategory);
+	public String loadProduct(Model model, @RequestParam("cid") Optional<Integer> cid) {
+		System.err.println("id "+cid);
 		if (cid.isPresent()) {
-			List<Product> list = svProduct.findByCategoryId(id); // cid.get() để lấy được id
-			System.err.println("list" + list);
+			Integer articleId = cid.get();
+			System.err.println("haha... : ))");
+			System.err.println(articleId);
+			List<Product> list = svProduct.findByCategoryId(cid.get()); // cid.get() để lấy được id
 			model.addAttribute("sp", list);
 		} else {
-			List<Product> list = svProduct.findAll();
-			model.addAttribute("sp", list);
-//			String id1 = null;
-//			for (int i = 0; i < list.size(); i++) {
-//				Integer id = list.get(i).id;
-//				id1 = svProductImageService.findByOne(id);
-//				System.err.println("oneImage: >>" + id1);
-//				model.addAttribute("oneImage", id1);
-//			}
-//			System.err.println("oneImage: >>" + id1);
+//			List<Product> list = svProduct.findAll();
+//			model.addAttribute("sp", list);
 		}
 		return "viewsUser/index";
 	}
 
 	@GetMapping("/index/product-detail/{id}")
-	public String getProductDetail(Model model, @PathVariable("id") Integer id,
+	public String getProductDetail(Model model, @PathVariable("id") Integer id, String idd,
 			@RequestParam("cid") Optional<Integer> cid) {
 		Product item = svProduct.findById(id);
 		model.addAttribute("item", item);
 //		if (cid.isPresent()) {
 		List<Product> list = svProduct.findByCategoryId(id); // cid.get() để lấy được id
 		model.addAttribute("sp", list);
-//			System.out.println("list" + list);
 //		}
 		String onePro = svProductImageService.findByOne(id);
 		model.addAttribute("onePro", onePro);
 
 		List<String> pro = svProductImageService.findByAll(id);
 		model.addAttribute("pro", pro);
-//		System.out.println("pro >> " + pro);
 
 		return "/viewsUser/product-detail";
 	}
