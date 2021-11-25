@@ -91,4 +91,20 @@ public class ShoppingCartRestController {
         }
     }
 
+    @GetMapping("/checkStatus/{id}")
+    public ShoppingCart checkStatus(@PathVariable("id") Integer id){
+        ShoppingCart a = svCartService.getById(id);
+        if(a.isStatus() == true){
+            a.setStatus(false);
+        }else{
+            a.setStatus(true);
+        }
+        return svCartService.update(a);
+    }
+
+    @GetMapping("/cartTrue/{id}")
+    public List<ShoppingCart> getCartTrue(@PathVariable("id") String id){
+        return svCartService.getCartTrue(id);
+    }
+
 }

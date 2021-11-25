@@ -48,7 +48,14 @@
 							<tbody ng-repeat="detail in cart.items | groupBy:'storeid'">
 								<th scope="row"  ng-show="detail.group_by_key" colspan="4" style="text-align: left; color: red">{{detail.product.store.name}}</th>
 								<tr>
-									<td><input type="checkbox" name="" id=""></td>
+									<td>
+										<div ng-if="detail.status == true">
+											<input type="checkbox" checked ng-click="cart.ckeck(detail.id)">
+										</div>
+										<div ng-if="detail.status != true">
+											<input type="checkbox" ng-click="cart.ckeck(detail.id)">
+										</div>
+									</td>
 									<td class="cart-product-image">
 										<a href="index/product-detail"><img th:src="@{|/img/product/{{detail.product.images}}|}" alt="{{detail.product.images}}"></a>
 									</td>
@@ -59,8 +66,8 @@
 									<td class="cart-product-quantity">
 										<div class="input-group mb-3">
 											<input type="submit" ng-click="cart.apartquantity(detail.id)" value="-" style="width: 10px;">
-											<input type="submit" readonly value="{{detail.quantity}}" style="width: 10px;">
-											<input type="submit" ng-click="cart.addquantity(detail.id)" value="+" style="width: 10px;">
+											<input type="submit"disabled value="{{detail.quantity}}"style="width: 10px;">
+											<input type="submit" ng-click="cart.addquantity(detail.id)" value="+" style="width : 10px;">
 										  </div>
 									</td>
 									<td class="cart-product-subtotal">{{detail.product.price * detail.quantity}} đ</td>
@@ -74,7 +81,7 @@
 									<tbody>
 										<tr>
 											<td>Tổng tiền các sản phẩm</td>
-											<td>$618.00</td>
+											<td><input type="text" name="" id="tongcong"></td>
 										</tr>
 										<tr>
 											<td>Phí vận chuyển</td>

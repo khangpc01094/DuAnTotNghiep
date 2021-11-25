@@ -33,4 +33,6 @@ public class ShoppingCart implements Serializable {
 	
 	public Integer storeid;
 
+	public boolean status;
+
 }

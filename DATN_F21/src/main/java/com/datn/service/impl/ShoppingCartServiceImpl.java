@@ -55,4 +55,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return daoCart.findById(id).get();
     }
 
+    @Override
+    public List<ShoppingCart> getCartTrue(String id) {
+        return daoCart.getCartTrue(id);
+    }
+
 }

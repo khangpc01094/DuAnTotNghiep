@@ -77,11 +77,40 @@ app.controller("buyer-ctrl", function ($scope, $http) {
           alert(error);
         });
     },
+
+    ckeck(id){
+      $http.get(`/rest/checkStatus/${id}`).then( (resp) => {
+        $scope.cart.loadCart();
+      }).catch((error) => {
+        alert(error);
+      });
+    },
+
+    carts : [],
+
+    getCart()
+    {
+      $http.get(`/rest/cartTrue/user1`).then(resp => {
+        this.carts = resp.data;
+      })
+    },
+
+    get amount() {
+			return this.carts
+				.map(item => item.quantity * item.product.price)
+				.reduce((total, quantity) => total += quantity, 0);
+		},
+
+    get count() {
+			return this.items
+				.map(item => item.quantity)
+				.reduce((total, quantity) => total += quantity, 0);
+		},
   };
 
   $scope.cart.loadCart();
 
-
+  $scope.cart.getCart();
 
 
 

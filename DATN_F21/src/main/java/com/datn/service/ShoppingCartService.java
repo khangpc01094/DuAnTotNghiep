@@ -22,4 +22,6 @@ public interface ShoppingCartService {
 
     ShoppingCart getById(Integer id);
 
+    List<ShoppingCart> getCartTrue(String id);
+
 }
