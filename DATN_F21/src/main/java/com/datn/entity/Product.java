@@ -40,6 +40,7 @@ public class Product implements Serializable {
 	public Double price;
 	public String description;
 	public Boolean status;
+	public String images;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "storeid")
@@ -56,5 +57,5 @@ public class Product implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	public List<ShoppingCart> shoppingCarts;
-	public String hinhanh;
+	
 }

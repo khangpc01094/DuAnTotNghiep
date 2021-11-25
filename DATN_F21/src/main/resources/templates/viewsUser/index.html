@@ -87,7 +87,7 @@
                         </div>
                         <div class="ltn__tab-menu ltn__tab-menu-2 ltn__tab-menu-top-right-- text-uppercase text-center">
                             <div class="nav">
-                                <a data-toggle="tab" th:each="c: ${cates}"
+                                <a  th:each="c: ${cates}"
                                     th:href="@{|/index?cid=${c.id}|}">[[${c.name}]]</a>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                                         class="ltn__product-item ltn__product-item-3 text-center">
                                                         <a th:href="@{|/index/product-detail/${product.id}|}">
                                                             <div class="product-img">
-                                                                <img th:src="@{|/assets/images/${product.hinhanh}|}"
+                                                                <img th:src="@{|/assets/images/${product.images}|}"
                                                                     alt="#">
                                                                 <div class="product-badge">
                                                                     <ul>
