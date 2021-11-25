@@ -26,9 +26,14 @@ public class ProductServiceImpl implements ProductService{
 	public Product findById(Integer id) {
 		return daoProduct.findById(id).get(); //tim id sp
 	}
+//	@Override
+//	public List<Product> findByCategoryId(String id) {
+//		return daoProduct.findByCategoryId(id);
+//	}
 	@Override
-	public List<Product> findByCategoryId(String id) {
-		return daoProduct.findByCategoryId(id);
+	public List<Product> findByCategoryId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
