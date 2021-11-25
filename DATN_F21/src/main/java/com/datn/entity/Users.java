@@ -58,6 +58,6 @@ public class Users implements Serializable {
 	private List<Store> store;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "userid", cascade = { CascadeType.ALL })
 	private List<Wallet> wallet;
 }

@@ -30,11 +30,10 @@ public class Wallet implements Serializable {
 	private Integer id;
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "userid")
-	private Users user;
-	private String cardnumber;
+	private Users userid;
 	private String cardbrand;
 	private String holdername;
 	private Integer cvv;
-	private String cardexpiry;
 	private Double money;	
+	private String cardnumber;
 }
