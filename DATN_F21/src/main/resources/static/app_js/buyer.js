@@ -49,6 +49,7 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         if (cart == true) {
           $http.get(`/rest/apartquantity/${id}`).then((resp) => {
               $scope.cart.loadCart();
+              $scope.cart.getCart();
             })
             .catch((error) => {
               alert(error);
@@ -59,6 +60,7 @@ app.controller("buyer-ctrl", function ($scope, $http) {
       }else {
         $http.get(`/rest/apartquantity/${id}`).then((resp) => {
           $scope.cart.loadCart();
+          $scope.cart.getCart();
         })
         .catch((error) => {
           alert(error);
@@ -72,6 +74,7 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         .get(`/rest/addquantity/${id}`)
         .then((resp) => {
           $scope.cart.loadCart();
+          $scope.cart.getCart();
         })
         .catch((error) => {
           alert(error);
@@ -112,7 +115,11 @@ app.controller("buyer-ctrl", function ($scope, $http) {
 
   $scope.cart.getCart();
 
+  $scope.address = [];
 
+  $scope.getAddress = function(){
+    
+  }
 
 
 
