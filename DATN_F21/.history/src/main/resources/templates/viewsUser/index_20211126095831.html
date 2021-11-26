@@ -100,10 +100,10 @@
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
                                         <!-- ltn__product-item -->
-                                        <div class="col-lg-4" th:each="product: ${sp}" th:object="${product}">
-                                            <div style="width: 270px; height: 386px;" class="ltn__product-item ltn__product-item-3 text-center">
+                                        <div class="col-lg-14" th:each="product: ${sp}" th:object="${product}">
+                                            <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <a th:href="@{|/index/product-detail/${product.id}|}">
-                                                    <div style="width: 266px; height: 266px;" class="product-img">
+                                                    <div class="product-img">
                                                         <img th:src="@{|/assets/images/${product.images}|}" alt="#">
                                                         <div class="product-badge">
                                                             <ul>

@@ -120,7 +120,7 @@
                     <!-- ltn__product-item -->
                     <div class="col-lg-4" th:each="sp : *{category.products}">
                         <div style="width: 270px; height: 386px;" class="ltn__product-item ltn__product-item-3 text-center">
-                            <div style="width: 266px; height: 266px;" class="product-img">
+                            <div class="product-img">
                                 <a th:href="@{|/index/product-detail/${sp.id}|}"><img th:src="@{|/assets/images/${sp.images}|}" alt="#"></a>
                                 <div class="product-badge">
                                     <ul>
