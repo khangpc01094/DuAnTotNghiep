@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.datn.DAO.ShoppingCartDAO;
 import com.datn.entity.ShoppingCart;
+import com.datn.entity.Total;
 import com.datn.service.ShoppingCartService;
 
 @Service
@@ -14,7 +15,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Autowired
     ShoppingCartDAO daoCart;
-
+    
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
         return daoCart.save(shoppingCart);
@@ -58,6 +59,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public List<ShoppingCart> getCartTrue(String id) {
         return daoCart.getCartTrue(id);
+    }
+
+	@Override
+	public List<Total> getAllTotal(String id) {
+		return daoCart.getAllPrice(id);
+	}
+
+    @Override
+    public void deleteByUser(String id) {
+
+    }
+
+    @Override
+    public List<ShoppingCart> getBySandU(String idu, Integer ids) {
+        return daoCart.getByStoreandByUser(idu, ids);
     }
 
 }

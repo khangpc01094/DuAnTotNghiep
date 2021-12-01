@@ -24,7 +24,7 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,6 @@ public class Order implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "userid", referencedColumnName = "userid")
-	// @JsonIgnoreProperties(value = { "applications", "hibernateLazyInitializar" })
 	public Users user;
 
 	public int status;

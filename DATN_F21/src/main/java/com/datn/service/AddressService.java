@@ -6,5 +6,7 @@ import com.datn.entity.Address;
 
 public interface AddressService {
 
-    List<Address> getAllAr();
+    public List<Address> findByUserid(String id);
+
+    Address getById(Integer id);
 }

@@ -1,10 +1,21 @@
 package com.datn.Controller;
 
+import java.util.List;
+
+import com.datn.entity.Order;
+import com.datn.service.OrderService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MyAccountController {
+
+	@Autowired
+	OrderService svOrder;
+
 	@GetMapping("/account/information")
 	public String getInformation() {
 		return "/viewsUser/myAccount/information";
@@ -26,7 +37,10 @@ public class MyAccountController {
 	}
 	
 	@GetMapping("/account/order")
-	public String getOrder() {
+	public String getOrder(Model model) {
+		String userid = "user1";
+		List<Order> list = svOrder.getAllOrder(userid);
+		model.addAttribute("orderlist", list);
 		return "/viewsUser/myAccount/order";
 	}
 	

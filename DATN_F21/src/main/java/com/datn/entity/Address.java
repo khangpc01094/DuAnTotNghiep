@@ -3,9 +3,7 @@ package com.datn.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,14 +22,20 @@ import lombok.Data;
 @Table(name = "address")
 public class Address implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer id;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "userid")
 	public Users user;
 
 	public String address;
+
+	public String fullname;
+
+	public String phone;
+
+	public boolean status;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "address")

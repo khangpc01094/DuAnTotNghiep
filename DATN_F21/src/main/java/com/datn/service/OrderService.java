@@ -9,5 +9,6 @@ public interface OrderService {
     List<Order> getAllOrder(String id);
 
     List<Order> getAll();
-
+    
+    Order create(Order order);
 }

@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.datn.entity.Order;
 import com.datn.service.OrderService;
+import com.datn.service.ShoppingCartService;
+import com.datn.service.StoreService;
+import com.datn.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +22,15 @@ public class OrderRestController {
 
     @Autowired
     OrderService svOrder;
+    
+    @Autowired
+    StoreService svStore;
+
+    @Autowired
+    ShoppingCartService svCart;
+
+    @Autowired
+    UserService svUser;
 
     @GetMapping("/{id}")
     public List<Order> getAll(@PathVariable("id") String id) {
@@ -29,5 +41,7 @@ public class OrderRestController {
     public List<Order> getAllOrder() {
         return svOrder.getAll();
     }
+
+
 
 }

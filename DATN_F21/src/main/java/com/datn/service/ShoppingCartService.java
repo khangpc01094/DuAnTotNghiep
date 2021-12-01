@@ -3,6 +3,7 @@ package com.datn.service;
 import java.util.List;
 
 import com.datn.entity.ShoppingCart;
+import com.datn.entity.Total;
 
 public interface ShoppingCartService {
 
@@ -23,5 +24,11 @@ public interface ShoppingCartService {
     ShoppingCart getById(Integer id);
 
     List<ShoppingCart> getCartTrue(String id);
+    
+    List<Total> getAllTotal(String id);
+
+    void deleteByUser(String id);
+
+    List<ShoppingCart> getBySandU(String idu, Integer ids);
 
 }

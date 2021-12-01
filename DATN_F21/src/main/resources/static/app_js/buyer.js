@@ -22,7 +22,10 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         $http
           .get(`/rest/putcart/${id}`)
           .then((resp) => {
-            alert("ban vua them mot san pham");
+            alert("ban vua cập nhật mot san pham");
+            $scope.cart.loadCart();
+            $scope.cart.getCart();
+            $scope.cart.loadsum();
           })
           .catch((error) => {
             alert("cap nhat khong dc");
@@ -33,40 +36,51 @@ app.controller("buyer-ctrl", function ($scope, $http) {
           .get(`/rest/createCart/${id}`)
           .then((resp) => {
             alert("đã them vao giỏ hàng");
+            $scope.cart.loadCart();
+            $scope.cart.getCart();
+            $scope.cart.loadsum();
           })
           .catch((error) => {
-            alert("đã them vao giỏ hàng");
-            console.log(error);
+            alert("lỗi thêm vao giỏ hàng");
           });
       }
     },
 
     apartquantity(id) {
       var item = this.items.find((item) => item.id == id);
-      var u  = item.quantity;
-      if(u == 1){
+      var u = item.quantity;
+      if (u == 1) {
         var cart = confirm("Bạn chắc sẽ xóa sản phẩm ???");
         if (cart == true) {
-          $http.get(`/rest/apartquantity/${id}`).then((resp) => {
+          $http
+            .get(`/rest/apartquantity/${id}`)
+            .then((resp) => {
               $scope.cart.loadCart();
               $scope.cart.getCart();
+              $scope.cart.loadsum();
             })
             .catch((error) => {
               alert(error);
             });
         } else {
-          null
+          null;
         }
-      }else {
-        $http.get(`/rest/apartquantity/${id}`).then((resp) => {
-          $scope.cart.loadCart();
-          $scope.cart.getCart();
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      } else {
+        $http
+          .get(`/rest/apartquantity/${id}`)
+          .then((resp) => {
+            $scope.cart.loadCart();
+            $scope.cart.getCart();
+            $scope.cart.loadsum();
+          })
+          .catch((error) => {
+            alert(error);
+          });
       }
-        
+    },
+
+    remove(id){
+      
     },
 
     addquantity(id) {
@@ -75,57 +89,67 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         .then((resp) => {
           $scope.cart.loadCart();
           $scope.cart.getCart();
+          $scope.cart.loadsum();
         })
         .catch((error) => {
           alert(error);
         });
     },
 
-    ckeck(id){
-      $http.get(`/rest/checkStatus/${id}`).then( (resp) => {
-        $scope.cart.loadCart();
-      }).catch((error) => {
-        alert(error);
+    ckeck(id) {
+      $http
+        .get(`/rest/checkStatus/${id}`)
+        .then((resp) => {
+          $scope.cart.loadCart();
+          $scope.cart.loadsum();
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    },
+
+    sumall: [],
+    
+    loadsum() {
+      $http
+        .get(`/rest/cart/total`)
+        .then((resp) => {
+          this.sumall = resp.data;
+        })
+        .catch((error) => {
+          alert("loi truy van"), console.log(error);
+        });
+    },
+
+    carts: [],
+
+    getCart() {
+      $http.get(`/rest/cartTrue/user1`).then((resp) => {
+        this.carts = resp.data;
       });
     },
 
-    carts : [],
-
-    getCart()
-    {
-      $http.get(`/rest/cartTrue/user1`).then(resp => {
-        this.carts = resp.data;
-      })
+    get amount() {
+      return this.sumall
+        .map((item) => item.thanhtoan)
+        .reduce((total, thanhtoan) => (total += thanhtoan), 0);
     },
 
-    get amount() {
-			return this.carts
-				.map(item => item.quantity * item.product.price)
-				.reduce((total, quantity) => total += quantity, 0);
-		},
-
     get count() {
-			return this.items
-				.map(item => item.quantity)
-				.reduce((total, quantity) => total += quantity, 0);
-		},
+      return this.items
+        .map((item) => item.quantity)
+        .reduce((total, quantity) => (total += quantity), 0);
+    }
   };
 
   $scope.cart.loadCart();
 
+  $scope.cart.loadsum();
+
   $scope.cart.getCart();
 
-  $scope.address = [];
-
-  $scope.getAddress = function(){
-    
-  }
-
-
-
-
-  
 });
+
 
 app.filter("groupBy", [
   "$parse",

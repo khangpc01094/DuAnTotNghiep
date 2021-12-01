@@ -15,7 +15,7 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "authorization")
+@Table(name = "authorities")
 
 public class Authorization implements Serializable {
 	@Id

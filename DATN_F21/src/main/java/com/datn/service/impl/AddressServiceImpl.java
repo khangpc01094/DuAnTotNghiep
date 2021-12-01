@@ -16,8 +16,12 @@ public class AddressServiceImpl implements AddressService{
     AddressDAO daoaddress;
 
     @Override
-    public List<Address> getAllAr() {
-        return daoaddress.findAll();
+    public List<Address> findByUserid(String id) {
+       return daoaddress.findByUserId(id);
     }
 
+    @Override
+    public Address getById(Integer id) {
+        return daoaddress.findById(id).get();
+    }
 }

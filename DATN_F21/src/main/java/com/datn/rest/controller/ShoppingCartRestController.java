@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.datn.entity.Product;
 import com.datn.entity.ShoppingCart;
+import com.datn.entity.Total;
 import com.datn.entity.Users;
 import com.datn.service.ProductService;
 import com.datn.service.ShoppingCartService;
@@ -22,11 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest")
 public class ShoppingCartRestController {
 
-	@Autowired
+    @Autowired
     UserService svUser;
-	
-	@Autowired
-	ProductService svPro;
+
+    @Autowired
+    ProductService svPro;
 
     @Autowired
     ShoppingCartService svCartService;
@@ -38,22 +39,22 @@ public class ShoppingCartRestController {
 
     @GetMapping("createCart/{idp}")
     public ShoppingCart createCart(@PathVariable("idp") Integer idp) {
-    	 ShoppingCart shoppingCart = new ShoppingCart();
-        //Users u = svUser.findByid(req.getRemoteUser());
-    	Users u = svUser.findByid("user1");
-    	Product a = svPro.getById(idp);
-    	shoppingCart.setUser(u);
-    	shoppingCart.setProduct(a);
-    	shoppingCart.setQuantity(1);
-    	shoppingCart.setStoreid(a.getStore().id);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        // Users u = svUser.findByid(req.getRemoteUser());
+        Users u = svUser.findByid("user1");
+        Product a = svPro.getById(idp);
+        shoppingCart.setUser(u);
+        shoppingCart.setProduct(a);
+        shoppingCart.setQuantity(1);
+        shoppingCart.setStoreid(a.getStore().id);
         return svCartService.create(shoppingCart);
     }
 
     @GetMapping("putcart/{id}")
     public ShoppingCart updateCart(@PathVariable("id") Integer id) {
-        //Users u = svUser.findByid(req.getRemoteUser());
-        ShoppingCart shoppingCart = svCartService.getCartPr("user1", id);;
-        shoppingCart.setQuantity(shoppingCart.quantity+=1);
+        // Users u = svUser.findByid(req.getRemoteUser());
+        ShoppingCart shoppingCart = svCartService.getCartPr("user1", id);
+        shoppingCart.setQuantity(shoppingCart.quantity += 1);
         return svCartService.update(shoppingCart);
     }
 
@@ -73,38 +74,58 @@ public class ShoppingCartRestController {
     }
 
     @GetMapping("/addquantity/{id}")
-    public ShoppingCart addquantity(@PathVariable("id") Integer id){
+    public ShoppingCart addquantity(@PathVariable("id") Integer id) {
         ShoppingCart a = svCartService.getById(id);
-        a.setQuantity(a.quantity+=1);
+        a.setQuantity(a.quantity += 1);
         return svCartService.update(a);
     }
 
     @GetMapping("/apartquantity/{id}")
-    public ShoppingCart apartquantity(@PathVariable("id") Integer id){
+    public ShoppingCart apartquantity(@PathVariable("id") Integer id) {
         ShoppingCart a = svCartService.getById(id);
-        if(a.getQuantity() == 1){
+        if (a.getQuantity() == 1) {
             svCartService.delete(id);
             return null;
-        }else{
-        a.setQuantity(a.quantity-1);
-        return svCartService.update(a);
+        } else {
+            a.setQuantity(a.quantity - 1);
+            return svCartService.update(a);
         }
     }
 
     @GetMapping("/checkStatus/{id}")
-    public ShoppingCart checkStatus(@PathVariable("id") Integer id){
+    public ShoppingCart checkStatus(@PathVariable("id") Integer id) {
         ShoppingCart a = svCartService.getById(id);
-        if(a.isStatus() == true){
+        if (a.isStatus() == true) {
             a.setStatus(false);
-        }else{
+        } else {
             a.setStatus(true);
         }
         return svCartService.update(a);
     }
 
     @GetMapping("/cartTrue/{id}")
-    public List<ShoppingCart> getCartTrue(@PathVariable("id") String id){
+    public List<ShoppingCart> getCartTrue(@PathVariable("id") String id) {
         return svCartService.getCartTrue(id);
+    }
+
+    @GetMapping("cart/total")
+    public List<Total> getAllTotal() {
+        List<Total> list = svCartService.getAllTotal("user1");
+
+        for (Total s : list) {
+            if (s.getGiam() > 300000) {
+                s.setGiam(10.0);
+                s.setThanhtoan((s.thanhtoan - (s.tong * 10 / 100)) + 15000);
+            } else if (s.getGiam() > 99000) {
+                s.setGiam(5.0);
+                s.setThanhtoan((s.thanhtoan - (s.tong * 5 / 100)) + 15000);
+            } else {
+                s.setGiam(0.0);
+                s.setThanhtoan(s.thanhtoan + 15000);
+            }
+        }
+
+        return list;
     }
 
 }

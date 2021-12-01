@@ -14,6 +14,4 @@ public interface OrderDAO extends JpaRepository<Order, Integer> {
     @Query("select o from Order o where o.user.userid = ?1")
     List<Order> getOrderByUser(String id);
 
-    // @Query(value = "select * from orders where userid = ?1", nativeQuery = true)
-    // List<Order> getOrderByUser(String id);
 }
