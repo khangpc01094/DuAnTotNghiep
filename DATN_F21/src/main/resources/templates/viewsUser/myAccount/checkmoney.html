@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
+<body>
+	<main>	
+	<div class="tab-pane fade active show" ng-controller="checkmoney-ctrl">
+            <div class="ltn__myaccount-tab-content-inner">
+                <div class="ltn__form-box">
+                    <h4>Nhập số tiền</h4>
+                    <form action="/account/wallet/topup/checkmoney" method="post" name="form_checkmoney">
+	                   	<div class="row">
+							<div class="col-md-6">			
+								<div  class="input-item input-item-name ltn__custom-icon">
+									<input ng-model="money" class="gender" type="number" name="money" placeholder="Nhập số tiền cần nạp" required>
+								</div>
+							</div>
+						</div>   
+						<span style="color: red;" ng-hide="form_checkmoney.money.$valid">Không được để trống</span>
+						<spam style="color: red;" th:text="${messenger_erro}" ></spam>
+						<spam style="color: green;" th:text="${messenger}" ></spam>
+						<div class="btn-wrapper">
+	                   		 <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Nạp tiền</button>  
+	                    <div>      
+               		</form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>    
+</html>

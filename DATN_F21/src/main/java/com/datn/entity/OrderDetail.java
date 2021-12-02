@@ -12,32 +12,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name = "orderdetail")
-@NoArgsConstructor
-@AllArgsConstructor
 public class OrderDetail implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	private Double price;
-	private Integer quantity;
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "productid")
-	private Product product;
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer id;
+
+	public Double price;
+	public Integer quantity;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "productid", referencedColumnName = "id")
+	public Product product;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "orderid")
-	private Order order;
-	
-	private Double totalamount;
+	public Order order;
+
+	public Double totalamount;
 
 }

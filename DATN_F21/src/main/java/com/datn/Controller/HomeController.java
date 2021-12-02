@@ -26,12 +26,6 @@ public class HomeController {
 		return "/viewsUser/checkout";
 	}
 
-	
-	@GetMapping("/login")
-	public String getLogin() {
-		return "/viewsUser/login";
-	}
-	
 	@GetMapping("/register")
 	public String getRegister() {
 		return "/viewsUser/register";

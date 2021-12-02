@@ -2,42 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
 <body>
-	<main class="Auth" style="background-color: white; min-height: 500px">
-		<div style="text-align: center;">
-		<label  style="color: orange; margin-top: 8px; font-size: 30px">Phân quyền người dùng</label>
-		</div>
-		<div style="margin-top: 10px">
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">Tên người dùng</th>
-						<th scope="col">Khách hàng</th>
-						<th scope="col">Người bán</th>
-						<th scope="col">Admin</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">Phuong</th>
-						<td><input type="checkbox" name="" id=""></td>
-						<td><input type="checkbox" name="" id=""></td>
-						<td><input type="checkbox" name="" id=""></td>
-					</tr>
-					<tr>
-						<th scope="row">Khang</th>
-						<td><input type="checkbox" name="" id=""></td>
-						<td><input type="checkbox" name="" id=""></td>
-						<td><input type="checkbox" name="" id=""></td>
-					</tr>
-					<tr>
-						<th scope="row">Hau</th>
-						<td><input type="checkbox" name="" id=""></td>
-						<td><input type="checkbox" name="" id=""></td>
-						<td><input type="checkbox" name="" id=""></td>
-					</tr>
-				</tbody>
-			</table>
-
+	<main class="Auth" style="background-color: white; min-height: 500px" ng-controller="authorization-ctrl">
+			<div class="container_Store">
+				<div class="row">
+					<div class="col-sm-5"></div>
+					<h2  style="color: orange; margin-top: 20px; font-size: 30px">Quản lý cửa hàng</h2>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<form  ng-click="search(name)">
+							<label class="lable_Search">Tìm kiếm </label> 
+							<input ng-model="name" type="text" style="width: 30%" name="" id="" placeholder="Nhập tên cửa hàng...." class="input_search_store" required>			
+							<button ng-click="search(name)" class="btn-find" type="submit">Tìm</button>
+						</form>
+					</div>
+				
+				</div>
+				<div style="margin-top: 10px">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">STT</th>
+								<th scope="col">Tên người dùng</th>
+								<th ng-repeat="role in roles">{{role.role}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="user in pager.users">
+							   <th scope="row">{{$index + 1+no}}</th>
+				               <th scope="row">{{user.fullname}}</th>
+				               <th ng-repeat="role in roles" class="text-center">
+				                   <input ng-checked="authority_of(user,role)" ng-click="authority_changed(user,role)" type="checkbox">
+				               </th>
+				               
+				           </tr>
+						</tbody>
+					</table>
+				</div>
+		</div>	
+		<div class="foodterUL">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+				  <li class="page-item"><a ng-click="pager.first()" class="page-link" href="#"><=</a></li>
+				  <li class="page-item"><a ng-click="pager.prev()" class="page-link" href="#"><<</a></li>
+				  <li class="page-item"><a class="page-link" >{{pager.page + 1}} of {{pager.count}}</a></li>					
+				  <li class="page-item"><a ng-click="pager.next()" class="page-link" href="#">>></a></li>
+				  <li class="page-item"><a ng-click="pager.last()" class="page-link" href="#">=></a></li>
+				</ul>
+			  </nav>
 		</div>
 	</main>
 
