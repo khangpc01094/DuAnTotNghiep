@@ -38,5 +38,9 @@ public class Store implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Order> order;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "store", cascade = { CascadeType.ALL })
+	private List<Product> product;
 	
 }

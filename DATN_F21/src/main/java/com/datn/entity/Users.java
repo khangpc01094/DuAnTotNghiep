@@ -5,9 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,4 +55,11 @@ public class Users implements Serializable {
 	@OneToMany(mappedBy = "user")
 	public List<Store> store;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<Wallet> wallet;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "user", cascade = { CascadeType.ALL })
+	private Transaction transaction;
 }
