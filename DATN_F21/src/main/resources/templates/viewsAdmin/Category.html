@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
 
 <body>
-    <main style="background-color: white; margin-top: 10px">
+    <main style="background-color: white; margin-top: 10px" ng-controller="category-ctrl">
         <div class="row container_Category">
             <div class="col-sm-6">
                 <h5 style="color: orange; margin-top: 20px; font-size: 30px">Loại Sản Phẩm</h5>
@@ -21,71 +21,61 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><img th:src="@{|/img/cai.jpg|}" class="img-thumbnail rounded-circle" alt=""></td>
-                                <td>001</td>
-                                <td>Cải</td>
-                                <td>hoat dong</td>
-                                <td><a href="#">Sửa</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td><img th:src="@{|/img/carot.jpg|}" class="img-thumbnail rounded-circle" alt=""></td>
-                                <td>002</td>
-                                <td>Củ</td>
-                                <td>hoat dong</td>
-                                <td><a href="#">Sửa</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td><img th:src="@{|/img/cachua.jpg|}" class="img-thumbnail rounded-circle" alt=""></td>
-                                <td>003</td>
-                                <td>Cà</td>
-                                <td>hoat dong</td>
-                                <td><a href="#">Sửa</a></td>
-                            </tr>
+                            <tr ng-repeat="item in pager.items">
+                                <th scope="row">{{$index + 1+no}}</th>
+                                <td><img ng-src="{{'/img/category/' + item.picture}}" class="img-thumbnail rounded-circle" alt=""></td>
+                                <td>{{item.id}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.status?'Hoạt động':'Không hoạt động'}}</td>
+                                <td><a ng-click="edit(item)" href="">Sửa</a></td>
+                            </tr>                  
                         </tbody>
                     </table>
                 </div>
-                <div class="btn_dieuhuong">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>
-                </div>
+                <div class="foodterUL">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+						  <li class="page-item"><a ng-click="pager.first()" class="page-link" href="#"><=</a></li>
+						  <li class="page-item"><a ng-click="pager.prev()" class="page-link" href="#"><<</a></li>
+						  <li class="page-item"><a class="page-link" >{{pager.page + 1}} of {{pager.count}}</a></li>					
+						  <li class="page-item"><a ng-click="pager.next()" class="page-link" href="#">>></a></li>
+						  <li class="page-item"><a ng-click="pager.last()" class="page-link" href="#">=></a></li>
+						</ul>
+					  </nav>
+				</div>
             </div>
 
             <div class="col-sm-6">
                 <div class="border">
                     <label class="Deatail" style="color: orange; margin-top: 8px; font-size: 30px">Thông tin chi tiết</label>
                     <hr>
-                    <form action="" method="">
-                        <label class="image">Hình ảnh</label>
+                    <form>
+                        <label  class="image">Hình ảnh</label>
                         <div class="header">
-
-                            <img th:src="@{|/img/cachua.jpg|}" class="img-thumbnail" alt="">
+                            <img ng-src="{{'/img/category/'+ form.picture}}" class="img-thumbnail" alt="">                     
+                           	<div style="margin-left: 122px;">									
+								<label class="custom-file-upload">
+								    <input type="file" onchange="angular.element(this).scope().imageChanged(this.files)"/>
+								    Chọn tệp
+								</label>		
+							</div>
                         </div>
                         <div class="body">
                             <label for="">ID loại</label>
-                            <input type="text" class="form-control">
+                            <input ng-model="form.id" type="text" class="form-control">
                             <label for="">Tên loại</label>
-                            <input type="text" class="form-control">
+                            <input ng-model="form.name" type="text" class="form-control">
                             <label for="">Trạng thái</label> <br>
-                            <input type="radio" checked class="radioCate" name="Category" value="true"><label
+                            <input ng-model="form.status" type="radio" checked class="radioCate" name="Category" ng-value="true"><label
                                 class="namecategory">Kích hoạt</label>
-                            <input type="radio" class="radioCate" name="Category" value="false"><label
+                            <input ng-model="form.status" type="radio" class="radioCate" name="Category" ng-value="false"><label
                                 class="namecategory">Không kích hoạt</label>
                         </div>
                         <div class="foodter">
                             <div class="btnc">
-                                <button class="btn2" type="submit">Cập Nhật</button>
-                                <button class="btn2" type="submit">Thêm</button>
+                                <button ng-click="update()" class="btn2" >Cập Nhật</button>
+                                <button ng-click="create()" class="btn2" type="submit">Thêm</button>
+                                <button ng-click="clear()" class="btn2" type="submit">Làm mới</button>
                             </div>
                         </div>
                     </form>

@@ -3,23 +3,21 @@
 	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
 
 <body>
-	<main
-		style="margin-top: -10px; background-color: white; min-height: 744px;">
-		<div class="container_Store">
+	<main style="margin-top: -10px; background-color: white; min-height: 744px;" ng-controller="store-ctrl">	
+		<div class="container_Store" >
 			<div class="row">
 				<div class="col-sm-5"></div>
-				<label style="color: orange; margin-top: 20px; font-size: 30px;">Quản
-					lý cửa hàng </label>
+				<h2  style="color: orange; margin-top: 20px; font-size: 30px">Quản lý cửa hàng</h2>
 			</div>
 			<div class="row">
-				<div class="col-sm-6">
-					<form action="" method="">
-						<label class="lable_Search">Tìm kiếm </label> <input type="text"
-							name="" id="" placeholder="Nhập tên cửa hàng...."
-							class="input_search_store" required>
+				<div class="col-sm-12">
+					<form  ng-click="search(name)">
+						<label class="lable_Search">Tìm kiếm </label> 
+						<input ng-model="name" type="text" style="width: 30%" name="" id="" placeholder="Nhập tên cửa hàng...." class="input_search_store" required>			
+						<button ng-click="search(name)" class="btn-find" type="submit">Tìm</button>
 					</form>
 				</div>
-				<div class="col-sm-6"></div>
+			
 			</div>
 			<hr>
 			<div class="table_Store">
@@ -29,39 +27,32 @@
 							<th scope="col">id</th>
 							<th scope="col">Tên Cửa Hàng</th>
 							<th scope="col">Chủ cửa hàng</th>
-							<th scope="col">Tổng sản phẩm</th>
-							<th scope="col">Ngày đăng kí</th>
+							<th scope="col">Tổng sản phẩm</th>		
 							<th scope="col">Trạng thái</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>HelloShop</td>
-							<td>KhangVh</td>
-							<td>32</td>
-							<td>12/10/2021</td>
-							<td>Hoạt động</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>GoodShop</td>
-							<td>Phuongtty</td>
-							<td>32</td>
-							<td>15/10/2021</td>
-							<td>Hoạt động</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>HappyShop</td>
-							<td>Myph</td>
-							<td>39</td>
-							<td>21/10/2021</td>
-							<td>Hoạt động</td>
-						</tr>
+						<tr ng-repeat="item in pager.items">
+							<th scope="row">{{$index + 1+no}}</th>
+							<td>{{item.name}}</td>
+							<td>{{item.user.fullname}}</td>
+							<td>{{item.quanlity}}</td>				
+							<td>{{item.status?'Hoạt động':'Không hoạt động'}}</td>
+						</tr>		
 					</tbody>
 				</table>
 			</div>
+		</div>
+		<div class="foodterUL">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+				  <li class="page-item"><a ng-click="pager.first()" class="page-link" href="#"><=</a></li>
+				  <li class="page-item"><a ng-click="pager.prev()" class="page-link" href="#"><<</a></li>
+				  <li class="page-item"><a class="page-link" >{{pager.page + 1}} of {{pager.count}}</a></li>					
+				  <li class="page-item"><a ng-click="pager.next()" class="page-link" href="#">>></a></li>
+				  <li class="page-item"><a ng-click="pager.last()" class="page-link" href="#">=></a></li>
+				</ul>
+			  </nav>
 		</div>
 	</main>
 </body>

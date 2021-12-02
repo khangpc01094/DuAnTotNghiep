@@ -1,6 +1,7 @@
 package com.datn.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,8 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,28 +28,34 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 @Data
 @Entity 
-@Table(name = "order")
+@Table(name = "order1")
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "storeid")
-//	private Store store;
-	String address;
+	
+	@JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "storeid")
+	private Store store;
+	
+	private String address;
+	@Temporal(TemporalType.DATE)
+	private Date bookingdate;
+	
+	@JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "userid")
 	private Users user;
-	private Boolean status;
+	
+	private Integer status;
 	private Double totalamount;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "order", cascade = { CascadeType.ALL })
 	private List<OrderDetail> orderDetails;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "order", cascade = { CascadeType.ALL })
-	private List<Store> stores;
 }

@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,14 +29,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Authorization implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Userid")
 	public Users user;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Roleid")
 	public Role role;
 	

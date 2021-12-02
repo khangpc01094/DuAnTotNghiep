@@ -25,12 +25,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Category implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private Boolean status;
+	private String picture;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "category", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "category")
 	private List<Product> products;
 }

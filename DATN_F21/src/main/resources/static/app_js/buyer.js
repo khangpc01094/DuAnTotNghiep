@@ -136,3 +136,70 @@ app.controller("changepassword-ctrl",function($scope,$http){
 app.controller("checkmoney-ctrl",function($scope,$http){
 	$scope.money=0.0;
 });
+
+
+app.controller("transaction-ctrl",function($scope,$http){
+	$scope.items = [];
+	$scope.finddate={};
+	
+		
+	$scope.initialize = function() {
+		$http.get("/rest/transaction/byuserid").then(resp => {
+			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+				item.createdate = new Date(item.createdate);	
+			})
+			
+			
+		});
+	}
+	
+	$scope.pager = {
+		page: 0,
+		size: 5,
+		get items() {
+			var start = this.page * this.size;
+			return $scope.items.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.items.length / this.size);
+		},
+
+		first() {
+			this.page = 0;
+			$scope.no=this.page*10;
+		},
+		prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+			$scope.no=this.page*10;
+		},
+		next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+			$scope.no=this.page*10;
+		},
+		last() {
+			this.page = this.count - 1;
+			$scope.no=this.page*10;
+		},
+	}
+	
+	$scope.find = function() {	
+		var finddate = angular.copy($scope.finddate);
+		$http.post(`/rest/transaction/findbydate`, finddate).then(resp => {
+				$scope.items = resp.data;
+				$scope.items.forEach(item => {
+					item.createdate = new Date(item.createdate);	
+				})		
+		}).catch(error => {
+				alert("Lỗi");			
+		});
+	}
+	
+	$scope.initialize();
+});

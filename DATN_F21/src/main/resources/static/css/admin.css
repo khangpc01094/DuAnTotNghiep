@@ -629,3 +629,72 @@
 .container_statistical .table_statiscal table tbody tr:hover {
 	background: rgb(182, 255, 255);
 }
+
+/* start css tab */
+.ltn__shop-details-tab-inner-2 .ltn__shop-details-tab-menu .nav a {
+  color: green;
+  padding: 10px 15px;
+  -webkit-box-flex: inherit;
+  -ms-flex: inherit;
+  flex: inherit;
+  text-align: left;
+  position: relative; }
+
+    
+    
+ .ltn__shop-details-tab-menu .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; 
+  background-color: #7ef17e;
+  }
+  
+  .ltn__shop-details-tab-menu .nav a {   
+    font-size: 16px;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    text-align: center;
+    font-weight: 700; }
+      
+   .ltn__shop-details-tab-inner-2 .ltn__shop-details-tab-menu .nav a.active {
+    color: green;
+    background-color: white;
+}
+/* end css tab */
+
+
+/* css chọn tệp */
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-top: 15px;
+	margin-left: 20px;
+}
+
+/*end css chọn tệp */
+
+/* btn tim kiếm */
+.btn-find {
+   	position: relative;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+.btn-find:hover {
+    background-color: #d8e3da;
+    border: 1px solid #007bff;
+}
+/* end btn tim kiếm */

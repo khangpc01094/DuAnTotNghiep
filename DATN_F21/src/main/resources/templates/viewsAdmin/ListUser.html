@@ -1,117 +1,160 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
-
-	<main class="main_UserList">
-		<div class="UserList">
-			<div class="taital">
-				<h2  style="color: orange; margin-top: 20px; font-size: 30px">Danh sách người dùng</h2>
-			</div>
-			<div class="container__UL">
-				<div class=" row search_wrap">
-					<div class="col-sm-12">
-					<form action="" method="">
-						<label class="lable_Search">Tìm kiếm </label> 
-						<input type="text" style="width: 60%"
-							name="" id="" placeholder="Nhập tên cửa hàng...."
-							class="input_search_store" required>
-					</form>
-					</div>
-					
-				</div>
-				
-			</div>
-			<div class="tableUL">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">UserName</th>
-							<th scope="col">Picture</th>
-							<th scope="col">FullName</th>
-							<th scope="col">Email</th>
-							<th scope="col">Gender</th>
-							<th scope="col">Birthday</th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td><a th:href="@{|/formEdit|}">Edit</a></td>
-						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td><a th:href="@{|/formEdit|}">Edit</a></td>
-						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td><a th:href="@{|/formEdit|}">Edit</a></td>
-						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td><a href="#">Edit</a></td>
-						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td><a href="#">Edit</a></td>
-						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td><a href="#">Edit</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
 	
-		</div>
-		<div class="foodterUL">
-			<nav aria-label="Page navigation example">
-				<ul class="pagination">
-				  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				  <li class="page-item"><a class="page-link" href="#">1</a></li>
-				  <li class="page-item"><a class="page-link" href="#">2</a></li>
-				  <li class="page-item"><a class="page-link" href="#">3</a></li>
-				  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-				</ul>
-			  </nav>
-		</div>
-	</main>
+	<main class="main_UserList" ng-controller="user-ctrl">
+		<div class="ltn__shop-details-tab-inner ltn__shop-details-tab-inner-2">
+             <div class="ltn__shop-details-tab-menu">
+                 <div class="nav">
+                     <a  data-toggle="tab" href="#liton_tab_details_1_1">Thêm và cập nhật</a>
+                     <a class="active show" data-toggle="tab" href="#liton_tab_details_1_2">Danh sách</a>
+                 </div>
+             </div>
+             <div class="tab-content">
+                 <div class="tab-pane fade " id="liton_tab_details_1_1">
+                     <div class="containerUs">
+						<form>
+							<div class="row" style="text-align: center;">
+								<div class="col-sm-12 hello" style="text-align: center;">
+									<h5  style="color: orange; margin-top: 20px; font-size: 30px">Chỉnh sửa người dùng</h5>
+								</div>
+							</div>
+							<div class="row">			
+								<div class="col-sm-8">
+									<div class="thongtin_1">
+										<div class="input-data">
+											<input ng-model="form.userid" type="text" required>
+											<div class="underline"></div>
+											<label for="">ID người dùng</label>
+										</div>
+										<div class="input-data">
+											<input ng-model="form.username"   type="text" required>
+											<div class="underline"></div>
+											<label for="">Tên đăng nhập</label>
+										</div>
+										<div  class="input-data">
+											<input ng-model="form.password"  type="password" required>
+											<div class="underline"></div>
+											<label for="">Mật khẩu</label>
+										</div>
+										<div class="input-data">
+											<input ng-model="form.fullname"  type="text" required>
+											<div  class="underline"></div>
+											<label for="">Họ và tên</label>
+										</div>
+										<div class="input-data">
+											<input ng-model="form.email"  type="text" required>
+											<div class="underline"></div>
+											<label for="">Email</label>
+										</div>
+										<div class="input-data">
+											<input ng-model="form.phone"  type="text" required>
+											<div class="underline"></div>
+											<label for="">Số điện thoại</label>
+										</div>										
+										<div class="row">
+											<div class="col-sm-6">													
+												<label>Ngày sinh:</label></br>
+												<input type="date" ng-model="form.birthday">										      
+											</div>
+											<div class="col-sm-6">
+												<label>Giới tính:</label>
+												<div class="gender ">
+													<input ng-model="form.gender"  type="radio" checked class="gender_radio_1" name="gender"
+														ng-value="true"><label class="gender_lable">Nam</label> 
+													<input ng-model="form.gender"  type="radio" class="gender_radio_2" name="gender" id="" ng-value="false"><label
+														class="gender_lable">Nữ</label>							
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="thongtin_2">
+										<div class="image">
+											<img ng-src="{{'/img/user/' + form.picture}}"
+												class="img-thumbnail rounded-circle" alt="userimage"
+												width="250px" height="">
+										</div>
+										<div>									
+											<label class="custom-file-upload">
+											    <input type="file" onchange="angular.element(this).scope().imageChanged(this.files)"/>
+											    Chọn tệp
+											</label>		
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="btna row">
+								<button class="btn1" type="submit">Thêm</button>
+								<button ng-click="update()" class="btn2" type="submit">Cập Nhật</button>
+								<button ng-click="clear()" class="btn2" type="submit">Làm Mới</button>
+							</div>
+						</form>
+					</div>
+                 </div>
+                 <div class="tab-pane fade active show" id="liton_tab_details_1_2">
+                     <div class="UserList">
+						<div class="taital">
+							<h2  style="color: orange; margin-top: 20px; font-size: 30px">Danh sách người dùng</h2>
+						</div>
+						<div class="container__UL">
+							<div class=" row search_wrap">
+								<div class="col-sm-12">
+								<form ng-click="search(name)">
+									<label class="lable_Search">Tìm kiếm </label> 
+									<input ng-model="name" type="text" style="width: 60%" name="" id="" placeholder="Nhập tên người dùng...." class="input_search_store" required>	
+								    <button ng-click="search(name)" class="btn-find" type="submit">Tìm</button>
+								</form>
+								</div>
+								
+							</div>
+							
+						</div>
+						<div class="tableUL">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">No</th>
+										<th scope="col">UserName</th>
+										<th scope="col">Picture</th>
+										<th scope="col">FullName</th>
+										<th scope="col">Email</th>
+										<th scope="col">Gender</th>
+										<th scope="col">Birthday</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in pager.items">
+										<th scope="row">{{$index + 1+no}}</th>
+										<td>{{item.username}}</td>
+										<td>{{item.picture}}</td>
+										<td>{{item.fullname}}</td>
+										<td>{{item.email}}</td>
+										<td>{{item.gender?'Nam':'Nữ'}}</td>
+										<td>{{item.birthday | date:'dd-MM-yyyy'}}</td>
+										<td><a ng-click="edit(item)" href="">Edit</a></td>
+									</tr>	
+								</tbody>
+							</table>
+						</div>
+				
+					</div>
+					<div class="foodterUL">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+							  <li class="page-item"><a ng-click="pager.first()" class="page-link" href="#"><=</a></li>
+							  <li class="page-item"><a ng-click="pager.prev()" class="page-link" href="#"><<</a></li>
+							  <li class="page-item"><a class="page-link" >{{pager.page + 1}} of {{pager.count}}</a></li>					
+							  <li class="page-item"><a ng-click="pager.next()" class="page-link" href="#">>></a></li>
+							  <li class="page-item"><a ng-click="pager.last()" class="page-link" href="#">=></a></li>
+							</ul>
+						  </nav>
+					</div>
+                 </div>
+             </div>
+         </div>
+	</main>	
 
 </html>

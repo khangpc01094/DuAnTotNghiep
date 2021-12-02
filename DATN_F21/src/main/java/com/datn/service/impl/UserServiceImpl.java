@@ -1,5 +1,6 @@
 package com.datn.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +52,22 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public Users postInformation(Users user) {
+		daoUsersDAO.save(user);			
+		return user;
+	}
+
+	@Override
+	public List<Users> getAllUser() {
+		return daoUsersDAO.findAll();
+	}
+
+	@Override
+	public List<Users> getFindUserByName(String name) {
+		return daoUsersDAO.findUserByName(name);
+	}
+
+	@Override
+	public Users create(Users user) {
 		daoUsersDAO.save(user);			
 		return user;
 	}

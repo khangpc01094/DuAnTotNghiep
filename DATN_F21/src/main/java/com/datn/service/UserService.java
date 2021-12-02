@@ -1,5 +1,7 @@
 package com.datn.service;
 
+import java.util.List;
+
 import com.datn.entity.Users;
 
 public interface UserService {
@@ -11,4 +13,10 @@ public interface UserService {
 	Users getInformation();
 
 	Users postInformation(Users user);
+
+	List<Users> getAllUser();
+
+	List<Users> getFindUserByName(String name);
+
+	Users create(Users user);
 }

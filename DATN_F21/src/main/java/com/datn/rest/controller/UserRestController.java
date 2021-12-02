@@ -1,11 +1,15 @@
 package com.datn.rest.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +31,23 @@ public class UserRestController {
 	}
 	
 	@PutMapping("/information/update")
-	public Users postInformation(@RequestBody Users user){	
+	public Users putInformation(@RequestBody Users user){	
 		return svUserService.postInformation(user);
 	}
+
+	@GetMapping("/findall")
+	public List<Users> getAllUser(){
+		return svUserService.getAllUser();
+	}
+	
+	@GetMapping("/findbyname/{name}")
+	public List<Users> getFindUserByName(@PathVariable("name") Optional<String> name){
+		return svUserService.getFindUserByName(name.get());
+	}
+	
+	//admin them user
+//	@PutMapping("/create")
+//	public Users create(@RequestBody Users user){	
+//		return svUserService.create(user);
+//	}
 }

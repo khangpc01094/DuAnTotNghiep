@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Users implements Serializable {
 	@Id
 	private String userid;
@@ -42,7 +44,7 @@ public class Users implements Serializable {
 	private List<Address> addresss;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "user")
 	public List<Authorization> authorization;
 
 	@JsonIgnore
@@ -60,4 +62,8 @@ public class Users implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<Wallet> wallet;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<Transaction> transaction;
 }

@@ -48,6 +48,12 @@ public class MyAccountController {
 		return "/viewsUser/myAccount/add_address";
 	}
 
+	@GetMapping("/account/transaction")
+	public String getTransaction() {
+		return "/viewsUser/myAccount/transaction";
+	}
+
+	
 	@GetMapping("/account/order")
 	public String getOrder() {
 		return "/viewsUser/myAccount/order";

@@ -2,23 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layoutAdmin/index :: dynamic(~{:: main})}">
 <body>
-    <main style="background-color: white; min-height: 744px;">
+    <main style="background-color: white; min-height: 744px;" ng-controller="statistical-ctrl">
       <div class="container_statistical">
         <div class="search_statistical">
           <label class="titel"  style="color: orange; margin-top: 20px; font-size: 30px">Thống kê doanh thu</label>
           <div class="row">
             <div class="col-sm-8">
-              <form action="" method="">
-              <label>Từ</label>
-              <input class="date_statis" required type="text" name="" id="">
-              <label>Đến</label>
-              <input class="date_statis" required type="text" name="" id="">
-              <button class="btn_search" type="submit">search</button>
+              <form>
+	              <label>Từ</label>
+	              <input ng-model="finddate.startDate" class="date_statis" required type="date" name="" id="">
+	              <label>Đến</label>
+	              <input ng-model="finddate.endDate" class="date_statis" required type="date" name="" id="">
+	              <button ng-click="find()" class="btn_search">Tìm</button>
             </form>
             </div>
             <div class="col-sm-4">
-              <label>Tổng cộng</label>
-              <input class="date_statis" type="text" readonly value="100000000" name="" id="">
+              <div class="row">
+              	<div class="col-sm-4">
+	              <label>Tổng cộng:</label>
+	            </div>
+	             <h4 style="color: blue; background-color:#c2fda0; padding-bottom:1px; padding-top: 1px; padding-left: 5px; padding-right: 5px;">{{total | number:2}}$</h4>
+              </div>	
             </div>
           </div>
         </div>
@@ -27,35 +31,38 @@
             <table class="table">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">STT</th>
                     <th scope="col">Mã hóa đơn</th>
+                    <th scope="col">Ngày</th>
+                    <th scope="col">Tiền hóa đơn</th>
                     <th scope="col">Chiết khấu</th>
                     <th scope="col">Thành tiền</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>1020</td>
-                    <td>5%</td>
-                    <td>32.000</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>1220</td>
-                    <td>5%</td>
-                    <td>12.000</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>1320</td>
-                    <td>5%</td>
-                    <td>52.000</td>
+                  <tr ng-repeat="item in pager.items">
+                    <th scope="row">{{$index + 1+no}}</th>
+                    <td>{{item.id}}</td>
+                    <td>{{item.bookingdate | date:'dd-MM-yyyy'}}</td>
+                    <td>{{item.moneyorder | number:2}}$</td>
+                    <td>{{item.discount}}%</td>
+                    <td>{{item.intomoney | number:2}}$</td>
                   </tr>
                 </tbody>
               </table>
-        </div>
-        </div>
-    </main>
+     	   </div>
+      </div>
+      <div class="foodterUL">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+				  <li class="page-item"><a ng-click="pager.first()" class="page-link" href=""><=</a></li>
+				  <li class="page-item"><a ng-click="pager.prev()" class="page-link" href=""><<</a></li>
+				  <li class="page-item"><a class="page-link" >{{pager.page + 1}} of {{pager.count}}</a></li>					
+				  <li class="page-item"><a ng-click="pager.next()" class="page-link" href="">>></a></li>
+				  <li class="page-item"><a ng-click="pager.last()" class="page-link" href="">=></a></li>
+				</ul>
+			  </nav>
+		</div>
+   </main>
 </body>
 </html>
