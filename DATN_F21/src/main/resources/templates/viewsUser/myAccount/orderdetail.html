@@ -9,33 +9,20 @@
 		            <table class="table">
 		                <thead>
 		                    <tr>
-		                        <th>Đơn hàng</th>
-		                        <th>Ngày đặt</th>
-		                        <th>Trạng thái</th>
-		                        <th>Tổng số tiền</th>
-		                        <th>Hành động</th>
+		                        <th>Ảnh</th>
+		                        <th>Tên sản phẩm</th>
+		                        <th>giá</th>
+		                        <th>Số lượng</th>
+		                        <th>Tổng cộng</th>
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                    <tr th:each="item : ${orderlist}">
-		                        <td>[[${item.store.name}]]</td>
-		                        <td>[[${item.bookingdate}]]</td>
-		                        <td>
-									<th:block th:if="${item.status} == 1">
-										<p>Chờ xác nhận</p>
-									</th:block>
-									<th:block th:if="${item.status} == 2">
-										<p>Đã xác nhận</p>
-									</th:block>
-									<th:block th:if="${item.status} == 3">
-										<p>Đã hủy</p>
-									</th:block>
-									<th:block th:if="${item.status} == 4">
-										<p>Đã giao</p>
-									</th:block>
-								</td>
+		                    <tr th:each="item : ${orderdetail}">
+								<td>[[${item.product.images}]]</td>
+		                        <td>[[${item.product.name}]]</td>
+		                        <td>[[${item.price}]]</td>
+		                        <td>[[${item.quantity}]]</td>
 		                        <td>[[${item.totalamount}]]</td>
-		                        <td><a th:href="@{|/account/edit/${item.id}|}">Xem</a></td>
 		                    </tr>
 		                    
 		                </tbody>

@@ -29,5 +29,4 @@ public interface ShoppingCartDAO extends JpaRepository<ShoppingCart, Integer> {
     @Query("select o from ShoppingCart o where o.user.userid = ?1 and o.storeid = ?2 and o.status = true")
     List<ShoppingCart> getByStoreandByUser(String idu, Integer ids);
 
-    
 }
