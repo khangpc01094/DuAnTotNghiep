@@ -18,4 +18,6 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 	@Query(value = "select productimage.picture from productimage where productimage.productid = ?1", nativeQuery = true)
 	List<Product> findByAllSameId(Integer id);
 
+	@Query("SELECT o FROM Product o WHERE lower(o.name) LIKE lower(concat('%', ?1, '%'))")
+    List<Product> findByName(String name);
 }

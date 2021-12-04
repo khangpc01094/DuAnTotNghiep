@@ -12,10 +12,17 @@ import com.datn.service.RoleService;
 @Service
 public class RoleServiceImpl implements RoleService{
 
-    @Autowired RoleDAO daoRoleDAO;
+    @Autowired 
+    RoleDAO daoRoleDAO;
 	
 	@Override
 	public List<Role> getAllRole() {
 		return daoRoleDAO.findAll();
 	}
+
+    @Override
+    public Role findById(Integer id) {
+        return daoRoleDAO.getne(id);
+    }
+
 }

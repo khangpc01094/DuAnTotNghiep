@@ -262,43 +262,15 @@
 }
 
 /* thong ke loai */
-
-
 .loai .title2 {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 30px;
 }
 
-.loai .search3 .from {
-  width: 150px;
-  margin-left: 30px;
-  margin-top: -40px;
-}
-
-.loai .search3 .to {
-  width: 150px;
-  margin-left: 40px;
-  margin-top: -40px;
-}
-
-.loai .search3 .tim {
-  margin-left: 15px;
-}
-
-.loai .search3 .den {
+.loai .search3 {
   margin-left: 20px;
-}
-
-.loai .search3 .tim .btn_tim {
-  margin-left: 10px;
-  margin-top: -7px;
-}
-
-.loai .search3 .tong .tien {
-  width: 130px;
-  margin-left: 80px;
-  margin-top: -40px;
+  margin-right: 20px;
 }
 
 .loai .search3 .custom-select {
@@ -436,3 +408,5 @@
   margin-top: 20px;
   font-size: 35px;
 }
+
+

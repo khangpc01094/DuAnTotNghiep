@@ -34,11 +34,23 @@ public class AuthorizationServiceImpl implements AuthorizationService{
 		return daoAuthorizationDAO.save(auth);
 	}
 
-
 	@Override
 	public void delete(Integer id) {
 		daoAuthorizationDAO.deleteById(id);
 		
 	}
+	
+	@Autowired
+    AuthorizationDAO daoAutho;
+    
+    @Override
+    public Authorization Create(Authorization auth) {
+        return daoAutho.save(auth);
+    }
+
+    @Override
+    public List<Authorization> getAll() {
+        return daoAutho.findAll();
+    }
 
 }

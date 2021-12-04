@@ -15,4 +15,8 @@ public interface AuthorizationService {
 
 	void delete(Integer id);
 	
+    public Authorization Create(Authorization authorization);
+    
+    List<Authorization> getAll();
+	
 }

@@ -35,5 +35,14 @@ public class ProductServiceImpl implements ProductService{
 		return daoProduct.findByCategoryId(cid);
 	}
 
+    @Override
+    public List<Product> findByName(String string) {
+       return daoProduct.findByName(string);
+    }
+    
+	@Override
+	public List<Product> getAll() {
+		return daoProduct.findAll();
+	}
 
 }

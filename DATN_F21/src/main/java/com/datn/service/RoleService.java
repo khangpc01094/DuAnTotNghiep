@@ -8,4 +8,5 @@ public interface RoleService {
 
     List<Role> getAllRole();
 
+    public Role findById(Integer id);
 }

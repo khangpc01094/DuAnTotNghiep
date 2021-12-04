@@ -20,4 +20,6 @@ public interface UserService {
 
 	Users create(Users user);
 
+    Users getByid(String id);
+
 }

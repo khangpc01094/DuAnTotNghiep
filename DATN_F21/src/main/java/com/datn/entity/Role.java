@@ -25,6 +25,7 @@ public class Role implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer id;
+	
 	public String role;
 
 	@JsonIgnore

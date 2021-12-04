@@ -2,18 +2,26 @@ package com.datn.Controller;
 
 import java.util.Optional;
 
+import com.datn.entity.Address;
+import com.datn.entity.Users;
+import com.datn.service.AddressService;
 import com.datn.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyAccountController {
-	@Autowired UserService svUserService;
+	@Autowired 
+	UserService svUserService;
+	
+	@Autowired
+	AddressService svAddress;
 	
 	@GetMapping("/account/information")
 	public String getInformation(Model model) {
@@ -25,8 +33,13 @@ public class MyAccountController {
 		return "/viewsUser/myAccount/address";
 	}
 	
-	@GetMapping("/account/add_address")
-	public String getAddAddress() {
+//	@GetMapping("/account/add_address")
+//	public String getAddAddress() {
+//		return "/viewsUser/myAccount/add_address";
+//	}
+
+	@GetMapping("/account/addaddress")
+	public String Address() {
 		return "/viewsUser/myAccount/add_address";
 	}
 
@@ -40,6 +53,15 @@ public class MyAccountController {
 	public String getOrder() {
 		return "/viewsUser/myAccount/order";
 	}
+
+	@ModelAttribute("user")
+	public String loaisp(Model m) {
+		Users user = svUserService.getByid("user2");
+		m.addAttribute("user", user);
+		m.addAttribute("address2", new Address());
+		return "";
+	}
+	
 	
 	//Đổi mật khẩu
 	@GetMapping("/account/change_password")

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
+<body >
+	<main>	
+	<div class="tab-pane fade active show" ng-controller="buyer-ctrl">
+           <div class="ltn__myaccount-tab-content-inner">
+               <div class="ltn__form-box">
+                
+                       <fieldset>
+                           <!-- <legend>Địa Chỉ</legend> -->
+                           <div class="row">
+                                <div class="col-md-6">
+                                   <label>Họ và tên *:</label>
+                                   <input type="text" ng-model="forms.id">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Số điện thoại *:</label>
+                                    <input type="text" ng-model="forms.phone">
+                                 </div>
+                                 <div class="col-md-12">
+                                    <label>Địa chỉ cụ thể *:</label>
+                                    <input type="text" ng-model="forms.address">
+                                 </div>
+                                 <!-- <div class="col-md-12">
+                                    <label>user</label>
+                                    <input type="hidden" ng-model="form.user">
+                                    <input type="hidden" ng-model="form.id">
+                                 </div> -->
+                           </div>
+                           <div class="btn-wrapper text-center">
+                               <a class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Cập nhật Chỉ</a>
+                           </div>
+                       </fieldset> 
+               </div>
+           </div>
+  	 	</div>
+  	 </main>
+</body>
+</html>

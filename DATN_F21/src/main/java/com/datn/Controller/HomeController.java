@@ -87,4 +87,10 @@ public class HomeController {
 		return "/viewsUser/fogot_password";
 	}
 	
+	@GetMapping("/search")
+	public String search (Model m, @RequestParam("name") String name) {
+		List<Product> list = svProduct.findByName("%"+name+"%");
+		m.addAttribute("sp", list);
+		return "/viewsUser/index"; 
+	}
 }
