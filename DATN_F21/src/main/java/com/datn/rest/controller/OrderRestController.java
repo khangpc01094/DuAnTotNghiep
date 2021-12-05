@@ -3,6 +3,7 @@ package com.datn.rest.controller;
 import java.util.List;
 
 import com.datn.entity.Order;
+import com.datn.entity.Store;
 import com.datn.service.OrderService;
 import com.datn.service.ShoppingCartService;
 import com.datn.service.StoreService;
@@ -42,6 +43,32 @@ public class OrderRestController {
         return svOrder.getAll();
     }
 
+    @GetMapping("/One")
+    public List<Order> getOrderStatusOne() {
+        String user = "user1";
+        Store store = svStore.getStoreByUserid(user);
+        return svOrder.getOrderStatusOne(store.getId());
+    }
 
+    @GetMapping("/Two")
+     public List<Order> getOrderStatusTwo() {
+        String user = "user1";
+        Store store = svStore.getStoreByUserid(user);
+        return svOrder.getOrderStatusTwo(store.getId());
+    }
+
+    @GetMapping("/Father")
+    public List<Order> getOrderStatusFather() {
+        String user = "user1";
+        Store store = svStore.getStoreByUserid(user);
+        return svOrder.getOrderStatusFather(store.getId());
+    }
+
+    @GetMapping("/Four")
+    public List<Order> getOrderStatusFour() {
+        String user = "user1";
+        Store store = svStore.getStoreByUserid(user);
+        return svOrder.getOrderStatusFour(store.getId());
+    }
 
 }

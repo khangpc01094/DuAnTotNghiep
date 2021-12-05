@@ -6,4 +6,7 @@ public interface StoreService {
 
     Store getByIdStore(Integer id);
 
+    Store getStoreByUserid(String id);
+    
+
 }

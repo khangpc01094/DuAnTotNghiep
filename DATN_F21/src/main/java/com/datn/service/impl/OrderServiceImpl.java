@@ -86,4 +86,26 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    @Override
+    public List<Order> getOrderStatusOne(Integer id) {
+        return daoOrder.getOrderStatusOne(id);
+    }
+
+    @Override
+    public List<Order> getOrderStatusTwo(Integer id) {
+        return daoOrder.getOrderStatusTwo(id);
+    }
+
+    @Override
+    public List<Order> getOrderStatusFather(Integer id) {
+        return daoOrder.getOrderStatusFather(id);
+    }
+
+    @Override
+    public List<Order> getOrderStatusFour(Integer id) {
+        return daoOrder.getOrderStatusFour(id);
+    }
+
+    
+
 }

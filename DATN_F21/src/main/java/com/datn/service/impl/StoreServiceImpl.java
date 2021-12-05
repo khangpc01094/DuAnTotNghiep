@@ -18,4 +18,9 @@ public class StoreServiceImpl implements StoreService{
         return daoStore.findById(id).get();
     }
 
+    @Override
+    public Store getStoreByUserid(String id) {
+        return daoStore.getStoreByUser(id);
+    }
+
 }

@@ -14,4 +14,16 @@ public interface OrderDAO extends JpaRepository<Order, Integer> {
     @Query("select o from Order o where o.user.userid = ?1")
     List<Order> getOrderByUser(String id);
 
+    @Query("select o from Order o where o.store.id = ?1 and o.status = 1")
+    List<Order> getOrderStatusOne(Integer id);
+
+    @Query("select o from Order o where o.store.id = ?1 and o.status = 2")
+    List<Order> getOrderStatusTwo(Integer id);
+
+    @Query("select o from Order o where o.store.id = ?1 and o.status = 3")
+    List<Order> getOrderStatusFather(Integer id);
+
+    @Query("select o from Order o where o.store.id = ?1 and o.status = 4")
+    List<Order> getOrderStatusFour(Integer id);
+
 }
