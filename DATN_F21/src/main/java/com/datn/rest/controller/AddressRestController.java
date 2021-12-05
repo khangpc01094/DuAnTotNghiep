@@ -47,6 +47,11 @@ public class AddressRestController {
 		return svAddress.findByIdd(id);
 	}
 
+	@GetMapping("/us/{id}")
+	public List<Address> demo2(@PathVariable("id") String id) {
+		return svAddress.findByUserid(id);
+	}
+
 	@PutMapping("/buyer/edit_address")
 	public Address edit(@RequestBody Address address) {
 		return svAddress.create(address);

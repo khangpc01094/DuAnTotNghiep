@@ -23,4 +23,10 @@ public class StoreServiceImpl implements StoreService{
 	public List<Store> getFindStoreByName(String nameStore) {
 		return daoStoreDAO.getFindStoreByName(nameStore);
 	}
+
+	@Override
+    public Store getByIdStore(Integer id) {
+        return daoStoreDAO.findById(id).get();
+    }
+
 }

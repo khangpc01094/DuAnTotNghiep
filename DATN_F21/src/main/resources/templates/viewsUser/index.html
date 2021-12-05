@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
 
 <body>
-    <main>
+    <main ng-controller="buyer-ctrl">
         <!-- SLIDER AREA START (slider-3) -->
         <div class="ltn__slider-area ltn__slider-3  section-bg-1">
             <div class="ltn__slide-one-active slick-slide-arrow-1 slick-slide-dots-1">
@@ -118,7 +118,7 @@
                                                                     </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
+                                                                    <a th:attr="ng-click=@{|cart.add(${product.id})|}" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
                                                                         <i class="fas fa-shopping-cart"></i>
                                                                     </a>
                                                                 </li>

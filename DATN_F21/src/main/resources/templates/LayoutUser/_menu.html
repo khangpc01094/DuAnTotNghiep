@@ -1,7 +1,7 @@
 <div xmlns:th="http://www.thymeleaf.org">
 	<!-- HEADER AREA START (header-5) -->
 	<header
-		class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---">
+		class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---" ng-controller="buyer-ctrl">
 
 		<!-- ltn__header-middle-area start -->
 		<div
@@ -46,7 +46,7 @@
 						<!-- mini-cart -->
 						<div class="mini-cart-icon">
 							<a th:href="@{|/index/cart|}"> <i class="icon-shopping-cart"></i>
-								<sup>2</sup>
+								<sup>{{cart.sumquantity}}</sup>
 							</a>
 						</div>
 						<!-- mini-cart -->

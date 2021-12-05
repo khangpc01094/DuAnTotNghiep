@@ -16,4 +16,7 @@ public interface OrderDAO extends JpaRepository<Order, Integer>{
 	@Query("SELECT o FROM Order o WHERE o.status='1' AND o.bookingdate BETWEEN ?1 AND ?2 ORDER BY o.bookingdate DESC")
 	List<Order> findAllOrderStatus1ByDate(Date startDate, Date endDate);
 	
+	@Query("select o from Order o where o.user.userid = ?1")
+    List<Order> getOrderByUser(String id);
+
 }

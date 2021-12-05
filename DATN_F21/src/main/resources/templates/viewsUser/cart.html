@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
 
 <body>
-	<main>
+	<main ng-controller="buyer-ctrl"> 
 		<!-- BREADCRUMB AREA START -->
 		<div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image"
 			data-bg="/img/bg/9.jpg">
@@ -44,115 +44,47 @@
 										<th class="cart-product-subtotal">Số tiền</th>
 										<th class="cart-product-remove">Xóa</th>
 									</thead>
-									<tbody>
-										<th scope="row" colspan="4" style="text-align: left; color: red">Shop: Tên cửa
-											hàng 2</th>
-										<tr>
-											<td><input type="checkbox" name="" id=""></td>
-											<td class="cart-product-image">
-												<a href="index/product-detail"><img src="/img/product/2.png"
-														alt="#"></a>
-											</td>
-											<td class="cart-product-info">
-												<h4><a href="index/product-detail">Orange Sliced Mix</a></h4>
-											</td>
-											<td class="cart-product-price">$85.00</td>
-											<td class="cart-product-quantity">
-												<div class="cart-plus-minus">
-													<input type="text" value="02" name="qtybutton"
-														class="cart-plus-minus-box">
-												</div>
-											</td>
-											<td class="cart-product-subtotal">$170.00</td>
-											<td class="cart-product-remove">x</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" name="" id=""></td>
-											<td class="cart-product-image">
-												<a href="index/product-detail"><img src="/img/product/3.png"
-														alt="#"></a>
-											</td>
-											<td class="cart-product-info">
-												<h4><a href="index/product-detail">Red Hot Tomato</a></h4>
-											</td>
-											<td class="cart-product-price">$75.00</td>
-											<td class="cart-product-quantity">
-												<div class="cart-plus-minus">
-													<input type="text" value="02" name="qtybutton"
-														class="cart-plus-minus-box">
-												</div>
-											</td>
-											<td class="cart-product-subtotal">$150.00</td>
-											<td class="cart-product-remove">x</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<th scope="row" colspan="4" style="text-align: left; color: red">Shop: Tên cửa
-											hàng 3</th>
-										<tr>
-											<td><input type="checkbox" name="" id=""></td>
-											<td class="cart-product-image">
-												<a href="index/product-detail"><img src="/img/product/1.png"
-														alt="#"></a>
-											</td>
-											<td class="cart-product-info">
-												<h4><a href="index/product-detail">Vegetables Juices</a></h4>
-											</td>
-											<td class="cart-product-price">$149.00</td>
-											<td class="cart-product-quantity">
-												<div class="cart-plus-minus">
-													<input type="text" value="02" name="qtybutton"
-														class="cart-plus-minus-box">
-												</div>
-											</td>
-											<td class="cart-product-subtotal">$298.00</td>
-											<td class="cart-product-remove">x</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" name="" id=""></td>
-											<td class="cart-product-image">
-												<a href="index/product-detail"><img src="/img/product/3.png"
-														alt="#"></a>
-											</td>
-											<td class="cart-product-info">
-												<h4><a href="index/product-detail">Red Hot Tomato</a></h4>
-											</td>
-											<td class="cart-product-price">$75.00</td>
-											<td class="cart-product-quantity">
-												<div class="cart-plus-minus">
-													<input type="text" value="02" name="qtybutton"
-														class="cart-plus-minus-box">
-												</div>
-											</td>
-											<td class="cart-product-subtotal">$150.00</td>
-											<td class="cart-product-remove">x</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="shoping-cart-total mt-50">
-								<h4>Tổng sản phẩm thanh toán</h4>
-								<table class="table">
-									<tbody>
-										<tr>
-											<td>Tổng tiền các sản phẩm</td>
-											<td>$618.00</td>
-										</tr>
-										<tr>
-											<td>Phí vận chuyển</td>
-											<td>$15.00</td>
-										</tr>
-										<tr>
-											<td><strong>Tiền cần thanh toán</strong></td>
-											<td><strong>$633.00</strong></td>
-										</tr>
-									</tbody>
-								</table>
+									
+							<tbody ng-repeat="detail in cart.items | groupBy:'storeid'">
+								<th scope="row"  ng-show="detail.group_by_key" colspan="4" style="text-align: left; color: red">{{detail.product.store.name}}</th>
+								<tr>
+									<td>
+										<div ng-if="detail.status == true">
+											<input type="checkbox" checked ng-click="cart.ckeck(detail.id)">
+										</div>
+										<div ng-if="detail.status != true">
+											<input type="checkbox" ng-click="cart.ckeck(detail.id)">
+										</div>
+									</td>
+									<td class="cart-product-image">
+										<a href="index/product-detail"><img th:src="@{|/img/product/{{detail.product.images}}|}" alt="{{detail.product.images}}"></a>
+									</td>
+									<td class="cart-product-info">
+										<h4><a href="index/product-detail">{{detail.product.name}}</a></h4>
+									</td>
+									<td class="cart-product-price">{{detail.product.price}} đ</td>
+									<td class="cart-product-quantity">
+										<div class="input-group mb-3">
+											<input type="submit" ng-click="cart.apartquantity(detail.id)" value="-" style="width: 10px;">
+											<input type="submit"disabled value="{{detail.quantity}}"style="width: 10px;">
+											<input type="submit" ng-click="cart.addquantity(detail.id)" value="+" style="width : 10px;">
+										  </div>
+									</td>
+									<td class="cart-product-subtotal">{{detail.product.price * detail.quantity}} đ</td>
+									<td class="cart-product-remove" >xóa</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+								<th>Tổng tiền cần thanh toán</th>
+								<td>{{cart.amount | number : 2}}đ</td>
+							</tr>
+							</tbody>
+							</table>
 								<div class="btn-wrapper text-right">
 									<a href="/index/checkout" class="theme-btn-1 btn btn-effect-1">Tiến hành thanh
 										toán</a>
 								</div>
-							</div>
 						</div>
 					</div>
 				</div>

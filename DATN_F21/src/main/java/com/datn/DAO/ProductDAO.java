@@ -20,4 +20,8 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 
 	@Query("SELECT o FROM Product o WHERE lower(o.name) LIKE lower(concat('%', ?1, '%'))")
     List<Product> findByName(String name);
+
+    @Query("select o from Product o where o.id = ?1")
+    Product getidProduct(Integer id);
 }
+

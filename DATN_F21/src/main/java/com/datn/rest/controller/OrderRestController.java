@@ -2,6 +2,7 @@ package com.datn.rest.controller;
 
 import java.util.List;
 
+import com.datn.entity.Order;
 import com.datn.model.entity.DateModel;
 import com.datn.model.entity.StatisticalModel;
 import com.datn.service.OrderService;
@@ -9,6 +10,7 @@ import com.datn.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderRestController {
 
 
-    @Autowired OrderService svOrderService;
+    @Autowired 
+	OrderService svOrderService;
 	
 	@GetMapping("/statistical")
 	public List<StatisticalModel> getAllStatistical(){
@@ -30,5 +33,15 @@ public class OrderRestController {
 	@PostMapping("/statistical/findbydate")
     public List<StatisticalModel> getAllStatisticalByDate(@RequestBody DateModel dateModel){
     	return svOrderService.getAllStatisticalByDate(dateModel.getStartDate(),dateModel.getEndDate());
+    }
+
+	@GetMapping("/{id}")
+    public List<Order> getAll(@PathVariable("id") String id) {
+        return svOrderService.getAllOrder(id);
+    }
+
+    @GetMapping("all")
+    public List<Order> getAllOrder() {
+        return svOrderService.getAll();
     }
 }

@@ -10,4 +10,5 @@ public interface StoreService {
 
 	List<Store> getFindStoreByName(String nameStore);
 
+    Store getByIdStore(Integer id);
 }

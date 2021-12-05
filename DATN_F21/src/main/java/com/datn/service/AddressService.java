@@ -15,4 +15,6 @@ public interface AddressService {
     public Address findByIdd(Integer id);
 
     public void delete(Integer id);
+
+    Address getById(Integer id);
 }

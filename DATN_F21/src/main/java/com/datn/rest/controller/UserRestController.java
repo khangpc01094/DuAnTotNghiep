@@ -67,6 +67,12 @@ public class UserRestController {
        svAuth.Create(auth);
        return usera;
 	}
+
+	@GetMapping("{id}")
+	public Users getById(@PathVariable String id) {
+		return svUserService.findById(id);
+	}
+
 	
 	//admin them user
 //	@PutMapping("/create")

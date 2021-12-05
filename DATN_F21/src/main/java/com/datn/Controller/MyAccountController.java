@@ -1,10 +1,15 @@
 package com.datn.Controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.datn.entity.Address;
+import com.datn.entity.Order;
+import com.datn.entity.OrderDetail;
 import com.datn.entity.Users;
 import com.datn.service.AddressService;
+import com.datn.service.OrderDetailService;
+import com.datn.service.OrderService;
 import com.datn.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +28,12 @@ public class MyAccountController {
 	
 	@Autowired
 	AddressService svAddress;
+
+	@Autowired
+	OrderService svOrder;
+
+	@Autowired
+	OrderDetailService svDetail;
 	
 	@GetMapping("/account/information")
 	public String getInformation(Model model) {
@@ -50,8 +62,18 @@ public class MyAccountController {
 
 	
 	@GetMapping("/account/order")
-	public String getOrder() {
+	public String getOrder(Model model) {
+		String userid = "user1";
+		List<Order> list = svOrder.getAllOrder(userid);
+		model.addAttribute("orderlist", list);
 		return "/viewsUser/myAccount/order";
+	}
+
+	@GetMapping("/account/editorder/{id}")
+	public String getOrderDetail(Model model, @PathVariable("id") Integer id) {
+		List<OrderDetail> listDetail = svDetail.getByStoreId(id);
+		model.addAttribute("orderdetail", listDetail);
+		return "/viewsUser/myAccount/orderdetail";
 	}
 
 	@ModelAttribute("user")
