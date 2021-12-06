@@ -5,34 +5,39 @@
 <main>
 	<div class="xacnhan" style="text-align: center;">
 	<label class="title3" style="color: orange; margin-top: 20px; font-size: 30px">Đơn Hàng Chờ Xác Nhận</label>
-            <div class="search2">
-                <nav class="navbar">
-                    <form class="form-inline">
-                        <label for="" style="margin-right: 5px;">Tìm kiếm </label>
-                        <input class="form-control mr-sm-2">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </nav>
-            </div>
+            
             <div class="bang2">
                 <table class="table tablea">
                     <thead class="thead-light">
                         <tr>
                             <th class="id">Id đơn hàng</th>
-                            <th class="sanpham">Sản phẩm</th>
+                            <th class="sanpham">Ngày đặt hàng</th>
+                            <th class="sanpham">Người mua</th>
                             <th class="tongtien">Tổng tiền</th>
-                            <th class="thao-tac">Thao tác</th>
+                            <th class="tongtien">Địa chỉ</th>
+                            <th class="thao-tac">Xác nhận</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>Cà rốt Đà Lạt</td>
-                            <td>25.000</td>
+
+                        <tr ng-repeat="detail in Order.OrderOne">
+                            <td scope="row">{{detail.id}}</td>
+                            <td>{{detail.bookingdate}}</td>
+                            <td>{{detail.user.fullname}}</td>
+                            <td>{{detail.totalamount | number : 2}}</td>
+                            <td>{{detail.address.address}}</td>
                             <td>
-                                <button class="btn btn-info">Xác nhận</button>
-                                <button class="btn btn-danger">Hủy đơn</button>
+                              <a href="#" ng-click="Order.orderConfirm(detail.id)"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                              </svg></a>
+                              <a href="#" ng-click="Order.orderRefuse(detail.id)"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-calendar-x" viewBox="0 0 16 16">
+                                <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                              </svg></a>
+                               
                             </td>
+                            
                         </tr>
                     </tbody>
                 </table>

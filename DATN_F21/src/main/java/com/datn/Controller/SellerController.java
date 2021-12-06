@@ -56,4 +56,9 @@ public class SellerController {
 	public String getformDetail() {
 		return "/viewsSeller/detail";
 	}
+
+	@GetMapping("/viewsSeller/confirmed")
+	public String getfromConfirmed(){
+		return "/viewsSeller/confirmed";
+	}
 }

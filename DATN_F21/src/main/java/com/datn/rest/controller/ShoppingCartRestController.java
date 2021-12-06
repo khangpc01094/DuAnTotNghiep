@@ -113,15 +113,15 @@ public class ShoppingCartRestController {
         List<Total> list = svCartService.getAllTotal("user1");
 
         for (Total s : list) {
-            if (s.getGiam() > 300000) {
-                s.setGiam(10.0);
-                s.setThanhtoan((s.thanhtoan - (s.tong * 10 / 100)) + 15000);
-            } else if (s.getGiam() > 99000) {
-                s.setGiam(5.0);
-                s.setThanhtoan((s.thanhtoan - (s.tong * 5 / 100)) + 15000);
+            if (s.getReduce() > 300000) {
+                s.setReduce(10.0);
+                s.setPay((s.pay - (s.total * 10 / 100)) + 15000);
+            } else if (s.getReduce() > 99000) {
+                s.setReduce(5.0);
+                s.setPay((s.pay - (s.total * 5 / 100)) + 15000);
             } else {
-                s.setGiam(0.0);
-                s.setThanhtoan(s.thanhtoan + 15000);
+                s.setReduce(0.0);
+                s.setPay(s.pay + 15000);
             }
         }
 

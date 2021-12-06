@@ -14,6 +14,7 @@ import com.datn.DAO.UsersDAO;
 import com.datn.entity.Order;
 import com.datn.entity.OrderDetail;
 import com.datn.entity.ShoppingCart;
+import com.datn.entity.Store;
 import com.datn.entity.Total;
 import com.datn.service.OrderService;
 
@@ -54,21 +55,21 @@ public class OrderServiceImpl implements OrderService {
         String user = "user1";
         List<Total> list = daoCart.getAllPrice(user);
         for (Total s : list) {
-            if (s.getGiam() > 300000) {
-                s.setGiam(10.0);
-                s.setThanhtoan((s.thanhtoan - (s.tong * 10 / 100)) + 15000);
-            } else if (s.getGiam() > 99000) {
-                s.setGiam(5.0);
-                s.setThanhtoan((s.thanhtoan - (s.tong * 5 / 100)) + 15000);
+            if (s.getReduce() > 300000) {
+                s.setReduce(10.0);
+                s.setPay((s.pay - (s.total * 10 / 100)) + 15000);
+            } else if (s.getReduce() > 99000) {
+                s.setReduce(5.0);
+                s.setPay((s.pay - (s.total * 5 / 100)) + 15000);
             } else {
-                s.setGiam(0.0);
-                s.setThanhtoan(s.thanhtoan + 15000);
+                s.setReduce(0.0);
+                s.setPay(s.total + 15000);
             }
 			Order order = new Order();
 			order.setStatus(1);
 			order.setUser(daoUser.getById(s.getUserid()));
 			order.setStore(daoStore.getById(s.getStoreid()));
-			order.setTotalamount(s.getThanhtoan());
+			order.setTotalamount(s.getPay());
 			order.setAddress(daoAddress.getById(idAddress));
 			Order or = daoOrder.save(order);
 			List<ShoppingCart> listcart = daoCart.getByStoreandByUser(s.getUserid(), s.getStoreid());
@@ -87,23 +88,52 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrderStatusOne(Integer id) {
-        return daoOrder.getOrderStatusOne(id);
+    public List<Order> getOrderStatusOne() {
+        String user = "user1";
+        Store store = daoStore.getStoreByUser(user);
+        return daoOrder.getOrderStatusOne(store.getId());
     }
 
     @Override
-    public List<Order> getOrderStatusTwo(Integer id) {
-        return daoOrder.getOrderStatusTwo(id);
+    public List<Order> getOrderStatusTwo() {
+        String user = "user1";
+        Store store = daoStore.getStoreByUser(user);
+        return daoOrder.getOrderStatusTwo(store.getId());
     }
 
     @Override
-    public List<Order> getOrderStatusFather(Integer id) {
-        return daoOrder.getOrderStatusFather(id);
+    public List<Order> getOrderStatusFather() {
+        String user = "user1";
+        Store store = daoStore.getStoreByUser(user);
+        return daoOrder.getOrderStatusFather(store.getId());
     }
 
     @Override
-    public List<Order> getOrderStatusFour(Integer id) {
-        return daoOrder.getOrderStatusFour(id);
+    public List<Order> getOrderStatusFour() {
+        String user = "user1";
+        Store store = daoStore.getStoreByUser(user);
+        return daoOrder.getOrderStatusFour(store.getId());
+    }
+
+    @Override
+    public Order orderConfirm(Integer id) {
+        Order order = daoOrder.findById(id).get();
+        order.setStatus(order.status += 1);
+        return daoOrder.save(order);
+    }
+
+    @Override
+    public Order orderRefuse(Integer id) {
+        Order order = daoOrder.findById(id).get();
+        order.setStatus(4);
+        return daoOrder.save(order);
+    }
+
+    @Override
+    public Integer getSumOrderStatusOne() {
+        String user = "user1";
+        Store store = daoStore.getStoreByUser(user);
+        return daoOrder.getSumOrderStatusOne(store.getId());
     }
 
     

@@ -26,4 +26,7 @@ public interface OrderDAO extends JpaRepository<Order, Integer> {
     @Query("select o from Order o where o.store.id = ?1 and o.status = 4")
     List<Order> getOrderStatusFour(Integer id);
 
+    @Query("select sum(o.status) from Order o where o.store.id = ?1 and o.status = 1")
+    Integer getSumOrderStatusOne(Integer id);
+
 }

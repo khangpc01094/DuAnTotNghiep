@@ -3,7 +3,6 @@ package com.datn.rest.controller;
 import java.util.List;
 
 import com.datn.entity.Order;
-import com.datn.entity.Store;
 import com.datn.service.OrderService;
 import com.datn.service.ShoppingCartService;
 import com.datn.service.StoreService;
@@ -45,30 +44,37 @@ public class OrderRestController {
 
     @GetMapping("/One")
     public List<Order> getOrderStatusOne() {
-        String user = "user1";
-        Store store = svStore.getStoreByUserid(user);
-        return svOrder.getOrderStatusOne(store.getId());
+        return svOrder.getOrderStatusOne();
     }
 
     @GetMapping("/Two")
      public List<Order> getOrderStatusTwo() {
-        String user = "user1";
-        Store store = svStore.getStoreByUserid(user);
-        return svOrder.getOrderStatusTwo(store.getId());
+        return svOrder.getOrderStatusTwo();
     }
 
     @GetMapping("/Father")
     public List<Order> getOrderStatusFather() {
-        String user = "user1";
-        Store store = svStore.getStoreByUserid(user);
-        return svOrder.getOrderStatusFather(store.getId());
+        return svOrder.getOrderStatusFather();
     }
 
     @GetMapping("/Four")
     public List<Order> getOrderStatusFour() {
-        String user = "user1";
-        Store store = svStore.getStoreByUserid(user);
-        return svOrder.getOrderStatusFour(store.getId());
+        return svOrder.getOrderStatusFour();
+    }
+
+    @GetMapping("orderConfirm/{id}")
+    public Order orderConfirm(@PathVariable("id") Integer id){
+        return svOrder.orderConfirm(id);
+    }
+
+    @GetMapping("orderRefuse/{id}")
+    public Order orderRefuse(@PathVariable("id") Integer id){
+        return svOrder.orderRefuse(id);
+    }
+
+    @GetMapping("sumStatus")
+    public Integer orderSumStatus(){
+        return svOrder.getSumOrderStatusOne();
     }
 
 }

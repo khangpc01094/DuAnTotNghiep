@@ -12,11 +12,17 @@ public interface OrderService {
 
     void Save(Integer idAddress);
 
-    List<Order> getOrderStatusOne(Integer id);
+    List<Order> getOrderStatusOne();
 
-    List<Order> getOrderStatusTwo(Integer id);
+    List<Order> getOrderStatusTwo();
 
-    List<Order> getOrderStatusFather(Integer id);
+    List<Order> getOrderStatusFather();
 
-    List<Order> getOrderStatusFour(Integer id);
+    List<Order> getOrderStatusFour();
+
+    Order orderConfirm(Integer id);
+
+    Order orderRefuse(Integer id);
+
+    Integer getSumOrderStatusOne();
 }

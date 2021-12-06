@@ -29,7 +29,35 @@ app.controller("seller-ctrl", function ($scope, $http) {
         this.OrderFour = resp.data;
       });
     },
-
     
+    orderConfirm(id) {
+      $http.get(`/rest/order/orderConfirm/${id}`).then( resp => {
+        $scope.Order.getOrderOne();
+        $scope.Order.getOrderTwo();
+        $scope.Order.getOrderFather();
+        $scope.Order.getOrderFour();
+      }).catch((error) => {
+        alert("cap nhat khong dc");
+        console.log(error);
+      });
+    },
+
+    orderRefuse(id){
+      $http.get(`/rest/order/orderRefuse/${id}`).then( resp => {
+        $scope.Order.getOrderOne();
+        $scope.Order.getOrderTwo();
+        $scope.Order.getOrderFather();
+        $scope.Order.getOrderFour();
+      }).catch((error) => {
+        alert("cap nhat khong dc");
+        console.log(error);
+      });
+    }
   };
+
+
+  $scope.Order.getOrderOne();
+  $scope.Order.getOrderTwo();
+  $scope.Order.getOrderFather();
+  $scope.Order.getOrderFour();
 });
