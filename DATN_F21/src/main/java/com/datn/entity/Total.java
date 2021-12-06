@@ -17,8 +17,8 @@ public class Total {
     public Integer storeid;
 	public String name;
     public String userid;
-    public Double tong;
-    public Double giam;
-    public Double thanhtoan;
+    public Double total;
+    public Double reduce;
+    public Double pay;
 
 }

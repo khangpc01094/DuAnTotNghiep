@@ -262,8 +262,8 @@ app.controller("buyer-ctrl", function ($scope, $http) {
 
     get amount() {
       return this.sumall
-        .map((item) => item.thanhtoan)
-        .reduce((total, thanhtoan) => (total += thanhtoan), 0);
+        .map((item) => item.pay)
+        .reduce((total, pay) => (total += pay), 0);
     },
 
     //   get count() {

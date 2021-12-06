@@ -108,10 +108,10 @@
                 <tbody>
                   <tr ng-repeat="detail in cart.sumall | groupBy:'storeid'">
                     <td><strong>{{detail.name}}</strong></td>
-                    <td>{{detail.tong | number : 2}}</td>
+                    <td>{{detail.total | number : 2}}</td>
                     <td>15,000 đ</td>
-                    <td>{{detail.giam}} %</td>
-                    <td>{{detail.thanhtoan | number : 2}} đ</td>
+                    <td>{{detail.reduce}} %</td>
+                    <td>{{detail.pay | number : 2}} đ</td>
                   </tr>
                 </tbody>
               </table>

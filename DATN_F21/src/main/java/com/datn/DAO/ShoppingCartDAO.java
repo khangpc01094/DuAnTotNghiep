@@ -22,7 +22,7 @@ public interface ShoppingCartDAO extends JpaRepository<ShoppingCart, Integer>{
     @Query("select o from ShoppingCart o where o.user.userid = ?1 and o.status = true")
     List<ShoppingCart> getCartTrue(String id);
 
-    @Query("select new Total(o.storeid, o.product.store.name, o.user.userid, sum(o.quantity * o.product.price) as tong, sum(o.quantity * o.product.price) as giam , sum(o.quantity * o.product.price) as thanhtoan) "
+    @Query("select new Total(o.storeid, o.product.store.name, o.user.userid, sum(o.quantity * o.product.price) as total, sum(o.quantity * o.product.price) as reduce , sum(o.quantity * o.product.price) as pay) "
     		+ "from ShoppingCart o where o.user.userid = ?1 and o.status = true group by o.storeid, o.product.store.name, o.user.userid")
     List<Total> getAllPrice(String id);
 

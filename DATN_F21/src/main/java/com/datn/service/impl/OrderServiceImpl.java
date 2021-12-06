@@ -97,21 +97,21 @@ public class OrderServiceImpl implements OrderService{
         String user = "user1";
         List<Total> list = daoCart.getAllPrice(user);
         for (Total s : list) {
-            if (s.getGiam() > 300000) {
-                s.setGiam(10.0);
-                s.setThanhtoan((s.thanhtoan - (s.tong * 10 / 100)) + 15000);
-            } else if (s.getGiam() > 99000) {
-                s.setGiam(5.0);
-                s.setThanhtoan((s.thanhtoan - (s.tong * 5 / 100)) + 15000);
+            if (s.getReduce() > 300000) {
+                s.setReduce(10.0);
+                s.setPay((s.pay - (s.total * 10 / 100)) + 15000);
+            } else if (s.getReduce() > 99000) {
+                s.setReduce(5.0);
+                s.setPay((s.pay - (s.total * 5 / 100)) + 15000);
             } else {
-                s.setGiam(0.0);
-                s.setThanhtoan(s.thanhtoan + 15000);
+                s.setReduce(0.0);
+                s.setPay(s.pay + 15000);
             }
 			Order order = new Order();
 			order.setStatus(1);
 			order.setUser(daoUser.getById(s.getUserid()));
 			order.setStore(daoStore.getById(s.getStoreid()));
-			order.setTotalamount(s.getThanhtoan());
+			order.setTotalamount(s.getPay());
 			order.setAddress(daoAddress.getById(idAddress));
 			Order or = daoOrderDAO.save(order);
 			List<ShoppingCart> listcart = daoCart.getByStoreandByUser(s.getUserid(), s.getStoreid());
