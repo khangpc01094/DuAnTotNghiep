@@ -42,7 +42,7 @@
                               </div>
                               <spam th:text="${messenger}"></spam>
                               <div class="btn-wrapper text-center">
-                                  <button ng-click="update()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">LƯU THAY ĐỔI</button>
+                                  <button ng-disabled="!form_information.$valid" ng-click="update()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">LƯU THAY ĐỔI</button>
                               </div>
                           </fieldset> 
                       </form>

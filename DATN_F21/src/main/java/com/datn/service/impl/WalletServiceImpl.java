@@ -44,6 +44,7 @@ public class WalletServiceImpl implements WalletService{
 		Boolean status = getStatusConfirm(wallet);
 		if(status) {
 			wallet.setUser(daoUsersDAO.findById(req.getRemoteUser()).get());
+			wallet.setMoney(0.0);
 			daoWalletDAO.save(wallet);
 			return ResponseEntity.ok(wallet);
 		}else {

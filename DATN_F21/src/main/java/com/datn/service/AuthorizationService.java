@@ -5,15 +5,17 @@ import java.util.List;
 import com.datn.entity.Authorization;
 import com.datn.entity.Role;
 
+import org.springframework.http.ResponseEntity;
+
 public interface AuthorizationService {
 
 	List<Role> findRoleByUsername(String username);
 
-	List<Authorization> getAllAuth();
+	ResponseEntity<List<Authorization>> getAllAuth();
 
-	Authorization create(Authorization auth);
+	ResponseEntity<Authorization> create(Authorization auth);
 
-	void delete(Integer id);
+	ResponseEntity<Void> delete(Integer id);
 	
     public Authorization Create(Authorization authorization);
     

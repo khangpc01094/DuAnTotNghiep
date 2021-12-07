@@ -300,41 +300,37 @@ app.controller("information-ctrl", function ($scope, $http) {
 
   $scope.initialize();
 
-  $scope.update = function () {
-    var item = angular.copy($scope.form);
-    $http
-      .put(`/rest/user/information/update`, item)
-      .then((resp) => {
-        if (resp.status == 200) {
-          /*return Swal.fire({
+  $scope.update = function() {
+		var item = angular.copy($scope.form);
+		$http.put(`/rest/user/information/update`, item).then(resp => {
+			if (resp.status == 200) {
+				return Swal.fire({
 					width: '400px',
-					title: 'Cập nhật khách hàng thành công!',
+					title: 'Cập nhật thành công!',
 					icon: 'success',
 					showConfirmButton: false,
 					timer: 1500
-				})*/
-          alert("Cap nhat thanh cong");
-        }
-      })
-      .catch((error) => {
-        /*if (error.status == 404) {
+				})
+			}
+		}).catch(error => {
+			if (error.status == 404) {
 				return Swal.fire({
 					width: '400px',
-					title: 'Không tìm thấy khách hàng này!',
+					title: 'Không tìm thấy người dùng này!',
 					icon: 'error',
 					confirmButtonText: 'Ok',
 				})
 			}
 			Swal.fire({
 				width: '400px',
-				title: 'Lỗi cập nhật khách hàng!',
+				title: 'Lỗi cập nhật!',
 				icon: 'error',
 				confirmButtonText: 'Ok',
-			})*/
-        alert("Cap nhat loi");
-        console.log("Error", error);
-      });
-  };
+			})
+			console.log("Error", error);
+		});
+	}
+
 
   $scope.imageChanged = function (files) {
     var data = new FormData();
@@ -348,13 +344,13 @@ app.controller("information-ctrl", function ($scope, $http) {
         $scope.form.picture = resp.data.name;
       })
       .catch((error) => {
-        /*return Swal.fire({
+        return Swal.fire({
 				width: '400px',
 				title: 'Lỗi uplaod hình ảnh!',
 				icon: 'error',
 				confirmButtonText: 'Ok',
-			})*/
-        alert("Lôi up hinh");
+			})
+      
         console.log("Error", error);
       });
   };
@@ -371,24 +367,37 @@ app.controller("wallet-ctrl", function ($scope, $http) {
       $scope.cardbrand = resp.data;
     })
     .catch((error) => {
-      alert("Lỗi");
+      return Swal.fire({
+        width: '400px',
+        title: 'Lỗi server bank!',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+      })	  
     });
 
-  $scope.save = function () {
-    var item = angular.copy($scope.form);
-    $http
-      .post(`/rest/wallet`, item)
-      .then((resp) => {
-        if (resp.status == 200) {
-          alert("save thanh cong");
+    $scope.save = function() {	
+      var item = angular.copy($scope.form);
+      $http.post(`/rest/wallet`, item).then(resp => {
+        if (resp.status == 200) {		
+          return Swal.fire({
+            width: '400px',
+            title: 'Lưu thành công!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
-      })
-      .catch((error) => {
-        if (error.status == 400) {
-          alert("Thông tin ngân hàng không chính xác");
+      }).catch(error => {
+        if (error.status == 400) {		
+          return Swal.fire({
+            width: '400px',
+            title: 'Thông tin ngân hàng không chính xác hoặc thẻ đã hết hạn!',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+          })
         }
       });
-  };
+    }  
 });
 
 app.controller("topup-ctrl", function ($window, $scope, $http) {
@@ -402,25 +411,39 @@ app.controller("topup-ctrl", function ($window, $scope, $http) {
       $scope.cardbrand = resp.data;
     })
     .catch((error) => {
-      alert("Lỗi");
+      return Swal.fire({
+        width: '400px',
+        title: 'Lỗi server bank!',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+      })
+  
     });
 
-  $scope.contineu_money = function () {
-    var item = angular.copy($scope.form);
-    $http
-      .post(`/rest/wallet/topup`, item)
-      .then((resp) => {
+    $scope.contineu_money = function() {	
+      var item = angular.copy($scope.form);
+      $http.post(`/rest/wallet/topup`, item).then(resp => {
         if (resp.status == 200) {
-          alert("hop lệ");
-          $window.location.href = "/account/wallet/topup/checkmoney";
+          Swal.fire({
+            width: '400px',
+            title: 'Hợp lệ!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          $window.location.href = '/account/wallet/topup/checkmoney';
         }
-      })
-      .catch((error) => {
-        if (error.status == 400) {
-          alert("Thông tin ngân hàng không chính xác");
+      }).catch(error => {
+        if (error.status == 400) {		
+          return Swal.fire({
+            width: '400px',
+            title: 'Thông tin ngân hàng không chính xác hoặc thẻ đã hết hạn!',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+          })
         }
       });
-  };
+    }  
 });
 
 app.controller("changepassword-ctrl", function ($scope, $http) {

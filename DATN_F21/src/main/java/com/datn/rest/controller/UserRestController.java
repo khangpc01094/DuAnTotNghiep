@@ -11,6 +11,7 @@ import com.datn.service.RoleService;
 import com.datn.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,7 @@ public class UserRestController {
 	}
 	
 	@PutMapping("/information/update")
-	public Users putInformation(@RequestBody Users user){	
+	public ResponseEntity<Users> putInformation(@RequestBody Users user){	
 		return svUserService.postInformation(user);
 	}
 

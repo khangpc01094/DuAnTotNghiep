@@ -78,34 +78,33 @@ app.controller("user-ctrl", function($scope, $http) {
 		$http.put(`/rest/user/information/update`, item).then(resp => {
 			if (resp.status == 200) {
 				$scope.initialize();
-				/*return Swal.fire({
+				return Swal.fire({
 					width: '400px',
-					title: 'Cập nhật khách hàng thành công!',
+					title: 'Cập nhật thành công!',
 					icon: 'success',
 					showConfirmButton: false,
 					timer: 1500
-				})*/
-				alert("Cap nhat thanh cong");
+				})
 			}
 		}).catch(error => {
-			/*if (error.status == 404) {
+			if (error.status == 404) {
 				return Swal.fire({
 					width: '400px',
-					title: 'Không tìm thấy khách hàng này!',
+					title: 'Không tìm thấy người dùng này!',
 					icon: 'error',
 					confirmButtonText: 'Ok',
 				})
 			}
 			Swal.fire({
 				width: '400px',
-				title: 'Lỗi cập nhật khách hàng!',
+				title: 'Lỗi cập nhật!',
 				icon: 'error',
 				confirmButtonText: 'Ok',
-			})*/
-			alert("Cap nhat loi");
+			})			
 			console.log("Error", error);
 		});
 	}
+
 	
 
 	$scope.imageChanged = function(files) {
@@ -117,13 +116,13 @@ app.controller("user-ctrl", function($scope, $http) {
 		}).then(resp => {
 			$scope.form.picture = resp.data.name;
 		}).catch(error => {
-			/*return Swal.fire({
+			return Swal.fire({
 				width: '400px',
 				title: 'Lỗi uplaod hình ảnh!',
 				icon: 'error',
 				confirmButtonText: 'Ok',
-			})*/
-			alert("Lôi up hinh")
+			})
+			
 			console.log("Error", error);
 		})
 	}
@@ -305,20 +304,18 @@ app.controller("category-ctrl", function($scope, $http) {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/category`, item).then(resp => {
 			if (resp.status == 200) {
-				alert("Thêm thành công!");
 				$scope.items.push(resp.data);
-				/*$scope.reset();
+				$scope.clear();
 				return Swal.fire({
 					width: '400px',
 					title: 'Thêm mới thành công!',
 					icon: 'success',
 					showConfirmButton: false,
 					timer: 1500
-				})*/
+				})
 			}
 		}).catch(error => {
-			alert("Lỗi thêm");
-			/*if (error.status == 400) {
+			if (error.status == 400) {
 				return Swal.fire({
 					width: '400px',
 					title: 'Id đã tồn tại!',
@@ -332,9 +329,10 @@ app.controller("category-ctrl", function($scope, $http) {
 				icon: 'error',
 				confirmButtonText: 'Ok',
 			})
-			console.log("Error", error);*/
+			console.log("Error", error);
 		});
 	}
+
 
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
@@ -342,18 +340,16 @@ app.controller("category-ctrl", function($scope, $http) {
 			if (resp.status == 200) {
 				var index = $scope.items.findIndex(a => a.id == item.id);
 				$scope.items[index] = item;
-				/*return Swal.fire({
+				return Swal.fire({
 					width: '400px',
 					title: 'Cập nhật thành công!',
 					icon: 'success',
 					showConfirmButton: false,
 					timer: 1500
-				})*/
-				alert("Cập nhật thành công")
+				})			
 			}
 		}).catch(error => {
-			alert("Loi cập nhat")
-			/*if (error.status == 404) {
+			if (error.status == 404) {
 				return Swal.fire({
 					width: '400px',
 					title: 'Không tìm thấy loại sản phẩm này!',
@@ -363,13 +359,14 @@ app.controller("category-ctrl", function($scope, $http) {
 			}
 			Swal.fire({
 				width: '400px',
-				title: 'Lỗi cập nhật!',
+				title: 'Lỗi cập nhật loại sản phẩm!',
 				icon: 'error',
 				confirmButtonText: 'Ok',
 			})
-			console.log("Error", error);*/
+			console.log("Error", error);
 		});
 	}
+
 })
 
 app.controller("authorization-ctrl", function($scope, $http) {
@@ -414,23 +411,47 @@ app.controller("authorization-ctrl", function($scope, $http) {
 	$scope.grant_authority = function(authority){		
 		$http.post(`/rest/authorities`,authority).then(resp =>{
 			$scope.authorities.push(resp.data)
-			alert("Cấp quyền sử dụng thành công!");
+			return Swal.fire({
+				width: '400px',
+				title: 'Cấp quyền sử dụng thành công!',
+				icon: 'success',
+				showConfirmButton: false,
+				timer: 1500
+			})
 		}).catch(error =>{
-			alert("Lỗi cấp quyền!");
+			return Swal.fire({
+				width: '400px',
+				title: 'Lỗi cấp quyền!',
+				icon: 'error',
+				confirmButtonText: 'Ok',
+			})
 			console.log("Error",error);
 		})
 	}
+
 	
 	$scope.revoke_authority = function(authority){
 		$http.delete(`/rest/authorities/${authority.id}`).then(resp =>{
 			var index = $scope.authorities.findIndex(a => a.id == authority.id);
 			$scope.authorities.splice(index,1);
-		    alert("Thu hồi quyền sử dụng thành công!");
+		    return Swal.fire({
+				width: '400px',
+				title: 'Thu hồi quyền sử dụng thành công!',
+				icon: 'success',
+				showConfirmButton: false,
+				timer: 1500
+			})
 		}).catch(error =>{
-			alert("Lỗi thu hồi quyền!");
+			return Swal.fire({
+				width: '400px',
+				title: 'Lỗi thu hồi quyền!',
+				icon: 'error',
+				confirmButtonText: 'Ok',
+			})
 			console.log("Error",error);
 		})
 	}
+
 	
 	$scope.pager = {
 		page: 0,

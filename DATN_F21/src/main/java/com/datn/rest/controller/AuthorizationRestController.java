@@ -6,6 +6,7 @@ import com.datn.entity.Authorization;
 import com.datn.service.AuthorizationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,24 +18,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/auth")
+@RequestMapping("/rest/authorities")
 public class AuthorizationRestController {
 
     @Autowired AuthorizationService svAuthorizationService;
 	
 	@GetMapping()
-	public List<Authorization> getAllAuth(){
+	public ResponseEntity<List<Authorization>> getAllAuth(){
 		return svAuthorizationService.getAllAuth();
 	}
 	
    @PostMapping()
-   public Authorization post(@RequestBody Authorization auth) {
+   public ResponseEntity<Authorization> post(@RequestBody Authorization auth) {
 	   return svAuthorizationService.create(auth);
    }
    
    @DeleteMapping("{id}")
-   public void delete(@PathVariable("id") Integer id) {
-	   svAuthorizationService.delete(id);
+   public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+	   return svAuthorizationService.delete(id);
    }
 
 }

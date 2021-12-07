@@ -56,11 +56,11 @@ public class Users implements Serializable {
 	public List<Store> store;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private List<Wallet> wallet;
+	@OneToOne(mappedBy = "user", cascade = { CascadeType.ALL })
+	private Wallet wallet;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "user", cascade = { CascadeType.ALL })
-	private Transaction transaction;
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private List<Transaction> transaction;
 
 }

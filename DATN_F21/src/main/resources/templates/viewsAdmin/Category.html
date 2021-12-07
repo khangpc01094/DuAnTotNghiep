@@ -49,7 +49,7 @@
                 <div class="border">
                     <label class="Deatail" style="color: orange; margin-top: 8px; font-size: 30px">Thông tin chi tiết</label>
                     <hr>
-                    <form>
+                    <form name="from_category">
                         <label  class="image">Hình ảnh</label>
                         <div class="header">
                             <img ng-src="{{'/img/category/'+ form.picture}}" class="img-thumbnail" alt="">                     
@@ -62,9 +62,10 @@
                         </div>
                         <div class="body">
                             <label for="">ID loại</label>
-                            <input ng-model="form.id" type="text" class="form-control">
+                            <input ng-model="form.id" type="text" class="form-control" readonly>
                             <label for="">Tên loại</label>
-                            <input ng-model="form.name" type="text" class="form-control">
+                            <input ng-model="form.name" name="txtName" type="text" class="form-control">
+                            <span style="color: red;" ng-hide="form_category.txtName.$valid">Không được để trống tên loại sản phẩm</br></span>
                             <label for="">Trạng thái</label> <br>
                             <input ng-model="form.status" type="radio" checked class="radioCate" name="Category" ng-value="true"><label
                                 class="namecategory">Kích hoạt</label>

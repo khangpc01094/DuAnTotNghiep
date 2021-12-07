@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.dao.CardBrandDAO;
 import com.bank.entity.CardBrand;
+import com.bank.service.CardBrandService;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/rest/cardbrand")
 public class CardBrandRestController {
-	@Autowired CardBrandDAO daoCardBrandDAO;
+	@Autowired CardBrandService svCardBrandService;
+
 	@GetMapping()
 	public List<CardBrand> getAllBank(){
-		return daoCardBrandDAO.findAll();
+		return svCardBrandService.getAllBank();
 	}
+
 }

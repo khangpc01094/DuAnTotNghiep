@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.datn.entity.Users;
 
+import org.springframework.http.ResponseEntity;
+
 public interface UserService {
 
     Users findById(String username);
@@ -12,7 +14,7 @@ public interface UserService {
 
 	Users getInformation();
 
-	Users postInformation(Users user);
+	ResponseEntity<Users> postInformation(Users user);
 
 	List<Users> getAllUser();
 

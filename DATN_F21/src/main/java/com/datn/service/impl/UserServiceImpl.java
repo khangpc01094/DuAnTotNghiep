@@ -1,6 +1,7 @@
 package com.datn.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +17,10 @@ import com.datn.service.UserService;
 @Service
 public class UserServiceImpl implements UserService{
 
-    @Autowired UsersDAO daoUsersDAO;
-	@Autowired HttpServletRequest req;
+    @Autowired 
+	UsersDAO daoUsersDAO;
+	@Autowired 
+	HttpServletRequest req;
 	
 	
     @Override
@@ -87,9 +90,12 @@ public class UserServiceImpl implements UserService{
 
 	
 	@Override
-	public Users postInformation(Users user) {
-		daoUsersDAO.save(user);			
-		return user;
+	public ResponseEntity<Users> postInformation(Users user) {
+		if(user.getUserid()==null || !daoUsersDAO.existsById(user.getUserid())) {
+			return ResponseEntity.notFound().build();
+		}
+		daoUsersDAO.save(user);
+		return ResponseEntity.ok(user);
 	}
 
 	@Override

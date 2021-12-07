@@ -4,13 +4,15 @@ import java.util.List;
 
 import com.datn.entity.Category;
 
+import org.springframework.http.ResponseEntity;
+
 public interface CategoryService {
 	
-	List<Category> getFindAll();
+	ResponseEntity<List<Category>> getFindAll();
 
-	Category create(Category category);
+	ResponseEntity<Category> create(Category category);
 
-	Category update(Category category);
+	ResponseEntity<Category> update(Category category);
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.datn.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,20 +25,23 @@ public class AuthorizationServiceImpl implements AuthorizationService{
 
 
 	@Override
-	public List<Authorization> getAllAuth() {
-		return daoAuthorizationDAO.findAll();
+	public ResponseEntity<List<Authorization>> getAllAuth() {
+		return ResponseEntity.ok(daoAuthorizationDAO.findAll());
 	}
 
 
 	@Override
-	public Authorization create(Authorization auth) {
-		return daoAuthorizationDAO.save(auth);
+	public ResponseEntity<Authorization> create(Authorization auth) {
+		daoAuthorizationDAO.save(auth);
+		return ResponseEntity.ok(auth);
 	}
 
-	@Override
-	public void delete(Integer id) {
+	public ResponseEntity<Void> delete(Integer id) {
+		if(!daoAuthorizationDAO.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}		
 		daoAuthorizationDAO.deleteById(id);
-		
+		return ResponseEntity.ok().build();
 	}
 	
 	@Autowired

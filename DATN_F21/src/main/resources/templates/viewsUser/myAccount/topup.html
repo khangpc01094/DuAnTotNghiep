@@ -21,6 +21,11 @@
                                 <input ng-model="form.holdername" type="text" name="txtHoldername" required>
                             </div>
                             <div class="col-md-12">
+                                <label>Ngày hết hạn:</label>
+                                <span style="color: red;" ng-hide="form_topup.dateCardwxpiry.$valid">Bạn chưa chọn ngày hết hạn</span>
+                                <input ng-model="form.cardexpiry" type="date" name="dateCardwxpiry" required>
+                            </div>
+                            <div class="col-md-12">
                                 <label>Mã CVV:</label>
                                 <span style="color: red;" ng-hide="form_topup.txtCvv.$valid">Không được để trống</span>
                                 <input ng-model="form.cvv" type="password" name="txtCvv" required>
@@ -35,7 +40,7 @@
                                  </div>
                             </div>             
                         <div class="btn-wrapper" style="float:right;">
-                            <button ng-click="contineu_money()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Tiếp theo</button>
+                            <button ng-disabled="!form_topup.$valid" ng-click="contineu_money()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Tiếp theo</button>
                         </div>
                     </form>
                 </div>
