@@ -1,32 +1,31 @@
 <div xmlns:th="http://www.thymeleaf.org">
 	<!-- HEADER AREA START (header-5) -->
-	<header
-		class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---">
+	<header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---">
 
 		<!-- ltn__header-middle-area start -->
-		<div
-			class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9---"
+		<div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9---"
 			style="background-color: #58ed58;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4">
-                        <div class="ltn__main-menu" style="margin-top: -50px;">
-                            <ul>
-                                <li class="menu-icon"><a href="/formAd">Admin</a></li>
-                                <li><a href="/formSeller">Seller</a></li>
-                            </ul>
-                        </div>
+						<div class="ltn__main-menu" style="margin-top: -50px;">
+							<ul>
+								<li class="menu-icon"><a href="/formAd">Admin</a></li>
+								<li><a href="/regisSeller">Seller</a></li>
+							</ul>
+						</div>
+
 						<div class="site-logo-wrap">
 							<div class="site-logo">
-								<a href="/index"><img th:src="@{|/img/logo4.png|}"
-									alt="Logo" height="85px;" width="120%"  style="margin-left: -30px;"></a>
+								<a href="/index"><img th:src="@{|/img/logo4.png|}" alt="Logo" height="85px;"
+										width="120%" style="margin-left: -30px;"></a>
 							</div>
 						</div>
 					</div>
 					<div class="col">
 						<form id="#" method="get" action="/search" class="mt-30">
-							<input class="input-find" type="text" name="name"
-								required="required" placeholder="Tìm kiếm sản phẩm...">
+							<input class="input-find" type="text" name="name" required="required"
+								placeholder="Tìm kiếm sản phẩm...">
 							<button class="theme-btn-1 btn-find" type="submit">
 								<i class="icon-search"></i>
 							</button>
@@ -40,7 +39,8 @@
 										<li><a href="/login">Đăng nhập</a></li>
 										<li><a href="/register">Đăng ký</a></li>
 										<li><a href="/account/information">Tài khoản</a></li>
-									</ul></li>
+									</ul>
+								</li>
 							</ul>
 						</div>
 						<!-- mini-cart -->
@@ -54,6 +54,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- ltn__header-middle-area end -->
 	</header>
 	<!-- HEADER AREA END -->

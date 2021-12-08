@@ -20,10 +20,6 @@ public class ProductServiceImpl implements ProductService{
        return daoProduct.findByName(string);
     }
     
-    // @Override
-    // public Product findByNameOne(String name) {
-    //     return daoProduct.findByNameOne(name);
-    // }
 
 	@Override
 	public List<Product> getAll() {

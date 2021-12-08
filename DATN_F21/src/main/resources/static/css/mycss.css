@@ -17,3 +17,23 @@
 	margin-top: 8px;
 	background-color: #58ed58;
 }
+
+.btn-modal1 {
+	background-color: #5a6268;
+	border: none;
+	border-radius: 4px;
+	color: white;
+}
+
+.btn-modal2 {
+	background-color: #007bff;
+	border: none;
+	border-radius: 4px;
+	color: white;
+}
+
+.modal-title {
+	font-family: inherit;
+	color: inherit;
+	font-weight: 500;
+}

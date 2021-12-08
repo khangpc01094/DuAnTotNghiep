@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
+<body>
+	<main>
+		<!-- REGISTER AREA START -->
+    <div class="ltn__login-area pb-65 mt-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <img src="/img/banner/menu-banner-1.png" alt="404">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="account-login-inner">
+                        <h1 class="section-title text-center">Đăng Ký <br>Cửa hàng Của Bạn</h1> 
+                        <form class="ltn__form-box contact-form-box">                           
+                            <input type="text" ng-model="form.name" placeholder="Tên cửa hàng*">
+                            <input type="text" ng-model="form.description" placeholder="Mô tả*">
+                            <div class="btn-wrapper">
+                                <button class="theme-btn-1 btn reverse-color" ng-click="regisSeller()">TẠO CỬA HÀNG</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </div>
+	</main>
+</body>
+</html>

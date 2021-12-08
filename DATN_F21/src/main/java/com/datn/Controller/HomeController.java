@@ -78,8 +78,4 @@ public class HomeController {
 		m.addAttribute("sp", list);
 		return "/viewsUser/index"; 
 	}
-
-	
-	
-	
 }

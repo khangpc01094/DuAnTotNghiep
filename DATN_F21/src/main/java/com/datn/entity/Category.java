@@ -29,6 +29,7 @@ public class Category implements Serializable {
 	private Integer id;
 	private String name;
 	private Boolean status;
+	private String picture;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)

@@ -29,4 +29,5 @@ public class Address implements Serializable {
 	private String address;
 	private String fullname;
 	private String phone;
+	private Boolean status;
 }

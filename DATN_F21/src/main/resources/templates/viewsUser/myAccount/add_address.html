@@ -6,36 +6,46 @@
         <div class="tab-pane fade active show">
             <div class="ltn__myaccount-tab-content-inner">
                 <div class="ltn__form-box">
-                    <form action="#">
+                    <form action="#" name="add_address" novalidate>
                         <fieldset>
                             <legend>Địa Chỉ</legend>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Họ và tên *:</label>
-                                    <input ng-model="form.fullname" type="text">
+                                    <div>
+                                        <label>Họ và tên *:</label>
+                                        <input ng-model="form.fullname" type="text" name="fullname" 
+                                            ng-pattern="/^\d+$/" ng-required=true>
+                                        <div style="margin-top: -30px; margin-bottom: 20px; color: red;">
+                                            <span ng-show="add_address.fullname.$error.required">Không bỏ trống Họ và tên</span>
+                                            <span ng-show="add_address.fullname.$dirty&&!add_address.fullname.$error.pattern">Họ và tên không đúng định dạng</span>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <label>Số điện thoại *:</label>
-                                    <input ng-model="form.phone" type="text">
+                                    <input ng-model="form.phone" type="text" name="phone" 
+                                        ng-pattern="/^\+?(0|84)\d{9}$/" ng-required=true>
+                                    <div style="margin-top: -30px; margin-bottom: 20px; color: red;">
+                                        <span ng-show="add_address.phone.$error.required">Không bỏ trống Số điện thoại</span>
+                                        <span ng-show="add_address.phone.$dirty && add_address.phone.$invalid">Số điện thoại không đúng định dạng</span>
+                                    </div>
                                 </div>
+
                                 <div class="col-md-12">
                                     <label>Địa chỉ cụ thể *:</label>
-                                    <input type="text" ng-model="form.address">
+                                    <input type="text" ng-model="form.address" name="address" 
+                                    ng-pattern="/^\d+$/" ng-required=true>
+                                    <div style="margin-top: -30px; margin-bottom: 20px; color: red;">
+                                        <span ng-show="add_address.address.$error.required">Không bỏ trống Địa chỉ</span>
+                                        <span ng-show="add_address.address.$dirty&&!add_address.address.$error.pattern">Địa chỉ không đúng định dạng</span>
+                                    </div>
                                 </div>
-                                <!-- <div class="col-md-12">
-                                    <label>userid:</label>
-                                    <input type="text" th:field="*{user}">
-                                </div> -->
                             </div>
                             <div class="btn-wrapper text-center">
-                                <!-- <a class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Lưu Địa Chỉ</a> -->
-                                <button class="btn bg-primary" type="submit" ng-click="address()">Lưu</button>
+                                <button class="btn bg-primary" type="submit" ng-click="add_address()">Lưu địa chỉ</button>
                             </div>
                     </form>
-                    <!-- <div class="by-agree ">
-                        <a href="/account/address">TRỞ VỀ</a>
-                        <button ng-click="hello()" type="submit" class="btn btn-primary">helu</button>
-                    </div> -->
                     </fieldset>
 
                 </div>

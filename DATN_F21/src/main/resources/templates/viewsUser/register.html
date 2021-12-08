@@ -15,16 +15,57 @@
                 <div class="col-lg-6">
                     <div class="account-login-inner">
                         <h1 class="section-title text-center">Đăng Ký <br>Tài Khoản Của Bạn</h1> 
-                        <form action="#" class="ltn__form-box contact-form-box">
-                            <input type="text" ng-model="form.username" placeholder="Tên đăng nhập*">
-                            <input type="text" ng-model="form.email" placeholder="Email*">
-                            <input type="password" ng-model="form.password" placeholder="Mật Khẩu*">
-                            <!-- <input type="password" ng-model="form.confirm" name="confirmpassword" placeholder="Xác Nhận Mật Khẩu*"> -->
+                        <form class="ltn__form-box contact-form-box" name="dk" novalidate>
+                            
+                            <!-- USERNAME -->
+                            <input type="text" ng-model="form.username" placeholder="Tên đăng nhập*" name="username"
+                                ng-minlength="6" ng-maxlength="15" ng-required=true ng-pattern="/^[a-z0-9_-]{6,15}$/i">
+                            <div style="margin-top: -30px; margin-bottom: 20px; color: red;">
+                                <span class="error" ng-show="dk.username.$error.required">Không bỏ trống Tên đăng nhập</span>
+                                <span class="error" ng-show="dk.username.$error.minlength">Tên đăng nhập ít nhất phải 6 ký tự</span>
+                                <span class="error" ng-show="dk.username.$error.maxlength">Tên đăng nhập tối đa 15 ký tự</span>
+                                <span ng-show="dk.username.$dirty&&dk.username.$error.pattern">Không đúng định dạng User</span>
+                            </div>
+
+                            <!-- EMAIL -->
+                            <input type="email" ng-model="form.email" placeholder="Email*" name="email" 
+                                ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-required=true>
+                            <div style="margin-top: -30px; margin-bottom: 20px; color:Red">
+                                <span ng-show="dk.email.$error.required">Không bỏ trống Email</span>
+                                <span ng-show="dk.email.$dirty&&dk.email.$error.pattern">Không đúng định dạng Email</span>
+                            </div>
+
+                            <!-- PASSWORD -->
+                            <input  type="password" name="password" ng-show="!showPassword" ng-model="form.password" 
+                                ng-required=true ng-minlength="6">
+                            <input type="text" name="plainPassword" ng-show="showPassword" ng-model="form.password" 
+                                ng-required=true>
+                            <div style="margin-top: -30px; margin-bottom: 20px; color:Red">
+                                <span ng-show="dk.password.$error.required">Không bỏ trống Password</span>
+                                <span class="error" ng-show="dk.password.$error.minlength">Tên đăng nhập ít nhất phải 6 ký tự</span>
+                            </div>
                           
+                            <div class="form-group">
+                                <input type="checkbox" id="showPassword" ng-model="showPassword">
+                                <label class="comment" for="showPassword">Hiển thị Mật khẩu</label>
+                            </div>
+
                             <div class="btn-wrapper">
                                 <button class="theme-btn-1 btn reverse-color" ng-click="regis()">TẠO TÀI KHOẢN</button>
                             </div>
                         </form>
+                        
+                        <!-- <form class="ltn__form-box contact-form-box">
+                            
+                            <input type="text" ng-model="form.username" placeholder="Tên đăng nhập*">
+                            <input type="email" ng-model="form.email" placeholder="Email*">
+                            <input  type="password" ng-model="form.password" placeholder="Mật khẩu*">
+
+                            <div class="btn-wrapper">
+                                <button ng-click="regis()" class="theme-btn-1 btn reverse-color">TẠO TÀI KHOẢN</button>
+                            </div>
+                        </form> -->
+                        
                         <div class="by-agree text-center">
                             <a href="/login">ĐÃ CÓ TÀI KHOẢN</a>
                         </div>

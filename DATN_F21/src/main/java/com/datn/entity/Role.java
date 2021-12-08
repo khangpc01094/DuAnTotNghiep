@@ -1,15 +1,16 @@
 package com.datn.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +31,7 @@ public class Role implements Serializable {
 	
 	private String role;	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "roles")
-	private Authorization authorization;
+	@JsonIgnore
+	@OneToMany(mappedBy = "roleid")
+	List<Authorization> auth;
 }

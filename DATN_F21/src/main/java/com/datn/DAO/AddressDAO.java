@@ -9,7 +9,7 @@ import com.datn.entity.Address;
 
 public interface AddressDAO extends JpaRepository<Address, Integer>{
 
-    @Query("SELECT o FROM Address o WHERE o.user.userid = ?1")
+    @Query("SELECT o FROM Address o WHERE o.user.userid = ?1 AND o.status = true")
     List<Address> findByUserId(String id);
 
 }

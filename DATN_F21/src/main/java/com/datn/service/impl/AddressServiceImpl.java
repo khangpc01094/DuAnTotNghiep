@@ -35,5 +35,10 @@ public class AddressServiceImpl implements AddressService{
         return daoAddress.getById(id);
     }
 
+    @Override
+    public void delete(Integer id) {
+       daoAddress.deleteById(id);
+    }
+
 
 }
