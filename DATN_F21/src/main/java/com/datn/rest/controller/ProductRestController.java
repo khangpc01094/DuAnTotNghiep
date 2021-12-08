@@ -50,6 +50,12 @@ public class ProductRestController {
 		productImage.setProduct(product);
 		productImage.setPicture(product.getImages());
 		product.setStore(store);
+		
+		if(product.getImages() == null) {
+			product.setImages("macdinh.png");
+			productImage.setPicture("macdinh.png");
+		}
+		
 		daoProductImageDAO.save(productImage);
 		return svProductService.create(product);
 	}
