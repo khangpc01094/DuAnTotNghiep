@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
+
+<body>
+    <main>
+        <div class="tab-pane fade active show">
+            <div class="ltn__myaccount-tab-content-inner">
+                <p>Bạn cần liên kết tài khoản ngân hàng với ví điện tử để có thể thanh toán hàng hóa.</p>
+                <div class="ltn__form-box">
+                    <h4>Chi tiết thẻ</h4>
+                    <form action="#">
+                        <div class="row mb-50">
+                            <div class="col-md-12">
+                                <label>Họ tên trên thẻ:</label>
+                                <input type="text" name="ltn__name">
+                            </div>
+                            <div class="col-md-12">
+                                <label>Số thẻ:</label>
+                                <input type="text" name="ltn__lastname">
+                            </div>
+                            <div class="col-md-12">
+                                <label>Chọn loại thẻ:</label>
+                                <div class="form-check">
+                                    <input style="float:left;" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1"> Visa</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1"> Mastercard</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Ngày hết hạn:</label>
+                                <input ng-model="form.cardexpiry" type="date" name="ltn__name">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Mã CVV:</label>
+                                <input type="text" name="ltn__lastname" placeholder="Mã CVV">
+                            </div>
+                            <!-- <h4>Địa chỉ đăng ký thẻ Tín dụng/Ghi nợ</h4>
+                            <div class="col-md-12">
+                                <label>Địa chỉ hóa đơn:</label>
+                                <input type="text" name="ltn__lastname">
+                            </div> -->
+                            <div class="col-md-12">
+                                <label>Postal code:</label>
+                                <input type="text" name="ltn__lastname">
+                            </div>
+                        </div>
+                        <!-- <fieldset>
+                            <legend>Password change</legend>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Current password (leave blank to leave unchanged):</label>
+                                    <input type="password" name="ltn__name">
+                                    <label>New password (leave blank to leave unchanged):</label>
+                                    <input type="password" name="ltn__lastname">
+                                    <label>Confirm new password:</label>
+                                    <input type="password" name="ltn__lastname">
+                                </div>
+                            </div>
+                        </fieldset> -->
+                        <div class="btn-wrapper" style="float:right;">
+                            <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Hủy</button>
+                            <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

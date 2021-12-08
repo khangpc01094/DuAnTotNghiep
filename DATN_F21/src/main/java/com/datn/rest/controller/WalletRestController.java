@@ -21,21 +21,21 @@ import com.datn.service.WalletService;
 @RequestMapping("/rest/wallet")
 public class WalletRestController {
 
-	@Autowired
-	WalletService svWalletService;
-	
-	@Autowired
-	WalletDAO daoWalletDAO;
-
-	@GetMapping()
-	public List<Wallet> getAllWallet() {
-		return svWalletService.findAll();
-	}
-
-	@GetMapping("/{id}")
-	public List<Wallet> findWalletByUserId(String userid) {
-		return svWalletService.findWalletByUser(userid);
-	}
+//	@Autowired
+//	WalletService svWalletService;
+//	
+//	@Autowired
+//	WalletDAO daoWalletDAO;
+//
+//	@GetMapping()
+//	public List<Wallet> getAllWallet() {
+//		return svWalletService.findAll();
+//	}
+//
+//	@GetMapping("/{id}")
+//	public List<Wallet> findWalletByUserId(String userid) {
+//		return svWalletService.findWalletByUser(userid);
+//	}
 
 	// @GetMapping("{id}")
 	// public List<Wallet> findWalletByUser(@PathVariable("userid") String userid) {

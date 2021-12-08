@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
+
+<body>
+    <main th:object="${item}">
+        <!-- BREADCRUMB AREA START -->
+        <div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image" data-bg="/img/bg/9.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ltn__breadcrumb-inner ltn__breadcrumb-inner-2 justify-content-between">
+                            <div class="section-title-area ltn__section-title-2">
+                                <h6 class="section-subtitle ltn__secondary-color">Chào mừng bạn đến với shop của chúng tôi</h6>
+                                <h1 class="section-title white-color">Chi tiết sản phẩm</h1>
+                            </div>
+                            <div class="ltn__breadcrumb-list">
+                                <ul>
+                                    <li><a href="/index">Trang chủ</a></li>
+                                    <li>Chi tiết sản phẩm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BREADCRUMB AREA END -->
+        <!-- SHOP DETAILS AREA START -->
+        <div class="ltn__shop-details-area pb-85">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="ltn__shop-details-inner mb-60">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ltn__shop-details-img-gallery">
+                                        <div class="ltn__shop-details-large-img">
+                                            <div class="single-large-img">
+                                                <a th:object="${onePro}" data-rel="lightcase:myCollection">
+                                                    <img th:src="@{|/assets/images/${onePro}|}" alt="Image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="ltn__shop-details-small-img slick-arrow-2">
+                                            <div th:each="pro : ${pro}" th:object="${pro}" class="single-small-img">
+                                                <label> <img width="135" height="135"
+													th:src="@{|/assets/images/${pro}|}" alt="Image">
+												</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h4>SHOP [(${item.store.id})]</h4>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="modal-product-info shop-details-info pl-0">
+                                        <h2 th:text="*{name}"></h2>
+                                        <div class="product-price">
+                                            <span th:text="*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')}"></span> VNĐ
+                                        </div>
+                                        <div class="ltn__product-details-menu-2">
+                                            <ul>
+                                                <li>
+                                                    <div class="cart-plus-minus">
+                                                        <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="/index/cart" class="theme-btn-1 btn btn-effect-1" title="Add to Cart">
+                                                        <i class="fas fa-shopping-cart"></i> <span>ADD TO
+															CART</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- Shop Tab Start -->
+                                        <div class="ltn__shop-details-tab-inner ltn__shop-details-tab-inner-2">
+                                            <div class="ltn__shop-details-tab-menu">
+                                                <div class="nav">
+                                                    <a class="active show" data-toggle="tab" href="#liton_tab_details_1_1">Mô tả</a>
+                                                </div>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade active show" id="liton_tab_details_1_1">
+                                                    <div class="ltn__shop-details-tab-content-inner">
+                                                        <h4 class="title-2" th:text="*{description}">Rau, củ, quả, trái cây và những lợi ích</h4>
+                                                        <p>Rau, củ, quả, trái cây rất có lợi cho sức khỏe vì trong nó chứa nhiều chất dinh dưỡng, chất xơ và các vitamin nên nó sẽ giúp bạn khỏe mạnh cả về thể chất lẫn tinh thần, giảm nguy cơ mắc bệnh tật.
+                                                            Ngoài ra nó còn 1 số lợi ích khác như: Tránh ung thư, Ngăn chặn các bệnh mãn tính, Tăng cường trí não, Giảm cân, Làm đẹp da, Tăng cường miễn dịch..v..v..</p>
+                                                        <p>Bạn có thể an tâm mua rau, củ, quả hay trái cây tại shop chúng tôi để đảm bảo sức khỏe...</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Shop Tab End -->
+                                        <hr>
+                                        <div class="ltn__safe-checkout">
+                                            <h5>Thanh toán an toàn và đảm bảo</h5>
+                                            <img src="/img/icons/payment-2.png" alt="Payment Image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SHOP DETAILS AREA END -->
+        <!-- PRODUCT SLIDER AREA START -->
+        <div class="ltn__product-slider-area ltn__product-gutter pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title-area ltn__section-title-2">
+                            <h1 class="section-title">
+                                <span>Sản phẩm tương tự</span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ltn__related-product-slider-one-active slick-arrow-1">
+                    <!-- ltn__product-item -->
+                    <div class="col-lg-4" th:each="sp : *{category.products}">
+                        <div style="width: 270px; height: 386px;" class="ltn__product-item ltn__product-item-3 text-center">
+                            <div style="width: 266px; height: 266px;" class="product-img">
+                                <a th:href="@{|/index/product-detail/${sp.id}|}"><img th:src="@{|/assets/images/${sp.images}|}" alt="#"></a>
+                                <div class="product-badge">
+                                    <ul>
+                                        <li class="sale-badge">[(${sp.status ? 'Còn hàng' : 'Hết hàng'})]</li>
+                                    </ul>
+                                </div>
+                                <div class="product-hover-action">
+                                    <ul>
+                                        <li>
+                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal"> <i class="far fa-eye"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/index/cart" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal"> <i class="fas fa-shopping-cart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-ratting">
+                                    <ul>
+                                    </ul>
+                                </div>
+                                <h2 class="product-title">
+                                    <a th:href="@{|/index/product-detail/${sp.id}|}">[(${sp.name})]</a>
+                                </h2>
+                                <div class="product-price">
+                                    <span th:text="${#numbers.formatDecimal(sp.price, 0, 'COMMA', 0, 'POINT')}"></span> VNĐ
+                                    <!--  <span>[(${sp.price})]</span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--  -->
+                </div>
+            </div>
+        </div>
+        <!-- PRODUCT SLIDER AREA END -->
+        <!-- FEATURE AREA START ( Feature - 3) -->
+        <div class="ltn__feature-area before-bg-bottom-2 mb--30--- plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ltn__feature-item-box-wrap ltn__border-between-column white-bg">
+                            <div class="row">
+                                <div class="col-xl-6 col-md-12 col-12">
+                                    <div class="ltn__feature-item ltn__feature-item-8">
+                                        <div class="ltn__feature-icon">
+                                            <img src="/img/icons/icon-img/13.png" alt="#">
+                                        </div>
+                                        <div class="ltn__feature-info">
+                                            <h4>Thực phẩm từ tự nhiên</h4>
+                                            <p>Shop cho bạn đổi trả trong vòng 2 giờ sau khi thanh toán.
+                                            </p>
+                                            <p>Sau 2 giờ shop không giải quyết bất kỳ vấn đề nào về sản phẩm.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-12 col-12">
+                                    <div class="ltn__feature-item ltn__feature-item-8">
+                                        <div class="ltn__feature-icon">
+                                            <img src="/img/icons/icon-img/14.png" alt="#">
+                                        </div>
+                                        <div class="ltn__feature-info">
+                                            <h4>Giao hàng nhanh chóng</h4>
+                                            <p>Chúng tôi sẽ ưu tiên vấn đề thời gian để tối ưu chất lượng sản phẩm, mong mang lại cho bạn nguồn thực phẩm tốt nhất.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FEATURE AREA END -->
+    </main>
+</body>
+
+</html>

@@ -30,11 +30,9 @@ public class HomeController {
 	CategoryService svCategory;
 	@Autowired
 	ProductImageService svProductImageService;
-	@Autowired
-	WalletService svWalletService;
 
 	@RequestMapping("/index")
-	public String loadProduct(Model model, @RequestParam("cid") Optional<Integer> cid) {
+	public String loadProducts(Model model, @RequestParam("cid") Optional<Integer> cid) {
 		if (cid.isPresent()) {
 			List<Product> list = svProduct.findByCategoryId(cid.get()); // cid.get() để lấy được id
 			model.addAttribute("sp", list);

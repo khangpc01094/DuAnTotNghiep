@@ -12,26 +12,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Data
-@Entity 
+@Entity
 @Table(name = "productimage")
-@NoArgsConstructor
-@AllArgsConstructor
 public class ProductImage implements Serializable {
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer id;
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "productid")
-	public Product productid;
-	
-	public String picture;
-	
+	public Product product;
+
+	String picture;
+
 }

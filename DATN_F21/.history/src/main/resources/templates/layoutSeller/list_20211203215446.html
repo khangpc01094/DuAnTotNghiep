@@ -1,0 +1,71 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <nav class="pcoded-navbar">
+        <div class="sidebar_toggle">
+            <a href="#"><i class="icon-close icons"></i></a>
+        </div>
+        <div class="pcoded-inner-navbar main-menu">
+
+            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Quản lý cửa hàng</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="pcoded-hasmenu active pcoded-trigger">
+                    <a href="javascript:void(0)"> <span class="pcoded-micon"><i
+							class="ti-home"></i><b>D</b></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Quản lý sản phẩm</span> <span class="pcoded-mcaret"></span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class=" ">
+                            <a th:href="@{|allProduct|}"> <span class="pcoded-micon"><i class="ti-angle-right"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Tất
+									cả sản phẩm</span> <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a th:href="@{|/viewsSeller/createProduct|}"> <span class="pcoded-micon"><i class="ti-angle-right"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Thêm - sửa
+									sản phẩm</span> <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="pcoded-hasmenu active pcoded-trigger">
+                    <a href="javascript:void(0)"> <span class="pcoded-micon"><i
+							class="ti-layout-grid2-alt"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Quản lý đơn hàng</span> <span class="pcoded-mcaret"></span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class=" ">
+                            <a th:href="@{|/viewsSeller/wait|}"> <span class="pcoded-micon"><i class="ti-angle-right"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Đơn
+									chờ xác nhận</span> <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a th:href="@{|/viewsSeller/sent|}"> <span class="pcoded-micon"><i class="ti-angle-right"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Đơn hàng đã
+									giao</span> <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a th:href="@{|/viewsSeller/cancel|}"> <span class="pcoded-micon"><i class="ti-angle-right"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Đơn hàng đã
+									hủy</span> <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pcoded-hasmenu active pcoded-trigger">
+                    <a href="javascript:void(0)"> <span class="pcoded-micon"><i
+							class="ti-layout-grid2-alt"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Thống kê</span> <span class="pcoded-mcaret"></span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class=" ">
+                            <a th:href="@{|/viewsSeller/statisCate|}"> <span class="pcoded-micon"><i class="ti-angle-right"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Theo
+									loại</span> <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a th:href="@{|/viewsSeller/statisInvoice|}"> <span class="pcoded-micon"><i class="ti-angle-right"></i></span> <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Đơn hàng</span> <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</div>

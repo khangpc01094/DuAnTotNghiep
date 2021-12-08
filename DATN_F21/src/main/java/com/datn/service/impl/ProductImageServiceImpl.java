@@ -32,4 +32,39 @@ public class ProductImageServiceImpl implements ProductImageService {
 		return daoProductImage.findByOne(id);
 	}
 
+	@Override
+	public List<ProductImage> findAllById(Integer pid, Integer sid) {
+		return daoProductImage.findAllById(pid, sid);
+	}
+
+	@Override
+	public List<ProductImage> timtheostore(Integer sid) {
+		return daoProductImage.timtheostore(sid);
+	}
+
+	@Override
+	public List<ProductImage> findImageByProduct(Integer id) {
+		return daoProductImage.findImageByProduct(id);
+	}
+
+	@Override
+	public ProductImage create(ProductImage productImage) {
+		return daoProductImage.save(productImage);
+	}
+
+	@Override
+	public ProductImage update(ProductImage productImage) {
+		return daoProductImage.save(productImage);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		daoProductImage.deleteById(id);
+	}
+
+	@Override
+	public Integer getQuanlityImgByProduct(Integer idproduct) {
+		return daoProductImage.getQuanlityImgByProduct(idproduct);
+	}
+	
 }

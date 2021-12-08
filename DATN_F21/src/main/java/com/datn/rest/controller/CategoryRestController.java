@@ -13,11 +13,12 @@ import com.datn.service.CategoryService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/categories")
+@RequestMapping("/rest/category")
 public class CategoryRestController {
+
 	@Autowired
 	CategoryService svCategoryService;
-	
+
 	@GetMapping
 	public List<Category> getAll() {
 		return svCategoryService.findAll();

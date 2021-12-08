@@ -1,39 +1,33 @@
 package com.datn.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
 
 @SuppressWarnings("serial")
 @Data
-@Entity 
+@Entity
 @Table(name = "wallet")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Wallet implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer id;
+	@OneToOne
 	@JoinColumn(name = "userid")
-	private Users userid;
-	private String cardbrand;
-	private String holdername;
-	private Integer cvv;
-	private Double money;	
-	private String cardnumber;
+	public Users user;
+	public String cardnumber;
+	public String cardbrand;
+	public String holdername;
+	public Integer cvv;
+	public Date cardexpiry;
+	public Double money;
 }
