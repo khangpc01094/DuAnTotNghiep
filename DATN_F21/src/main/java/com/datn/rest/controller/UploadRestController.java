@@ -22,9 +22,9 @@ public class UploadRestController {
     UploadService svUploadService;
     
     @PostMapping("/rest/upload/{folder}")
-    public JsonNode upload(@PathVariable("files") MultipartFile file, 
+    public JsonNode upload(@PathVariable("files") MultipartFile files, 
             @PathVariable("folder") String folder) {
-        File savedFile = svUploadService.save(file, folder);
+        File savedFile = svUploadService.save(files, folder);
         
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
