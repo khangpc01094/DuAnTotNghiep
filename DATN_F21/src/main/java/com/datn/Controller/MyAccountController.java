@@ -61,4 +61,16 @@ public class MyAccountController {
 	public String getWallet() {
 		return "/viewsUser/myAccount/wallet";
 	}
+
+	@GetMapping("/order/orderRefuse/{id}")
+	public String getorderRefuse(@PathVariable("id") Integer id){
+			svOrder.orderRefuse(id);
+		return "/viewsUser/myAccount/order";
+	}
+
+	@GetMapping("/order/orderConfirm/{id}")
+	public String getorderConfirm(@PathVariable("id") Integer id){
+			svOrder.orderConfirm(id);
+		return "/viewsUser/myAccount/order";
+	}
 }

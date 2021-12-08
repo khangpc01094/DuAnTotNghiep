@@ -28,14 +28,21 @@
 										<p>Đã xác nhận</p>
 									</th:block>
 									<th:block th:if="${item.status} == 3">
-										<p>Đã hủy</p>
+										<p>Đã giao</p>
 									</th:block>
 									<th:block th:if="${item.status} == 4">
-										<p>Đã giao</p>
+										<p>Đã hủy</p>
 									</th:block>
 								</td>
 		                        <td>[[${item.totalamount}]]</td>
-		                        <td><a th:href="@{|/account/editorder/${item.id}|}">Xem</a></td>
+		                        <td><a th:href="@{|/account/editorder/${item.id}|}">Xem</a>
+									<th:block th:if="${item.status} == 1">
+										<a th:href="@{|/order/orderRefuse/${item.id}|}">Hủy</a>
+									</th:block>
+									<th:block th:if="${item.status} == 2">
+										<a th:href="@{|/order/orderConfirm/${item.id}|}">Đã nhận hàng</a>
+									</th:block>
+								</td>
 		                    </tr>
 		                    
 		                </tbody>

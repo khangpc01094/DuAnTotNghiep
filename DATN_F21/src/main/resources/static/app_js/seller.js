@@ -1,10 +1,19 @@
 const app = angular.module("seller-app", []);
 app.controller("seller-ctrl", function ($scope, $http) {
+
+
   $scope.Order = {
+    SumOrderStatusOne: {},
     OrderOne: [],
     OrderTwo: [],
     OrderFather: [],
     OrderFour: [],
+
+    getSumStatusOne(){
+      $http.get(`/rest/order/sumStatus`).then(resp => {
+        this.SumOrderStatusOne = resp.data;
+      });
+    },
 
     getOrderOne() {
       $http.get(`/rest/order/One`).then((resp) => {
@@ -60,4 +69,5 @@ app.controller("seller-ctrl", function ($scope, $http) {
   $scope.Order.getOrderTwo();
   $scope.Order.getOrderFather();
   $scope.Order.getOrderFour();
+  $scope.Order.getSumStatusOne();
 });

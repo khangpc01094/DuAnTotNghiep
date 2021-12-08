@@ -2,6 +2,7 @@ package com.datn.rest.controller;
 
 import java.util.List;
 
+import com.datn.entity.Notifications;
 import com.datn.entity.Order;
 import com.datn.service.OrderService;
 import com.datn.service.ShoppingCartService;
@@ -76,5 +77,11 @@ public class OrderRestController {
     public Integer orderSumStatus(){
         return svOrder.getSumOrderStatusOne();
     }
+
+    @GetMapping("notification")
+    public List<Notifications> getNotification(){
+        return svOrder.getNotifications();
+    }
+
 
 }

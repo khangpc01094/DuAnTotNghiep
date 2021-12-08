@@ -11,7 +11,7 @@ import com.datn.entity.Order;
 @Repository
 public interface OrderDAO extends JpaRepository<Order, Integer> {
 
-    @Query("select o from Order o where o.user.userid = ?1")
+    @Query("select o from Order o where o.user.userid = ?1 Order By o.id DESC")
     List<Order> getOrderByUser(String id);
 
     @Query("select o from Order o where o.store.id = ?1 and o.status = 1")

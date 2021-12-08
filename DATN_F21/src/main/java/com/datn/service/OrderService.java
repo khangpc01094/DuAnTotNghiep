@@ -25,4 +25,7 @@ public interface OrderService {
     Order orderRefuse(Integer id);
 
     Integer getSumOrderStatusOne();
+
+    List<Notifications> getNotifications();
+
 }

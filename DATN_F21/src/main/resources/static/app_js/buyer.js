@@ -1,6 +1,11 @@
 var app = angular.module("buyer-app", []);
 app.controller("buyer-ctrl", function ($scope, $http) {
-  $scope.datacart = [];
+  $scope.datacart = [];s
+
+  $scope.orderRefuse = function(id){
+    alert("hello")
+
+  }
 
   $scope.cart = {
     items: [],
@@ -141,6 +146,18 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         .reduce((total, quantity) => (total += quantity), 0);
     }
   };
+
+  $scope.notification = [];
+
+  $scope.getNotification = function(){
+    $http.get(`/rest/order/notification`).then(resp => {
+      this.notification = resp.data;
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+  $scope.getNotification();
 
   $scope.cart.loadCart();
 
