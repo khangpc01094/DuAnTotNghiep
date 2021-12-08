@@ -4,7 +4,7 @@
 <body>
 <main>
 	<div class="xacnhan" style="text-align: center;">
-	<label class="title3" style="color: orange; margin-top: 20px; font-size: 30px">Đơn Hàng Đã Hủy</label>
+	<label class="title3" style="color: orange; margin-top: 20px; font-size: 30px">Đơn Hàng Đã Xác Nhận</label>
             
             <div class="bang2">
                 <table class="table tablea">
@@ -20,7 +20,7 @@
                     </thead>
                     <tbody>
 
-                        <tr ng-repeat="detail in Order.OrderFour">
+                        <tr ng-repeat="detail in Order.OrderTwo">
                             <td scope="row">{{detail.id}}</td>
                             <td>{{detail.bookingdate}}</td>
                             <td>{{detail.user.fullname}}</td>

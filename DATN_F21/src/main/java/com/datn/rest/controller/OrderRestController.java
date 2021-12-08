@@ -2,6 +2,7 @@ package com.datn.rest.controller;
 
 import java.util.List;
 
+import com.datn.entity.Notifications;
 import com.datn.entity.Order;
 import com.datn.model.entity.DateModel;
 import com.datn.model.entity.StatisticalModel;
@@ -23,25 +24,65 @@ public class OrderRestController {
 
 
     @Autowired 
-	OrderService svOrderService;
+	OrderService svOrder;
 	
 	@GetMapping("/statistical")
 	public List<StatisticalModel> getAllStatistical(){
-		return svOrderService.getStatistical();
+		return svOrder.getStatistical();
 	}
 	
 	@PostMapping("/statistical/findbydate")
     public List<StatisticalModel> getAllStatisticalByDate(@RequestBody DateModel dateModel){
-    	return svOrderService.getAllStatisticalByDate(dateModel.getStartDate(),dateModel.getEndDate());
+    	return svOrder.getAllStatisticalByDate(dateModel.getStartDate(),dateModel.getEndDate());
     }
 
 	@GetMapping("/{id}")
     public List<Order> getAll(@PathVariable("id") String id) {
-        return svOrderService.getAllOrder(id);
+        return svOrder.getAllOrder(id);
     }
 
     @GetMapping("all")
     public List<Order> getAllOrder() {
-        return svOrderService.getAll();
+        return svOrder.getAll();
+    }
+    
+    @GetMapping("/One")
+    public List<Order> getOrderStatusOne() {
+        return svOrder.getOrderStatusOne();
+    }
+
+    @GetMapping("/Two")
+     public List<Order> getOrderStatusTwo() {
+        return svOrder.getOrderStatusTwo();
+    }
+
+    @GetMapping("/Father")
+    public List<Order> getOrderStatusFather() {
+        return svOrder.getOrderStatusFather();
+    }
+
+    @GetMapping("/Four")
+    public List<Order> getOrderStatusFour() {
+        return svOrder.getOrderStatusFour();
+    }
+
+    @GetMapping("orderConfirm/{id}")
+    public Order orderConfirm(@PathVariable("id") Integer id){
+        return svOrder.orderConfirm(id);
+    }
+
+    @GetMapping("orderRefuse/{id}")
+    public Order orderRefuse(@PathVariable("id") Integer id){
+        return svOrder.orderRefuse(id);
+    }
+
+    @GetMapping("sumStatus")
+    public Integer orderSumStatus(){
+        return svOrder.getSumOrderStatusOne();
+    }
+
+    @GetMapping("notification")
+    public List<Notifications> getNotification(){
+        return svOrder.getNotifications();
     }
 }

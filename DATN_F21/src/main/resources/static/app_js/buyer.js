@@ -118,6 +118,27 @@ app.controller("buyer-ctrl", function ($scope, $http) {
       });
   };
 
+   //dang ky nguoiban
+   $scope.regisSeller = function () {
+    var item = angular.copy($scope.form);
+    $http.post(`/seller/regis`, item).then(resp => {
+        $scope.reset();
+        return Swal.fire({
+            width: '400px',
+            title: 'Đăng ký thành công!',
+            icon: 'success',
+        })
+    }).catch(error => {
+        console.log(error);
+        return Swal.fire({
+            width: '400px',
+            title: 'Lỗi đăng ký!',
+            icon: 'error',
+        })
+        
+    })
+}
+
   $scope.datacart = [];
 
   $scope.cart = {
@@ -272,6 +293,19 @@ app.controller("buyer-ctrl", function ($scope, $http) {
     // 	  .reduce((total, quantity) => (total += quantity), 0);
     //   }
   };
+
+  $scope.notification = [];
+
+  $scope.getNotification = function(){
+    $http.get(`/rest/order/notification`).then(resp => {
+      this.notification = resp.data;
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+  $scope.getNotification();
+
 
   $scope.cart.loadCart();
 

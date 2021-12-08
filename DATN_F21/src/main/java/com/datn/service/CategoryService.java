@@ -14,5 +14,5 @@ public interface CategoryService {
 
 	ResponseEntity<Category> update(Category category);
 	
-	
+	List<Category> findAll();
 }

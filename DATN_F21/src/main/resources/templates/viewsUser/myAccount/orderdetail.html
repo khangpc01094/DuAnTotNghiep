@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
+<body>
+	<main>	
+	<div class="tab-pane fade active show">
+		    <div class="ltn__myaccount-tab-content-inner">
+		        <div class="">
+		            <table class="table">
+		                <thead>
+		                    <tr>
+		                        <th>Ảnh</th>
+		                        <th>Tên sản phẩm</th>
+		                        <th>giá</th>
+		                        <th>Số lượng</th>
+		                        <th>Tổng cộng</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr th:each="item : ${orderdetail}">
+								<td>[[${item.product.images}]]</td>
+		                        <td>[[${item.product.name}]]</td>
+		                        <td>[[${item.price}]]</td>
+		                        <td>[[${item.quantity}]]</td>
+		                        <td>[[${item.totalamount}]]</td>
+		                    </tr>
+		                    
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,75 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/layoutSeller/index :: dynamic(~{:: main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutSeller/index :: dynamic(~{:: main})}">
+
 <body>
-<main>
-	<div class="loai">
-        <div class="title2">
-            <h3 style="text-align: center; color: orange; margin-top: 20px">Thống Kê Doanh Thu Theo Đơn Hàng</h3>
-        </div>
-        <div class="search3">
-            <div class="row">
-                <div class="col-sm-6">
+    <main>
+        <div class="loai">
+            <div class="title2">
+                <h3 style="text-align: center; color: orange; margin-top: 20px">Thống Kê Doanh Thu Theo Đơn Hàng</h3>
+            </div>
+            <form action="/Seller/statisInvoice" method="get"> 
+                <div class="search3">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label ten">Từ</label>
-                            <input class="form-control">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="form-label ten">Từ</label>
+                                    <input class="form-control" type="date" name="date1">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="form-label ten">Đến</label>
+                                    <input class="form-control" type="date" name="date2">
+                                </div>
+                                <div class="col-sm-4 btn_tim">
+                                    <button class="btn btn-outline-success" style="margin-top: 32px" type="submit">Search</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <label class="form-label ten">Đến</label>
-                            <input class="form-control" >
-                        </div>
-                        <div class="col-sm-4 btn_tim">
-                            <button class="btn btn-outline-success" style="margin-top: 30px">Search</button>
+                        <div class="col-sm-6">
+                            <label class="form-label">Tổng : vnd</label>
+                            <div class="form-control"
+                                th:text="${#numbers.formatInteger(sum,0,'POINT')}"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                <div class="row">
-                <div class="col-sm-6"></div>
-                    <div class="tong col-sm-6">
-                        <label class="form-label ten">Tổng tiền</label>
-                        <input class="form-control">
-                    </div>
-                    
-                    </div>
-                </div>
+            </form>
+            <hr>
+            <div class="bang3">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Mã Hóa Đơn</th>
+                            <th scope="col">Tổng đơn</th>
+                            <th scope="col">Chiết Khấu</th>
+                            <th scope="col">Thành Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody th:each="n:${ngay2}">
+                        <tr>
+                            <td>[[${n.orderid}]]</td>
+                            <!-- <td>[[${n.totalorder}]]đ</td> -->
+                            <td>[[${#numbers.formatInteger(n.totalorder,2 ,'POINT')}]]đ</td>
+                            <td>5%</td>
+                            <!-- <td>[[${(n.totalorder) - (n.totalorder * 5 / 100)}]]đ</td> -->
+                            <td>[[${#numbers.formatInteger((n.totalorder) - (n.totalorder * 5 / 100),2 ,'POINT')}]]đ</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <hr>
-        <div class="bang3">
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Mã Hóa Đơn</th>
-                        <th scope="col">Tổng đơn</th>
-                        <th scope="col">Chiết Khấu</th>
-                        <th scope="col">Thành Tiền</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1020</td>
-                        <td>50.000</td>
-                        <td>5%</td>
-                        <td>47.500</td>
-                    </tr>
-                    <tr>
-                        <td>1220</td>
-                        <td>45.000</td>
-                        <td>5%</td>
-                        <td>1.800</td>
-                    </tr>
-                    <tr>
-                        <td>1320</td>
-                        <td>45.000</td>
-                        <td>5%</td>
-                        <td>1.800</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</main>
+    </main>
 </body>
+
 </html>

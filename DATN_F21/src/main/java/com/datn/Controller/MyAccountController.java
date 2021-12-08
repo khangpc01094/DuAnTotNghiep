@@ -101,4 +101,22 @@ public class MyAccountController {
 	public String getTopUp() {
 		return "/viewsUser/myAccount/topup";
 	}
+
+	@GetMapping("/order/orderRefuse/{id}")
+	public String getorderRefuse(@PathVariable("id") Integer id, Model model){
+			svOrder.orderRefuse(id);
+			String userid = "user1";
+		List<Order> list = svOrder.getAllOrder(userid);
+		model.addAttribute("orderlist", list);
+		return "/viewsUser/myAccount/order";
+	}
+
+	@GetMapping("/order/orderConfirm/{id}")
+	public String getorderConfirm(@PathVariable("id") Integer id, Model model){
+			svOrder.orderConfirm(id);
+			String userid = "user1";
+		List<Order> list = svOrder.getAllOrder(userid);
+		model.addAttribute("orderlist", list);
+		return "/viewsUser/myAccount/order";
+	}
 }

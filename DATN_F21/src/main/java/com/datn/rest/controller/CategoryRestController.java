@@ -38,4 +38,8 @@ public class CategoryRestController {
 		return svCategoryService.update(category);
 	}
 
+	@GetMapping
+	public List<Category> getAll() {
+		return svCategoryService.findAll();
+	}
 }

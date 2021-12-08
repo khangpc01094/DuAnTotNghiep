@@ -22,7 +22,7 @@ public class UploadRestController {
     UploadService svUploadService;
     
     @PostMapping("/rest/upload/{folder}")
-    public JsonNode upload(@PathVariable("file") MultipartFile file, 
+    public JsonNode upload(@PathVariable("files") MultipartFile file, 
             @PathVariable("folder") String folder) {
         File savedFile = svUploadService.save(file, folder);
         

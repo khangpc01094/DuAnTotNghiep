@@ -53,5 +53,8 @@ public class Order implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
 	public List<OrderDetail> orderDetails;
-
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+	public List<Notifications> notification;
 }

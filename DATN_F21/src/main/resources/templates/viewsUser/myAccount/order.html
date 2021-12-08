@@ -5,7 +5,7 @@
 	<main>	
 	<div class="tab-pane fade active show">
 		    <div class="ltn__myaccount-tab-content-inner">
-		        <div class="table-responsive">
+		        <div class="">
 		            <table class="table">
 		                <thead>
 		                    <tr>
@@ -17,27 +17,34 @@
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                    <tr>
-		                        <td>1</td>
-		                        <td>Jun 22, 2019</td>
-		                        <td>Đã giao</td>
-		                        <td>$3000</td>
-		                        <td><a href="cart.html">Xem</a></td>
+		                    <tr th:each="item : ${orderlist}">
+		                        <td>[[${item.store.name}]]</td>
+		                        <td>[[${item.bookingdate}]]</td>
+		                        <td>
+									<th:block th:if="${item.status} == 1">
+										<p>Chờ xác nhận</p>
+									</th:block>
+									<th:block th:if="${item.status} == 2">
+										<p>Đã xác nhận</p>
+									</th:block>
+									<th:block th:if="${item.status} == 3">
+										<p>Đã giao</p>
+									</th:block>
+									<th:block th:if="${item.status} == 4">
+										<p>Đã hủy</p>
+									</th:block>
+								</td>
+		                        <td>[[${item.totalamount}]]</td>
+		                        <td><a th:href="@{|/account/editorder/${item.id}|}">Xem</a>
+									<th:block th:if="${item.status} == 1">
+										<a th:href="@{|/order/orderRefuse/${item.id}|}">Hủy</a>
+									</th:block>
+									<th:block th:if="${item.status} == 2">
+										<a th:href="@{|/order/orderConfirm/${item.id}|}">Đã nhận hàng</a>
+									</th:block>
+								</td>
 		                    </tr>
-		                    <tr>
-		                        <td>2</td>
-		                        <td>Nov 22, 2019</td>
-		                        <td>Đã giao</td>
-		                        <td>$200</td>
-		                        <td><a href="cart.html">Xem</a></td>
-		                    </tr>
-		                    <tr>
-		                        <td>3</td>
-		                        <td>Jan 12, 2020</td>
-		                        <td>Đang chờ</td>
-		                        <td>$990</td>
-		                        <td><a href="cart.html">Xem</a></td>
-		                    </tr>
+		                    
 		                </tbody>
 		            </table>
 		        </div>

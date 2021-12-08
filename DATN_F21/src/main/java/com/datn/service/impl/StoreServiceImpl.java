@@ -6,13 +6,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import com.datn.DAO.StoreDAO;
+import com.datn.DAO.UsersDAO;
+import com.datn.entity.Product;
 import com.datn.entity.Store;
 import com.datn.service.StoreService;
 
 @Service
 public class StoreServiceImpl implements StoreService{
 
-    @Autowired StoreDAO daoStoreDAO;
+    @Autowired 
+    StoreDAO daoStoreDAO;
+    
+    @Autowired
+    UsersDAO daoUser;
 
 	@Override
 	public List<Store> getAllStore() {
@@ -29,4 +35,31 @@ public class StoreServiceImpl implements StoreService{
         return daoStoreDAO.findById(id).get();
     }
 
+    @Override
+    public Store create(Store store) {
+        String u = "4mvpBClLTF";
+        store.setUser(daoUser.findById(u).get());
+        store.setStatus(true);
+       return daoStoreDAO.save(store);
+    }
+
+    @Override
+    public Store getStoreByUserid(String id) {
+        return daoStoreDAO.getStoreByUser(id);
+    }
+  
+	@Override
+	public List<Store> findAllStores() {
+		return daoStoreDAO.findAll();
+	}
+
+	@Override
+	public Store findStoreByUserId(String userid) {
+		return daoStoreDAO.findStoreByUserId(userid);
+	}
+
+	@Override
+	public List<Product> findByAllProduct(Integer sid) {
+		return daoStoreDAO.findByAllProduct(sid);
+	}
 }

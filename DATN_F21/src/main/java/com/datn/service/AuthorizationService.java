@@ -20,5 +20,7 @@ public interface AuthorizationService {
     public Authorization Create(Authorization authorization);
     
     List<Authorization> getAll();
+    
+    public Authorization getRole(String id);
 	
 }

@@ -40,4 +40,10 @@ public class CategoryServiceImpl implements CategoryService{
 		return ResponseEntity.ok(category);
 	}
 
+
+	@Override
+	public List<Category> findAll() {
+		return daoCategoryDAO.findAll();
+	}
+
 }

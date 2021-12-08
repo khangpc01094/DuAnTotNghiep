@@ -56,5 +56,10 @@ public class AuthorizationServiceImpl implements AuthorizationService{
     public List<Authorization> getAll() {
         return daoAutho.findAll();
     }
+    
+    @Override
+    public Authorization getRole(String id) {
+        return daoAutho.getRole(id);
+    }
 
 }
