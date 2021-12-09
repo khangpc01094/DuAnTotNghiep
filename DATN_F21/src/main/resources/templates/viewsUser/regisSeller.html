@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
 <body>
-	<main>
+	<main ng-controller="buyer-ctrl">
 		<!-- REGISTER AREA START -->
     <div class="ltn__login-area pb-65 mt-40">
         <div class="container">
@@ -14,12 +14,12 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="account-login-inner">
-                        <h1 class="section-title text-center">Đăng Ký <br>Cửa hàng Của Bạn</h1> 
+                        <h1 class="section-title text-center">Đăng ký <br>Cửa Hàng Của Bạn</h1> 
                         <form class="ltn__form-box contact-form-box">                           
-                            <input type="text" ng-model="form.name" placeholder="Tên cửa hàng*">
-                            <input type="text" ng-model="form.description" placeholder="Mô tả*">
+                            <input type="text" ng-model="form.name" placeholder="TÃªn cá»­a hÃ ng*">
+                            <input type="text" ng-model="form.description" placeholder="MÃ´ táº£*">
                             <div class="btn-wrapper">
-                                <button class="theme-btn-1 btn reverse-color" ng-click="regisSeller()">TẠO CỬA HÀNG</button>
+                                <button class="theme-btn-1 btn reverse-color" ng-click="regisSeller()">Táº O Cá»¬A HÃ€NG</button>
                             </div>
                         </form>
                     </div>

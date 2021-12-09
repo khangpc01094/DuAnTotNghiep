@@ -4,7 +4,7 @@
   th:replace="~{/layoutUser/index :: dynamic(~{:: main})}"
 >
   <body>
-    <main>
+    <main ng-controller = "buyer-ctrl">
       <!-- REGISTER AREA START -->
       <div class="ltn__login-area pb-65 mt-40">
         <div class="container">
@@ -122,7 +122,7 @@
                 </form>
 
                 <div class="by-agree text-center">
-                  <a href="/login">ĐÃ CÓ TÀI KHOẢN</a>
+                  <a href="/security/login/form">ĐÃ CÓ TÀI KHOẢN</a>
                 </div>
               </div>
             </div>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
 
-<body>
-    <main th:object="${item}">
+<body >
+    <main  ng-controller="buyer-ctrl" th:object="${item}">
         <!-- BREADCRUMB AREA START -->
         <div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image" data-bg="/img/bg/9.jpg">
             <div class="container">
@@ -59,12 +59,7 @@
                                         <div class="ltn__product-details-menu-2">
                                             <ul>
                                                 <li>
-                                                    <div class="cart-plus-minus">
-                                                        <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <a href="/index/cart" class="theme-btn-1 btn btn-effect-1" title="Add to Cart">
+                                                    <a th:attr="ng-click=@{|cart.add(${id})|}" class="theme-btn-1 btn btn-effect-1" title="Add to Cart">
                                                         <i class="fas fa-shopping-cart"></i> <span>ADD TO
 															CART</span>
                                                     </a>
@@ -153,7 +148,6 @@
                                 </h2>
                                 <div class="product-price">
                                 <span th:text = "${#numbers.formatDecimal(sp.price, 0, 'COMMA', 0, 'POINT')}"></span> VNĐ
-                                   <!--  <span>[(${sp.price})]</span> -->
                                 </div>
                             </div>
                         </div>

@@ -2,10 +2,8 @@ package com.datn.rest.controller;
 
 import java.util.List;
 
-import com.datn.entity.Product;
 import com.datn.entity.ShoppingCart;
 import com.datn.entity.Total;
-import com.datn.entity.Users;
 import com.datn.service.ProductService;
 import com.datn.service.ShoppingCartService;
 import com.datn.service.UserService;
@@ -39,20 +37,11 @@ public class ShoppingCartRestController {
 
     @GetMapping("createCart/{idp}")
     public ShoppingCart createCart(@PathVariable("idp") Integer idp) {
-        ShoppingCart shoppingCart = new ShoppingCart();
-        // Users u = svUser.findByid(req.getRemoteUser());
-        Users u = svUser.findById("user1");
-        Product a = svPro.findById(idp);
-        shoppingCart.setUser(u);
-        shoppingCart.setProduct(a);
-        shoppingCart.setQuantity(1);
-        shoppingCart.setStoreid(a.getStore().id);
-        return svCartService.create(shoppingCart);
+        return svCartService.create(idp);
     }
 
     @GetMapping("putcart/{id}")
     public ShoppingCart updateCart(@PathVariable("id") Integer id) {
-        // Users u = svUser.findByid(req.getRemoteUser());
         ShoppingCart shoppingCart = svCartService.getCartPr("user1", id);
         shoppingCart.setQuantity(shoppingCart.quantity += 1);
         return svCartService.update(shoppingCart);
@@ -68,9 +57,9 @@ public class ShoppingCartRestController {
         return svCartService.findByUser(userid);
     }
 
-    @GetMapping("/cart/{id}")
-    public List<ShoppingCart> getStore(@PathVariable("id") String id) {
-        return svCartService.findByStore(id);
+    @GetMapping("/cart")
+    public List<ShoppingCart> getStore() {
+        return svCartService.findByStore();
     }
 
     @GetMapping("/addquantity/{id}")
@@ -103,34 +92,18 @@ public class ShoppingCartRestController {
         return svCartService.update(a);
     }
 
-    @GetMapping("/cartTrue/{id}")
-    public List<ShoppingCart> getCartTrue(@PathVariable("id") String id) {
-        return svCartService.getCartTrue(id);
+    @GetMapping("/cartTrue")
+    public List<ShoppingCart> getCartTrue() {
+        return svCartService.getCartTrue();
     }
 
     @GetMapping("cart/total")
     public List<Total> getAllTotal() {
-        List<Total> list = svCartService.getAllTotal("user1");
-
-        for (Total s : list) {
-            if (s.getReduce() > 300000) {
-                s.setReduce(10.0);
-                s.setPay((s.pay - (s.total * 10 / 100)) + 15000);
-            } else if (s.getReduce() > 99000) {
-                s.setReduce(5.0);
-                s.setPay((s.pay - (s.total * 5 / 100)) + 15000);
-            } else {
-                s.setReduce(0.0);
-                s.setPay(s.pay + 15000);
-            }
-        }
-
-        return list;
+        return svCartService.getAllTotal();
     }
 
     @GetMapping("/cart/sumquatity")
     public Integer getquantity(){
-        String userid = "user1";
-        return svCartService.getSumQuantity(userid);
+        return svCartService.getSumQuantity();
     }
 }

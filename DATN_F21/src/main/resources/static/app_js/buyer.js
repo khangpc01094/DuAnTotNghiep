@@ -20,25 +20,23 @@ app.controller("buyer-ctrl", function ($scope, $http) {
   //dang ky
   $scope.regis = function () {
     var item = angular.copy($scope.form);
-    $http
-      .post(`/rest/buyer/regis`, item)
-      .then((resp) => {
+    $http.post(`/rest/user/buyer/regis`, item).then(resp => {
         $scope.reset();
         return Swal.fire({
-          width: "400px",
-          title: "Đăng ký thành công!",
-          icon: "success",
-        });
-      })
-      .catch((error) => {
+            width: '400px',
+            title: 'Đăng ký thành công!',
+            icon: 'success',
+        })
+    }).catch(error => {
         console.log(error);
         return Swal.fire({
-          width: "400px",
-          title: "Lỗi đăng ký!",
-          icon: "error",
+            width: '400px',
+            title: 'Lỗi đăng ký!',
+            icon: 'error',
         });
-      });
-  };
+        
+    });
+};
 
   $scope.deleteaddress = function (id) {
     Swal.fire({
@@ -121,7 +119,7 @@ app.controller("buyer-ctrl", function ($scope, $http) {
    //dang ky nguoiban
    $scope.regisSeller = function () {
     var item = angular.copy($scope.form);
-    $http.post(`/seller/regis`, item).then(resp => {
+    $http.post(`/rest/store/seller/regis`, item).then(resp => {
         $scope.reset();
         return Swal.fire({
             width: '400px',
@@ -146,7 +144,7 @@ app.controller("buyer-ctrl", function ($scope, $http) {
 
     loadCart() {
       $http
-        .get(`/rest/cart/user1`)
+        .get(`/rest/cart`)
         .then((resp) => {
           this.items = resp.data;
         })
@@ -268,7 +266,7 @@ app.controller("buyer-ctrl", function ($scope, $http) {
     carts: [],
 
     getCart() {
-      $http.get(`/rest/cartTrue/user1`).then((resp) => {
+      $http.get(`/rest/cartTrue`).then((resp) => {
         this.carts = resp.data;
       });
     },
@@ -287,11 +285,11 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         .reduce((total, pay) => (total += pay), 0);
     },
 
-    //   get count() {
-    // 	return this.items
-    // 	  .map((item) => item.quantity)
-    // 	  .reduce((total, quantity) => (total += quantity), 0);
-    //   }
+      get count() {
+    	return this.items
+    	  .map((item) => item.quantity)
+    	  .reduce((total, quantity) => (total += quantity), 0);
+      }
   };
 
   $scope.notification = [];

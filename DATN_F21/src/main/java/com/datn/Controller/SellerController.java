@@ -126,14 +126,13 @@ public class SellerController {
 	
 	@GetMapping("/regisSeller")
 	public String getformRegis() {
-		String user = "4mvpBClLTF";
+		String user = "57D07hzVbm";
 		Authorization result = svAutho.getRole(user);
 		if(result != null) {
-			System.out.println("alo");
 			return "/viewsSeller/allProduct";
 		} 
 		else {
-			return "/viewsSeller/regisSeller";
+			return "/viewsUser/regisSeller";
 		}
 		
 	}

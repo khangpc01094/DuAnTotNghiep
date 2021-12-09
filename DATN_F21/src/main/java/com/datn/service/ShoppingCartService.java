@@ -11,9 +11,9 @@ public interface ShoppingCartService {
 
     List<ShoppingCart> findByUser(String userid);
 
-    List<ShoppingCart> findByStore(String id);
+    List<ShoppingCart> findByStore();
 
-    ShoppingCart create(ShoppingCart shoppingCart);
+    ShoppingCart create(Integer id);
 
     ShoppingCart update(ShoppingCart shoppingCart);
 
@@ -23,13 +23,13 @@ public interface ShoppingCartService {
 
     ShoppingCart getById(Integer id);
 
-    List<ShoppingCart> getCartTrue(String id);
+    List<ShoppingCart> getCartTrue();
     
-    List<Total> getAllTotal(String id);
+    List<Total> getAllTotal();
 
     void deleteByUser(String id);
 
     List<ShoppingCart> getBySandU(String idu, Integer ids);
 
-    Integer getSumQuantity(String id);
+    Integer getSumQuantity();
 }

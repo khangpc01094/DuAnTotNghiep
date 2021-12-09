@@ -3,6 +3,8 @@ package com.datn.Controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.datn.entity.Address;
 import com.datn.entity.Order;
 import com.datn.entity.OrderDetail;
@@ -23,9 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyAccountController {
-	@Autowired 
+	@Autowired
 	UserService svUserService;
-	
+
 	@Autowired
 	AddressService svAddress;
 
@@ -34,7 +36,10 @@ public class MyAccountController {
 
 	@Autowired
 	OrderDetailService svDetail;
-	
+
+	@Autowired
+	HttpServletRequest req;
+
 	@GetMapping("/account/information")
 	public String getInformation(Model model) {
 		return "/viewsUser/myAccount/information";
@@ -44,11 +49,11 @@ public class MyAccountController {
 	public String getAddress() {
 		return "/viewsUser/myAccount/address";
 	}
-	
-//	@GetMapping("/account/add_address")
-//	public String getAddAddress() {
-//		return "/viewsUser/myAccount/add_address";
-//	}
+
+	// @GetMapping("/account/add_address")
+	// public String getAddAddress() {
+	// return "/viewsUser/myAccount/add_address";
+	// }
 
 	@GetMapping("/account/addaddress")
 	public String Address() {
@@ -60,10 +65,9 @@ public class MyAccountController {
 		return "/viewsUser/myAccount/transaction";
 	}
 
-	
 	@GetMapping("/account/order")
 	public String getOrder(Model model) {
-		String userid = "user1";
+		String userid = req.getRemoteUser();
 		List<Order> list = svOrder.getAllOrder(userid);
 		model.addAttribute("orderlist", list);
 		return "/viewsUser/myAccount/order";
@@ -78,43 +82,48 @@ public class MyAccountController {
 
 	@ModelAttribute("user")
 	public String loaisp(Model m) {
-		Users user = svUserService.getByid("user2");
-		m.addAttribute("user", user);
-		m.addAttribute("address2", new Address());
-		return "";
+		String userlogin = req.getRemoteUser();
+		if (userlogin != null) {
+			Users user = svUserService.getByid(userlogin);
+			m.addAttribute("user", user);
+			m.addAttribute("address2", new Address());
+			return "";
+		} else {
+			return "";
+		}
 	}
-	
-	
-	//Đổi mật khẩu
+
+	// Đổi mật khẩu
 	@GetMapping("/account/change_password")
 	public String getChangePassword() {
 		return "/viewsUser/myAccount/change_password";
 	}
+
 	@PostMapping("/account/change_password")
-	public String postChangePassword(Model model,@RequestParam("pw_present") Optional<String> pwPresent,
-			@RequestParam("pw_new") Optional<String> pwNew,@RequestParam("pw_confirm") Optional<String> pwConfirm) {
-		model.addAttribute("messenger",svUserService.changePassword(pwPresent.get(),pwNew.get(),pwConfirm.get()));	
+	public String postChangePassword(Model model, @RequestParam("pw_present") Optional<String> pwPresent,
+			@RequestParam("pw_new") Optional<String> pwNew, @RequestParam("pw_confirm") Optional<String> pwConfirm) {
+		model.addAttribute("messenger", svUserService.changePassword(pwPresent.get(), pwNew.get(), pwConfirm.get()));
 		return "/viewsUser/myAccount/change_password";
 	}
-	
+
 	@GetMapping("/account/wallet/topup")
 	public String getTopUp() {
 		return "/viewsUser/myAccount/topup";
 	}
 
 	@GetMapping("/order/orderRefuse/{id}")
-	public String getorderRefuse(@PathVariable("id") Integer id, Model model){
-			svOrder.orderRefuse(id);
-			String userid = "user1";
+	public String getorderRefuse(@PathVariable("id") Integer id, Model model) {
+		svOrder.orderRefuse(id);
+		String userid = "user1";
 		List<Order> list = svOrder.getAllOrder(userid);
 		model.addAttribute("orderlist", list);
 		return "/viewsUser/myAccount/order";
 	}
 
 	@GetMapping("/order/orderConfirm/{id}")
-	public String getorderConfirm(@PathVariable("id") Integer id, Model model){
-			svOrder.orderConfirm(id);
-			String userid = "user1";
+	public String getorderConfirm(@PathVariable("id") Integer id, Model model) {
+		svOrder.orderConfirm(id);
+		String userid = "user1";
 		List<Order> list = svOrder.getAllOrder(userid);
 		model.addAttribute("orderlist", list);
 		return "/viewsUser/myAccount/order";

@@ -5,9 +5,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.datn.DAO.ProductDAO;
 import com.datn.DAO.ShoppingCartDAO;
+import com.datn.DAO.UsersDAO;
+import com.datn.entity.Product;
 import com.datn.entity.ShoppingCart;
 import com.datn.entity.Total;
+import com.datn.entity.Users;
 import com.datn.service.ShoppingCartService;
 
 @Service
@@ -15,10 +21,31 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 
     @Autowired
     ShoppingCartDAO daoCart;
+
+    @Autowired
+    UsersDAO daoUser;
+
+    @Autowired
+    ProductDAO daoProduct;
+
+    @Autowired
+    HttpServletRequest req;
     
     @Override
-    public ShoppingCart create(ShoppingCart shoppingCart) {
+    public ShoppingCart create(Integer id) {
+        String usera = req.getRemoteUser();
+        if(usera != null){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Users user = daoUser.findById(req.getRemoteUser()).get();
+        Product a = daoProduct.findById(id).get();
+        shoppingCart.setUser(user);
+        shoppingCart.setProduct(a);
+        shoppingCart.setQuantity(1);
+        shoppingCart.setStoreid(a.getStore().id);
         return daoCart.save(shoppingCart);
+        } else{
+             return null;
+        }
     }
 
     @Override
@@ -32,8 +59,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     }
 
     @Override
-    public List<ShoppingCart> findByStore(String id) {
-        return daoCart.findByStore(id);
+    public List<ShoppingCart> findByStore() {
+        String user = req.getRemoteUser();
+        return daoCart.findByStore(user);
     }
 
     @Override
@@ -57,13 +85,31 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     }
 
     @Override
-    public List<ShoppingCart> getCartTrue(String id) {
-        return daoCart.getCartTrue(id);
+    public List<ShoppingCart> getCartTrue() {
+        return daoCart.getCartTrue(req.getRemoteUser());
     }
 
 	@Override
-	public List<Total> getAllTotal(String id) {
-		return daoCart.getAllPrice(id);
+	public List<Total> getAllTotal() {
+        String user = req.getRemoteUser();
+        if(user != null){
+        List<Total> list = daoCart.getAllPrice(user);
+        for (Total s : list) {
+            if (s.getReduce() > 300000) {
+                s.setReduce(10.0);
+                s.setPay((s.pay - (s.total * 10 / 100)) + 15000);
+            } else if (s.getReduce() > 99000) {
+                s.setReduce(5.0);
+                s.setPay((s.pay - (s.total * 5 / 100)) + 15000);
+            } else {
+                s.setReduce(0.0);
+                s.setPay(s.pay + 15000);
+            }
+        }
+		return list;
+    } else {
+        return null;
+    }
 	}
 
     @Override
@@ -77,8 +123,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     }
 
     @Override
-    public Integer getSumQuantity(String id) {
-        return daoCart.getSumQuantity(id);
+    public Integer getSumQuantity() {
+        String user = req.getRemoteUser();
+        return daoCart.getSumQuantity(user);
     }
 
 }

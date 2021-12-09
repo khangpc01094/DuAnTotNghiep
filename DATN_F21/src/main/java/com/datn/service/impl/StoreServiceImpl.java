@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.datn.DAO.StoreDAO;
 import com.datn.DAO.UsersDAO;
 import com.datn.entity.Product;
@@ -19,6 +21,9 @@ public class StoreServiceImpl implements StoreService{
     
     @Autowired
     UsersDAO daoUser;
+
+	@Autowired
+	HttpServletRequest req;
 
 	@Override
 	public List<Store> getAllStore() {
@@ -37,8 +42,8 @@ public class StoreServiceImpl implements StoreService{
 
     @Override
     public Store create(Store store) {
-        String u = "4mvpBClLTF";
-        store.setUser(daoUser.findById(u).get());
+        String user =  "57D07hzVbm"; //req.getRemoteUser();
+        store.setUser(daoUser.findById(user).get());
         store.setStatus(true);
        return daoStoreDAO.save(store);
     }

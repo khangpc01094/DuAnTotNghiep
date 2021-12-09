@@ -3,6 +3,8 @@ package com.datn.Controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,7 @@ import com.datn.service.ProductService;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	ProductDAO daoProduct;
 
@@ -42,6 +44,9 @@ public class HomeController {
 	@Autowired
 	ProductImageService svProductImageService;
 
+	@Autowired
+	HttpServletRequest req;
+
 	@RequestMapping("/index")
 	public String loadProduct(Model model, @RequestParam("cid") Optional<Integer> cid) {
 		if (cid.isPresent()) {
@@ -57,7 +62,7 @@ public class HomeController {
 	@GetMapping("/index/product-detail/{id}")
 	public String getProductDetail(Model model, @PathVariable("id") Integer id,
 			@RequestParam("cid") Optional<Integer> cid) {
-		
+
 		Product item = svProduct.findById(id);
 		model.addAttribute("item", item);
 
@@ -69,7 +74,7 @@ public class HomeController {
 
 		return "/viewsUser/product-detail";
 	}
-	
+
 	@GetMapping("/index/cart")
 	public String getCart() {
 		return "/viewsUser/cart";
@@ -84,27 +89,27 @@ public class HomeController {
 	public String getRegister() {
 		return "/viewsUser/register";
 	}
-	
+
 	@GetMapping("/my_account")
 	public String getMyAccount() {
 		return "/viewsUser/my_account";
 	}
-	
+
 	@GetMapping("/contact")
 	public String getContact() {
 		return "/viewsUser/contact";
 	}
-	
+
 	@GetMapping("/fogot_password")
 	public String getFogotPassword() {
 		return "/viewsUser/fogot_password";
 	}
-	
+
 	@GetMapping("/search")
-	public String search (Model m, @RequestParam("name") String name) {
-		List<Product> list = svProduct.findByName("%"+name+"%");
+	public String search(Model m, @RequestParam("name") String name) {
+		List<Product> list = svProduct.findByName("%" + name + "%");
 		m.addAttribute("sp", list);
-		return "/viewsUser/index"; 
+		return "/viewsUser/index";
 	}
 
 	@GetMapping("/buyer/cart")
@@ -113,16 +118,21 @@ public class HomeController {
 	}
 
 	@ModelAttribute
-	public List<Address> getById(Model model){
-		String id = "user2";
-		List<Address> list = svaddress.findByUserid(id);
-		model.addAttribute("addressthy", list);
-		model.addAttribute("addre", new Address());
-		return list;
+	public List<Address> getById(Model model) {
+		String id = req.getRemoteUser();
+		if (id != null) {
+			List<Address> list = svaddress.findByUserid(id);
+			model.addAttribute("addressthy", list);
+			model.addAttribute("addre", new Address());
+			return list;
+		} else {
+			model.addAttribute("addre", new Address());
+			return null;
+		}
 	}
-	
+
 	@GetMapping("/order/save")
-	public String getOnes(@RequestParam("id") Integer address){
+	public String getOnes(@RequestParam("id") Integer address) {
 		svOrder.Save(address);
 		return "/viewsUser/cart";
 	}
