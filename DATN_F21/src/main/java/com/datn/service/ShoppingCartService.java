@@ -32,4 +32,6 @@ public interface ShoppingCartService {
     List<ShoppingCart> getBySandU(String idu, Integer ids);
 
     Integer getSumQuantity();
+
+    Double getTotaldd();
 }

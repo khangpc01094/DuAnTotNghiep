@@ -57,21 +57,23 @@
 										</div>
 									</td>
 									<td class="cart-product-image">
-										<a href="index/product-detail"><img th:src="@{|/img/product/{{detail.product.images}}|}" alt="{{detail.product.images}}"></a>
+										<a href="index/product-detail"><img th:src="@{|/img/product/{{detail.product.images}}|}" class="rounded-circle" alt="{{detail.product.images}}"></a>
 									</td>
 									<td class="cart-product-info">
 										<h4><a href="index/product-detail">{{detail.product.name}}</a></h4>
 									</td>
 									<td class="cart-product-price">{{detail.product.price}} đ</td>
 									<td class="cart-product-quantity">
-										<div class="input-group mb-3">
-											<input type="submit" ng-click="cart.apartquantity(detail.id)" value="-" style="width: 10px;">
-											<input type="submit"disabled value="{{detail.quantity}}"style="width: 10px;">
-											<input type="submit" ng-click="cart.addquantity(detail.id)" value="+" style="width : 10px;">
+										<div class="input-group mb-3" style="margin-top: 30px;">
+											<input type="submit" ng-click="cart.apartquantity(detail.id)" value="-" style="width: 10px; border-radius: 3px; height: 40px;">
+											<input type="submit"disabled value="{{detail.quantity}}" style="width: 10px; border-radius: 3px; height: 40px">
+											<input type="submit" ng-click="cart.addquantity(detail.id)" value="+" style="width : 10px; border-radius: 3px; height: 40px;">
 										  </div>
 									</td>
 									<td class="cart-product-subtotal">{{detail.product.price * detail.quantity}} đ</td>
-									<td class="cart-product-remove" >xóa</td>
+									<td class="cart-product-remove" ><button ng-click="cart.delete(detail.id)" type="submit" style=" background-color: white;">
+										<img src="/img/icons/icon-img/delete.jpg" alt="#" width="25px" height="25px">
+									</button></td>
 								</tr>
 							</tbody>
 							<tbody>

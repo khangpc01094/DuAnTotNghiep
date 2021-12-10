@@ -106,4 +106,9 @@ public class ShoppingCartRestController {
     public Integer getquantity(){
         return svCartService.getSumQuantity();
     }
+
+    @GetMapping("/cart/test")
+    public Double getTest(){
+        return svCartService.getTotaldd();
+    }
 }

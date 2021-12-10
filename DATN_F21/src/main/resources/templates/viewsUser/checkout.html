@@ -26,9 +26,9 @@
               >
                 <div class="section-title-area ltn__section-title-2">
                   <h6 class="section-subtitle ltn__secondary-color">
-                    // ChÃ o má»«ng báº¡n Ä‘áº¿n vá»›i shop cá»§a chÃºng tÃ´i
+                    // Chào mừng bạn đến với chúng tôi
                   </h6>
-                  <h1 class="section-title white-color">Thanh toÃ¡n</h1>
+                  <h1 class="section-title white-color">Thanh toán</h1>
                 </div>
                 <div class="ltn__breadcrumb-list">
                   <ul>
@@ -96,28 +96,17 @@
                   </div>
                 </tbody>
               </table>
-              <h3>Chi tiết đơn</h3>
-              <table class="table table-hover">
-                <thead>
-                  <th>Tên cửa hàng</th>
-                  <th>Tổng cộng</th>
-                  <th>Phí vận chuyển</th>
-                  <th>Giam</th>
-                  <th>Thanh toán</th>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="detail in cart.sumall | groupBy:'storeid'">
-                    <td><strong>{{detail.name}}</strong></td>
-                    <td>{{detail.total | number : 2}}</td>
-                    <td>15,000 đ</td>
-                    <td>{{detail.reduce}} %</td>
-                    <td>{{detail.pay | number : 2}} đ</td>
-                  </tr>
-                </tbody>
-              </table>
+              <h3 style="color: black;">Chi tiết đơn</h3>
+              <div class="row" style="margin-left: 50px;">
+              <div class="col-sm-5" id="ThanhToan" ng-repeat="detail in cart.sumall | groupBy:'storeid'">
+                <label for=""><b style="color: rgb(17, 245, 51);">{{detail.name}}</b> </label> <br>
+                <label for=""><b>Tổng Đơn: </b>{{detail.total | number : 2}}</label> <br>
+                <label for=""><b>Phí vận chuyển: </b>15,000.00 đ</label> <br>
+                <label for=""><b>Giảm: </b>{{detail.reduce}} %</label> <br>
+                <label for=""><b>Thanh toán: </b>{{detail.pay | number : 2}} đ</label>
+              </div></div>
               <table
                 class="table table-bordered"
-                style="background-color: #f0ffff"
               >
                 <tbody>
                   <tr>
@@ -156,15 +145,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="ltn__payment-note mt-30 mb-30">
-                   <p>
-                    Dá»¯ liá»‡u cÃ¡ nhÃ¢n cá»§a báº¡n sáº½ Ä‘Æ°á»£c sá»­ dá»¥ng
-                    Ä‘á»ƒ xá»­ lÃ½ Ä‘Æ¡n Ä‘áº·t hÃ ng, há»— trá»£ tráº£i
-                    nghiá»‡m cá»§a báº¡n trÃªn toÃ n bá»™ trang web nÃ y vÃ  cho
-                    cÃ¡c má»¥c Ä‘Ã­ch khÃ¡c Ä‘Æ°á»£c mÃ´ táº£ trong chÃ­nh sÃ¡ch
-                    báº£o máº­t cá»§a chÃºng tÃ´i.
-                  </p>
-                </div> -->
 
                 <div class="col-lg-12">
                   <div class="ltn__checkout-inner">
@@ -230,44 +210,29 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
-              <div
-                class="
-                  ltn__feature-item-box-wrap ltn__border-between-column
-                  white-bg
-                "
-              >
+              <div class="ltn__feature-item-box-wrap ltn__border-between-column white-bg">
                 <div class="row">
                   <div class="col-xl-6 col-md-12 col-12">
                     <div class="ltn__feature-item ltn__feature-item-8">
                       <div class="ltn__feature-icon">
-                        <img src="/img/icons/icon-img/13.png" alt="#" />
+                        <img src="/img/icons/icon-img/13.png" alt="#">
                       </div>
                       <div class="ltn__feature-info">
-                        <h4>Thá»±c pháº©m tá»« tá»± nhiÃªn</h4>
-                        <p>
-                          Shop cho báº¡n Ä‘á»•i tráº£ trong vÃ²ng 2 giá»� sau
-                          khi thanh toÃ¡n.
-                        </p>
-                        <p>
-                          Sau 2 giá»� shop khÃ´ng giáº£i quyáº¿t báº¥t ká»³
-                          váº¥n Ä‘á»� nÃ o vá»� sáº£n pháº©m.
-                        </p>
+                        <h4>Thực phẩm từ tự nhiên</h4>
+                        <p>Shop cho bạn đổi trả trong vòng 2 giờ sau khi thanh toán.</p>
+                        <p>Sau 2 giờ shop không giải quyết bất kỳ vấn đề nào về sản phẩm.</p>
                       </div>
                     </div>
                   </div>
                   <div class="col-xl-6 col-md-12 col-12">
                     <div class="ltn__feature-item ltn__feature-item-8">
                       <div class="ltn__feature-icon">
-                        <img src="/img/icons/icon-img/14.png" alt="#" />
+                        <img src="/img/icons/icon-img/14.png" alt="#">
                       </div>
                       <div class="ltn__feature-info">
-                        <h4>Giao hÃ ng nhanh chÃ³ng</h4>
-                        <p>
-                          ChÃºng tÃ´i sáº½ Æ°u tiÃªn váº¥n Ä‘á»� thá»�i gian
-                          Ä‘á»ƒ tá»‘i Æ°u cháº¥t lÆ°á»£ng sáº£n pháº©m, mong
-                          mang láº¡i cho báº¡n nguá»“n thá»±c pháº©m tá»‘t
-                          nháº¥t.
-                        </p>
+                        <h4>Giao hàng nhanh chóng</h4>
+                        <p>Chúng tôi sẽ ưu tiên vấn đề thời gian để tối ưu chất lượng sản phẩm, mong
+                          mang lại cho bạn nguồn thực phẩm tốt nhất.</p>
                       </div>
                     </div>
                   </div>

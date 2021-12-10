@@ -42,7 +42,7 @@ public class StoreServiceImpl implements StoreService{
 
     @Override
     public Store create(Store store) {
-        String user =  "57D07hzVbm"; //req.getRemoteUser();
+        String user = req.getRemoteUser();
         store.setUser(daoUser.findById(user).get());
         store.setStatus(true);
        return daoStoreDAO.save(store);

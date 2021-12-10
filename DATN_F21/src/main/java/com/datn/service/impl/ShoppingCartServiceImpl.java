@@ -83,7 +83,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     public ShoppingCart getById(Integer id) {
         return daoCart.findById(id).get();
     }
-
+ 
     @Override
     public List<ShoppingCart> getCartTrue() {
         return daoCart.getCartTrue(req.getRemoteUser());
@@ -111,6 +111,32 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
         return null;
     }
 	}
+
+    @Override
+	public Double getTotaldd() {
+        String user = req.getRemoteUser();
+        if(user != null){
+        List<Total> list = daoCart.getAllPrice(user);
+            Double totaltam = 0.0;
+        for (Total s : list) {
+            if (s.getReduce() > 300000) {
+                s.setReduce(10.0);
+                s.setPay((s.pay - (s.total * 10 / 100)) + 15000);
+            } else if (s.getReduce() > 99000) {
+                s.setReduce(5.0);
+                s.setPay((s.pay - (s.total * 5 / 100)) + 15000);
+            } else {
+                s.setReduce(0.0);
+                s.setPay(s.pay + 15000);
+            }
+            totaltam += s.getPay();
+        }
+		return totaltam;
+    } else {
+        return null;
+    }
+	}
+
 
     @Override
     public void deleteByUser(String id) {

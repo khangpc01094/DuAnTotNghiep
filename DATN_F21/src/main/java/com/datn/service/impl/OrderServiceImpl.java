@@ -231,7 +231,7 @@ public class OrderServiceImpl implements OrderService {
         String user =req.getRemoteUser();
         if(user != null){
         Store store = daoStore.getStoreByUser(user);
-        return daoOrderDAO.getSumOrderStatusOne(store.getId());
+        return daoOrderDAO.getSumOrderStatusOne(store.getId()); 
         }else {
             return null;
         }

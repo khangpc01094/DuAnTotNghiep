@@ -37,3 +37,13 @@
 	color: inherit;
 	font-weight: 500;
 }
+
+#ThanhToan{
+	margin: 10px;
+	border: 2px solid #ffc7da;
+}
+
+#ThanhToan label{
+	margin-left: 15px;
+	margin-top: 10px;
+}

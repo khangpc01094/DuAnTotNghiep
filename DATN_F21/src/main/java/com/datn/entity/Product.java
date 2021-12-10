@@ -41,7 +41,7 @@ public class Product implements Serializable {
 	public String images;
 
 	@Temporal(TemporalType.DATE)
-	public Date createdate;
+	public Date createdate = new Date();
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "storeid")
 	public Store store;

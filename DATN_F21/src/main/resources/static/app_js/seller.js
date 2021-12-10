@@ -22,7 +22,7 @@ app.controller("seller-ctrl", function($scope, $http) {
           $http.get(`/rest/order/sumStatus`).then(resp => {
             this.SumOrderStatusOne = resp.data;
           });
-        },
+        }, 
     
         getOrderOne() {
           $http.get(`/rest/order/One`).then((resp) => {

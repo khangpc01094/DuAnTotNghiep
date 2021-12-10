@@ -250,6 +250,17 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         });
     },
 
+    delete(id){
+      $http.delete(`/rest/cart/${id}`).then(resp =>{
+        $scope.cart.loadCart();
+          $scope.cart.getCart();
+          $scope.cart.loadsum();
+          $scope.cart.getSumQuantity();
+      }).catch(error => {
+        console.log(error);
+      })
+    },
+
     sumall: [],
 
     loadsum() {
