@@ -29,7 +29,7 @@ app.controller("seller-ctrl", function($scope, $http) {
     };
 
     $scope.loadDatatable = function() {
-        const url = "/rest/store/allProduct"
+        const url = "http://localhost:8080/rest/store/allProduct"
         $http.get(url).then(resp => {
             $scope.items = resp.data;
             // console.log("items: ", resp.data);
