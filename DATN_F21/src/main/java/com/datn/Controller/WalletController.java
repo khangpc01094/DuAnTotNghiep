@@ -16,9 +16,13 @@ public class WalletController {
     
     @Autowired WalletService svWalletService;
 	
-	@GetMapping("/account/wallet")
+	
+    
+    
+    
+    @GetMapping("/account/cardlink")
 	public String getWallet() {
-		return "/viewsUser/myAccount/wallet";
+		return "/viewsUser/myAccount/cardlink";
 	}
 	
 	//Nạp tiền (Kiểm tra số tiền với cộng trừ tiền)

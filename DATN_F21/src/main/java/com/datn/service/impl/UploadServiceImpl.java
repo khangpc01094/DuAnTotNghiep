@@ -33,4 +33,23 @@ public class UploadServiceImpl implements UploadService{
 			throw new RuntimeException(e);
 		}
 	}
+	
+	@Override
+	public File saveAdmin(MultipartFile file, String folder) {
+		File dir = new File(app.getRealPath("/img/" + folder));
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		String s = System.currentTimeMillis() + file.getOriginalFilename();
+		String name = Integer.toHexString(s.hashCode()) + s.substring(s.lastIndexOf("."));
+		try {
+			File saveFile = new File(dir, name);
+			file.transferTo(saveFile);
+		//	System.out.println(saveFile.getAbsolutePath());
+			return saveFile;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 }

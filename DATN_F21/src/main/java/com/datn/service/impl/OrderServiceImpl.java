@@ -16,15 +16,18 @@ import com.datn.DAO.OrderDetailDAO;
 import com.datn.DAO.ShoppingCartDAO;
 import com.datn.DAO.StoreDAO;
 import com.datn.DAO.UsersDAO;
+import com.datn.DAO.WalletDAO;
 import com.datn.entity.Notifications;
 import com.datn.entity.Order;
 import com.datn.entity.OrderDetail;
 import com.datn.entity.ShoppingCart;
 import com.datn.entity.Store;
 import com.datn.entity.Total;
+import com.datn.entity.Wallet;
 import com.datn.entity.statisinvoice;
 import com.datn.model.entity.StatisticalModel;
 import com.datn.service.OrderService;
+import com.datn.service.ShoppingCartService;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -52,13 +55,19 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     HttpServletRequest req;
+    
+    @Autowired
+    ShoppingCartService svShoppingCartService;
+    
+    @Autowired
+    WalletDAO daoWalletDAO;
 
     @Override
     public List<StatisticalModel> getStatistical() {
         List<StatisticalModel> statisticalList = new ArrayList<StatisticalModel>();
         List<Order> orderList = daoOrderDAO.findAllOrderStatus1();
         for (Order order : orderList) {
-            int intomoney = this.getIntomoney(order.getTotalamount());
+            int intomoney = 5;
             double money = order.getTotalamount() * (intomoney / 100.0);
             StatisticalModel statistical = new StatisticalModel(order.getId(), order.getBookingdate(),
                     order.getTotalamount(), intomoney, money);
@@ -73,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
         List<StatisticalModel> statisticalList = new ArrayList<StatisticalModel>();
         List<Order> orderList = daoOrderDAO.findAllOrderStatus1ByDate(startDate, endDate);
         for (Order order : orderList) {
-            int intomoney = this.getIntomoney(order.getTotalamount());
+            int intomoney = 5;
             double money = order.getTotalamount() * (intomoney / 100.0);
             StatisticalModel statistical = new StatisticalModel(order.getId(), order.getBookingdate(),
                     order.getTotalamount(), intomoney, money);
@@ -83,15 +92,6 @@ public class OrderServiceImpl implements OrderService {
         return statisticalList;
     }
 
-    private Integer getIntomoney(double totalamount) {
-        if (totalamount > 99000 && totalamount < 300000) {
-            return 5;
-        } else if (totalamount >= 300000) {
-            return 10;
-        } else {
-            return 0;
-        }
-    }
 
     @Override
     public List<Order> getAllOrder(String id) {
@@ -108,43 +108,49 @@ public class OrderServiceImpl implements OrderService {
 
         String user = req.getRemoteUser();
         if (user != null) {
-            List<Total> list = daoCart.getAllPrice(user);
-            for (Total s : list) {
-                if (s.getReduce() > 300000) {
-                    s.setReduce(10.0);
-                    s.setPay((s.pay - (s.total * 10 / 100)) + 15000);
-                } else if (s.getReduce() > 99000) {
-                    s.setReduce(5.0);
-                    s.setPay((s.pay - (s.total * 5 / 100)) + 15000);
-                } else {
-                    s.setReduce(0.0);
-                    s.setPay(s.total + 15000);
-                }
-                Order order = new Order();
-                Notifications notifications = new Notifications();
-                order.setStatus(1);
-                order.setUser(daoUser.getById(s.getUserid()));
-                order.setStore(daoStore.getById(s.getStoreid()));
-                order.setTotalamount(s.getPay());
-                order.setAddress(daoAddress.getById(idAddress));
-                Order or = daoOrderDAO.save(order);
-                notifications.setOrder(or);
-                notifications.setStatus(or.getStatus());
-                notifications.setDates(new Date());
-                daoNotification.save(notifications);
-                List<ShoppingCart> listcart = daoCart.getByStoreandByUser(s.getUserid(), s.getStoreid());
-                for (ShoppingCart sp : listcart) {
-                    OrderDetail detail = new OrderDetail();
-                    detail.setOrder(or);
-                    detail.setPrice(sp.getProduct().getPrice());
-                    detail.setProduct(sp.getProduct());
-                    detail.setQuantity(sp.getQuantity());
-                    detail.setTotalamount(sp.getQuantity() * sp.getProduct().getPrice());
-                    daoDetail.save(detail);
-                    daoCart.deleteById(sp.getId());
-                }
+        	
+        	Double moneyCart = svShoppingCartService.getTotaldd();
+        	Double moneyWallet = daoWalletDAO.findWalletByUserId(user).get(0).getMoney();
+        	
+        	if(moneyCart<=moneyWallet) {
+        		List<Total> list = daoCart.getAllPrice(user);
+                for (Total s : list) {
+                    if (s.getReduce() > 300000) {
+                        s.setReduce(10.0);
+                        s.setPay((s.pay - (s.total * 10 / 100)) + 15000);
+                    } else if (s.getReduce() > 99000) {
+                        s.setReduce(5.0);
+                        s.setPay((s.pay - (s.total * 5 / 100)) + 15000);
+                    } else {
+                        s.setReduce(0.0);
+                        s.setPay(s.total + 15000);
+                    }
+                    Order order = new Order();
+                    Notifications notifications = new Notifications();
+                    order.setStatus(1);
+                    order.setUser(daoUser.getById(s.getUserid()));
+                    order.setStore(daoStore.getById(s.getStoreid()));
+                    order.setTotalamount(s.getPay());
+                    order.setAddress(daoAddress.getById(idAddress));
+                    Order or = daoOrderDAO.save(order);
+                    notifications.setOrder(or);
+                    notifications.setStatus(or.getStatus());
+                    notifications.setDates(new Date());
+                    daoNotification.save(notifications);
+                    List<ShoppingCart> listcart = daoCart.getByStoreandByUser(s.getUserid(), s.getStoreid());
+                    for (ShoppingCart sp : listcart) {
+                        OrderDetail detail = new OrderDetail();
+                        detail.setOrder(or);
+                        detail.setPrice(sp.getProduct().getPrice());
+                        detail.setProduct(sp.getProduct());
+                        detail.setQuantity(sp.getQuantity());
+                        detail.setTotalamount(sp.getQuantity() * sp.getProduct().getPrice());
+                        daoDetail.save(detail);
+                        daoCart.deleteById(sp.getId());
+                    }
 
-            }
+                }
+        	}   
         }
 
     }

@@ -32,4 +32,16 @@ public class UploadRestController {
         node.put("size",savedFile.length());
         return node;
     }
+    
+    @PostMapping("/admin/rest/upload/{folder}")
+    public JsonNode uploadAdmin(@PathVariable("file") MultipartFile file, 
+            @PathVariable("folder") String folder) {
+        File savedFile = svUploadService.saveAdmin(file, folder);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode node = mapper.createObjectNode();
+        node.put("name",savedFile.getName());
+        node.put("size",savedFile.length());
+        return node;
+    }
 }

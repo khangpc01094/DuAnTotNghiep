@@ -82,4 +82,36 @@ public class WalletServiceImpl implements WalletService{
 		}
 	}
 
+	@Override
+	public Wallet getWallet() {		
+		return daoWalletDAO.findWalletByUserId(req.getRemoteUser()).get(0);
+	}
+
+	@Override
+	public ResponseEntity<Wallet> napTien(Double money) {
+		HttpHeaders headers = new HttpHeaders();
+    	//headers.add("Authorization","Basic dXNlcjI6MTIz");
+		
+		Wallet wallet = daoWalletDAO.findWalletByUserId(req.getRemoteUser()).get(0);
+		HttpEntity<Object> entity = new HttpEntity<>(wallet.getCardnumber(),headers);
+		Double moneyInBank = client.exchange("http://localhost:2021/rest/bank/checkmoney", HttpMethod.POST,entity,Double.class).getBody();
+		
+		if(money<=moneyInBank) {
+			HttpEntity<Object> entity2 = new HttpEntity<>(new MoneyModel(wallet.getCardnumber(),money),headers);
+			client.exchange("http://localhost:2021/rest/bank/deduction", HttpMethod.POST,entity2,Void.class);
+			wallet.setMoney((wallet.getMoney()==null)?money:wallet.getMoney()+money);
+			daoWalletDAO.save(wallet);		
+			return ResponseEntity.ok(wallet);		
+		}else {	
+			return ResponseEntity.badRequest().build();			
+		}
+	}
+
+	@Override
+	public ResponseEntity<Void> delete() {
+		Wallet wallet = daoWalletDAO.findWalletByUserId(req.getRemoteUser()).get(0);		
+		daoWalletDAO.deleteById(wallet.getId());
+		return ResponseEntity.ok().build();
+	}
+
 }

@@ -14,4 +14,10 @@ public interface WalletService {
 
 	String postCheckMoney(Optional<Double> money);
 
+	Wallet getWallet();
+
+	ResponseEntity<Wallet> napTien(Double money);
+
+	ResponseEntity<Void> delete();
+
 }

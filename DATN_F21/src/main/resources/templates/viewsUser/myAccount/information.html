@@ -18,8 +18,8 @@
 											onchange="angular.element(this).scope().imageChanged(this.files)">
                                           <p>Dụng lượng file tối đa 1 MB. Định dạng:.JPEG, .PNG</p>
                                       </div>
-                                      <label>Tài khoản (Chỉ được cập nhật một lần duy nhất):</label>
-                                      <input ng-model="form.username" type="text" name="ltn__name">                                
+                                      <label>Tài khoản:</label>
+                                      <input ng-model="form.username" type="text" name="ltn__name" readonly>                                
                                       <label>Họ và tên:</label>
                                       <span style="color: red;" ng-hide="form_information.txtFullname.$valid">Không được để trống họ và tên</span>
                                       <input ng-model="form.fullname" type="text" name="txtFullname" required>       

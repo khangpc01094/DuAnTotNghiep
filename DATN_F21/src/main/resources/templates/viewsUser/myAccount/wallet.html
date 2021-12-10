@@ -3,48 +3,48 @@
 	th:replace="~{/layoutUser/myAccount/index :: dynamic(~{:: main})}">
 <body>
 	<main>	
-	<div class="tab-pane fade active show" ng-app="user-app" ng-controller="wallet-ctrl">
-            <div class="ltn__myaccount-tab-content-inner">
-                <h4>Số dư là:10000</h4>
-                <p>Bạn cần liên kết tài khoản ngân hàng với ví điện tử để có thể thanh toán hàng hóa.</p>
-                <div class="ltn__form-box">
-                    <h4>Liên kết thẻ</h4>
-                    <form name="form_wallet">
-                        <div class="row mb-50">
-                        	<div class="col-md-12">
-                                <label>Số thẻ:</label>
-                                <span style="color: red;" ng-hide="form_wallet.txtCardnumber.$valid">Không được để trống và phải là số</span>
-                                <input class="gender" ng-model="form.cardnumber" type="number" name="txtCardnumber" required>
-                            </div> 
-                            <div class="col-md-12">
-                                <label>Họ tên trên thẻ:</label>
-                                <span style="color: red;" ng-hide="form_wallet.txtHoldername.$valid">Không được để trống</span>
-                                <input ng-model="form.holdername" type="text" name="txtHoldername" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label>Ngày hết hạn:</label>
-                                <span style="color: red;" ng-hide="form_wallet.dateCardwxpiry.$valid">Bạn chưa chọn ngày hết hạn</span>
-                                <input ng-model="form.cardexpiry" type="date" name="dateCardwxpiry" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label>Mã CVV:</label>
-                                <span style="color: red;" ng-hide="form_wallet.txtCvv.$valid">Không được để trống</span>
-                                <input ng-model="form.cvv" type="password" name="txtCvv" required>
-                            </div>
-                            <div class="col-md-12">
-                            	<label>Chọn loại thẻ:</label>  
-                            	<span style="color: red;" ng-hide="form_wallet.brank.$valid">Bạn chưa chọn</span>
-                                <div class="row">                  
-                                     <div class="col-md-3" ng-repeat="cb in cardbrand">
-                                     	<input ng-model="form.cardbrand" type="radio" ng-value="cb.id" name="brank" required> <label>{{cb.name}}</label>
-                                     </div>
-                                 </div>
-                            </div>             
-                        <div class="btn-wrapper" style="float:right;">
-                            <button ng-disabled="!form_wallet.$valid" ng-click="save()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu</button>
-                        </div>
-                    </form>
-
+	<div class="tab-pane fade active show" ng-controller="wallet-ctrl">
+           	<div class="ltn__myaccount-tab-content-inner">               
+                <div class="ltn__form-box">                   
+                    <div class="ltn__comment-reply-area ltn__form-box mb-10">  
+                         <form>
+                       		<div class="ltn__team-details-member-about">
+                       			<h4 class="title-2 text-center">Thông tin ví</h4>
+                                <ul>
+                                    <li><strong>Tài Khoản:</strong> {{wallet.user.username}}</li>
+                                    <li><strong>Họ và tên:</strong> {{wallet.user.fullname}}</li>
+                                    <li><strong>Số dư:</strong> {{wallet.money | number:2}} VNĐ</li>                                  
+                                </ul>
+                             </div>                                                                                                       
+                         </form>
+                     </div>
+                </div>
+            </div>
+            <div class="ltn__myaccount-tab-content-inner">               
+                <div class="ltn__form-box">                   
+                    <div class="ltn__comment-reply-area ltn__form-box mb-10">  
+                         <form>
+                        		<div class="ltn__team-details-member-about">
+                        			<h4 class="title-2 text-center">Thông tin thẻ liên kết</h4>
+                                 <ul>
+                                     <li><strong>Số thẻ:</strong> {{wallet.cardnumber}}</li>
+                                     <li><strong>Họ tên trên thẻ:</strong> {{wallet.holdername}}</li>
+                                     <li><strong>Ngày hết hạn:</strong> {{wallet.cardexpiry | date:'dd-MM-yyyy'}}</li>
+                                     <li><strong>Mã CVV:</strong> ******</li>
+                                     <li><strong>Chọn loại thẻ:</strong> {{wallet.cardbrand}}</li>
+                                 </ul>
+                             </div>         
+                             <br>
+                             <div class="input-item input-item-textarea ltn__custom-icon">
+                                 <input ng-model="money" type="text" placeholder="Nhập số tiền muốn nạp...." required>
+                             </div>                    
+                             <div class="btn-wrapper">
+                                 <button ng-click="naptien()" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Nạp tiền</button>
+                                 <a  href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Chỉnh sửa thẻ</a>                              
+                                 <btn  ng-click="delete()" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Hủy liên kết</btn>
+                             </div>
+                         </form>
+                     </div>
                 </div>
             </div>
         </div>

@@ -106,10 +106,7 @@ public class MyAccountController {
 		return "/viewsUser/myAccount/change_password";
 	}
 
-	@GetMapping("/account/wallet/topup")
-	public String getTopUp() {
-		return "/viewsUser/myAccount/topup";
-	}
+	
 
 	@GetMapping("/order/orderRefuse/{id}")
 	public String getorderRefuse(@PathVariable("id") Integer id, Model model) {
@@ -127,5 +124,10 @@ public class MyAccountController {
 		List<Order> list = svOrder.getAllOrder(userid);
 		model.addAttribute("orderlist", list);
 		return "/viewsUser/myAccount/order";
+	}
+	
+	@GetMapping("/account/wallet")
+	public String getTopUp2() {
+		return "/viewsUser/myAccount/wallet";
 	}
 }

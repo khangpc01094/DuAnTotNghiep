@@ -105,12 +105,45 @@ app.controller("user-ctrl", function($scope, $http) {
 		});
 	}
 
+
+	$scope.create = function() {
+		var item = angular.copy($scope.form);
+		$http.post(`/rest/user/buyer/regis`, item).then(resp => {
+			if (resp.status == 200) {
+				$scope.initialize();
+				return Swal.fire({
+					width: '400px',
+					title: 'Thêm thành công!',
+					icon: 'success',
+					showConfirmButton: false,
+					timer: 1500
+				})
+			}
+		}).catch(error => {
+			/*if (error.status == 404) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Không tìm thấy người dùng này!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}*/
+			Swal.fire({
+				width: '400px',
+				title: 'Lỗi Thêm!',
+				icon: 'error',
+				confirmButtonText: 'Ok',
+			})			
+			console.log("Error", error);
+		});
+	}
+
 	
 
 	$scope.imageChanged = function(files) {
 		var data = new FormData();
 		data.append('file', files[0]);
-		$http.post('/rest/upload/user', data, {
+		$http.post('/admin/rest/upload/user', data, {
 			transformRequest: angular.identity,
 			headers: { 'Content-Type': undefined }
 		}).then(resp => {
@@ -118,7 +151,7 @@ app.controller("user-ctrl", function($scope, $http) {
 		}).catch(error => {
 			return Swal.fire({
 				width: '400px',
-				title: 'Lỗi uplaod hình ảnh!',
+				title: 'Lỗi tải hình ảnh!',
 				icon: 'error',
 				confirmButtonText: 'Ok',
 			})
@@ -240,19 +273,18 @@ app.controller("category-ctrl", function($scope, $http) {
 	$scope.imageChanged = function(files) {
 		var data = new FormData();
 		data.append('file', files[0]);
-		$http.post('/rest/upload/category', data, {
+		$http.post('/admin/rest/upload/category', data, {
 			transformRequest: angular.identity,
 			headers: { 'Content-Type': undefined }
 		}).then(resp => {
 			$scope.form.picture = resp.data.name;
 		}).catch(error => {
-			/*return Swal.fire({
+			return Swal.fire({
 				width: '400px',
-				title: 'Lỗi uplaod hình ảnh!',
+				title: 'Lỗi tải hình ảnh!',
 				icon: 'error',
 				confirmButtonText: 'Ok',
-			})*/
-			alert("Lôi up hinh")
+			})
 			console.log("Error", error);
 		})
 	}

@@ -379,7 +379,7 @@ app.controller("information-ctrl", function ($scope, $http) {
     var data = new FormData();
     data.append("file", files[0]);
     $http
-      .post("/rest/upload/user", data, {
+      .post("/admin/rest/upload/user", data, {
         transformRequest: angular.identity,
         headers: { "Content-Type": undefined },
       })
@@ -389,7 +389,7 @@ app.controller("information-ctrl", function ($scope, $http) {
       .catch((error) => {
         return Swal.fire({
 				width: '400px',
-				title: 'Lỗi uplaod hình ảnh!',
+				title: 'Lỗi tải hình ảnh!',
 				icon: 'error',
 				confirmButtonText: 'Ok',
 			})
@@ -399,9 +399,18 @@ app.controller("information-ctrl", function ($scope, $http) {
   };
 });
 
-app.controller("wallet-ctrl", function ($scope, $http) {
+app.controller("cardlink-ctrl", function ($scope, $http) {
   $scope.cardbrand = [];
   $scope.form = {};
+
+  $scope.initialize = function () {
+    $http.get("/rest/wallet").then((resp) => {
+      $scope.form = resp.data;
+      $scope.form.cardexpiry = new Date($scope.form.cardexpiry);
+    });
+  };
+
+  $scope.initialize();	
 
   var url = "http://localhost:2021/rest/cardbrand";
   $http
@@ -443,7 +452,98 @@ app.controller("wallet-ctrl", function ($scope, $http) {
     }  
 });
 
-app.controller("topup-ctrl", function ($window, $scope, $http) {
+
+app.controller("wallet-ctrl", function ($scope, $http) {
+  $scope.wallet = {};
+  $scope.money;	
+
+  $scope.initialize = function () {
+    $http.get("/rest/wallet").then((resp) => {
+      $scope.wallet = resp.data;
+      $scope.wallet.cardexpiry = new Date($scope.wallet.cardexpiry);
+    });
+  };
+
+  $scope.initialize();
+
+  $scope.naptien = function(money) {
+		var money = angular.copy($scope.money);
+		$http.post(`/rest/wallet/naptien`, money).then(resp => {
+			if (resp.status == 200) {
+				$scope.initialize();
+				$scope.money = null;
+				return Swal.fire({
+					width: '400px',
+					title: 'Nạp tiền thành công!',
+					icon: 'success',
+					showConfirmButton: false,
+					timer: 1500
+				})
+			}
+		}).catch(error => {
+			if (error.status == 400) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Số tiền bạn nạp phải nhỏ hơn số tiền trong thẻ!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
+			Swal.fire({
+				width: '400px',
+				title: 'Lỗi nạp tiền!',
+				icon: 'error',
+				confirmButtonText: 'Ok',
+			})			
+			console.log("Error", error);
+		});
+	}	
+
+    $scope.delete = function() {
+		Swal.fire({
+			width: '400px',
+			title: 'Bạn thật sự muốn hủy liên kết thẻ?',
+			showCancelButton: true,
+			confirmButtonText: `OK`,
+		}).then((result) => {
+			if (result.isConfirmed) {
+				$http.delete(`/rest/wallet`).then(resp => {
+					if (resp.status == 200) {						
+						return Swal.fire({
+							width: '400px',
+							title: 'Hủy liên kết thẻ thành công!',
+							icon: 'success',
+							showConfirmButton: false,
+							timer: 1500
+						})
+					}
+				}).catch(error => {
+					/*if (error.status == 404) {
+						return Swal.fire({
+							width: '400px',
+							title: 'Không tìm thấy loại sản phẩm này!',
+							icon: 'error',
+							confirmButtonText: 'Ok',
+						})
+					}*/
+					Swal.fire({
+						width: '400px',
+						title: 'Lỗi hủy liên kết thẻ!',
+						icon: 'error',
+						confirmButtonText: 'Ok',
+					})
+					console.log("Error", error);
+				});
+			}
+		})
+	}
+
+
+
+});
+
+
+/*app.controller("topup-ctrl", function ($window, $scope, $http) {
   $scope.cardbrand = [];
   $scope.form = {};
 
@@ -487,7 +587,7 @@ app.controller("topup-ctrl", function ($window, $scope, $http) {
         }
       });
     }  
-});
+});*/
 
 app.controller("changepassword-ctrl", function ($scope, $http) {
   $scope.pw_present;
