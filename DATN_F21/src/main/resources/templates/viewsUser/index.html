@@ -107,7 +107,7 @@
                                                         <img th:src="@{|/assets/images/${product.images}|}" alt="#">
                                                         <div class="product-badge">
                                                             <ul>
-                                                                <li class="sale-badge">New</li>
+                                                                <li class="sale-badge">[(${product.status ? 'Còn hàng' : 'Hết hàng'})]</li>
                                                             </ul>
                                                         </div>
                                                         <div class="product-hover-action">

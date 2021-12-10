@@ -30,4 +30,5 @@ public class Wallet implements Serializable {
 	public Integer cvv;
 	public Date cardexpiry;
 	public Double money;
+	
 }

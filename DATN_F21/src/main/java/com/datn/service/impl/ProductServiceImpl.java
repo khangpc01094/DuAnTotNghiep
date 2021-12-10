@@ -72,25 +72,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ResponseEntity<Product> postProduct(Product product) {
-		// HttpHeaders headers = new HttpHeaders();
-		// // headers.add("Authorities","Basic dXNlcjI6MTIz");
-		// Users user = daoUsersDAO.findById(req.getRemoteUser()).get();
-		// WalletModel walletModel = new WalletModel(wallet.getCardnumber(),
-		// wallet.getCardbrand(), wallet.getHoldername(),
-		// wallet.getCvv());
-		// HttpEntity<Object> entity = new HttpEntity<>(walletModel, headers);
-		// Boolean status = client
-		// .exchange("http://localhost:2021/rest/bank/confirm", HttpMethod.POST, entity,
-		// Boolean.class).getBody();
-		//
-		// System.err.println(status);
-		// if (status) {
-		// product.set(user);
-		// daoProduct.save(product);
-		// return ResponseEntity.ok(product);
-		// } else {
-		// return ResponseEntity.badRequest().build();
-		// }
 		daoProduct.save(product);
 		return ResponseEntity.ok(product);
 	}
@@ -107,8 +88,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> findByProductWhereStore(String pid, Integer sid) {
-		// Store store = svStoreService.findStoreByUserId("user1");
-		// Integer idstore = store.getId();
 		return daoProduct.findByProductWhereStore(pid, sid);
 	}
 
@@ -119,12 +98,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product create(Product product) {
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			ProductImage pImage = new ProductImage();
 			pImage.setProduct(product);
 			pImage.setPicture("macdinh.png");
 			daoProductImageDAO.save(pImage);
-			System.err.println("Save img " + i);
+			// System.err.println("Save img " + i);
 		}
 
 		return daoProduct.save(product);
