@@ -21,7 +21,7 @@
               	<div class="col-sm-4">
 	              <label>Tổng cộng:</label>
 	            </div>
-	             <h4 style="color: blue; background-color:#c2fda0; padding-bottom:1px; padding-top: 1px; padding-left: 5px; padding-right: 5px;">{{total | number:2}}$</h4>
+	             <h4 style="color: blue; background-color:#c2fda0; padding-bottom:1px; padding-top: 1px; padding-left: 5px; padding-right: 5px;">{{total | number:2}} VND</h4>
               </div>	
             </div>
           </div>
@@ -44,9 +44,9 @@
                     <th scope="row">{{$index + 1+no}}</th>
                     <td>{{item.id}}</td>
                     <td>{{item.bookingdate | date:'dd-MM-yyyy'}}</td>
-                    <td>{{item.moneyorder | number:2}}$</td>
+                    <td>{{item.moneyorder | number:2}} VND</td>
                     <td>{{item.discount}}%</td>
-                    <td>{{item.intomoney | number:2}}$</td>
+                    <td>{{item.intomoney | number:2}} VND</td>
                   </tr>
                 </tbody>
               </table>

@@ -7,7 +7,7 @@
 		<div class="container_Store" >
 			<div class="row">
 				<div class="col-sm-5"></div>
-				<h2  style="color: orange; margin-top: 20px; font-size: 30px">Quản lý cửa hàng</h2>
+				<h2  style="color: orange; margin-top: 20px; font-size: 30px">Tất cả cửa hàng</h2>
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
@@ -24,11 +24,11 @@
 				<table class="table">
 					<thead class="thead-light">
 						<tr>
-							<th scope="col">id</th>
+							<th scope="col">STT</th>
 							<th scope="col">Tên Cửa Hàng</th>
 							<th scope="col">Chủ cửa hàng</th>
 							<th scope="col">Tổng sản phẩm</th>		
-							<th scope="col">Trạng thái</th>
+							<th scope="col">Hoạt động</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,7 +37,10 @@
 							<td>{{item.name}}</td>
 							<td>{{item.user.fullname}}</td>
 							<td>{{item.quanlity}}</td>				
-							<td>{{item.status?'Hoạt động':'Không hoạt động'}}</td>
+							<!-- <td>{{item.status?'Hoạt động':'Không hoạt động'}}</td> -->
+							<td>
+				                 <input ng-checked="item.status" ng-click="" type="checkbox">
+				            </td>
 						</tr>		
 					</tbody>
 				</table>
