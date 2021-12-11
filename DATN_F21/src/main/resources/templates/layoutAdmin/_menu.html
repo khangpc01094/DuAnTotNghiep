@@ -22,10 +22,11 @@
 				</ul>
 				<ul class="nav-right">
 
-					<li class="user-profile header-notification"><a href="#!">
-                        <img th:src="@{|/img/cai.jpg|}" class="img-thumbnail rounded-circle" width="80px" height="60px" alt="">
-                        Admin
-					</a>
+					<li th:object="${info}" class="user-profile header-notification">
+                        <a th:href="@{|/account/information|}"> <img width="40" height="40" th:src="@{|img/user/${info.picture}|}" class="img-radius" alt="User-Profile-Image"> <span style="color: red;">Admin || <b>[[${info.fullname}]]</b></span>
+                        </a>
+                    </li>
+					
 				</ul>
 
 			</div>

@@ -164,41 +164,6 @@ app.controller("seller-ctrl", function($scope, $http) {
 
 	};
 
-	$scope.findCates = function() {
-		var loaisp = $('#loaisp').val();
-		console.log(loaisp);
-		var name1 = $('#product').val();
-		var sid1 = $('#sid').val();
-		$http.get(`http://localhost:8080/rest/product/category/${loaisp}/${sid1}`).then(resp => {
-			$scope.items = resp.data;
-			console.log("items findCates: ", resp.data);
-		});
-	};
-
-	//xóa form
-	$scope.reset = function() {
-		$scope.form = {
-			createDate: new Date().toLocaleString(),
-			image: 'macdinh.png',
-		};
-		$scope.form.nameProduct = "";
-		$scope.form.status = true;
-		$scope.initialize();
-		$('#update1').prop('disabled', true);
-		$('#create1').prop('disabled', false);
-	};
-
-	$scope.resetForm = function() {
-		$scope.form = {
-			createDate: new Date().toLocaleString(),
-			image: 'cloud-upload.jpg',
-		};
-		$scope.form.nameProduct = "";
-		$scope.form.status = true;
-		$scope.initialize();
-		$('#update1').prop('disabled', true);
-		$('#create1').prop('disabled', false);
-	};
 
 	//hiển thị lên form
 	// $scope.edit = function(item) {
@@ -214,6 +179,7 @@ app.controller("seller-ctrl", function($scope, $http) {
 			available: true,
 		};
 	};
+	
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
 		console.log('id', item.id);
@@ -288,6 +254,43 @@ app.controller("seller-ctrl", function($scope, $http) {
 			})
 		})
 	};
+	$scope.findCates = function() {
+		var loaisp = $('#loaisp').val();
+		console.log(loaisp);
+		var name1 = $('#product').val();
+		var sid1 = $('#sid').val();
+		$http.get(`http://localhost:8080/rest/product/category/${loaisp}/${sid1}`).then(resp => {
+			$scope.items = resp.data;
+			console.log("items findCates: ", resp.data);
+		});
+	};
+
+	//xóa form
+	$scope.reset = function() {
+		$scope.form = {
+			createDate: new Date().toLocaleString(),
+			image: 'macdinh.png',
+		};
+		$scope.form.nameProduct = "";
+		$scope.form.status = true;
+		$scope.initialize();
+		$('#update1').prop('disabled', true);
+		$('#create1').prop('disabled', false);
+	};
+
+	$scope.resetForm = function() {
+		$scope.form = {
+			createDate: new Date().toLocaleString(),
+			image: 'cloud-upload.jpg',
+		};
+		$scope.form.nameProduct = "";
+		$scope.form.status = true;
+		$scope.initialize();
+		$('#update1').prop('disabled', true);
+		$('#create1').prop('disabled', false);
+	};
+
+
 
 	//thêm sp mới
 	$scope.create = function() {
@@ -365,7 +368,7 @@ app.controller("seller-ctrl", function($scope, $http) {
 			})
 		})
 	};
-	
+
 	//upload hình
 	$scope.imageChanged = function(files) {
 		var data = new FormData(); //tao doi tuong
@@ -405,7 +408,7 @@ app.controller("seller-ctrl", function($scope, $http) {
 			});
 		});
 	};
-	
+
 	$scope.pager = {
 		page: 0,
 		size: 5,

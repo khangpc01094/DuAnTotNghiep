@@ -38,7 +38,7 @@
                         </ul>
                     </li>
                     <li th:object="${info}" class="user-profile header-notification">
-                        <a th:href="@{|/account/information|}"> <img width="40" height="40" th:src="@{|img/user/${info.picture}|}" class="img-radius" alt="User-Profile-Image"> <span>[[${info.fullname}]]</span>
+                        <a th:href="@{|/account/information|}"> <img width="40" height="40" th:src="@{|img/user/${info.picture}|}" class="img-radius" alt="User-Profile-Image"> <span  style="color: red;"><b>[[${info.fullname}]]</b></span>
                         </a>
                     </li>
                 </ul>
