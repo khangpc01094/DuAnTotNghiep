@@ -7,6 +7,7 @@ import com.datn.DAO.ProductImageDAO;
 import com.datn.entity.Product;
 import com.datn.entity.ProductImage;
 import com.datn.entity.Store;
+import com.datn.service.ProductImageService;
 import com.datn.service.ProductService;
 import com.datn.service.StoreService;
 
@@ -26,45 +27,47 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest/product")
 public class ProductRestController {
 
-    @Autowired 
+	@Autowired
 	ProductService svProduct;
 
-    @Autowired
+	@Autowired
 	StoreService svStoreService;
+
+	@Autowired
+	ProductImageService svProductImageService;
 	
 	@Autowired
 	ProductImageDAO daoProductImageDAO;
-	
+
 	@GetMapping("/quanlity_by_store/{storeid}")
 	public Integer getQuanlityByStore(@PathVariable("storeid") Optional<Integer> storeId) {
 		return svProduct.getQuanlityByStore(storeId.get());
 	}
 
 	@GetMapping("/demoo/{name}")
-    public List<Product> demo(@PathVariable("name") String name) {
-        List<Product> a = svProduct.findByName("%" + name + "%");
-        System.out.println(a);
-        return a;
-    }
-    
-    @GetMapping("GetAll")
-    public List<Product> getAll()
-    {
-    	return svProduct.findAll();
-    }
-    
-    @GetMapping("{id}")
-    public Product getByid(@PathVariable("id") Integer id) {
-    	return svProduct.findById(id);
-    }
-	
+	public List<Product> demo(@PathVariable("name") String name) {
+		List<Product> a = svProduct.findByName("%" + name + "%");
+		System.out.println(a);
+		return a;
+	}
+
+	@GetMapping("GetAll")
+	public List<Product> getAll() {
+		return svProduct.findAll();
+	}
+
+	@GetMapping("{id}")
+	public Product getByid(@PathVariable("id") Integer id) {
+		return svProduct.findById(id);
+	}
+
 	@GetMapping("/category/{cid}/{sid}")
-	List<Product> findByCategoryId(@PathVariable("cid") Integer cid){
+	List<Product> findByCategoryId(@PathVariable("cid") Integer cid) {
 		Store store = svStoreService.findStoreByUserId("user1");
 		Integer idstore = store.getId();
 		return svProduct.findByABCCategoryId(cid, idstore);
 	}
-	
+
 	@PostMapping
 	public Product createProduct(@RequestBody Product product) {// dùng product nhận all thông tin từ form
 		Store store = svStoreService.findStoreByUserId("user1");
@@ -82,7 +85,7 @@ public class ProductRestController {
 	public Product updateProduct(@PathVariable("id") Integer id, @RequestBody Product product, ProductImage productImage) {
 		productImage.setProduct(product);
 		productImage.setPicture(product.getImages());
-		daoProductImageDAO.save(productImage);
+		svProductImageService.update(productImage);
 		return svProduct.update(product);
 	}
 
@@ -90,5 +93,5 @@ public class ProductRestController {
 	public void deleteProduct(@PathVariable("id") Integer id) {
 		svProduct.delete(id);
 	}
-    	
+
 }

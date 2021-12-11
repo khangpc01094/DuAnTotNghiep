@@ -3,9 +3,11 @@ package com.datn.rest.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.datn.entity.Product;
 import com.datn.entity.ProductImage;
 import com.datn.entity.Store;
 import com.datn.service.ProductImageService;
+import com.datn.service.ProductService;
 import com.datn.service.StoreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class ProductImageRestController {
 
 	@Autowired
 	StoreService svStoreService;
+	
+	@Autowired
+	ProductService svProduct;
 
 	@GetMapping("/all")
 	List<ProductImage> timtheostore() {
@@ -65,10 +70,9 @@ public class ProductImageRestController {
 	}
 
 	@PutMapping("{id}")
-	public ProductImage updateProductImage(@PathVariable("id") Integer id, @RequestBody ProductImage productImage) {
-//		productImage.setProduct(product);
-//		productImage.setPicture(product.getImages());
-//		daoProductImageDAO.save(productImage);
+	public ProductImage updateProductImage(@PathVariable("id") Integer id, @RequestBody ProductImage productImage, Product product) {
+		product.setImages(productImage.getPicture());
+		svProduct.update(product);
 		return svProductImageService.update(productImage);
 	}
 

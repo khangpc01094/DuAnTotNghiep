@@ -1,0 +1,52 @@
+<div xmlns:th="http://www.thymeleaf.org">
+	<nav class="navbar header-navbar pcoded-header" style="height: 80px">
+		<div class="navbar-wrapper">
+
+			<div class="navbar-logo"
+				style="background-color: #00FF7F; margin-left: -20px; margin-top: -8px; width: 274px">
+				<a class="mobile-menu" id="mobile-collapse" href="#!"> <i
+					class="ti-menu"></i>
+				</a> <a th:href="@{|/index|}"> <img th:src="@{|/img/logo4.png|}"
+					class="logo" alt="" style="margin-left: -40px;">
+				</a> <a class="mobile-options"> <i class="ti-more"></i>
+				</a>
+			</div>
+
+			<div class="navbar-container container-fluid">
+				<ul class="nav-left">
+					<li>
+						<div class="sidebar_toggle">
+							<a href="javascript:void(0)"><i class="ti-menu"></i></a>
+						</div>
+					</li>
+				</ul>
+				<ul class="nav-right">
+					<li ng-if="Order.SumOrderStatusOne > 1" class="header-notification">
+						<a href="#!"> <i class="ti-bell"></i> <span
+							class="badge bg-c-pink"></span>
+					</a>
+						<ul class="show-notification">
+							<li>
+								<h6>Thông báo</h6> <label class="label label-danger">New</label>
+							</li>
+							<li>
+								<div class="media">
+									<h6>bạn hiện có {{Order.SumOrderStatusOne}} đơn chưa xác
+										nhận</h6>
+									<label class="label label-danger"><a
+										th:href="@{|/viewsSeller/wait|}">Xem</a></label>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li th:object="${info}" class="user-profile header-notification"><a
+						th:href="@{|/account/information|}"> <img width="40"
+							height="40" th:src="@{|assets/images/${info.picture}|}"
+							class="img-radius" alt="User-Profile-Image"> <span>[[${info.fullname}]]</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+</div>
