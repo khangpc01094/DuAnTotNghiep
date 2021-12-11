@@ -18,7 +18,10 @@
 		                </thead>
 		                <tbody>
 		                    <tr th:each="item : ${orderdetail}">
-								<td>[[${item.product.images}]]</td>
+								<td><img
+                            th:src="@{|/img/product/${item.product.images}|}"
+                            alt="${item.product.images}" class="rounded-circle" width="40px" height="40px"
+                        /></td>
 		                        <td>[[${item.product.name}]]</td>
 		                        <td>[[${item.price}]]</td>
 		                        <td>[[${item.quantity}]]</td>
