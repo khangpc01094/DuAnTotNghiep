@@ -113,4 +113,14 @@ public class UserServiceImpl implements UserService{
 //		daoUsersDAO.save(user);			
 //		return user;
 //	}
+
+	@Override
+	public Users timUserByEmail(String email) {
+		return daoUsersDAO.timUserByEmail(email);
+	}
+
+	@Override
+	public Users save(Users user) {
+		return daoUsersDAO.save(user);
+	}
 }

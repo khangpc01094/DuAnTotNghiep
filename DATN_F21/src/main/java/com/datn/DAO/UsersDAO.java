@@ -13,4 +13,7 @@ public interface UsersDAO extends JpaRepository<Users, String>{
 	@Query("SELECT u FROM Users u WHERE u.fullname LIKE %?1%")
 	List<Users> findUserByName(String name);
 	
+	@Query("SELECT u FROM Users u WHERE u.email = ?1")
+	Users timUserByEmail(String email);
+	
 }

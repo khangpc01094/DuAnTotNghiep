@@ -1,71 +1,129 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:fragment="dynamic(main)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Broccoli - Organic Food HTML Template</title>
-<meta name="robots" content="noindex, follow" />
-<meta name="description" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Cool Organic</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!--My's part-->
-<!-- Place favicon.png in the root directory -->
-<link rel="shortcut icon" href="/img/faviconlogo.ico" type="image/x-icon" />
-<!-- Font Icons css -->
+    <!--My's part-->
+    <!-- Place favicon.png in the root directory -->
+    <link rel="shortcut icon" href="/img/faviconlogo.ico" type="image/x-icon" />
+    <!-- Font Icons css -->
 
-<link href="/css/font-icons.css" rel="stylesheet">
+    <link href="/css/font-icons.css" rel="stylesheet">
 
-<link href="/css/plugins.css" rel="stylesheet">
+    <link href="/css/plugins.css" rel="stylesheet">
 
-<link href="/css/style.css" rel="stylesheet">
+     <link href="/css/style.css" rel="stylesheet"> 
 
-<link href="/css/responsive.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
 
-<!-- Trung thêm -->
-<link href="/css/mycss.css" rel="stylesheet">
+    <!-- Trung thêm -->
+    <link href="/css/mycss.css" rel="stylesheet">
 
-<link href="/css/seller.css" rel="stylesheet">
+    <link href="/css/seller.css" rel="stylesheet">
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <style>
+        /* You can remove these code below*/
+        
+         :root {
+            --primary: #08aeea;
+            --secondary: #13D2B8;
+            --purple: #bd93f9;
+            --pink: #ff6bcb;
+            --blue: #8be9fd;
+            --gray: #333;
+            --font: "Poppins", sans-serif;
+            --gradient: linear-gradient(40deg, #ff6ec4, #7873f5);
+            --shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        input,
+        button,
+        textarea {
+            border: 0;
+            outline: none;
+        }
+        /* Main code */
+        
+        .bell-noti {
+            font-size: 1rem;
+            color: #ccc;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .bell-noti-icon:hover {
+            animation: ring 0.25s forwards alternate infinite linear;
+        }
+        
+        .bell-noti-status {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 1rem;
+            background-color: var(--secondary);
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        
+        @keyframes ring {
+            from {
+                transform: rotate(-10deg);
+            }
+            to {
+                transform: rotate(10deg);
+            }
+        }
+    </style>
 </head>
-<body  ng-app="buyer-app" >
-	<div class="body-wrapper">
-		<nav>
-			<div th:replace="/layoutUser/_menu.html"></div>
-		</nav>
 
-		<div>
-			<div th:replace="${main}"></div>
-		</div>
+<body ng-app="buyer-app">
+    <div class="body-wrapper">
+        <nav>
+            <div th:replace="/layoutUser/_menu.html"></div>
+        </nav>
 
-		<footer>
-			<div th:replace="/layoutUser/_footer.html"></div>
-		</footer>
-	</div>
+        <div>
+            <div th:replace="${main}"></div>
+        </div>
 
-	<!-- Body main wrapper end -->
+        <footer>
+            <div th:replace="/layoutUser/_footer.html"></div>
+        </footer>
+    </div>
 
-	<!-- preloader area start -->
-	<div class="preloader d-none" id="preloader">
-		<div class="preloader-inner">
-			<div class="spinner">
-				<div class="dot1"></div>
-				<div class="dot2"></div>
-			</div>
-		</div>
-	</div>
-	<!-- preloader area end -->
+    <!-- Body main wrapper end -->
 
-	<!-- All JS Plugins -->
-	<script src="/js/plugins.js"></script>
-	<!-- Main JS -->
-	<script src="/js/main.js"></script>
+    <!-- preloader area start -->
+    <div class="preloader d-none" id="preloader">
+        <div class="preloader-inner">
+            <div class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader area end -->
 
-	<script src="/app_js/buyer.js"></script>
+
+    <!-- All JS Plugins -->
+    <script src="/js/plugins.js"></script>
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
+
+    <script src="/app_js/buyer.js"></script>
 </body>
 
 </html>

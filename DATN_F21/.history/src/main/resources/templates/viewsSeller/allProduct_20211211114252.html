@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layoutSeller/index :: dynamic(~{:: main})}">
+
+<body ng-app="seller-app">
+    <main ng-app="seller-app" ng-controller="seller-ctrl" style="margin-left: 15px; margin-top: 40px">
+        <!-- <div style="text-align: center;">
+            <label style="text-align: center; color: orange; font-size: 30px">Tất
+				cả sản phẩm</label>
+        </div> -->
+        <input type="hidden" name="storeid" id="sid" ng-value="user.id" ng-model="form.user.id" />
+        <input type="hidden" class="storeid" name="storeid" ng-value="user.id" ng-model="form.store.id" />
+
+        <!-- <div id="myToast" aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+            <div class="toast" style="position: absolute; top: 0; right: 0;">
+                <div class="toast-header">
+                    <img src="..." class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+                </div>
+                <div class="toast-body">
+                    Hello, world! This is a toast message.
+                </div>
+            </div>
+        </div> -->
+
+        <div class="card">
+            <div class="line-text">
+                <h3>
+                    <span style="background-color: #FFF0F5;"> 
+                    QUẢN LÝ SẢN PHẨM
+                    </span>
+                </h3>
+            </div>
+
+            <!-- <h3 class="text-gradient"> QUẢN LÝ SẢN PHẨM</h3> -->
+        </div>
+        <div class="card text-center" style="width: 91%; margin: 0 auto;">
+            <div class="card-header bg-light text-center">
+                <!-- <label style="margin-top: 10px">Tên
+								sản phẩm</label> -->
+                <!-- <div class="search-input">
+                        <i class="fa fa-search"></i>
+                        <input ng-model="form.nameProduct" name="product" id="product" type="text" placeholder="Tên sản phẩm..." />
+                    </div> -->
+                <!-- <div class="simple-search">
+                        <input ng-model="form.nameProduct" name="product" id="product" type="text" placeholder="Tên sản phẩm..." />
+                        <button ng-click="find()">Find</button>
+                    </div> -->
+
+                <div class="simple-search">
+                    <input ng-model="form.nameProduct" name="product" id="product" type="text" placeholder="Tên sản phẩm..." />
+                    <button ng-click="find()" class="btn"><i class="bi bi-search"></i></button>
+                    <button type="submit" class="btn" id="resetForm" ng-click="resetForm()">Reset</button>
+                </div>
+                <!-- <div class="button" style="text-align: center;">
+                    <button type="submit" class="btn btn-success" ng-click="find()">Tìm theo tên</button>
+                    <button type="submit" class="btn btn-success" id="resetForm" ng-click="resetForm()">Reset</button>
+                </div> -->
+            </div>
+        </div>
+        <!-- <div class="search">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label style="margin-top: 10px">Tên
+								sản phẩm</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input ng-model="form.nameProduct" name="product" id="product" type="text" class="form-control input">
+                            <div class="button">
+                                <button type="submit" class="btn btn-success" ng-click="find()">Tìm theo tên</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label style="margin-left: 100px; margin-top: 10px">Loại
+								sản phẩm</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <select id="loaisp" ng-model="form.category.id" class="custom-select">
+								<option ng-repeat="cates in category" ng-value="cates.id"
+									>{{cates.name}}</option>
+							</select>
+                            <div class="button">
+                                <button type="submit" class="btn btn-success" ng-click="findCates()">Tìm theo loại</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="bang">
+            <div class="table-wrapper">
+                <table id="datatable" class="table table-striped table-bordered fl-table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Loại sản phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="item in pager.items">
+                        <tr>
+                            <input type="hidden" id="idp" ng-value="item.id" ng-model="item.id" /> {{item.id}}
+                            <td scope="row"><label>{{item.name}}</label></td>
+                            <td scope="row"><label>{{item.category.name}}</label></td>
+                            <td scope="row"><label>{{item.price}} VNĐ</label></td>
+                            <td scope="row"><label>{{item.status ? 'Còn hàng' : 'Hết hàng'}}</label></td>
+                            <td scope="row"><label>{{item.createdate | date: 'dd-MM-yyyy'}}</label></td>
+                            <th scope="row" style="text-align: center;"><img ng-src="{{'/assets/images/' + item.images}}" width="30" height="25"></th>
+                            <td>
+                                <div class="icon-sp">
+                                    <a ng-click="edit(item)"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path
+											d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                    <path fill-rule="evenodd"
+											d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                </svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-header">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a ng-click="pager.first()" class="page-link" href="#">Fisrt</a></li>
+                        <li class="page-item"><a ng-click="pager.prev()" class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">{{pager.page+1}} of {{pager.count}}</a></li>
+                        <li class="page-item"><a ng-click="pager.next()" class="page-link" href="#">Next</a></li>
+                        <li class="page-item"><a ng-click="pager.last()" class="page-link" href="#">Last</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div>
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- Page-header start -->
+                    <div class="page-header card" style="text-align: center;">
+                        <div class="card">
+                            <div class="line-text">
+                                <h3>
+                                    <span style="background-color: #F0F8FF;"> 
+                                        Hình ảnh sản phẩm
+                                    </span>
+                                </h3>
+                            </div>
+                        </div>
+                        <!-- <div class="row align-items-end">
+                            <div class="input-file">
+                                <img ng-src="{{'/assets/images/' + form.images}}" alt="" style="width: 219px; height: 230px;">
+                                <br>
+                                <input type="file" name="file" id="file" onchange="angular.element(this).scope().imageChanged(this.files) " />
+                                <br> click vào ô vuông để chọn hình
+                                <p>Dụng lượng file tối đa 1 MB. Định dạng:.JPEG, .PNG | </p>
+                                <br>
+                                <label for="file" class="input-label">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #2029a1">Hãy chọn cho sản phẩm của bạn một bức hình tuyệt nhất<br> nếu không chọn, sản phẩm sẽ có hình ảnh mặc định của hệ thống</label>
+                            </div>
+                        </div> -->
+
+                        <div class="row align-items-end" id="datatable1">
+                            <!-- <div class="card"> -->
+                            <div class="form-group" style="text-align: center; float: right;">
+                                <button type="button" id="updateImg" class="btn btn-primary" ng-click="updateImg()">Cập nhật</button>
+                                <button type="button" id="deleteImg" class="btn btn-danger " ng-click="deleteImg()">Xóa</button>
+                            </div>
+                            <!-- </div> -->
+
+                            <div class="input-file">
+
+                                <img ng-src="{{'/assets/images/' + image.picture}}" alt="" style="width: 219px; height: 230px; "><br>
+                                <input type="file" name="file" id="file" onchange="angular.element(this).scope().imageChanged(this.files)" />
+                                <br> click vào ô vuông để chọn hình
+                                <p>Dụng lượng file tối đa 1 MB. Định dạng:.JPEG, .PNG </p>
+                                <br>
+                                <label for="file" class="input-label">
+                                    <!-- <img src="/assets/images/cloud-up.png" width="189px" height="180" alt=""> -->
+                                    </label>
+                                <div class="row">
+                                    <div class="card bg-light">
+                                        <div class="col-12">
+                                            <img ng-repeat="img in images" ng-src="{{'/assets/images/' + img.picture}}" ng-click="editImages(img)" width="60" height="50">
+                                        </div>
+                                        <!-- <div class="col-4">
+                                                      
+                                                 
+                                            </div> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                    <label class="error">Hãy chọn cho sản phẩm của bạn một bức hình tuyệt nhất<br> nếu không chọn, sản phẩm sẽ có hình ảnh mặc định của hệ thống</label>
+                                </div> -->
+                            <br>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Page-header end -->
+                    <div class="page-body">
+                        <div class="row">
+                            <!-- EXTRA AREA CHART start -->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="line-text">
+                                        <h3>
+                                            <span style="background-color: #F5FFFA;"> 
+                                        Thông Tin Chi Tiết
+                                    </span>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <form name="qlsp" novalidate>
+                                    <div class="body">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Tên sản phẩm</label>
+                                            <div class="col-sm-9">
+                                                <input ng-required="true" ng-pattern="/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u" ng-minlength="3" ng-maxlength="50" type="text" ng-model="form.name" name="name" class="form-control">
+                                                <span class="error" ng-show="qlsp.name.$error.required">Không bỏ trống tên sản phẩm</span>
+                                                <span class="error" ng-show="qlsp.name.$error.minlength">Tên sản phẩm ít nhất phải 3 ký tự</span>
+                                                <span class="error" ng-show="qlsp.name.$error.maxlength">Tên sản phẩm tối đa 50 ký tự</span>
+                                                <span class="error" ng-show="qlsp.name.$dirty&&qlsp.name.$error.pattern">Không đúng định dạng tên </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Giá</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" ng-required="true" ng-minlength="3" ng-maxlength="20" name="price" ng-model="form.price" class="form-control">
+                                                <span class="error" ng-show="qlsp.price.$error.required">Không bỏ trống giá sản phẩm</span>
+                                                <span class="error" ng-show="qlsp.price.$error.minlength">Giá sản phẩm ít nhất phải 3 ký tự</span>
+                                                <span class="error" ng-show="qlsp.price.$error.maxlength">Giá sản phẩm tối đa 20 ký tự</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Trạng thái</label>
+                                            <div class="col-sm-9">
+                                                <input type="radio" class="radio-input" name="status" ng-model="form.status" ng-value="true" id="inlineRadio1" />
+                                                <label for="inlineRadio1" class="radio-label"></label>
+                                                <label class="form-check-label">Còn hàng</label>
+                                                <input type="radio" class="radio-input" name="status" ng-model="form.status" ng-value="false" id="inlineRadio2" />
+                                                <label for="inlineRadio2" class="radio-label"></label>
+                                                <label class="form-check-label">Hết hàng</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Loại sản phẩm</label>
+                                            <div class="col-sm-9">
+                                                <select ng-model="form.category.id" class="custom-select" id="cate">
+								<option ng-repeat="cates in category" ng-value="cates.id"
+									>{{cates.name}}</option>
+							</select>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Create Date</label>
+                                            <div class="col-sm-9">
+                                                <input type="date" name="createdate" ng-required="true" ng-model="form.createdate" class="form-control">
+                                                <span class="error" ng-show="qlsp.createdate.$error.required">Không bỏ trống ngày tạo sản phẩm</span>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label ">Mô tả</label>
+                                            <div class="col-sm-9 ">
+                                                <textarea name="description" ng-required="true" ng-model="form.description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <span class="error" ng-show="qlsp.description.$error.required">Không bỏ trống mô tả sản phẩm</span>
+                                            </div>
+                                        </div>
+                                        <div class="button " style="text-align: center">
+                                            <button ng-click="create()" type="button" id="create1" class="btn btn-success">Thêm</button>
+                                            <button type="button" class="btn btn-warning" id="update1" ng-click="update()">Cập nhật</button>
+                                            <button type="button" class="btn btn-primary" id="reset1" ng-click="reset()">Làm mới</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- EXTRA AREA CHART Ends -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="styleSelector "></div>
+        <!-- <input type="hidden " name="storeid " id="sid " ng-value="user.id " ng-model="user.id " /> -->
+    </main>
+</body>
+
+</html>

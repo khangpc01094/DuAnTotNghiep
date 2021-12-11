@@ -30,10 +30,6 @@
 														chí hàng đầu</b> của website nông sản online của chúng tôi.
                                                 </p>
                                             </div>
-                                            <div class="btn-wrapper animated">
-                                                <a href="shop.html" class="theme-btn-1 btn btn-effect-1 text-uppercase">Xem
-													thêm về cửa hàng</a>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="slide-item-img">
@@ -63,11 +59,6 @@
                                                     <b>Rau củ tươi ngon, đảm bảo chất lượng</b> luôn là <b>tiêu
 														chí hàng đầu</b> của website nông sản online của chúng tôi.
                                                 </p>
-                                            </div>
-                                            <div class="btn-wrapper animated">
-                                                <a href="shop.html" class="theme-btn-1 btn btn-effect-1 text-uppercase">Xem
-													thêm về cửa hàng</a>
-                                                <!-- <a href="about.html" class="btn btn-transparent btn-effect-3 text-uppercase">LEARN MORE</a> -->
                                             </div>
                                         </div>
                                     </div>
@@ -112,11 +103,11 @@
                                                         </div>
                                                         <div class="product-hover-action">
                                                             <ul>
-                                                                <li>
-                                                                    <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                                                                <!-- <li>
+                                                                    <a th:href="@{|/index/product-detail/${product.id}|}" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
                                                                         <i class="far fa-eye"></i>
                                                                     </a>
-                                                                </li>
+                                                                </li> -->
                                                                 <li>
                                                                     <a th:attr="ng-click=@{|cart.add(${product.id})|}" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
                                                                         <i class="fas fa-shopping-cart"></i>

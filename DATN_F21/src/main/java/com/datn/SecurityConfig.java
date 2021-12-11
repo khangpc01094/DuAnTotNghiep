@@ -46,7 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 Integer[] roles = svAuthorizationService.findRoleByUsername(username).stream()
                         .map(role -> role.getId())
                         .collect(Collectors.toList()).toArray(new Integer[0]);
-
                 return User.withUsername(username).password(password).roles(roles.toString()).build();
             } catch (NoSuchElementException e) {
                 throw new UsernameNotFoundException(username + " not fount!");

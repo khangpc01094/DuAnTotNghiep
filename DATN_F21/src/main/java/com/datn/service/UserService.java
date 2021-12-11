@@ -23,5 +23,9 @@ public interface UserService {
 	Users create(Users user);
 
     Users getByid(String id);
+    
+    Users timUserByEmail(String email);
+    
+    Users save(Users user);
 
 }
