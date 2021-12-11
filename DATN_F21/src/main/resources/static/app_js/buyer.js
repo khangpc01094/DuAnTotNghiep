@@ -49,7 +49,7 @@ app.controller("buyer-ctrl", function($scope, $http) {
             $scope.reset();
             return Swal.fire({
                 width: '400px',
-                title: 'Đăng ký thành công!',
+                title: 'Đăng ký cửa hàng thành công!',
                 icon: 'success',
             })
         }).catch(error => {

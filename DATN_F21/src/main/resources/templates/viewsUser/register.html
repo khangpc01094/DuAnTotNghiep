@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
 <body>
-	<main>
+	<main ng-controller="buyer-ctrl">
 		<!-- REGISTER AREA START -->
     <div class="ltn__login-area pb-65 mt-40">
         <div class="container">
@@ -48,7 +48,9 @@
                             <div class="form-group">
                                 <input type="checkbox" id="showPassword" ng-model="showPassword">
                                 <label class="comment" for="showPassword">Hiển thị Mật khẩu</label>
+                                <p>nhấp <a href="" style="color: orange;">vào đây</a></p>
                             </div>
+                            <!-- <p>nhấp <a href="">vào đây</a></p> -->
 
                             <div class="btn-wrapper">
                                 <button class="theme-btn-1 btn reverse-color" ng-click="regis()">TẠO TÀI KHOẢN</button>

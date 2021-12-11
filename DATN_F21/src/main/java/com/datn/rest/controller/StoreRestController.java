@@ -35,7 +35,7 @@ public class StoreRestController {
 	public Store createStore(@RequestBody Store store) {
         Store st = svStore.create(store);
         Authorization auth = new Authorization();
-        Users us = svUser.getByid("4mvpBClLTF");
+        Users us = svUser.getByid("xUno8tUDuf");
         Role rol = svRole.findById(2);
         auth.setRoleid(rol);
         auth.setUser(us);

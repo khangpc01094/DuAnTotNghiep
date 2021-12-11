@@ -101,10 +101,8 @@ public class SellerController {
 	public String getFormStatisInvoice(Model m){
 		String date1 = req.getParameter("date1");
 		String date2 = req.getParameter("date2");
-		// System.out.println(date1);
 		Date d1 = Date.valueOf(date1);
 		Date d2 = Date.valueOf(date2); 
-		// System.out.println(d1);
 		Integer store = 2;
 		List<statisinvoice> list = svOr.findByDate2(store, d1, d2);
 		System.out.println(list);
@@ -124,14 +122,14 @@ public class SellerController {
 
 	@GetMapping("/regisSeller")
 	public String getformRegis() {
-		String user = "4mvpBClLTF";
+		String user = "xUno8tUDuf";
 		Authorization result = svAutho.getRole(user);
 		if(result != null) {
-			System.out.println("alo");
+			// System.out.println("alo");
 			return "/viewsSeller/allProduct";
 		} 
 		else {
-			return "/viewsSeller/regisSeller";
+			return "/viewsUser/regisSeller";
 		}
 		
 	}

@@ -19,7 +19,7 @@ public class StoreServiceImpl implements StoreService{
 
     @Override
     public Store create(Store store) {
-        String u = "4mvpBClLTF";
+        String u = "xUno8tUDuf";
         store.setUser(daoUser.findById(u).get());
         store.setStatus(true);
        return daoStore.save(store);
