@@ -1,17 +1,27 @@
 package com.datn.Controller;
 
+import java.util.List;
+
+import com.datn.entity.Order;
+import com.datn.entity.OrderDetail;
+import com.datn.service.OrderDetailService;
+import com.datn.service.OrderService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class SellerController {
 	
+	@Autowired
+	OrderService svOrder;
 
-	@GetMapping("/demo")
-	public String demo() {
-		return "/viewsSeller/demo";
-	}
-	
+	@Autowired
+	OrderDetailService svDetail;
+
 	@GetMapping("/formSeller")
 	public String getformSeller() {
 		return "/viewsSeller/allProduct";
@@ -60,5 +70,14 @@ public class SellerController {
 	@GetMapping("/viewsSeller/confirmed")
 	public String getfromConfirmed(){
 		return "/viewsSeller/confirmed";
+	}
+
+	@GetMapping("/viewsSeller/OrderDetail/{id}")
+	public String getfromDetail(@PathVariable("id") Integer id, Model model){
+		Order order = svOrder.getByid(id);
+		List<OrderDetail> detail = svDetail.getByStoreId(id);
+		model.addAttribute("order", order);
+		model.addAttribute("detail", detail);
+		return "/viewsSeller/detail";
 	}
 }

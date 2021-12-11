@@ -22,7 +22,7 @@ public class OrderDetailServiceImpl implements OrderDetailService{
 
     @Override
     public List<OrderDetail> getByStoreId(Integer id) {
-        return daoDetail.getOrderByStoreId(id);
+        return daoDetail.getOrderByOrderId(id);
     }
 
 }

@@ -10,6 +10,6 @@ import com.datn.entity.OrderDetail;
 public interface OrderDetailDAO extends JpaRepository<OrderDetail, Integer>{
 
     @Query("select o from OrderDetail o where o.order.id = ?1")
-    List<OrderDetail> getOrderByStoreId(Integer id);
+    List<OrderDetail> getOrderByOrderId(Integer id);
 
 }

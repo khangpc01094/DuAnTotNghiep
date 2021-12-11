@@ -28,4 +28,6 @@ public interface OrderService {
 
     List<Notifications> getNotifications();
 
+    Order getByid(Integer id);
+
 }

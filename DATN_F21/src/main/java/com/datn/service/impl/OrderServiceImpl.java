@@ -167,4 +167,9 @@ public class OrderServiceImpl implements OrderService {
         return daoNotification.getNotifications(userid);
     }
 
+    @Override
+    public Order getByid(Integer id) {
+        return daoOrder.findById(id).get();
+    }
+
 }
