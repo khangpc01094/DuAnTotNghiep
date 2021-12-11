@@ -253,4 +253,9 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+	@Override
+	public Order getByid(Integer id) {
+		return daoOrderDAO.findById(id).get();
+	}
+
 }
