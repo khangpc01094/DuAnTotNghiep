@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface WalletService {
 
-    ResponseEntity<Wallet> postWallet(Wallet wallet);
+    ResponseEntity<Wallet> cartLink(Wallet wallet);
 
 	ResponseEntity<Wallet> checkTopup(Wallet wallet);
 
@@ -18,6 +18,6 @@ public interface WalletService {
 
 	ResponseEntity<Wallet> napTien(Double money);
 
-	ResponseEntity<Void> delete();
+	ResponseEntity<Void> unlink();
 
 }

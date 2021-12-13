@@ -2,6 +2,8 @@ package com.datn.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.datn.entity.Product;
 import com.datn.entity.Store;
 
@@ -22,4 +24,6 @@ public interface StoreService {
 	List<Store> findAllStores();
 
 	List<Product> findByAllProduct(Integer sid);
+
+	ResponseEntity<Store> updateStatus(Store store);
 }

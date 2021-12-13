@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface AuthorizationService {
 
-	List<Role> findRoleByUsername(String username);
+	List<Role> findRoleByUserId(String userid);
 
 	ResponseEntity<List<Authorization>> getAllAuth();
 

@@ -67,6 +67,7 @@
                                         <li th:if="${#request.remoteUser == null}"><a href="/forgot_password">Quên mật khẩu</a></li>
 
                                         <li th:if="${#request.remoteUser}"><a href="/account/information">Tài khoản</a></li>
+                                        <li th:if="${#request.remoteUser}"><a href="/security/logoff">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             </ul>

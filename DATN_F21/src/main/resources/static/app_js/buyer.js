@@ -337,7 +337,9 @@ app.controller("information-ctrl", function ($scope, $http) {
   $scope.initialize = function () {
     $http.get("/rest/user/information").then((resp) => {
       $scope.form = resp.data;
-      $scope.form.birthday = new Date($scope.form.birthday);
+	  if($scope.form.birthday!=null){
+		 $scope.form.birthday = new Date($scope.form.birthday);
+	  }	      
     });
   };
 
@@ -399,14 +401,16 @@ app.controller("information-ctrl", function ($scope, $http) {
   };
 });
 
-app.controller("cardlink-ctrl", function ($scope, $http) {
+app.controller("cardlink-ctrl", function ($window,$scope, $http) {
   $scope.cardbrand = [];
   $scope.form = {};
 
   $scope.initialize = function () {
     $http.get("/rest/wallet").then((resp) => {
       $scope.form = resp.data;
-      $scope.form.cardexpiry = new Date($scope.form.cardexpiry);
+      if($scope.form.cardexpiry!=null){
+		$scope.form.cardexpiry = new Date($scope.form.cardexpiry);
+	  }     
     });
   };
 
@@ -427,23 +431,24 @@ app.controller("cardlink-ctrl", function ($scope, $http) {
       })	  
     });
 
-    $scope.save = function() {	
+    $scope.cartlink = function() {	
       var item = angular.copy($scope.form);
-      $http.post(`/rest/wallet`, item).then(resp => {
+      $http.put(`/rest/wallet/cartlink`, item).then(resp => {
         if (resp.status == 200) {		
-          return Swal.fire({
+          Swal.fire({
             width: '400px',
             title: 'Lưu thành công!',
             icon: 'success',
             showConfirmButton: false,
             timer: 1500
           })
+		  $window.location.href = '/account/wallet';	
         }
       }).catch(error => {
         if (error.status == 400) {		
           return Swal.fire({
             width: '400px',
-            title: 'Thông tin ngân hàng không chính xác hoặc thẻ đã hết hạn!',
+            title: 'Thông tin thẻ không chính xác hoặc thẻ đã hết hạn!',
             icon: 'error',
             confirmButtonText: 'Ok',
           })
@@ -471,7 +476,7 @@ app.controller("wallet-ctrl", function ($scope, $http) {
 		$http.post(`/rest/wallet/naptien`, money).then(resp => {
 			if (resp.status == 200) {
 				$scope.initialize();
-				$scope.money = null;
+				$scope.money = null; /*set lại cho nó hiện lên cái form nhập số tiền*/
 				return Swal.fire({
 					width: '400px',
 					title: 'Nạp tiền thành công!',
@@ -489,6 +494,14 @@ app.controller("wallet-ctrl", function ($scope, $http) {
 					confirmButtonText: 'Ok',
 				})
 			}
+			if (error.status == 404) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Thẻ đã hết hạn. Vui lòng cập nhật lại thẻ!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
 			Swal.fire({
 				width: '400px',
 				title: 'Lỗi nạp tiền!',
@@ -499,7 +512,7 @@ app.controller("wallet-ctrl", function ($scope, $http) {
 		});
 	}	
 
-    $scope.delete = function() {
+    $scope.unlink = function() {
 		Swal.fire({
 			width: '400px',
 			title: 'Bạn thật sự muốn hủy liên kết thẻ?',
@@ -507,8 +520,9 @@ app.controller("wallet-ctrl", function ($scope, $http) {
 			confirmButtonText: `OK`,
 		}).then((result) => {
 			if (result.isConfirmed) {
-				$http.delete(`/rest/wallet`).then(resp => {
-					if (resp.status == 200) {						
+				$http.put(`/rest/wallet/unlink`).then(resp => {
+					if (resp.status == 200) {	
+						$scope.initialize();					
 						return Swal.fire({
 							width: '400px',
 							title: 'Hủy liên kết thẻ thành công!',
@@ -595,9 +609,9 @@ app.controller("changepassword-ctrl", function ($scope, $http) {
   $scope.pw_confirm;
 });
 
-app.controller("checkmoney-ctrl", function ($scope, $http) {
+/*app.controller("checkmoney-ctrl", function ($scope, $http) {
   $scope.money = 0.0;
-});
+});*/
 
 app.controller("transaction-ctrl", function ($scope, $http) {
   $scope.items = [];

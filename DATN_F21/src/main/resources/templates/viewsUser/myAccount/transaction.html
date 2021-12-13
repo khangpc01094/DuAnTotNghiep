@@ -49,7 +49,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="ltn__tab-menu ltn__tab-menu-2 ltn__tab-menu-top-right-- text-uppercase text-center">
+					<div class="ltn__tab-menu ltn__tab-menu-2 ltn__tab-menu-top-right-- text-uppercase text-center" ng-show="pager.items.length>0">
                             <div class="nav">
                                 <a href="" ng-click="pager.first()"><=</a>
                                 <a href="" ng-click="pager.prev()"><<</a>
@@ -57,7 +57,10 @@
                                 <a href="" ng-click="pager.next()">>></a>
                                 <a href="" ng-click="pager.last()">=></a>
                             </div>
-                        </div>
+                    </div>
+                    <div class="ltn__myaccount-tab-content-inner" ng-show="pager.items.length<1">
+						<p>Bạn chưa có giao dịch nào!</p>				
+					</div>
                 </div>
             </div>
         </div>

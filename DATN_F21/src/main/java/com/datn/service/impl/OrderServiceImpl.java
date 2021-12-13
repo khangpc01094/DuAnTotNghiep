@@ -108,12 +108,13 @@ public class OrderServiceImpl implements OrderService {
 
         String user = req.getRemoteUser();
         if (user != null) {
+        	Wallet walletBuyer = daoWalletDAO.findWalletByUserId(user);
         	
         	Double moneyCart = svShoppingCartService.getTotaldd();
-        	Double moneyWallet = daoWalletDAO.findWalletByUserId(user).get(0).getMoney();
+        	Double moneyWallet = walletBuyer.getMoney();
         	
         	if(moneyCart<=moneyWallet) {
-        		List<Total> list = daoCart.getAllPrice(user);
+        		List<Total> list = daoCart.getAllPrice(user);       		
                 for (Total s : list) {
                     if (s.getReduce() > 300000) {
                         s.setReduce(10.0);
@@ -133,6 +134,11 @@ public class OrderServiceImpl implements OrderService {
                     order.setTotalamount(s.getPay());
                     order.setAddress(daoAddress.getById(idAddress));
                     Order or = daoOrderDAO.save(order);
+                    
+                    //trừ tiền của người mua
+                    walletBuyer.setMoney(walletBuyer.getMoney() - or.getTotalamount());
+                    daoWalletDAO.save(walletBuyer);
+                    
                     notifications.setOrder(or);
                     notifications.setStatus(or.getStatus());
                     notifications.setDates(new Date());
@@ -214,6 +220,10 @@ public class OrderServiceImpl implements OrderService {
         Order order = daoOrderDAO.findById(id).get();
         order.setStatus(order.status += 1);
         Order orders = daoOrderDAO.save(order);
+        
+        //cộng tiền vào ví cho cửa hàng
+        addMoneyStore(orders.getStore().getUser().getUserid(),orders.getTotalamount());
+        
         Notifications notifications = daoNotification.getNotificationByOrderid(id);
         notifications.setStatus(orders.getStatus());
         notifications.setDates(new Date());
@@ -225,6 +235,12 @@ public class OrderServiceImpl implements OrderService {
     public Order orderRefuse(Integer id) {
         Order order = daoOrderDAO.findById(id).get();
         order.setStatus(4);
+        
+        //Công lại tiền cho người mua
+        Wallet walletBuyer = daoWalletDAO.findWalletByUserId(order.getUser().getUserid());
+        walletBuyer.setMoney(walletBuyer.getMoney()+order.getTotalamount());
+        daoWalletDAO.save(walletBuyer);
+        
         Notifications notifications = daoNotification.getNotificationByOrderid(id);
         notifications.setStatus(4);
         notifications.setDates(new Date());
@@ -256,6 +272,23 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Order getByid(Integer id) {
 		return daoOrderDAO.findById(id).get();
+	}
+	
+	private void addMoneyStore(String userIdSeller,Double money) {
+		Wallet wallerAdmin =  daoWalletDAO.findWalletByUserId("admin");
+		Wallet wallerSeller =  daoWalletDAO.findWalletByUserId(userIdSeller);
+		
+	
+        double moneyAddAdmin = money * (5 / 100.0);
+        double moneyAddSeller = money - moneyAddAdmin;
+		
+        //cộng tiền chiết khấu cho admin
+        wallerAdmin.setMoney(wallerAdmin.getMoney()+moneyAddAdmin);
+        daoWalletDAO.save(wallerAdmin);
+        
+        //cộng tiền vào ví người dùng
+		wallerSeller.setMoney(wallerSeller.getMoney()+moneyAddSeller);
+		daoWalletDAO.save(wallerSeller);
 	}
 
 }

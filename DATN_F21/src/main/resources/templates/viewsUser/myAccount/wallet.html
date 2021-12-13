@@ -20,10 +20,16 @@
                      </div>
                 </div>
             </div>
-            <div class="ltn__myaccount-tab-content-inner">               
+			<div class="ltn__myaccount-tab-content-inner" ng-show="wallet.cardnumber==null">
+				<p>Bạn cần liên kết thẻ mới có thể nạp tiền vào ví !</p>				
+			</div>
+            <a ng-show="wallet.cardnumber==null" href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase col-lg-12">LIÊN KẾT THẺ</a>
+           
+            
+            <div ng-show="wallet.cardnumber!=null" class="ltn__myaccount-tab-content-inner">               
                 <div class="ltn__form-box">                   
                     <div class="ltn__comment-reply-area ltn__form-box mb-10">  
-                         <form>
+                         <form name="form_wallet">
                         		<div class="ltn__team-details-member-about">
                         			<h4 class="title-2 text-center">Thông tin thẻ liên kết</h4>
                                  <ul>
@@ -36,12 +42,13 @@
                              </div>         
                              <br>
                              <div class="input-item input-item-textarea ltn__custom-icon">
-                                 <input ng-model="money" type="text" placeholder="Nhập số tiền muốn nạp...." required>
-                             </div>                    
+                                 <input ng-model="money" name="money" type="number" placeholder="Nhập số tiền muốn nạp...." required onKeyUp="if(this.value<1){this.value='1';}">                                
+                             </div>     
+                             <span style="color: red" ng-hide="form_wallet.money.$valid">Bạn cần nhập số tiền trước khi nạp tiền</span>               
                              <div class="btn-wrapper">
-                                 <button ng-click="naptien()" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Nạp tiền</button>
-                                 <a  href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Chỉnh sửa thẻ</a>                              
-                                 <btn  ng-click="delete()" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Hủy liên kết</btn>
+                                 <a href="" ng-click="naptien()" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Nạp tiền</a>
+                                 <a  href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Chỉnh sửa thẻ</a>                              
+                                 <a href=""  ng-click="unlink()" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Hủy liên kết</a>
                              </div>
                          </form>
                      </div>

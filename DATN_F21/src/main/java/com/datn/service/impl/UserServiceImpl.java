@@ -11,7 +11,11 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import com.datn.DAO.UsersDAO;
+import com.datn.entity.Authorization;
+import com.datn.entity.Role;
 import com.datn.entity.Users;
+import com.datn.service.AuthorizationService;
+import com.datn.service.RoleService;
 import com.datn.service.UserService;
 
 @Service
@@ -22,6 +26,11 @@ public class UserServiceImpl implements UserService{
 	@Autowired 
 	HttpServletRequest req;
 	
+	@Autowired
+    AuthorizationService svAuth;
+
+    @Autowired
+    RoleService svRole;
 	
     @Override
     public Users create(Users user) {
@@ -53,8 +62,8 @@ public class UserServiceImpl implements UserService{
 	
 	
 	@Override
-	public Users findById(String username) {
-		Optional<Users> user = daoUsersDAO.findById(username);
+	public Users findById(String userid) {
+		Optional<Users> user = daoUsersDAO.findById(userid);
 		return user.get();
 	}
 
@@ -122,5 +131,25 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Users save(Users user) {
 		return daoUsersDAO.save(user);
+	}
+
+	@Override
+	public ResponseEntity<Users> addUserByAdmin(Users user) {
+		if(daoUsersDAO.existsByUsername(user.getUsername()) != null) {
+			return ResponseEntity.badRequest().build();
+		}
+		user.setUserid(idUser());
+		daoUsersDAO.save(user);
+		Authorization auth = new Authorization();
+        Role rol = svRole.findById(1);
+        auth.setRole(rol);
+        auth.setUser(user);
+        svAuth.Create(auth);
+		return ResponseEntity.ok(user);       
+	}
+
+	@Override
+	public Users findByUsername(String username) {
+		return daoUsersDAO.existsByUsername(username);
 	}
 }

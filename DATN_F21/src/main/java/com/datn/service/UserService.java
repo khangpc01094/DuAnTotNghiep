@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 
 public interface UserService {
 
-    Users findById(String username);
+    Users findById(String userid);
+    
+    Users findByUsername(String username);
 
 	String changePassword(String pwPresent, String pwNew, String pwConfirm);
 
@@ -27,5 +29,7 @@ public interface UserService {
     Users timUserByEmail(String email);
     
     Users save(Users user);
+
+	ResponseEntity<Users> addUserByAdmin(Users user);
 
 }

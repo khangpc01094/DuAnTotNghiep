@@ -15,5 +15,8 @@ public interface UsersDAO extends JpaRepository<Users, String>{
 	
 	@Query("SELECT u FROM Users u WHERE u.email = ?1")
 	Users timUserByEmail(String email);
+
+	@Query("SELECT u FROM Users u WHERE u.username = ?1")
+	Users existsByUsername(String username);
 	
 }

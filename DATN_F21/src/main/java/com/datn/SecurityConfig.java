@@ -40,13 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(username -> {
+        	System.err.println(username);
             try {
-                Users user = svUserService.findById(username);
+                Users user = svUserService.findByUsername(username);
                 String password = pe.encode(user.getPassword());
-                Integer[] roles = svAuthorizationService.findRoleByUsername(username).stream()
+                Integer[] roles = svAuthorizationService.findRoleByUserId(user.getUserid()).stream()
                         .map(role -> role.getId())
                         .collect(Collectors.toList()).toArray(new Integer[0]);
-                return User.withUsername(username).password(password).roles(roles.toString()).build();
+                return User.withUsername(user.getUserid()).password(password).roles(roles.toString()).build();
             } catch (NoSuchElementException e) {
                 throw new UsernameNotFoundException(username + " not fount!");
             }

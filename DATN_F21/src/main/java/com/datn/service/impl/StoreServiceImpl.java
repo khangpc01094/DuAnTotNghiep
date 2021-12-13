@@ -1,6 +1,7 @@
 package com.datn.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,5 +67,16 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public List<Product> findByAllProduct(Integer sid) {
 		return daoStoreDAO.findByAllProduct(sid);
+	}
+
+	@Override
+	public ResponseEntity<Store> updateStatus(Store store) {
+		if(store.getStatus()==true) {
+			store.setStatus(false);
+		}else {
+			store.setStatus(true);
+		}		
+		daoStoreDAO.save(store);
+		return ResponseEntity.ok(store);
 	}
 }

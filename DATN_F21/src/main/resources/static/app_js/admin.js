@@ -8,9 +8,7 @@ app.controller("user-ctrl", function($scope, $http) {
 	$scope.items = [];
 	$scope.no;
 	$scope.form = {
-		birthday: new Date(),
 		picture: 'user_default.png',
-		gender: true,
 	};
 	
 	
@@ -18,7 +16,9 @@ app.controller("user-ctrl", function($scope, $http) {
 		$http.get("/rest/user/findall").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
-				item.birthday = new Date(item.birthday)
+				if(item.birthday!=null){
+					item.birthday = new Date(item.birthday)
+				}				
 			})
 		});
 	}
@@ -32,9 +32,7 @@ app.controller("user-ctrl", function($scope, $http) {
 	
 	$scope.clear = function() {	
 		$scope.form = {
-			birthday: new Date(),
 			picture: 'user_default.png',
-			gender: true,
 		};
 	}
 	
@@ -108,7 +106,7 @@ app.controller("user-ctrl", function($scope, $http) {
 
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		$http.post(`/rest/user/buyer/regis`, item).then(resp => {
+		$http.post(`/rest/user/admin/create_user`, item).then(resp => {
 			if (resp.status == 200) {
 				$scope.initialize();
 				return Swal.fire({
@@ -120,14 +118,14 @@ app.controller("user-ctrl", function($scope, $http) {
 				})
 			}
 		}).catch(error => {
-			/*if (error.status == 404) {
+			if (error.status == 400) {
 				return Swal.fire({
 					width: '400px',
-					title: 'Không tìm thấy người dùng này!',
+					title: 'Tên tài khoản người dùng này đã tồn tại!',
 					icon: 'error',
 					confirmButtonText: 'Ok',
 				})
-			}*/
+			}
 			Swal.fire({
 				width: '400px',
 				title: 'Lỗi Thêm!',
@@ -180,7 +178,7 @@ app.controller("user-ctrl", function($scope, $http) {
 app.controller("store-ctrl", function($scope, $http) {
 	$scope.items = [];
 	$scope.no;
-	
+	var keyname;
 	
 	
 	$scope.initialize = function() {
@@ -234,6 +232,7 @@ app.controller("store-ctrl", function($scope, $http) {
 	}
 	
 	$scope.search = function(name) {
+		keyname = name;
 		if (name === undefined) {
 			$scope.initialize();
 		}else{
@@ -247,6 +246,30 @@ app.controller("store-ctrl", function($scope, $http) {
 			});
 		}
 	}
+	
+	$scope.update_status = function(item) {
+		$http.put(`/rest/store/update_status`, item).then(resp => {
+			if (resp.status == 200) {
+				$scope.search(keyname);
+				return Swal.fire({
+					width: '400px',
+					title: 'Cập nhật trạng thái cửa hàng thành công!',
+					icon: 'success',
+					showConfirmButton: false,
+					timer: 1500
+				})
+			}
+		}).catch(error => {
+			Swal.fire({
+				width: '400px',
+				title: 'Lỗi cập nhật trạng thái cửa hàng!',
+				icon: 'error',
+				confirmButtonText: 'Ok',
+			})			
+			console.log("Error", error);
+		});
+	}
+	
 })
 
 app.controller("category-ctrl", function($scope, $http) {

@@ -19,8 +19,8 @@ public class AuthorizationServiceImpl implements AuthorizationService{
 	
 	
 	@Override
-	public List<Role> findRoleByUsername(String username) {
-		return daoAuthorizationDAO.findRoleByUsername(username);
+	public List<Role> findRoleByUserId(String userid) {
+		return daoAuthorizationDAO.findRoleByUserId(userid);
 	}
 
 

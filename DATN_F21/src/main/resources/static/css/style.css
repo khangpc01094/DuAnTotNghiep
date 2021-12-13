@@ -849,6 +849,7 @@ input[type="email"],
 input[type="password"],
 input[type="submit"],
 input[type="date"],
+input[type="number"],
 .gender,
 textarea {
     background-color: var(--white);

@@ -75,10 +75,10 @@ public class UserRestController {
 	}
 
 	
-	//admin them user
-//	@PutMapping("/create")
-//	public Users create(@RequestBody Users user){	
-//		return svUserService.create(user);
-//	}
+//	admin them user
+	@PostMapping("/admin/create_user")
+	public ResponseEntity<Users> addUserByAdmin(@RequestBody Users user){		   
+       return svUserService.addUserByAdmin(user);
+	}
 
 }
