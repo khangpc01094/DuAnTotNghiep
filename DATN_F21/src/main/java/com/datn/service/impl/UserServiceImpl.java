@@ -2,6 +2,7 @@ package com.datn.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,8 @@ import com.datn.entity.Wallet;
 import com.datn.model.entity.ChangePasswordModel;
 import com.datn.service.AuthorizationService;
 import com.datn.service.RoleService;
+//import com.datn.service.RoleService;
+//import com.datn.service.UserService;
 import com.datn.service.UserService;
 
 @Service
@@ -196,5 +199,37 @@ public class UserServiceImpl implements UserService{
 			Users user = daoUsersDAO.existsByUsername(username);
 			return user;
 		}
+	}
+	
+	@Override
+	public Users findByResetPasswordToken(String token) {
+		return daoUsersDAO.findByResetPasswordToken(token);
+	}
+
+	@Override
+	public void updateResetPasswordToken(String token, String email) {
+		Users user = daoUsersDAO.findByEmail(email);
+		if (user != null) {
+		user.setResetPasswordToken(token);
+		daoUsersDAO.save(user);
+		} else {
+		System.out.println("Could not find any customer with the email " + email);
+		}
+	}
+
+	@Override
+	public void updatePassword(Users user, String newPassword) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(newPassword);
+		user.setPassword(encodedPassword);
+
+		user.setResetPasswordToken(null);
+		daoUsersDAO.save(user);
+		
+	}
+
+	@Override
+	public Users getByResetPasswordToken(String token) {
+		return daoUsersDAO.findByResetPasswordToken(token);
 	}
 }

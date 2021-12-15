@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -34,6 +35,9 @@ public class Users implements Serializable {
 	@Temporal(TemporalType.DATE)
 	public Date birthday;
 	public String phone;
+	
+	@Column(name = "reset_password_token")
+	private String resetPasswordToken;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")

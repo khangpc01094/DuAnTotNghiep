@@ -118,4 +118,14 @@ public class ProductServiceImpl implements ProductService {
 	public void delete(Integer id) {
 		daoProduct.deleteById(id);
 	}
+	
+	@Override
+	public List<Product> findAllStatusTrue() {
+		return daoProduct.findAllStatusTrue();
+	}
+
+	@Override
+	public List<Product> findByCategoryIdStatusTrue(Integer cid) {
+		return daoProduct.findByCategoryIdStatusTrue(cid);
+	}
 }

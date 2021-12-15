@@ -34,4 +34,13 @@ public interface UserService {
 	ResponseEntity<Users> addUserByAdmin(Users user);
 
 	Users  saveUserAuth2(String username,String password,String fullname,String email);
+	
+	Users findByResetPasswordToken(String token);
+
+	void updateResetPasswordToken(String token, String email);
+
+	void updatePassword(Users user, String newPassword);
+
+	Users getByResetPasswordToken(String token);
+	
 }

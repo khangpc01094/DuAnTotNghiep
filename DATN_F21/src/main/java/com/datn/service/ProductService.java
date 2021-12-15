@@ -7,6 +7,10 @@ import com.datn.entity.Product;
 import org.springframework.http.ResponseEntity;
 
 public interface ProductService {
+	
+	List<Product> findAllStatusTrue();
+
+	List<Product> findByCategoryIdStatusTrue(Integer cid);
 
     Integer getQuanlityByStore(Integer storeId);
 	

@@ -70,7 +70,9 @@ public class ProductImageRestController {
 	}
 
 	@PutMapping("{id}")
-	public ProductImage updateProductImage(@PathVariable("id") Integer id, @RequestBody ProductImage productImage, Product product) {
+	public ProductImage updateProductImage(@PathVariable("id") Integer id, @RequestBody ProductImage productImage) {
+		Product product = svProduct.findById(productImage.getProduct().getId());
+		System.err.println("id product: " + productImage.getProduct().getId());
 		product.setImages(productImage.getPicture());
 		svProduct.update(product);
 		return svProductImageService.update(productImage);
