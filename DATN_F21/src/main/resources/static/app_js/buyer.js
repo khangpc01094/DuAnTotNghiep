@@ -95,9 +95,8 @@ app.controller("buyer-ctrl", function ($scope, $http) {
       });
   };
 
-  $scope.addaddress = function() {
+  $scope.add_address1 = function() {
     var item = angular.copy($scope.form);
-    alert("voi roi ne")
     $http.post(`/rest/address/add_address`, item).then(resp => {
         $scope.reset();
         return Swal.fire('Thêm thành công')
