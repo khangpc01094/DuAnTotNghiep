@@ -78,12 +78,12 @@
 							</tbody>
 							<tbody>
 								<tr>
-								<th>Tổng tiền cần thanh toán</th>
+								<th>Tổng tiền cần thanh toán đã bao gồm phí vận chuyển 15,000.00 đ</th>
 								<td>{{cart.amount | number : 2}}đ</td>
 							</tr>
 							</tbody>
 							</table>
-								<div class="btn-wrapper text-right">
+								<div ng-if="cart.amount > 0" class="btn-wrapper text-right">
 									<a href="/index/checkout" class="theme-btn-1 btn btn-effect-1">Tiến hành thanh
 										toán</a>
 								</div>

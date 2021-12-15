@@ -32,6 +32,8 @@ public interface OrderService {
 
     List<Order> getOrderStatusFour();
 
+    void CheckAllStatusOne();
+
     Order orderConfirm(Integer id);
 
     Order orderRefuse(Integer id);

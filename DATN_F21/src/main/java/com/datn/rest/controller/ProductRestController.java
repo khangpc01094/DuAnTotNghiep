@@ -3,6 +3,8 @@ package com.datn.rest.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.datn.DAO.ProductImageDAO;
 import com.datn.entity.Product;
 import com.datn.entity.ProductImage;
@@ -39,6 +41,9 @@ public class ProductRestController {
 	@Autowired
 	ProductImageDAO daoProductImageDAO;
 
+	@Autowired
+	HttpServletRequest req;
+
 	@GetMapping("/quanlity_by_store/{storeid}")
 	public Integer getQuanlityByStore(@PathVariable("storeid") Optional<Integer> storeId) {
 		return svProduct.getQuanlityByStore(storeId.get());
@@ -63,14 +68,14 @@ public class ProductRestController {
 
 	@GetMapping("/category/{cid}/{sid}")
 	List<Product> findByCategoryId(@PathVariable("cid") Integer cid) {
-		Store store = svStoreService.findStoreByUserId("user1");
+		Store store = svStoreService.findStoreByUserId(req.getRemoteUser());
 		Integer idstore = store.getId();
 		return svProduct.findByABCCategoryId(cid, idstore);
 	}
 
 	@PostMapping
 	public Product createProduct(@RequestBody Product product) {// dùng product nhận all thông tin từ form
-		Store store = svStoreService.findStoreByUserId("user1");
+		Store store = svStoreService.findStoreByUserId(req.getRemoteUser());
 		Integer idstore = store.getId();
 		ProductImage productImage = new ProductImage();
 		store.setId(idstore);

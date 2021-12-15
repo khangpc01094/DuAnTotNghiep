@@ -5,36 +5,43 @@
 <main>
 		<div class="container_cthd" id="title2" style="margin: 8px;">
             <h3 style="color: orange;">Thông Tin Đơn Hàng</h3>
-        <div class="cthd">
+       
+        <div class="cthd" th:object="${orderla}">
             <div class="row">
                 <div class="col-sm-4">
-                    <label for=""> <b>Id đơn: </b>21</label>
+                    <label for=""> <b>Id đơn: </b>[[*{id}]]</label>
                     
                 </div>
                 <div class="col-sm-4">
-                    <label for=""><b>Cửa Hàng: </b>Rau Sạch Việt</label>
+                    <label for=""><b>Cửa Hàng: </b>[[*{store.name}]]</label>
                 </div>
                 <div class="col-sm-4">
-                    <label for=""><b>Ngày đặt: </b>11/12/2021</label>
+                    <label for=""><b>Ngày đặt: </b>[[*{bookingdate}]]</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
-                    <label for=""><b>Khách hàng: </b>Trần Minh A</label>
+                    <label for=""><b>Khách hàng: </b>[[*{address.fullname}]]</label>
                 </div>
                 <div class="col-sm-4">
-                    <label for=""><b>Trạng thái: </b>đang chờ xác nhận</label>
+                    <label for=""><b>Trạng thái: </b> 
+                    <span th:if="*{status == 1}">Đang chờ xác nhận</span>
+                    <span th:if="*{status == 2}">Đang giao</span>
+                    <span th:if="*{status == 3}">Đã nhận hàng</span>
+                    <span th:if="*{status == 4}">Đã hủy</span>
+                     </label>
                 </div>
                 <div class="col-sm-4">
-                    <label for=""><b>Tổng đơn: </b>125,000.00 đ</label>
+                    <label for=""><b>Tổng đơn: </b>[[*{totalamount}]] đ</label>
                     
                 </div>
             </div>
             <div class="diachi">
-                <label for=""><b>Địa chỉ nhận: </b><b>Tên người nhận: </b> Trần Thùy Chi, <b>Số điện thoại: </b>0789587784, <b>Địa chỉ:</b>Thành sơn, Thành Trung, Bình Tân, Vĩnh Long</label>
+                <label for=""><b>Địa chỉ nhận: </b><b>Tên người nhận: </b> [[*{address.fullname}]], <b>Số điện thoại: </b>[[*{address.phone}]], <b>Địa chỉ:</b>[[*{address.address}]]</label>
             </div>
         </div>
-        <h3 style="color: orange;">Chi tiết</h3>
+       
+       <h3 style="color: orange;">Chi tiết</h3>
         <div class="tablecthd">
             <table class="table">
                 <thead class="thead-light">
@@ -47,31 +54,15 @@
                     <th scope="col">Thành tiền</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody th:each="n:${detail}">
                   <tr>
-                    <th scope="row"><img th:src="@{|/img/product/15.png|}" width="70px" height="70px" class="rounded-circle" alt="{{detail.product.images}}"></th>
-                    <td >32,000 đ</td>
-                    <td >2</td>
-                    <td >Cải xanh </td>
-                    <td >21</td>
-                    <td >64,000 đ</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><img th:src="@{|/img/product/14.png|}" width="70px" height="70px" class="rounded-circle" alt="{{detail.product.images}}"></th>
-                    <td >20,000 đ</td>
-                    <td >2</td>
-                    <td >Củ hành tím </td>
-                    <td >21</td>
-                    <td >40,000 đ</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><img th:src="@{|/img/product/13.png|}" width="70px" height="70px" class="rounded-circle" alt="{{detail.product.images}}"></th>
-                    <td >32.000</td>
-                    <td >1</td>
-                    <td >Chanh dây </td>
-                    <td >21</td>
-                    <td >32,000 đ</td> 
-                  </tr>
+                  	<td><img th:src="@{|/img/product/${n.product.images}|}" width="70px" height="70px" class="rounded-circle" alt="${n.id}"></td>
+                  	<td>[[${n.price}]]</td>
+                  	<td>[[${n.quantity}]]</td>
+                  	<td>[[${n.product.name}]]</td>
+                  	<td>[[${n.order.id}]]</td>
+                  	<td>[[${n.totalamount}]]</td>
+                  </tr>                  
                 </tbody>
               </table>
         </div>

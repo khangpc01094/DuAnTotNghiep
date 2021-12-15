@@ -20,6 +20,7 @@ import com.datn.service.AuthorizationService;
 import com.datn.service.CategoryService;
 import com.datn.service.OrderDetailService;
 import com.datn.service.OrderService;
+import com.datn.service.StoreService;
 
 @Controller
 public class SellerController {
@@ -39,6 +40,8 @@ public class SellerController {
 	@Autowired
 	OrderDetailService svDetail;
 	
+	@Autowired
+	StoreService svStore;
 
 	@GetMapping("/demo")
 	public String demo() {
@@ -97,7 +100,7 @@ public class SellerController {
 		String date2 = req.getParameter("date2");
 		Date d1 = Date.valueOf(date1);
 		Date d2 = Date.valueOf(date2); 
-		Integer store = 2;
+		Integer store = svStore.getStoreByUserid(req.getRemoteUser()).getId();
 		List<statiscate> list = svDetail.findByDate(store, d1, d2);
 		System.out.println(list);
 		m.addAttribute("ngay", list);
@@ -115,7 +118,7 @@ public class SellerController {
 		String date2 = req.getParameter("date2");
 		Date d1 = Date.valueOf(date1);
 		Date d2 = Date.valueOf(date2); 
-		Integer store = 2;
+		Integer store = svStore.getStoreByUserid(req.getRemoteUser()).getId();
 		List<statisinvoice> list = svOrder.findByDate2(store, d1, d2);
 		m.addAttribute("ngay2", list);
 		Double sum = svOrder.findByDateTotal(store, d1, d2);
@@ -126,7 +129,7 @@ public class SellerController {
 	
 	@GetMapping("/regisSeller")
 	public String getformRegis() {
-		String user = "57D07hzVbm";
+		String user = req.getRemoteUser();
 		Authorization result = svAutho.getRole(user);
 		if(result != null) {
 			return "/viewsSeller/allProduct";
@@ -141,7 +144,7 @@ public class SellerController {
 	public String getfromDetail(@PathVariable("id") Integer id, Model model){
 		Order order = svOrder.getByid(id);
 		List<OrderDetail> detail = svDetail.getByStoreId(id);
-		model.addAttribute("order", order);
+		model.addAttribute("orderla", order);
 		model.addAttribute("detail", detail);
 		return "/viewsSeller/detail";
 	}

@@ -200,6 +200,25 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+	public void CheckAllStatusOne() {
+    	String user = req.getRemoteUser();
+        if(user != null){
+        Store store = daoStore.getStoreByUser(user);
+        List<Order> list = daoOrderDAO.getOrderStatusOne(store.getId());
+        for(Order s : list) {
+        	s.setStatus(s.status+=1);
+        	daoOrderDAO.save(s);
+        	Notifications notifications = daoNotification.getNotificationByOrderid(s.getId());
+            notifications.setStatus(s.getStatus());
+            notifications.setDates(new Date());
+            daoNotification.save(notifications);
+        	
+        }
+        
+        }
+	}
+
+    @Override
     public List<Order> getOrderStatusFather() {
         String user = req.getRemoteUser();
         if(user != null){

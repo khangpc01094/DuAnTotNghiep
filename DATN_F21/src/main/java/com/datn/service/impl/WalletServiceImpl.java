@@ -1,8 +1,5 @@
 package com.datn.service.impl;
 
-import java.util.Date;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.datn.DAO.TransactionDAO;
 import com.datn.DAO.UsersDAO;
 import com.datn.DAO.WalletDAO;
-import com.datn.entity.Transaction;
 import com.datn.entity.Users;
 import com.datn.entity.Wallet;
 

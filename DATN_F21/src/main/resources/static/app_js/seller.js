@@ -19,6 +19,17 @@ app.controller("seller-ctrl", function($scope, $http) {
 		OrderFather: [],
 		OrderFour: [],
 
+		getCheckAllStatusOne(){
+			$http.get(`/rest/order/checkAll`).then( resp => {
+				$scope.Order.getOrderOne();
+				$scope.Order.getOrderTwo();
+				$scope.Order.getOrderFather();
+				$scope.Order.getOrderFour();
+			}).catch(error => {
+				console.log(error);
+			})
+		},
+
 		getSumStatusOne() {
 			$http.get(`/rest/order/sumStatus`).then(resp => {
 				this.SumOrderStatusOne = resp.data;

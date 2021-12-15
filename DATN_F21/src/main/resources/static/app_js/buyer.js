@@ -22,11 +22,12 @@ app.controller("buyer-ctrl", function ($scope, $http) {
     var item = angular.copy($scope.form);
     $http.post(`/rest/user/buyer/regis`, item).then(resp => {
         $scope.reset();
-        return Swal.fire({
-            width: '400px',
-            title: 'Đăng ký thành công!',
-            icon: 'success',
-        })
+        Swal.fire({
+          icon: 'success',
+          title: 'Đăng kí thành công',
+          showConfirmButton: false,
+          timer: 1500
+        });
     }).catch(error => {
         console.log(error);
         return Swal.fire({
@@ -77,10 +78,10 @@ app.controller("buyer-ctrl", function ($scope, $http) {
 
         return (
           Swal.fire({
-            width: "400px",
-            title: "Cập nhật thành công!",
-            icon: "success",
-            timer: 99500,
+            icon: 'success',
+            title: 'Cập nhật thành công',
+            showConfirmButton: false,
+            timer: 1500
           }),
           location.reload()
         );
@@ -100,10 +101,11 @@ app.controller("buyer-ctrl", function ($scope, $http) {
       .post(`/rest/address/buyer/add_address`, item)
       .then((resp) => {
         $scope.reset();
-        return Swal.fire({
-          width: "400px",
-          title: "Thêm địa chỉ thành công!",
-          icon: "success",
+        Swal.fire({
+          icon: 'success',
+          title: 'Thêm địa chỉ thành công',
+          showConfirmButton: false,
+          timer: 1500
         });
       })
       .catch((error) => {
@@ -121,11 +123,12 @@ app.controller("buyer-ctrl", function ($scope, $http) {
     var item = angular.copy($scope.form);
     $http.post(`/rest/store/seller/regis`, item).then(resp => {
         $scope.reset();
-        return Swal.fire({
-            width: '400px',
-            title: 'Đăng ký thành công!',
-            icon: 'success',
-        })
+        Swal.fire({
+          icon: 'success',
+          title: 'Đăng kí thành công',
+          showConfirmButton: false,
+          timer: 1500
+        });
     }).catch(error => {
         console.log(error);
         return Swal.fire({
@@ -159,7 +162,12 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         $http
           .get(`/rest/putcart/${id}`)
           .then((resp) => {
-            alert("ban vua cập nhật mot san pham");
+            Swal.fire({
+              icon: 'success',
+              title: 'Đã Thêm Vào Giỏ Hàng',
+              showConfirmButton: false,
+              timer: 1500
+            });
             $scope.cart.loadCart();
             $scope.cart.getCart();
             $scope.cart.loadsum();
@@ -173,14 +181,34 @@ app.controller("buyer-ctrl", function ($scope, $http) {
         $http
           .get(`/rest/createCart/${id}`)
           .then((resp) => {
-            alert("đã them vao giỏ hàng");
+            if(resp.status == 200){
+            Swal.fire({
+              icon: 'success',
+              title: 'Đã Thêm Vào Giỏ Hàng',
+              showConfirmButton: false,
+              timer: 1500
+            });
             $scope.cart.loadCart();
             $scope.cart.getCart();
             $scope.cart.loadsum();
             $scope.cart.getSumQuantity();
+          }
           })
           .catch((error) => {
-            alert("lỗi thêm vao giỏ hàng");
+            if(error.status == 404 ){
+              return Swal.fire({
+                icon: 'error',
+                title: 'Vui Lòng Đăng Nhập',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+            Swal.fire({
+              icon: 'error',
+              title: 'Lỗi Thêm ',
+              showConfirmButton: false,
+              timer: 1500
+            });
           });
       }
     },
@@ -188,10 +216,18 @@ app.controller("buyer-ctrl", function ($scope, $http) {
     apartquantity(id) {
       var item = this.items.find((item) => item.id == id);
       var u = item.quantity;
-      if (u == 1) {
-        var cart = confirm("Bạn chắc sẽ xóa sản phẩm ???");
-        if (cart == true) {
-          $http
+      if (u == 1) {      
+        Swal.fire({
+          title: "Bạn chắc chắn muốn xóa sản phẩm hay không?",
+          // text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Đồng Ý",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $http
             .get(`/rest/apartquantity/${id}`)
             .then((resp) => {
               $scope.cart.loadCart();
@@ -202,9 +238,14 @@ app.controller("buyer-ctrl", function ($scope, $http) {
             .catch((error) => {
               alert(error);
             });
-        } else {
-          null;
-        }
+            Swal.fire({
+              icon: 'success',
+              title: 'Đã Xóa Sản Phẩm',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        });
       } else {
         $http
           .get(`/rest/apartquantity/${id}`)
@@ -343,7 +384,7 @@ app.controller("information-ctrl", function ($scope, $http) {
     });
   };
 
-  $scope.initialize();
+  $scope.initialize(); 
 
   $scope.update = function() {
 		var item = angular.copy($scope.form);

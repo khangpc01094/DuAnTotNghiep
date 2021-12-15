@@ -1,6 +1,7 @@
 package com.datn.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     HttpServletRequest req;
     
     @Override
-    public ShoppingCart create(Integer id) {
+    public ResponseEntity<ShoppingCart> create(Integer id) {
         String usera = req.getRemoteUser();
         if(usera != null){
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -42,9 +43,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
         shoppingCart.setProduct(a);
         shoppingCart.setQuantity(1);
         shoppingCart.setStoreid(a.getStore().id);
-        return daoCart.save(shoppingCart);
+        return ResponseEntity.ok(daoCart.save(shoppingCart)) ;
         } else{
-             return null;
+             return ResponseEntity.notFound().build();
         }
     }
 

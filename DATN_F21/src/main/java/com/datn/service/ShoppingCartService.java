@@ -5,6 +5,8 @@ import java.util.List;
 import com.datn.entity.ShoppingCart;
 import com.datn.entity.Total;
 
+import org.springframework.http.ResponseEntity;
+
 public interface ShoppingCartService {
 
     List<ShoppingCart> GetAll();
@@ -13,7 +15,7 @@ public interface ShoppingCartService {
 
     List<ShoppingCart> findByStore();
 
-    ShoppingCart create(Integer id);
+    ResponseEntity<ShoppingCart> create(Integer id);
 
     ShoppingCart update(ShoppingCart shoppingCart);
 

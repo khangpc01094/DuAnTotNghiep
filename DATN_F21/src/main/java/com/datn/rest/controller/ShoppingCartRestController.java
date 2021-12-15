@@ -2,6 +2,8 @@ package com.datn.rest.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.datn.entity.ShoppingCart;
 import com.datn.entity.Total;
 import com.datn.service.ProductService;
@@ -9,6 +11,7 @@ import com.datn.service.ShoppingCartService;
 import com.datn.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,19 +33,22 @@ public class ShoppingCartRestController {
     @Autowired
     ShoppingCartService svCartService;
 
+    @Autowired
+    HttpServletRequest req;
+
     @GetMapping("getcart")
     public List<ShoppingCart> getAll() {
         return svCartService.GetAll();
     }
 
     @GetMapping("createCart/{idp}")
-    public ShoppingCart createCart(@PathVariable("idp") Integer idp) {
+    public ResponseEntity<ShoppingCart> createCart(@PathVariable("idp") Integer idp) {
         return svCartService.create(idp);
     }
 
     @GetMapping("putcart/{id}")
     public ShoppingCart updateCart(@PathVariable("id") Integer id) {
-        ShoppingCart shoppingCart = svCartService.getCartPr("user1", id);
+        ShoppingCart shoppingCart = svCartService.getCartPr(req.getRemoteUser(), id);
         shoppingCart.setQuantity(shoppingCart.quantity += 1);
         return svCartService.update(shoppingCart);
     }

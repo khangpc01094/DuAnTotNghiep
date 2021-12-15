@@ -81,6 +81,11 @@ public class OrderRestController {
         return svOrder.getSumOrderStatusOne();
     }
 
+    @GetMapping("/checkAll")
+    public void checkAllStatusOne() {
+    	svOrder.CheckAllStatusOne();
+    }
+
     @GetMapping("notification")
     public List<Notifications> getNotification(){
         return svOrder.getNotifications();

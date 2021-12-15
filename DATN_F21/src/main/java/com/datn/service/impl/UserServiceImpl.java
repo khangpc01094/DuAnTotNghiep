@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public ResponseEntity<Users> changePassword(ChangePasswordModel changePasswordModel) {
-		String messenger;	
+		//String messenger;	
 		//Lấy thông user đang đăng nhập 
 		Users user = daoUsersDAO.findById(req.getRemoteUser()).get();
 		if(!changePasswordModel.getPw_present().equals(user.getPassword())) {
@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
-	
+	 
 	@Override
 	public ResponseEntity<Users> postInformation(Users user) {
 		if(user.getUserid()==null || !daoUsersDAO.existsById(user.getUserid())) {

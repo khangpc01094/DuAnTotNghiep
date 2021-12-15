@@ -3,6 +3,8 @@ package com.datn.rest.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.datn.DAO.StoreDAO;
 import com.datn.entity.Authorization;
 import com.datn.entity.Category;
@@ -52,6 +54,9 @@ public class StoreRestController {
 
 	@Autowired
 	StoreDAO daoStoreDAO;
+
+	@Autowired
+	HttpServletRequest req;
     
 	@GetMapping("/findall")
 	public List<Store> getAllStore(){
@@ -67,7 +72,7 @@ public class StoreRestController {
 	public Store createStore(@RequestBody Store store) {
         Store st = svStoreService.create(store);
         Authorization auth = new Authorization();
-        Users us = svUser.getByid("57D07hzVbm");
+        Users us = svUser.getByid(req.getRemoteUser());
         Role rol = svRole.findById(2);
         auth.setRole(rol);
         auth.setUser(us);
@@ -77,12 +82,12 @@ public class StoreRestController {
 
 	@GetMapping
 	public Store getStoreByUserId(String userid) {
-		return svStoreService.findStoreByUserId("user1");
+		return svStoreService.findStoreByUserId(req.getRemoteUser());
 	}
 
 	@GetMapping("allProduct")
 	public List<Product> findByAllProduct() {
-		Store store = svStoreService.findStoreByUserId("user1");
+		Store store = svStoreService.findStoreByUserId(req.getRemoteUser());
 		Integer idstore = store.getId();
 		return svStoreService.findByAllProduct(idstore);
 	}

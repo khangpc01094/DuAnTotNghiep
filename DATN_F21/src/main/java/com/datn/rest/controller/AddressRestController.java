@@ -2,6 +2,8 @@ package com.datn.rest.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,16 +31,19 @@ public class AddressRestController {
 	@Autowired
 	UserService svUser;
 
+	@Autowired
+	HttpServletRequest req;
+
     @PostMapping("/buyer/add_address")
 	public Address create(@RequestBody Address address) {
-		Users a = svUser.getByid("user2");
+		Users a = svUser.getByid(req.getRemoteUser());
 		address.setUser(a);
 		return svAddress.create(address);
     }
 
 	@GetMapping("/us")
 	public List<Address> demo2() {
-		String user = "user2";
+		String user = req.getRemoteUser();;
 		return svAddress.findByUserid(user);
 	}
 
