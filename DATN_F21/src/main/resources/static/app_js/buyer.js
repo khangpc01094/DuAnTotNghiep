@@ -95,28 +95,18 @@ app.controller("buyer-ctrl", function ($scope, $http) {
       });
   };
 
-  $scope.add_address = function () {
+  $scope.addaddress = function() {
     var item = angular.copy($scope.form);
-    $http
-      .post(`/rest/address/buyer/add_address`, item)
-      .then((resp) => {
+    alert("voi roi ne")
+    $http.post(`/rest/address/add_address`, item).then(resp => {
         $scope.reset();
-        Swal.fire({
-          icon: 'success',
-          title: 'Thêm địa chỉ thành công',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      })
-      .catch((error) => {
-        return Swal.fire({
-          width: "400px",
-          title: "Thêm địa chỉ thất bại!",
-          icon: "error",
-        });
-        console.log("Error", error);
-      });
-  };
+        return Swal.fire('Thêm thành công')
+    }).catch(error => {
+      console.log("Error", error);
+      return Swal.fire('Thêm thất bại')
+        
+    })
+}
 
    //dang ky nguoiban
    $scope.regisSeller = function () {

@@ -34,7 +34,7 @@ public class AddressRestController {
 	@Autowired
 	HttpServletRequest req;
 
-    @PostMapping("/buyer/add_address")
+    @PostMapping("/add_address")
 	public Address create(@RequestBody Address address) {
 		Users a = svUser.getByid(req.getRemoteUser());
 		address.setUser(a);

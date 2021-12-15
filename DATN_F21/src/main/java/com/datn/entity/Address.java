@@ -41,7 +41,7 @@ public class Address implements Serializable {
 
 	public String phone;
 
-	public boolean status;
+	public boolean status = true;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "address")
