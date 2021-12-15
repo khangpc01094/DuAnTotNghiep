@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.datn.entity.Authorization;
 import com.datn.entity.Role;
 import com.datn.entity.Users;
+import com.datn.model.entity.ChangePasswordModel;
 import com.datn.service.AuthorizationService;
 import com.datn.service.RoleService;
 import com.datn.service.UserService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin("*")
@@ -79,6 +81,12 @@ public class UserRestController {
 	@PostMapping("/admin/create_user")
 	public ResponseEntity<Users> addUserByAdmin(@RequestBody Users user){		   
        return svUserService.addUserByAdmin(user);
+	}
+	
+	//Đổi mật khẩu
+	@PutMapping("/change_password")
+	public ResponseEntity<Users> changePassword(@RequestBody ChangePasswordModel changePasswordModel) {
+		return svUserService.changePassword(changePasswordModel);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.datn.service;
 import java.util.List;
 
 import com.datn.entity.Users;
+import com.datn.model.entity.ChangePasswordModel;
 
 import org.springframework.http.ResponseEntity;
 
@@ -12,7 +13,7 @@ public interface UserService {
     
     Users findByUsername(String username);
 
-	String changePassword(String pwPresent, String pwNew, String pwConfirm);
+    ResponseEntity<Users> changePassword(ChangePasswordModel changePasswordModel);
 
 	Users getInformation();
 
@@ -32,4 +33,5 @@ public interface UserService {
 
 	ResponseEntity<Users> addUserByAdmin(Users user);
 
+	Users  saveUserAuth2(String username,String password,String fullname,String email);
 }

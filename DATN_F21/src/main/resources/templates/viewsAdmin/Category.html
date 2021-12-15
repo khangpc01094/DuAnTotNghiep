@@ -8,7 +8,7 @@
                 <h5 style="color: orange; margin-top: 20px; font-size: 30px">Loại Sản Phẩm</h5>
                 <hr>
                 
-                <div class="tableCategory">
+                <div class="tableCategory" ng-show="pager.items.length>0">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -41,7 +41,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="foodterUL">
+                <div class="foodterUL" ng-show="pager.items.length>0">
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
 						  <li class="page-item"><a ng-click="pager.first()" class="page-link" href="#"><=</a></li>
@@ -51,6 +51,9 @@
 						  <li class="page-item"><a ng-click="pager.last()" class="page-link" href="#">=></a></li>
 						</ul>
 					  </nav>
+				</div>
+				<div style="color: rgb(0, 0, 0); background-color:#e5e5e5; padding-bottom:1px; padding-top: 10px; padding-left: 10px; padding-right: 5px; margin-left: 10px; margin-right: 10px;" ng-show="pager.items.length<1">
+						<h5>Chưa có loại sản phẩm nào!</h5>				
 				</div>
             </div>
 

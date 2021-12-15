@@ -31,8 +31,7 @@ public class Transaction {
 	@JoinColumn(name = "userid")
 	private Users user;
 	String name;
-	@Temporal(TemporalType.DATE)
-	private Date createdate;	
+	private Date createdate = new Date();	
 	private Boolean status;
 	private Double money;
 }

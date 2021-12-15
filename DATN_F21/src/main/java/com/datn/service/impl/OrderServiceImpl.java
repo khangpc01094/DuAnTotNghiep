@@ -28,6 +28,7 @@ import com.datn.entity.statisinvoice;
 import com.datn.model.entity.StatisticalModel;
 import com.datn.service.OrderService;
 import com.datn.service.ShoppingCartService;
+import com.datn.service.TransactionService;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -61,6 +62,9 @@ public class OrderServiceImpl implements OrderService {
     
     @Autowired
     WalletDAO daoWalletDAO;
+    
+    @Autowired 
+    TransactionService svTransactionService;
 
     @Override
     public List<StatisticalModel> getStatistical() {
@@ -138,6 +142,8 @@ public class OrderServiceImpl implements OrderService {
                     //trừ tiền của người mua
                     walletBuyer.setMoney(walletBuyer.getMoney() - or.getTotalamount());
                     daoWalletDAO.save(walletBuyer);
+                  //Lưu vào lích sử giao dịch
+                    svTransactionService.saveTransaction(walletBuyer.getUser(),-or.getTotalamount(),"Thanh toán mua hàng");
                     
                     notifications.setOrder(or);
                     notifications.setStatus(or.getStatus());
@@ -240,6 +246,8 @@ public class OrderServiceImpl implements OrderService {
         Wallet walletBuyer = daoWalletDAO.findWalletByUserId(order.getUser().getUserid());
         walletBuyer.setMoney(walletBuyer.getMoney()+order.getTotalamount());
         daoWalletDAO.save(walletBuyer);
+        //Lưu vào lịch sử giao dịch
+        svTransactionService.saveTransaction(walletBuyer.getUser(),order.getTotalamount(),"Hoàn tiền hủy đơn");
         
         Notifications notifications = daoNotification.getNotificationByOrderid(id);
         notifications.setStatus(4);
@@ -285,10 +293,15 @@ public class OrderServiceImpl implements OrderService {
         //cộng tiền chiết khấu cho admin
         wallerAdmin.setMoney(wallerAdmin.getMoney()+moneyAddAdmin);
         daoWalletDAO.save(wallerAdmin);
+      //Lưu vào lịch sử giao dịch cho admin
+        svTransactionService.saveTransaction(wallerAdmin.getUser(),moneyAddAdmin,"Chiết khấu");
         
         //cộng tiền vào ví người dùng
 		wallerSeller.setMoney(wallerSeller.getMoney()+moneyAddSeller);
 		daoWalletDAO.save(wallerSeller);
+		//Lưu vào lịch sử giao dịch cho cửa hàng
+        svTransactionService.saveTransaction(wallerSeller.getUser(),moneyAddSeller,"Tiền bán sản phẩm");
+		
 	}
 
 }

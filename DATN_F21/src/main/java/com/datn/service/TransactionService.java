@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.datn.entity.Transaction;
+import com.datn.entity.Users;
 
 public interface TransactionService {
     
@@ -13,4 +14,5 @@ public interface TransactionService {
 
 	List<Transaction> getTransactionByDate(Date startDate, Date endDate);
 
+	void saveTransaction(Users user, Double money,String nameTransaction);
 }

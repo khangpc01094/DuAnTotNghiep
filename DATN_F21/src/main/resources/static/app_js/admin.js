@@ -108,6 +108,7 @@ app.controller("user-ctrl", function($scope, $http) {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/user/admin/create_user`, item).then(resp => {
 			if (resp.status == 200) {
+				$scope.clear();
 				$scope.initialize();
 				return Swal.fire({
 					width: '400px',

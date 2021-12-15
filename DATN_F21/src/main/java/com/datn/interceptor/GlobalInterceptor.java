@@ -28,7 +28,7 @@ public class GlobalInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		request.setAttribute("cates", categoryService.findAll());
-		if (request.getRemoteUser() != null) {
+		if (request.getRemoteUser() != null) {		 
 			request.setAttribute("info", svUserService.findById(request.getRemoteUser()));
 		}
 

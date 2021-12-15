@@ -13,7 +13,7 @@
                                 <!-- th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}" -->
                                 <li><a href="/regisSeller">Seller</a></li>
                                 <li th:if="${#request.remoteUser}">
-                                    <a href="" style="color: white;"><i class="icon-user"></i> [[${#request.remoteUser}]]</a>
+                                    <a href="" style="color: white;"><i class="icon-user"></i> [[${info.username}]]</a>
                                     <li>
                                         <a th:if="${#request.remoteUser}" href="#">
                                             <div class="bell-noti">
@@ -58,7 +58,7 @@
 
                     </div>
                     <div class="ltn__header-options ltn__header-options-2">
-                        <div class="ltn__drop-menu user-menu">
+                        <div class="ltn__drop-menu user-menu" >
                             <ul>
                                 <li><a style="border-radius: 5px;" href="#"><i class="icon-user"></i></a>
                                     <ul>

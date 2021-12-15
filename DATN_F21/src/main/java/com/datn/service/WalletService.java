@@ -12,7 +12,7 @@ public interface WalletService {
 
 	ResponseEntity<Wallet> checkTopup(Wallet wallet);
 
-	String postCheckMoney(Optional<Double> money);
+//	String postCheckMoney(Optional<Double> money);
 
 	Wallet getWallet();
 

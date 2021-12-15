@@ -14,13 +14,13 @@
 					<form  ng-click="search(name)">
 						<label class="lable_Search">Tìm kiếm </label> 
 						<input ng-model="name" type="text" style="width: 30%" name="" id="" placeholder="Nhập tên cửa hàng...." class="input_search_store" required>			
-						<button ng-click="search(name)" class="btn-find" type="submit">Tìm</button>
+						<button style="border-radius: 5px;" ng-click="search(name)" class="btn-find" type="submit">Tìm</button>
 					</form>
 				</div>
 			
 			</div>
 			<hr>
-			<div class="table_Store">
+			<div class="table_Store" ng-show="pager.items.length>0">
 				<table class="table">
 					<thead class="thead-light">
 						<tr>
@@ -46,7 +46,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="foodterUL">
+		<div class="foodterUL" ng-show="pager.items.length>0">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 				  <li class="page-item"><a ng-click="pager.first()" class="page-link" href="#"><=</a></li>
@@ -56,6 +56,9 @@
 				  <li class="page-item"><a ng-click="pager.last()" class="page-link" href="#">=></a></li>
 				</ul>
 			  </nav>
+		</div>
+		<div style="color: rgb(0, 0, 0); background-color:#e5e5e5; padding-bottom:1px; padding-top: 10px; padding-left: 10px; padding-right: 5px; margin-left: 10px; margin-right: 10px;" ng-show="pager.items.length<1">
+				<h5>Không tìm thấy cửa hàng!</h5>				
 		</div>
 	</main>
 </body>

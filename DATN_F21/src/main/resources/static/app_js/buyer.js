@@ -604,9 +604,56 @@ app.controller("wallet-ctrl", function ($scope, $http) {
 });*/
 
 app.controller("changepassword-ctrl", function ($scope, $http) {
-  $scope.pw_present;
-  $scope.pw_new;
-  $scope.pw_confirm;
+  $scope.change_password={
+		pw_present:'',
+		pw_new:'',
+		pw_confirm:''
+  };
+
+  $scope.change = function() {
+		var item = $scope.change_password;
+		$http.put(`/rest/user/change_password`, item).then(resp => {
+			if (resp.status == 200) {
+				$scope.change_password={
+					pw_present:'',
+					pw_new:'',
+					pw_confirm:''
+				};
+				return Swal.fire({
+					width: '400px',
+					title: 'Đổi mật khẩu thành công!',
+					icon: 'success',
+					showConfirmButton: false,
+					timer: 1500
+				})
+			}
+		}).catch(error => {
+			if (error.status == 404) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Mật khẩu hiện tại không chính xác!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
+			if (error.status == 400) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Mật khẩu xác nhận không chính xác!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
+			Swal.fire({
+				width: '400px',
+				title: 'Lỗi đổi mật khẩu!',
+				icon: 'error',
+				confirmButtonText: 'Ok',
+			})
+			console.log("Error", error);
+		});
+	}
+	
 });
 
 /*app.controller("checkmoney-ctrl", function ($scope, $http) {

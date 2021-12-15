@@ -11,9 +11,12 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import com.datn.DAO.UsersDAO;
+import com.datn.DAO.WalletDAO;
 import com.datn.entity.Authorization;
 import com.datn.entity.Role;
 import com.datn.entity.Users;
+import com.datn.entity.Wallet;
+import com.datn.model.entity.ChangePasswordModel;
 import com.datn.service.AuthorizationService;
 import com.datn.service.RoleService;
 import com.datn.service.UserService;
@@ -31,10 +34,16 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     RoleService svRole;
+    
+    @Autowired
+    WalletDAO daoWalletDAO;
 	
     @Override
     public Users create(Users user) {
         user.setUserid(idUser());
+      //Tạo ví cho người dùng
+        addWalletOfUser(user);
+        
         return daoUsersDAO.save(user);
     }
 
@@ -68,21 +77,20 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String changePassword(String pwPresent, String pwNew, String pwConfirm) {
+	public ResponseEntity<Users> changePassword(ChangePasswordModel changePasswordModel) {
 		String messenger;	
 		//Lấy thông user đang đăng nhập 
 		Users user = daoUsersDAO.findById(req.getRemoteUser()).get();
-		if(!pwPresent.equals(user.getPassword())) {
-			messenger="Mật khẩu hiện tại không chính xác!";
-		}else if(!pwNew.equals(pwConfirm)) {
-			messenger="Mật khẩu xác nhận không đúng!";
+		if(!changePasswordModel.getPw_present().equals(user.getPassword())) {
+			return ResponseEntity.notFound().build();
+		}else if(!changePasswordModel.getPw_new().equals(changePasswordModel.getPw_confirm())) {
+			return ResponseEntity.badRequest().build();
 		}else {
-			user.setPassword(pwNew);
+			user.setPassword(changePasswordModel.getPw_new());
 			daoUsersDAO.save(user);
-			messenger="Đổi mật khẩu thành công!";
+			return ResponseEntity.ok(user);
 		}
 		
-		return messenger;
 	}
 
 	@Override
@@ -145,11 +153,48 @@ public class UserServiceImpl implements UserService{
         auth.setRole(rol);
         auth.setUser(user);
         svAuth.Create(auth);
+        //Tạo ví cho người dùng
+        addWalletOfUser(user);
 		return ResponseEntity.ok(user);       
 	}
 
 	@Override
 	public Users findByUsername(String username) {
 		return daoUsersDAO.existsByUsername(username);
+	}
+	
+	private void addWalletOfUser(Users user) {
+		Wallet wallet = new Wallet();
+		wallet.setUser(user);
+		wallet.setMoney(0.0);
+		daoWalletDAO.save(wallet);
+	}
+
+	@Override
+	public Users saveUserAuth2(String username, String password, String fullname,String email) {
+		if(daoUsersDAO.existsByUsername(username)==null) {	
+			Users user = new Users();
+			
+			user.setUserid(idUser());
+			user.setUsername(username);
+			user.setPassword(password);
+			user.setFullname(fullname);
+			user.setEmail(email);
+			user.setPicture("user_default.png");
+			
+			daoUsersDAO.save(user);
+			Authorization auth = new Authorization();
+	        Role rol = svRole.findById(1);
+	        auth.setRole(rol);
+	        auth.setUser(user);
+	        svAuth.Create(auth);
+	        //Tạo ví cho người dùng
+	        addWalletOfUser(user);
+	        
+	        return user;
+		}else {
+			Users user = daoUsersDAO.existsByUsername(username);
+			return user;
+		}
 	}
 }

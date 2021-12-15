@@ -16,25 +16,31 @@
 						<div class="account-login-inner">
 							<h1 class="section-title text-center">Đăng Nhập</h1>
 							<form th:action="@{/security/login}" method="post" class="ltn__form-box contact-form-box" name="form_login">
-								<span style="color: red;" ng-hide="form_login.username.$valid">Không được để trống tài khoản</span>
-								<input ng-model="email" type="text" name="username" placeholder="Tài khoản*" required>
-								<span style="color: red;" ng-hide="form_login.password.$valid">Không được để trống mật khẩu</span>
-								<input ng-model="password" type="password" name="password" placeholder="Mật Khẩu*" required>
+								
+								<input style="border-radius: 5px;" ng-model="email" type="text" name="username" placeholder="Tài khoản*" required>
+								<div style="margin-top: -30px; margin-bottom: 20px; color: red">
+									<span ng-hide="form_login.username.$valid">Không được để trống tài khoản</span>	
+								</div>
+										
+								<input style="border-radius: 5px;" ng-model="password" type="password" name="password" placeholder="Mật Khẩu*" required>
+								<div style="margin-top: -30px; margin-bottom: 20px; color: red">
+									<span  ng-hide="form_login.password.$valid">Không được để trống mật khẩu</span>
+								</div>
 									
-								<div class="go-to-btn mt--30">
+								<div class="go-to-btn mt--50">
 									<a href="/fogot_password"><small>QUÊN MẬT KHẨU?</small></a>
 								</div>
 								<spam th:text="${message}"></spam>
 								<div class="btn-wrapper mt-20">
-									<button class="theme-btn-1 btn btn-block" type="submit">ĐĂNG NHẬP</button>		
+									<button style="border-radius: 5px;" class="theme-btn-1 btn btn-block" type="submit">ĐĂNG NHẬP</button>		
 								</div>
 								<div class="btn-wrapper mt-10">
-									<a href="/oauth2/authorization/facebook" class="theme-btn-3 btn btn-block" type="submit" title="Facebook">				
+									<a style="border-radius: 5px;" href="/oauth2/authorization/facebook" class="theme-btn-3 btn btn-block" type="submit" title="Facebook">				
 										<img src="/img/icons/icon-img/fb.png" height="25px" width="25px" alt="404"> Facebook
 									</a>
 								</div>
 								<div class="btn-wrapper mt-10">
-									<a href="/oauth2/authorization/google" class="theme-btn-3 btn btn-block" type="submit">
+									<a style="border-radius: 5px;" href="/oauth2/authorization/google" class="theme-btn-3 btn btn-block" type="submit">
 										<img src="/img/icons/icon-img/gg.png" height="25px" width="25px" alt="404"> Google +
 									</a>
 								</div>

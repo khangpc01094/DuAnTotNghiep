@@ -42,6 +42,7 @@ public class SecurityController {
 	   @RequestMapping("/security_oauth2/login/success")
 	   public String success(OAuth2AuthenticationToken oauth2) {
 		   cfSecurityConfig.loginFromOAuth2(oauth2);
-		   return "forward:/security/login/success";
+		   return "redirect:/index";
+		  
 	   }
 }

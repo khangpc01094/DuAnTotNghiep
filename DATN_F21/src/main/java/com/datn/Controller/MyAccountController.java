@@ -93,20 +93,13 @@ public class MyAccountController {
 		}
 	}
 
-	// Đổi mật khẩu
+	// Mở giao diện Đổi mật khẩu
 	@GetMapping("/account/change_password")
 	public String getChangePassword() {
 		return "/viewsUser/myAccount/change_password";
 	}
 
-	@PostMapping("/account/change_password")
-	public String postChangePassword(Model model, @RequestParam("pw_present") Optional<String> pwPresent,
-			@RequestParam("pw_new") Optional<String> pwNew, @RequestParam("pw_confirm") Optional<String> pwConfirm) {
-		model.addAttribute("messenger", svUserService.changePassword(pwPresent.get(), pwNew.get(), pwConfirm.get()));
-		return "/viewsUser/myAccount/change_password";
-	}
-
-	
+		
 
 	@GetMapping("/order/orderRefuse/{id}")
 	public String getorderRefuse(@PathVariable("id") Integer id, Model model) {

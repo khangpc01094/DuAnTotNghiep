@@ -4,14 +4,14 @@
 <body>
 	<main>	
 	<div class="tab-pane fade active show" ng-controller="wallet-ctrl">
-           	<div class="ltn__myaccount-tab-content-inner">               
-                <div class="ltn__form-box">                   
-                    <div class="ltn__comment-reply-area ltn__form-box mb-10">  
-                         <form>
-                       		<div class="ltn__team-details-member-about">
+           	<div class="ltn__myaccount-tab-content-inner" >               
+                <div class="ltn__form-box" >                   
+                    <div class="ltn__comment-reply-area ltn__form-box mb-10" >  
+                         <form style="border-radius: 5px;">
+                       		<div class="ltn__team-details-member-about" >
                        			<h4 class="title-2 text-center">Thông tin ví</h4>
                                 <ul>
-                                    <li><strong>Tài Khoản:</strong> {{wallet.user.username}}</li>
+                                    <li><strong>Tài khoản:</strong> {{wallet.user.username}}</li>
                                     <li><strong>Họ và tên:</strong> {{wallet.user.fullname}}</li>
                                     <li><strong>Số dư:</strong> {{wallet.money | number:2}} VNĐ</li>                                  
                                 </ul>
@@ -20,16 +20,16 @@
                      </div>
                 </div>
             </div>
-			<div class="ltn__myaccount-tab-content-inner" ng-show="wallet.cardnumber==null">
-				<p>Bạn cần liên kết thẻ mới có thể nạp tiền vào ví !</p>				
+			<div class="ltn__myaccount-tab-content-inner" ng-show="wallet.cardnumber==null" >
+				<p style="border-radius: 5px;">Bạn cần liên kết thẻ mới có thể nạp tiền vào ví !</p>				
 			</div>
-            <a ng-show="wallet.cardnumber==null" href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase col-lg-12">LIÊN KẾT THẺ</a>
+            <a style="border-radius: 5px;" ng-show="wallet.cardnumber==null" href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase col-lg-12">LIÊN KẾT THẺ</a>
            
             
             <div ng-show="wallet.cardnumber!=null" class="ltn__myaccount-tab-content-inner">               
                 <div class="ltn__form-box">                   
                     <div class="ltn__comment-reply-area ltn__form-box mb-10">  
-                         <form name="form_wallet">
+                         <form name="form_wallet" style="border-radius: 5px;">
                         		<div class="ltn__team-details-member-about">
                         			<h4 class="title-2 text-center">Thông tin thẻ liên kết</h4>
                                  <ul>
@@ -42,13 +42,13 @@
                              </div>         
                              <br>
                              <div class="input-item input-item-textarea ltn__custom-icon">
-                                 <input ng-model="money" name="money" type="number" placeholder="Nhập số tiền muốn nạp...." required onKeyUp="if(this.value<1){this.value='1';}">                                
+                                 <input style="border-radius: 5px;" ng-model="money" name="money" type="number" placeholder="Nhập số tiền muốn nạp...." required onKeyUp="if(this.value<1){this.value='1';}">                                
                              </div>     
                              <span style="color: red" ng-hide="form_wallet.money.$valid">Bạn cần nhập số tiền trước khi nạp tiền</span>               
                              <div class="btn-wrapper">
-                                 <a href="" ng-click="naptien()" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Nạp tiền</a>
-                                 <a  href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Chỉnh sửa thẻ</a>                              
-                                 <a href=""  ng-click="unlink()" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Hủy liên kết</a>
+                                 <a style="border-radius: 5px;" href="" ng-click="naptien()" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Nạp tiền</a>
+                                 <a style="border-radius: 5px;" href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Chỉnh sửa thẻ</a>                              
+                                 <a style="border-radius: 5px;" href=""  ng-click="unlink()" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Hủy liên kết</a>
                              </div>
                          </form>
                      </div>

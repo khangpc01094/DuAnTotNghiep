@@ -11,36 +11,51 @@
                         <div class="row mb-50">
                         	<div class="col-md-12">
                                 <label>Số thẻ:</label>
-                                <span style="color: red;" ng-hide="form_cartlink.txtCardnumber.$valid">Không được để trống và phải là số</span>
-                                <input class="gender" ng-model="form.cardnumber" type="text" name="txtCardnumber" required>
+                                
+                                <input style="border-radius: 5px;" class="gender" ng-model="form.cardnumber" type="text" name="txtCardnumber" required>
+                                <div style="margin-top: -30px; margin-bottom: 20px; color: red">
+                                	<span  ng-hide="form_cartlink.txtCardnumber.$valid">Không được để trống số thẻ</span>
+                            	</div>
                             </div> 
                             <div class="col-md-12">
                                 <label>Họ tên trên thẻ:</label>
-                                <span style="color: red;" ng-hide="form_cartlink.txtHoldername.$valid">Không được để trống</span>
-                                <input ng-model="form.holdername" type="text" name="txtHoldername" required>
+                                
+                                <input style="border-radius: 5px;" ng-model="form.holdername" type="text" name="txtHoldername" required>
+                                <div style="margin-top: -30px; margin-bottom: 20px; color: red">
+                                	<span  ng-hide="form_cartlink.txtHoldername.$valid">Không được để trống họ và tên trên thẻ</span>
+                            	</div>
                             </div>
                             <div class="col-md-12">
                                 <label>Ngày hết hạn:</label>
-                                <span style="color: red;" ng-hide="form_cartlink.dateCardwxpiry.$valid">Bạn chưa chọn ngày hết hạn</span>
-                                <input ng-model="form.cardexpiry" type="date" name="dateCardwxpiry" required>
+                                
+                                <input style="border-radius: 5px;" ng-model="form.cardexpiry" type="date" name="dateCardwxpiry" required>
+                                <div style="margin-top: -30px; margin-bottom: 20px; color: red">
+                                	<span  ng-hide="form_cartlink.dateCardwxpiry.$valid">Bạn chưa chọn ngày hết hạn</span>
+                            	</div>
                             </div>
                             <div class="col-md-12">
                                 <label>Mã CVV:</label>
-                                <span style="color: red;" ng-hide="form_cartlink.txtCvv.$valid">Không được để trống</span>
-                                <input ng-model="form.cvv" type="password" name="txtCvv" required>
+                                
+                                <input style="border-radius: 5px;" ng-model="form.cvv" type="password" name="txtCvv" required>
+                                <div style="margin-top: -30px; margin-bottom: 20px; color: red">
+                                	<span style="color: red;" ng-hide="form_cartlink.txtCvv.$valid">Không được để trống mã CVV</span>
+                            	</div>
                             </div>
                             <div class="col-md-12">
                             	<label>Chọn loại thẻ:</label>  
-                            	<span style="color: red;" ng-hide="form_cartlink.brank.$valid">Bạn chưa chọn</span>
+                            	
                                 <div class="row">                  
                                      <div class="col-md-3" ng-repeat="cb in cardbrand">
                                      	<input ng-model="form.cardbrand" type="radio" ng-value="cb.id" name="brank" required> <label>{{cb.name}}</label>
                                      </div>
                                  </div>
+                                 <div style="margin-top: -10px; margin-bottom: 20px; color: red">
+                                	<span style="color: red;" ng-hide="form_cartlink.brank.$valid">Bạn chưa chọn loại thẻ</span>
+                            	</div>
                             </div>             
                         <div class="btn-wrapper" style="float:right;">
-                            <button ng-disabled="!form_cartlink.$valid" ng-click="cartlink()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu</button>
-                            <a href="/account/wallet" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Trở lại</a>
+                            <button style="border-radius: 5px;" ng-disabled="!form_cartlink.$valid" ng-click="cartlink()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu</button>
+                            <a style="border-radius: 5px;" href="/account/wallet" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Trở lại</a>
                         </div>
                     </form>
 

@@ -7,6 +7,7 @@ import com.datn.entity.Users;
 import com.datn.service.AuthorizationService;
 import com.datn.service.UserService;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -80,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.oauth2Login()
                 .loginPage("/security/login/form")
-                .defaultSuccessUrl("/index", true)
+                .defaultSuccessUrl("/security_oauth2/login/success", true)
                 .failureUrl("/auth/login/error")
                 .authorizationEndpoint()
                 .baseUri("/oauth2/authorization");
@@ -92,14 +93,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public void loginFromOAuth2(OAuth2AuthenticationToken oauth2) {
+    	String username = oauth2.getName();
+    	String password = Long.toHexString(System.currentTimeMillis()); 
         String fullname = oauth2.getPrincipal().getAttribute("name");
         String email = oauth2.getPrincipal().getAttribute("email");
-        String password = Long.toHexString(System.currentTimeMillis());
-
-        UserDetails user = User.withUsername(email)
-                .password(pe.encode(password)).roles("1").build();
-        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+          
+        Users user = svUserService.saveUserAuth2(username, password, fullname,email);
+        String passwordShow = pe.encode(user.getPassword());
+        Integer[] roles = svAuthorizationService.findRoleByUserId(user.getUserid()).stream()
+                .map(role -> role.getId())
+                .collect(Collectors.toList()).toArray(new Integer[0]);
+        
+        							
+        UserDetails userDetails = User.withUsername(user.getUserid()).password(passwordShow).roles(roles.toString()).build();
+                
+        Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
-
+    
+ 
 }

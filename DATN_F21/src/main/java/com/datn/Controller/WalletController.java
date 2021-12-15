@@ -25,16 +25,16 @@ public class WalletController {
 		return "/viewsUser/myAccount/cardlink";
 	}
 	
-	//Nạp tiền (Kiểm tra số tiền với cộng trừ tiền)
-	@GetMapping("/account/wallet/topup/checkmoney")
-	public String getCheckMoney() {
-		return "/viewsUser/myAccount/checkmoney";
-	}
-	
-	@PostMapping("/account/wallet/topup/checkmoney")
-	public String postCheckMoney(Model model, @RequestParam("money") Optional<Double> money) {	
-		model.addAttribute("messenger", svWalletService.postCheckMoney(money));		
-		return "/viewsUser/myAccount/checkmoney";
-	}
+//	//Nạp tiền (Kiểm tra số tiền với cộng trừ tiền)
+//	@GetMapping("/account/wallet/topup/checkmoney")
+//	public String getCheckMoney() {
+//		return "/viewsUser/myAccount/checkmoney";
+//	}
+//	
+//	@PostMapping("/account/wallet/topup/checkmoney")
+//	public String postCheckMoney(Model model, @RequestParam("money") Optional<Double> money) {	
+//		model.addAttribute("messenger", svWalletService.postCheckMoney(money));		
+//		return "/viewsUser/myAccount/checkmoney";
+//	}
 
 }

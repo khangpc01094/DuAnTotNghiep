@@ -1,5 +1,6 @@
 package com.datn.service.impl;
 
+import java.util.Date;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +13,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.datn.DAO.TransactionDAO;
 import com.datn.DAO.UsersDAO;
 import com.datn.DAO.WalletDAO;
+import com.datn.entity.Transaction;
 import com.datn.entity.Users;
 import com.datn.entity.Wallet;
 
 import com.datn.model.entity.MoneyModel;
 import com.datn.model.entity.WalletModel;
+import com.datn.service.TransactionService;
 import com.datn.service.WalletService;
 @Service
 public class WalletServiceImpl implements WalletService{
@@ -26,6 +30,7 @@ public class WalletServiceImpl implements WalletService{
     @Autowired WalletDAO daoWalletDAO;
 	@Autowired UsersDAO daoUsersDAO;
 	@Autowired HttpServletRequest req;
+	@Autowired TransactionService svTransactionService;
 	
 	RestTemplate client = new RestTemplate();
 	
@@ -60,25 +65,25 @@ public class WalletServiceImpl implements WalletService{
 		}
 	}
 
-	@Override
-	public String postCheckMoney(Optional<Double> money) {
-		HttpHeaders headers = new HttpHeaders();
-    	//headers.add("Authorization","Basic dXNlcjI6MTIz");
-		
-		Wallet wallet = daoWalletDAO.findWalletByUserId(req.getRemoteUser());
-		HttpEntity<Object> entity = new HttpEntity<>(wallet.getCardnumber(),headers);
-		Double moneyInBank = client.exchange("http://localhost:2021/rest/bank/checkmoney", HttpMethod.POST,entity,Double.class).getBody();
-		
-		if(money.get()<=moneyInBank) {
-			HttpEntity<Object> entity2 = new HttpEntity<>(new MoneyModel(wallet.getCardnumber(),money.get()),headers);
-			client.exchange("http://localhost:2021/rest/bank/deduction", HttpMethod.POST,entity2,Void.class);
-			wallet.setMoney((wallet.getMoney()==null)?money.get():wallet.getMoney()+money.get());
-			daoWalletDAO.save(wallet);		
-			return "Nạp tiền thành công! Bạn được cộng thêm "+money.get()+"$. Tổng tiền trong ví là "+wallet.getMoney()+"$";			
-		}else {	
-			return "Số tiền bạn nạp phải nhỏ hơn số tiền trong thẻ!";		
-		}
-	}
+//	@Override
+//	public String postCheckMoney(Optional<Double> money) {
+//		HttpHeaders headers = new HttpHeaders();
+//    	//headers.add("Authorization","Basic dXNlcjI6MTIz");
+//		
+//		Wallet wallet = daoWalletDAO.findWalletByUserId(req.getRemoteUser());
+//		HttpEntity<Object> entity = new HttpEntity<>(wallet.getCardnumber(),headers);
+//		Double moneyInBank = client.exchange("http://localhost:2021/rest/bank/checkmoney", HttpMethod.POST,entity,Double.class).getBody();
+//		
+//		if(money.get()<=moneyInBank) {
+//			HttpEntity<Object> entity2 = new HttpEntity<>(new MoneyModel(wallet.getCardnumber(),money.get()),headers);
+//			client.exchange("http://localhost:2021/rest/bank/deduction", HttpMethod.POST,entity2,Void.class);
+//			wallet.setMoney((wallet.getMoney()==null)?money.get():wallet.getMoney()+money.get());
+//			daoWalletDAO.save(wallet);		
+//			return "Nạp tiền thành công! Bạn được cộng thêm "+money.get()+"$. Tổng tiền trong ví là "+wallet.getMoney()+"$";			
+//		}else {	
+//			return "Số tiền bạn nạp phải nhỏ hơn số tiền trong thẻ!";		
+//		}
+//	}
 
 	@Override
 	public Wallet getWallet() {		
@@ -99,7 +104,8 @@ public class WalletServiceImpl implements WalletService{
 				HttpEntity<Object> entity2 = new HttpEntity<>(new MoneyModel(wallet.getCardnumber(),money),headers);
 				client.exchange("http://localhost:2021/rest/bank/deduction", HttpMethod.POST,entity2,Void.class);
 				wallet.setMoney((wallet.getMoney()==null)?money:wallet.getMoney()+money);
-				daoWalletDAO.save(wallet);		
+				daoWalletDAO.save(wallet);	
+				svTransactionService.saveTransaction(wallet.getUser(),money,"Nạp tiền vào ví");
 				return ResponseEntity.ok(wallet);		
 			}else {	
 				return ResponseEntity.badRequest().build();			
@@ -121,4 +127,5 @@ public class WalletServiceImpl implements WalletService{
 		return ResponseEntity.ok().build();
 	}
 
+	
 }

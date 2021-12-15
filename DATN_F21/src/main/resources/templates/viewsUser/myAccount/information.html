@@ -8,41 +8,51 @@
               <div class="ltn__myaccount-tab-content-inner">
                   <div class="ltn__form-box">
                       <form name="form_information"> 
-                          <fieldset>
+                          <fieldset style="border-radius: 5px;">
                               <legend>Thông Tin</legend>
                               <div class="row">
                                   <div class="col-md-12">
                                       <div class="text-center">
-                                          <img ng-src="{{'/img/user/' + form.picture}}" alt="" style="width: 219px; height: 230px;"></br>
-                                          <input type="file" class="btn theme-btn-3 btn-effect-1  mt-2" 
+                                          <img  ng-src="{{'/img/user/' + form.picture}}" alt="" style="border-radius: 20px; width: 219px; height: 230px;"></br>
+                                          <input style="border-radius: 5px;" type="file" class="btn theme-btn-3 btn-effect-1  mt-2" 
 											onchange="angular.element(this).scope().imageChanged(this.files)">
                                           <p>Dụng lượng file tối đa 1 MB. Định dạng:.JPEG, .PNG</p>
                                       </div>
                                       <label>Tài khoản:</label>
-                                      <input ng-model="form.username" type="text" name="ltn__name" readonly>                                
-                                      <label>Họ và tên:</label>
-                                      <span style="color: red;" ng-hide="form_information.txtFullname.$valid">Không được để trống họ và tên</span>
-                                      <input ng-model="form.fullname" type="text" name="txtFullname" required>       
-                                      <label>Email:</label>
-                                      <span style="color: red;" ng-hide="form_information.txtEmail.$valid">Không được để trống và phải đúng định dạng email</span>
-                                      <input ng-model="form.email" type="email" name="txtEmail" required>
-                                      <label>Số điện thoại:</label>
-                                      <span style="color: red;" ng-hide="form_information.txtPhone.$valid">Phải đúng định dạng số điện thoại</span>
-                                      <input ng-model="form.phone" type="text" name="txtPhone">
+                                      <input style="border-radius: 5px;"  ng-model="form.username" type="text" name="ltn__name" readonly>                                
+                                      <label>Họ và tên:</label>                         
+                                      <input style="border-radius: 5px;" ng-model="form.fullname" type="text" name="txtFullname" required>
+                                      <div style="margin-top: -30px; margin-bottom: 20px; color: red">  
+                                     		<span ng-hide="form_information.txtFullname.$valid">Không được để trống họ và tên</span>     
+                                      </div>
+                                      <label>Email:</label>                                     
+                                      <input style="border-radius: 5px;" ng-model="form.email" type="email" name="txtEmail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+									ng-required="true">
+                                      <div style="margin-top: -30px; margin-bottom: 20px; color: Red">
+										<span ng-show="form_information.txtEmail.$error.required">Không
+											bỏ trống Email</span> <span
+											ng-show="form_information.txtEmail.$dirty&&form_information.txtEmail.$error.pattern">Không
+											đúng định dạng Email</span>
+									 </div>
+                                      <label>Số điện thoại:</label>                                      
+                                      <input style="border-radius: 5px;" ng-model="form.phone" type="text" name="txtPhone">
+                                      <div style="margin-top: -30px; margin-bottom: 20px; color: red">
+                                           <span ng-hide="form_information.txtPhone.$valid">Phải đúng định dạng số điện thoại</span>
+                                      </div>
                                       <label>Giới tính:</label></br>
-                                      <div  class="gender">
+                                      <div style="border-radius: 5px;"  class="gender">
                                           <div class="mt-15">
                                               <input ng-model="form.gender" type="radio" ng-value="true" name="gender"> Nam
                                               <input ng-model="form.gender" class="ml-30" type="radio" ng-value="false" name="gender"> Nữ 
                                           </div>
                                       </div>
                                       <label>Ngày sinh:</label>
-                                      <input type="date" ng-model="form.birthday">
+                                      <input style="border-radius: 5px;" type="date" ng-model="form.birthday">
                                   </div>
                               </div>
                               <spam th:text="${messenger}"></spam>
                               <div class="btn-wrapper text-center">
-                                  <button ng-disabled="!form_information.$valid" ng-click="update()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">LƯU THAY ĐỔI</button>
+                                  <button style="border-radius: 5px;" ng-disabled="!form_information.$valid" ng-click="update()" type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">LƯU THAY ĐỔI</button>
                               </div>
                           </fieldset> 
                       </form>
