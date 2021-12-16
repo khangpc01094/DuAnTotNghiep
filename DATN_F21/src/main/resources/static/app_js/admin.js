@@ -475,6 +475,14 @@ app.controller("authorization-ctrl", function($scope, $http) {
 				timer: 1500
 			})
 		}).catch(error =>{
+			if (error.status == 400) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Không thể cấp quyền cho chính mình!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
 			return Swal.fire({
 				width: '400px',
 				title: 'Lỗi cấp quyền!',
@@ -498,6 +506,22 @@ app.controller("authorization-ctrl", function($scope, $http) {
 				timer: 1500
 			})
 		}).catch(error =>{
+			if (error.status == 404) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Không tìm thấy quyền của người dùng!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
+			if (error.status == 400) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Không thể thu hồi quyền chính mình!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
 			return Swal.fire({
 				width: '400px',
 				title: 'Lỗi thu hồi quyền!',

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -120,6 +121,11 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<Users> getAllUser() {
+//		System.err.println("so luong chua loc "+daoUsersDAO.findAll().size());
+//		List<Users> listUsers = daoUsersDAO.findAll().stream().filter(user->!user.getUserid().equals(req.getRemoteUser()) || !user.getUserid().equals("admin"))
+//				.collect(Collectors.toList());
+//		System.err.println("so luong đã loc "+listUsers.size());
+//		listUsers.forEach(user->System.out.println(user.getUserid()));
 		return daoUsersDAO.findAll();
 	}
 
