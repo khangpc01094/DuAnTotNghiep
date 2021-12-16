@@ -46,9 +46,10 @@ public class UserServiceImpl implements UserService{
     public Users create(Users user) {
         user.setUserid(idUser());
       //Tạo ví cho người dùng
-        addWalletOfUser(user);
+        Users users = daoUsersDAO.save(user);
+        addWalletOfUser(users);
         
-        return daoUsersDAO.save(user);
+        return users;
     }
 
     //random id_user 
