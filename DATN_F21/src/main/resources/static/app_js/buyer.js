@@ -41,13 +41,13 @@ app.controller("buyer-ctrl", function ($scope, $http) {
 
   $scope.deleteaddress = function (id) {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Bạn có muốn xóa địa chỉ này?",
+      //text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ok",
     }).then((result) => {
       if (result.isConfirmed) {
         $http
@@ -97,18 +97,24 @@ app.controller("buyer-ctrl", function ($scope, $http) {
 
   $scope.add_address1 = function() {
     var item = angular.copy($scope.form);
-	/*alert($scope.form.fullname);
-	alert($scope.form.phone);
-	alert($scope.form.address);*/
 	
 
    $http.post(`/rest/address/add_address`, item).then(resp => {
         $scope.reset();
-        return Swal.fire('Thêm thành công')
+        Swal.fire({
+          icon: 'success',
+          title: 'Thêm địa chỉ thành công',
+          showConfirmButton: false,
+          timer: 1500
+        });
     }).catch(error => {
       console.log("Error", error);
-      return Swal.fire('Thêm thất bại')
-        
+      Swal.fire({
+        icon: 'error',
+        title: 'Thêm địa chỉ thất bại',
+        showConfirmButton: false,
+        timer: 1500
+      });
     })
 }
 
