@@ -12,7 +12,6 @@ import com.datn.DAO.AuthorizationDAO;
 import com.datn.DAO.ProductDAO;
 import com.datn.DAO.ShoppingCartDAO;
 import com.datn.DAO.UsersDAO;
-import com.datn.entity.Authorization;
 import com.datn.entity.Product;
 import com.datn.entity.ShoppingCart;
 import com.datn.entity.Total;
@@ -48,7 +47,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 	        shoppingCart.setProduct(a);
 	        shoppingCart.setQuantity(1);
 	        shoppingCart.setStoreid(a.getStore().id);
-        return ResponseEntity.ok(daoCart.save(shoppingCart)) ;
+            return ResponseEntity.ok(daoCart.save(shoppingCart)) ;
         } else{
              return ResponseEntity.notFound().build();
         }

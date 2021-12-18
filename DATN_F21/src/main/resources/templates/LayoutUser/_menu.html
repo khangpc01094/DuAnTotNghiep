@@ -21,7 +21,7 @@
                                                 <div class="bell-noti-status"></div>
                                             </div>
                                         </a>
-                                        <ul>
+                                        <ul style=" height: 500px; overflow: auto;">
                                             <li ng-repeat="item in notification">
                                                 <img alt=""> Đơn hàng: {{item.order.address.fullname}}
                                                 <div ng-if="item.status == 1">
