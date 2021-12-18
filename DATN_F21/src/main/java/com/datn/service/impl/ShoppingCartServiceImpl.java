@@ -8,9 +8,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.datn.DAO.AuthorizationDAO;
 import com.datn.DAO.ProductDAO;
 import com.datn.DAO.ShoppingCartDAO;
 import com.datn.DAO.UsersDAO;
+import com.datn.entity.Authorization;
 import com.datn.entity.Product;
 import com.datn.entity.ShoppingCart;
 import com.datn.entity.Total;
@@ -32,17 +34,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     @Autowired
     HttpServletRequest req;
     
+    @Autowired
+    AuthorizationDAO daoAuthorizationDAO;
+    
     @Override
     public ResponseEntity<ShoppingCart> create(Integer id) {
         String usera = req.getRemoteUser();
-        if(usera != null){
-        ShoppingCart shoppingCart = new ShoppingCart();
-        Users user = daoUser.findById(req.getRemoteUser()).get();
-        Product a = daoProduct.findById(id).get();
-        shoppingCart.setUser(user);
-        shoppingCart.setProduct(a);
-        shoppingCart.setQuantity(1);
-        shoppingCart.setStoreid(a.getStore().id);
+        if(usera != null){	
+	        ShoppingCart shoppingCart = new ShoppingCart();
+	        Users user = daoUser.findById(req.getRemoteUser()).get();
+	        Product a = daoProduct.findById(id).get();
+	        shoppingCart.setUser(user);
+	        shoppingCart.setProduct(a);
+	        shoppingCart.setQuantity(1);
+	        shoppingCart.setStoreid(a.getStore().id);
         return ResponseEntity.ok(daoCart.save(shoppingCart)) ;
         } else{
              return ResponseEntity.notFound().build();

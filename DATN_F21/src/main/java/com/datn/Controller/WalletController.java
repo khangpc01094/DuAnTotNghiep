@@ -3,6 +3,7 @@ package com.datn.Controller;
 import com.datn.service.WalletService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,25 +12,10 @@ public class WalletController {
     
     @Autowired WalletService svWalletService;
 	
-	
-    
-    
-    
+    @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
     @GetMapping("/account/cardlink")
 	public String getWallet() {
 		return "/viewsUser/myAccount/cardlink";
 	}
 	
-//	//Nạp tiền (Kiểm tra số tiền với cộng trừ tiền)
-//	@GetMapping("/account/wallet/topup/checkmoney")
-//	public String getCheckMoney() {
-//		return "/viewsUser/myAccount/checkmoney";
-//	}
-//	
-//	@PostMapping("/account/wallet/topup/checkmoney")
-//	public String postCheckMoney(Model model, @RequestParam("money") Optional<Double> money) {	
-//		model.addAttribute("messenger", svWalletService.postCheckMoney(money));		
-//		return "/viewsUser/myAccount/checkmoney";
-//	}
-
 }

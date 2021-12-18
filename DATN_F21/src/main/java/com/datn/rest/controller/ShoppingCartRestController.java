@@ -12,6 +12,8 @@ import com.datn.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,11 +43,13 @@ public class ShoppingCartRestController {
         return svCartService.GetAll();
     }
 
+    @PreAuthorize("hasRole('BUYE')")
     @GetMapping("createCart/{idp}")
     public ResponseEntity<ShoppingCart> createCart(@PathVariable("idp") Integer idp) {
         return svCartService.create(idp);
     }
 
+    @PreAuthorize("hasRole('BUYE')")
     @GetMapping("putcart/{id}")
     public ShoppingCart updateCart(@PathVariable("id") Integer id) {
         ShoppingCart shoppingCart = svCartService.getCartPr(req.getRemoteUser(), id);
@@ -53,21 +57,25 @@ public class ShoppingCartRestController {
         return svCartService.update(shoppingCart);
     }
 
+   // @PreAuthorize("hasRole('BUYE')")
     @DeleteMapping("/cart/{id}")
     public void deleteCart(@PathVariable("id") Integer id) {
         svCartService.delete(id);
     }
 
+   // @PreAuthorize("hasRole('BUYE')")
     @GetMapping("/cartUser/{id}")
     public List<ShoppingCart> getCartUser(@PathVariable("id") String userid) {
         return svCartService.findByUser(userid);
     }
 
+   // @PreAuthorize("hasRole('BUYE')")
     @GetMapping("/cart")
     public List<ShoppingCart> getStore() {
         return svCartService.findByStore();
     }
 
+    @PreAuthorize("hasRole('BUYE')")
     @GetMapping("/addquantity/{id}")
     public ShoppingCart addquantity(@PathVariable("id") Integer id) {
         ShoppingCart a = svCartService.getById(id);
@@ -75,6 +83,7 @@ public class ShoppingCartRestController {
         return svCartService.update(a);
     }
 
+    @PreAuthorize("hasRole('BUYE')")
     @GetMapping("/apartquantity/{id}")
     public ShoppingCart apartquantity(@PathVariable("id") Integer id) {
         ShoppingCart a = svCartService.getById(id);
@@ -87,6 +96,7 @@ public class ShoppingCartRestController {
         }
     }
 
+    @PreAuthorize("hasRole('BUYE')")
     @GetMapping("/checkStatus/{id}")
     public ShoppingCart checkStatus(@PathVariable("id") Integer id) {
         ShoppingCart a = svCartService.getById(id);
@@ -98,21 +108,25 @@ public class ShoppingCartRestController {
         return svCartService.update(a);
     }
 
+//    @PreAuthorize("hasRole('BUYE')")
     @GetMapping("/cartTrue")
     public List<ShoppingCart> getCartTrue() {
         return svCartService.getCartTrue();
     }
 
+  //  @PreAuthorize("hasRole('BUYE')")
     @GetMapping("cart/total")
     public List<Total> getAllTotal() {
         return svCartService.getAllTotal();
     }
 
+  //  @PreAuthorize("hasRole('BUYE')")
     @GetMapping("/cart/sumquatity")
     public Integer getquantity(){
         return svCartService.getSumQuantity();
     }
 
+   // @PreAuthorize("hasRole('BUYE')")
     @GetMapping("/cart/test")
     public Double getTest(){
         return svCartService.getTotaldd();

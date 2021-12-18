@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -156,11 +157,13 @@ public class HomeController {
 		return "/viewsUser/product-detail";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/index/cart")
 	public String getCart() {
 		return "/viewsUser/cart";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/index/checkout")
 	public String getCheckout() {
 		return "/viewsUser/checkout";
@@ -171,6 +174,7 @@ public class HomeController {
 		return "/viewsUser/register";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/my_account")
 	public String getMyAccount() {
 		return "/viewsUser/my_account";
@@ -188,6 +192,7 @@ public class HomeController {
 		return "/viewsUser/index";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/buyer/cart")
 	public String getCartUser() {
 		return "/viewsUser/cart";
@@ -207,6 +212,7 @@ public class HomeController {
 		}
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/order/save")
 	public String getOnes(@RequestParam("id") Integer address) {
 		svOrder.Save(address);

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ public class UploadRestController {
     @Autowired
     UploadService svUploadService;
     
+    @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
     @PostMapping("/rest/upload/{folder}")
     public JsonNode upload(@PathVariable("files") MultipartFile files, 
             @PathVariable("folder") String folder) {
@@ -33,6 +35,7 @@ public class UploadRestController {
         return node;
     }
     
+    @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
     @PostMapping("/admin/rest/upload/{folder}")
     public JsonNode uploadAdmin(@PathVariable("file") MultipartFile file, 
             @PathVariable("folder") String folder) {

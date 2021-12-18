@@ -27,7 +27,6 @@ import com.datn.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
-
     @Autowired 
 	UsersDAO daoUsersDAO;
 	@Autowired 
@@ -122,17 +121,16 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<Users> getAllUser() {
-//		System.err.println("so luong chua loc "+daoUsersDAO.findAll().size());
-//		List<Users> listUsers = daoUsersDAO.findAll().stream().filter(user->!user.getUserid().equals(req.getRemoteUser()) || !user.getUserid().equals("admin"))
-//				.collect(Collectors.toList());
-//		System.err.println("so luong đã loc "+listUsers.size());
-//		listUsers.forEach(user->System.out.println(user.getUserid()));
-		return daoUsersDAO.findAll();
+		List<Users> listUsers = daoUsersDAO.findAll().stream().filter(user->!user.getUserid().equals(req.getRemoteUser()) && !user.getUserid().equals("admin"))
+				.collect(Collectors.toList());	
+		return listUsers;
 	}
 
 	@Override
 	public List<Users> getFindUserByName(String name) {
-		return daoUsersDAO.findUserByName(name);
+		List<Users> listUsers = daoUsersDAO.findUserByName(name).stream().filter(user->!user.getUserid().equals(req.getRemoteUser()) && !user.getUserid().equals("admin"))
+				.collect(Collectors.toList());	
+		return listUsers;
 	}
 	//Trung
 //	@Override
@@ -157,9 +155,10 @@ public class UserServiceImpl implements UserService{
 			return ResponseEntity.badRequest().build();
 		}
 		user.setUserid(idUser());
+		
 		daoUsersDAO.save(user);
 		Authorization auth = new Authorization();
-        Role rol = svRole.findById(1);
+        Role rol = svRole.findById("BUYE");
         auth.setRole(rol);
         auth.setUser(user);
         svAuth.Create(auth);
@@ -194,7 +193,7 @@ public class UserServiceImpl implements UserService{
 			
 			daoUsersDAO.save(user);
 			Authorization auth = new Authorization();
-	        Role rol = svRole.findById(1);
+	        Role rol = svRole.findById("BUYE");
 	        auth.setRole(rol);
 	        auth.setUser(user);
 	        svAuth.Create(auth);

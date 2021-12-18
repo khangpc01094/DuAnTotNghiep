@@ -21,7 +21,7 @@
 								<!-- USERNAME -->
 								<input type="text" ng-model="form.username"
 									placeholder="Tên đăng nhập*" name="username" ng-minlength="6"
-									ng-maxlength="15" ng-required="true"
+									ng-maxlength="30" ng-required="true"
 									ng-pattern="/^[a-z0-9_-]{6,15}$/i" />
 								<div style="margin-top: -30px; margin-bottom: 20px; color: red">
 									<span class="error" ng-show="dk.username.$error.required">Không
@@ -29,7 +29,7 @@
 										ng-show="dk.username.$error.minlength">Tên
 										đăng nhập ít nhất phải 6 ký tự</span> <span class="error"
 										ng-show="dk.username.$error.maxlength">Tên
-										đăng nhập tối đa 15 ký tự</span> <span
+										đăng nhập tối đa 30 ký tự</span> <span
 										ng-show="dk.username.$dirty&&dk.username.$error.pattern">Không
 										đúng định dạng User</span>
 								</div>
@@ -64,7 +64,7 @@
 								</div>
 
 								<div class="btn-wrapper">
-									<button class="theme-btn-1 btn reverse-color"
+									<button ng-disabled="!dk.$valid" class="theme-btn-1 btn reverse-color"
 										ng-click="regis()">TẠO TÀI
 										KHOẢN</button>
 								</div>

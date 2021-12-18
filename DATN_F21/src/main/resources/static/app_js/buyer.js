@@ -174,7 +174,12 @@ app.controller("buyer-ctrl", function ($scope, $http) {
             $scope.cart.getSumQuantity();
           })
           .catch((error) => {
-            alert("cap nhat khong dc");
+             Swal.fire({
+              icon: 'error',
+              title: 'Bạn chưa có quyền mua hàng ',
+              showConfirmButton: false,
+              timer: 1500
+            });
             console.log(error);
           });
       } else {
@@ -205,7 +210,7 @@ app.controller("buyer-ctrl", function ($scope, $http) {
             }
             Swal.fire({
               icon: 'error',
-              title: 'Lỗi Thêm ',
+              title: 'Bạn chưa có quyền mua hàng ',
               showConfirmButton: false,
               timer: 1500
             });
@@ -762,6 +767,7 @@ app.controller("transaction-ctrl", function ($scope, $http) {
       .catch((error) => {
         alert("Lỗi");
       });
+	$scope.pager.page = 0;
   };
 
   $scope.initialize();

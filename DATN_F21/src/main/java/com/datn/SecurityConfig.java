@@ -41,14 +41,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(username -> {
-        	System.err.println(username);
+        	
             try {
                 Users user = svUserService.findByUsername(username);
                 String password = pe.encode(user.getPassword());
-                Integer[] roles = svAuthorizationService.findRoleByUserId(user.getUserid()).stream()
+                String[] roles = svAuthorizationService.findRoleByUserId(user.getUserid()).stream()
                         .map(role -> role.getId())
-                        .collect(Collectors.toList()).toArray(new Integer[0]);
-                return User.withUsername(user.getUserid()).password(password).roles(roles.toString()).build();
+                        .collect(Collectors.toList()).toArray(new String[0]);
+                return User.withUsername(user.getUserid()).password(password).roles(roles).build();
             } catch (NoSuchElementException e) {
                 throw new UsernameNotFoundException(username + " not fount!");
             }
@@ -58,15 +58,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        // http.authorizeRequests()
-        // .antMatchers("/order/**").authenticated()
-        // .antMatchers("/admin/**","/assets/admin/**","/rest/categories/**").hasAnyRole("STAF","DIRE")
+//        http.authorizeRequests()
+//        .antMatchers("/rest/user/findall").authenticated()
+//         .antMatchers("/rest/user/findall").hasAnyRole("ADMI","BUYE");
         // .anyRequest().permitAll();
         //
         http.formLogin()
                 .loginPage("/security/login/form")
                 .loginProcessingUrl("/security/login")
-                .defaultSuccessUrl("/index", true)
+                .defaultSuccessUrl("/index", false)
                 .failureUrl("/security/login/error");
 
         http.rememberMe()
@@ -87,10 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .baseUri("/oauth2/authorization");
     }
 
-    @Bean
-    public BCryptPasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    
 
     public void loginFromOAuth2(OAuth2AuthenticationToken oauth2) {
     	String username = oauth2.getName();
@@ -100,12 +97,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           
         Users user = svUserService.saveUserAuth2(username, password, fullname,email);
         String passwordShow = pe.encode(user.getPassword());
-        Integer[] roles = svAuthorizationService.findRoleByUserId(user.getUserid()).stream()
+        String[] roles = svAuthorizationService.findRoleByUserId(user.getUserid()).stream()
                 .map(role -> role.getId())
-                .collect(Collectors.toList()).toArray(new Integer[0]);
+                .collect(Collectors.toList()).toArray(new String[0]);
         
         							
-        UserDetails userDetails = User.withUsername(user.getUserid()).password(passwordShow).roles(roles.toString()).build();
+        UserDetails userDetails = User.withUsername(user.getUserid()).password(passwordShow).roles(roles).build();
                 
         Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);

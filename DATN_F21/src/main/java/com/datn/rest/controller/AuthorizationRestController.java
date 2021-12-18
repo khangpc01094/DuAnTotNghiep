@@ -7,6 +7,7 @@ import com.datn.service.AuthorizationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,16 +24,19 @@ public class AuthorizationRestController {
 
     @Autowired AuthorizationService svAuthorizationService;
 	
+    @PreAuthorize("hasRole('ADMI')")
 	@GetMapping()
 	public ResponseEntity<List<Authorization>> getAllAuth(){
 		return svAuthorizationService.getAllAuth();
 	}
 	
+    @PreAuthorize("hasRole('ADMI')")
    @PostMapping()
    public ResponseEntity<Authorization> post(@RequestBody Authorization auth) {
 	   return svAuthorizationService.create(auth);
    }
    
+    @PreAuthorize("hasRole('ADMI')")
    @DeleteMapping("{id}")
    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
 	   return svAuthorizationService.delete(id);
