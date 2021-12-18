@@ -7,12 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.datn.entity.Users;
 
-
-public interface UsersDAO extends JpaRepository<Users, String>{
+public interface UsersDAO extends JpaRepository<Users, String> {
 
 	@Query("SELECT u FROM Users u WHERE u.fullname LIKE %?1%")
 	List<Users> findUserByName(String name);
-	
+
 	@Query("SELECT u FROM Users u WHERE u.email = ?1")
 	Users timUserByEmail(String email);
 
@@ -23,5 +22,5 @@ public interface UsersDAO extends JpaRepository<Users, String>{
 	public Users findByEmail(String email);
 
 	public Users findByResetPasswordToken(String token);
-	
+
 }

@@ -10,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.datn.entity.Users;
 import com.datn.entity.Utility;
@@ -31,7 +35,7 @@ public class ForgotPasswordController {
 
 	@Autowired
 	public UserService svUsers;
-	
+
 	@Autowired
 	HttpServletRequest request;
 
@@ -43,31 +47,22 @@ public class ForgotPasswordController {
 
 	@PostMapping("/forgot_password")
 	public String processForgotPassword(HttpServletRequest request, Model model) {
-
 		String email = request.getParameter("email");
 		String token = RandomString.make(30);
-
 		Users user1 = svUsers.timUserByEmail(email);
-
-		// Users username = svUsers.findById(user1);
-
-		// if(){
-
-		// }else{
-
-		// }
-
-		try {
-			svUsers.updateResetPasswordToken(token, email);
-			String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
-			sendEmail(email, resetPasswordLink);
-			model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
-
-		} catch (UnsupportedEncodingException | MessagingException e) {
-			model.addAttribute("error", "Error while sending email");
+		if (user1 == null) {
+			model.addAttribute("message", "Không tìm thấy tài khoản!");
+		} else {
+			try {
+				svUsers.updateResetPasswordToken(token, email);
+				String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
+				sendEmail(email, resetPasswordLink);
+				model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
+			} catch (UnsupportedEncodingException | MessagingException e) {
+				model.addAttribute("error", "Error while sending email");
+			}
+			return "/viewsUser/forgott";
 		}
-
-
 		return "/viewsUser/forgott";
 	}
 
@@ -96,16 +91,11 @@ public class ForgotPasswordController {
 	@GetMapping("/reset_password")
 	public String showResetPasswordForm(@Param(value = "token") String token, Model model) {
 		Users user = svUsers.getByResetPasswordToken(token);
-
 		model.addAttribute("token", token);
-
 		if (user == null) {
 			model.addAttribute("message", "Invalid Token");
 			return "message";
 		}
-		System.err.println("user: " + user.getUsername());
-		System.err.println("token: " + token);
-
 		return "/viewsUser/reset_password_form";
 	}
 
@@ -113,23 +103,38 @@ public class ForgotPasswordController {
 	public String processResetPassword(HttpServletRequest request, Model model) {
 		String token = request.getParameter("token");
 		String password = request.getParameter("password");
+		String confirmpassword = request.getParameter("confirmpassword");
 		Users user = svUsers.getByResetPasswordToken(token);
 		model.addAttribute("title", "Reset your password");
-		if (user == null) {
-			model.addAttribute("message", "Invalid Token");
-			return "/viewsUser/reset_password_form";
+		if (password.equals(confirmpassword)) {
+			if (user == null) {
+				model.addAttribute("message", "Invalid Token");
+				return "/viewsUser/reset_password_form";
+			} else {
+				
+				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				String encodedPassword = passwordEncoder.encode(password);
+				user.setPassword(encodedPassword);
+				user.setResetPasswordToken(null);
+				svUsers.save(user);
+				
+//				user.setResetPasswordToken(null);
+//				user.setPassword(password);
+//				svUsers.save(user);
+				
+				model.addAttribute("message", "You have successfully changed your password.");
+				return "/viewsUser/login";
+			}
 		} else {
-			// svUsers.updatePassword(user, password);
-			// System.err.println("password 1: " + password);
-			user.setResetPasswordToken("");
-			user.setPassword(password);
-			svUsers.save(user);
-
-			model.addAttribute("message", "You have successfully changed your password.");
-			
+			model.addAttribute("message", "Mật khẩu không khớp, vui lòng nhập lại mật khẩu!");
+			return "/viewsUser/reset_password_form";
 		}
-		System.err.println("user nè: " + user.password);
+//		return "/viewsUser/reset_password_form";
+	}
 
-		return "/viewsUser/reset_password_form";
+	// Going to reset page without a token redirects to login page
+	@ExceptionHandler(MissingServletRequestParameterException.class)
+	public ModelAndView handleMissingParams(MissingServletRequestParameterException ex) {
+		return new ModelAndView("redirect:/security/login/form");
 	}
 }

@@ -54,79 +54,12 @@ public class HomeController {
 
 	@Autowired
 	HttpServletRequest req;
-	
+
 	@Autowired
 	JavaMailSender emailSender;
-	
+
 	@Autowired
 	UserService svUsers;
-
-//	@GetMapping("/forgot_password")
-//	public String getFogotPassword(Model model, Users user) {
-//		model.addAttribute("user", user);
-//		return "/viewsUser/fogot_password";
-//	}
-//
-//	@PostMapping("/forgot_password")
-//	public String sendHtmlEmail(Users user, @RequestParam("email") String email, Model model)
-//			throws MessagingException {
-//		int pass = ThreadLocalRandom.current().nextInt(100000, 999999);
-//		Users user1 = svUsers.timUserByEmail(email);
-//		System.err.println("user1: " + user1.username);
-//		
-//		if (user1.username != null) {
-//			
-//			Users timkiem = svUsers.findById(user1.username);
-//			
-//			System.err.println("email: " + email);
-//			
-//			if (user1.equals(timkiem.getUsername())) {
-//				
-//				System.err.println("có user này: " + timkiem.getUsername());
-//				
-//				if (email.equals(timkiem.getEmail())) {
-//
-//					timkiem.setPassword(pass + "");
-//
-//					svUsers.save(timkiem);
-//
-//					System.err.println("Mật khẩu của bạn là: " + pass);
-//
-//					MimeMessage message = emailSender.createMimeMessage();
-//
-//					boolean multipart = true;
-//
-//					MimeMessageHelper helper = new MimeMessageHelper(message, multipart, "utf-8");
-//
-//					String htmlMsg = "<h3>Mật khẩu mới của bạn là: </h3>" + "<strong>" + pass + "</strong>" + "<br>"
-//							+ "<hr>" + "<img src='img/logo4.png'>";
-//
-//					message.setContent(htmlMsg, "text/html");
-//
-//					helper.setTo(email);
-//
-//					helper.setSubject("Test send HTML email");
-//
-//					this.emailSender.send(message);
-//
-//					System.err.println("Gửi mail thành công!");
-//
-//					return "meooo";
-//				} else {
-//					model.addAttribute("error", "Không tìm thấy mail!");
-//					System.err.println("Không tìm thấy mail!");
-//					return "/viewsUser/fogot_password";
-//				}
-//			} else {
-//				return "/viewsUser/forgot_password";
-//			}
-//		} else {
-//			System.err.println("Không tìm tài khoản!");
-//			model.addAttribute("error", "Không tìm thấy tài khoản!");
-//			return "/viewsUser/forgot_password";
-//		}
-//
-//	}
 
 	@RequestMapping("/index")
 	public String loadProduct(Model model, @RequestParam("cid") Optional<Integer> cid) {
@@ -212,4 +145,71 @@ public class HomeController {
 		svOrder.Save(address);
 		return "/viewsUser/cart";
 	}
+
+//	@GetMapping("/forgot_password")
+//	public String getFogotPassword(Model model, Users user) {
+//		model.addAttribute("user", user);
+//		return "/viewsUser/fogot_password";
+//	}
+//
+//	@PostMapping("/forgot_password")
+//	public String sendHtmlEmail(Users user, @RequestParam("email") String email, Model model)
+//			throws MessagingException {
+//		int pass = ThreadLocalRandom.current().nextInt(100000, 999999);
+//		Users user1 = svUsers.timUserByEmail(email);
+//		System.err.println("user1: " + user1.username);
+//		
+//		if (user1.username != null) {
+//			
+//			Users timkiem = svUsers.findById(user1.username);
+//			
+//			System.err.println("email: " + email);
+//			
+//			if (user1.equals(timkiem.getUsername())) {
+//				
+//				System.err.println("có user này: " + timkiem.getUsername());
+//				
+//				if (email.equals(timkiem.getEmail())) {
+//
+//					timkiem.setPassword(pass + "");
+//
+//					svUsers.save(timkiem);
+//
+//					System.err.println("Mật khẩu của bạn là: " + pass);
+//
+//					MimeMessage message = emailSender.createMimeMessage();
+//
+//					boolean multipart = true;
+//
+//					MimeMessageHelper helper = new MimeMessageHelper(message, multipart, "utf-8");
+//
+//					String htmlMsg = "<h3>Mật khẩu mới của bạn là: </h3>" + "<strong>" + pass + "</strong>" + "<br>"
+//							+ "<hr>" + "<img src='img/logo4.png'>";
+//
+//					message.setContent(htmlMsg, "text/html");
+//
+//					helper.setTo(email);
+//
+//					helper.setSubject("Test send HTML email");
+//
+//					this.emailSender.send(message);
+//
+//					System.err.println("Gửi mail thành công!");
+//
+//					return "meooo";
+//				} else {
+//					model.addAttribute("error", "Không tìm thấy mail!");
+//					System.err.println("Không tìm thấy mail!");
+//					return "/viewsUser/fogot_password";
+//				}
+//			} else {
+//				return "/viewsUser/forgot_password";
+//			}
+//		} else {
+//			System.err.println("Không tìm tài khoản!");
+//			model.addAttribute("error", "Không tìm thấy tài khoản!");
+//			return "/viewsUser/forgot_password";
+//		}
+//
+//	}
 }
