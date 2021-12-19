@@ -51,7 +51,7 @@ public class UserRestController {
 		return svUserService.postInformation(user);
 	}
 
-	@PreAuthorize("hasRole('ADMI')")
+    @PreAuthorize("hasAnyRole('BUYE','ADMI')")
 	@GetMapping("/findall")
 	public List<Users> getAllUser(){
 		return svUserService.getAllUser();
