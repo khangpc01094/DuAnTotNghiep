@@ -506,7 +506,9 @@ app.controller("cardlink-ctrl", function ($window,$scope, $http) {
 
 app.controller("wallet-ctrl", function ($scope, $http) {
   $scope.wallet = {};
-  $scope.money;	
+  $scope.topup;
+  
+
 
   $scope.initialize = function () {
     $http.get("/rest/wallet").then((resp) => {
@@ -517,12 +519,14 @@ app.controller("wallet-ctrl", function ($scope, $http) {
 
   $scope.initialize();
 
-  $scope.naptien = function(money) {
-		var money = angular.copy($scope.money);
-		$http.post(`/rest/wallet/naptien`, money).then(resp => {
+  $scope.naptien = function() {
+		var topup = angular.copy($scope.topup);
+		
+		$http.post(`/rest/wallet/naptien`, topup).then(resp => {
 			if (resp.status == 200) {
 				$scope.initialize();
-				$scope.money = null; /*set lại cho nó hiện lên cái form nhập số tiền*/
+				$scope.topup.money = null; /*set lại cho nó hiện lên cái form nhập số tiền*/
+				$scope.topup.password = null;
 				return Swal.fire({
 					width: '400px',
 					title: 'Nạp tiền thành công!',
@@ -531,7 +535,15 @@ app.controller("wallet-ctrl", function ($scope, $http) {
 					timer: 1500
 				})
 			}
-		}).catch(error => {
+			if (resp.status == 204) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Mật khẩu của bạn không chính xác!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
+		}).catch(error => {	
 			if (error.status == 400) {
 				return Swal.fire({
 					width: '400px',

@@ -14,7 +14,7 @@ public interface WalletService {
 
 	Wallet getWallet();
 
-	ResponseEntity<Wallet> napTien(Double money);
+	ResponseEntity<Wallet> napTien(Double money,String password);
 
 	ResponseEntity<Void> unlink();
 

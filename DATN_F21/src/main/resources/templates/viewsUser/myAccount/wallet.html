@@ -42,9 +42,11 @@
                              </div>         
                              <br>
                              <div class="input-item input-item-textarea ltn__custom-icon">
-                                 <input style="border-radius: 5px;" ng-model="money" name="money" type="number" placeholder="Nhập số tiền muốn nạp...." required onKeyUp="if(this.value<1){this.value='1';}">                                
-                             </div>     
-                             <span style="color: red" ng-hide="form_wallet.money.$valid">Bạn cần nhập số tiền trước khi nạp tiền</span>               
+                                 <input style="border-radius: 5px;" ng-model="topup.money" name="money" type="number" placeholder="Nhập số tiền muốn nạp...." required onKeyUp="if(this.value<1){this.value='1';}">                                
+                             </div>              
+                             <span style="color: red" ng-hide="form_wallet.money.$valid">Bạn cần nhập số tiền trước khi nạp tiền</span>     
+                             <input style="border-radius: 5px;" ng-model="topup.password" name="password" type="text" placeholder="Nhập mật khẩu của bạn" required>   
+                             <span style="color: red" ng-hide="form_wallet.password.$valid">Bạn cần phải nhập mật khẩu để xác minh!</span>            
                              <div class="btn-wrapper">
                                  <a style="border-radius: 5px;" href="" ng-click="naptien()" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Nạp tiền</a>
                                  <a style="border-radius: 5px;" href="/account/cardlink" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Chỉnh sửa thẻ</a>                              

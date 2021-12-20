@@ -1,6 +1,7 @@
 package com.datn.rest.controller;
 
 import com.datn.entity.Wallet;
+import com.datn.model.entity.TopupModel;
 import com.datn.service.WalletService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +42,8 @@ public class WalletRestController {
 
     @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@PostMapping("/naptien")
-	public ResponseEntity<Wallet> napTien(@RequestBody Double money) {
-		return svWalletService.napTien(money);
+	public ResponseEntity<Wallet> napTien(@RequestBody TopupModel topupModel) {
+		return svWalletService.napTien(topupModel.getMoney(),topupModel.getPassword());
 	}
 	
     @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")

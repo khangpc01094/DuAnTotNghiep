@@ -86,28 +86,35 @@ public class WalletServiceImpl implements WalletService{
 	}
 
 	@Override
-	public ResponseEntity<Wallet> napTien(Double money) {
-		HttpHeaders headers = new HttpHeaders();
-    	//headers.add("Authorization","Basic dXNlcjI6MTIz");
+	public ResponseEntity<Wallet> napTien(Double money,String passord) {
+Wallet wallet = daoWalletDAO.findWalletByUserId(req.getRemoteUser());
 		
-		Wallet wallet = daoWalletDAO.findWalletByUserId(req.getRemoteUser());
-		if(getStatusConfirm(wallet)) {
-			HttpEntity<Object> entity = new HttpEntity<>(wallet.getCardnumber(),headers);
-			Double moneyInBank = client.exchange("http://localhost:2021/rest/bank/checkmoney", HttpMethod.POST,entity,Double.class).getBody();
+		if(wallet.getUser().getPassword().equals(passord)) {
+		
+			HttpHeaders headers = new HttpHeaders();
+	    	//headers.add("Authorization","Basic dXNlcjI6MTIz");
 			
-			if(money<=moneyInBank) {
-				HttpEntity<Object> entity2 = new HttpEntity<>(new MoneyModel(wallet.getCardnumber(),money),headers);
-				client.exchange("http://localhost:2021/rest/bank/deduction", HttpMethod.POST,entity2,Void.class);
-				wallet.setMoney((wallet.getMoney()==null)?money:wallet.getMoney()+money);
-				daoWalletDAO.save(wallet);	
-				svTransactionService.saveTransaction(wallet.getUser(),money,"Nạp tiền vào ví");
-				return ResponseEntity.ok(wallet);		
-			}else {	
-				return ResponseEntity.badRequest().build();			
-			}
+			
+			if(getStatusConfirm(wallet)) {
+				HttpEntity<Object> entity = new HttpEntity<>(wallet.getCardnumber(),headers);
+				Double moneyInBank = client.exchange("http://localhost:2021/rest/bank/checkmoney", HttpMethod.POST,entity,Double.class).getBody();
+				
+				if(money<=moneyInBank) {
+					HttpEntity<Object> entity2 = new HttpEntity<>(new MoneyModel(wallet.getCardnumber(),money),headers);
+					client.exchange("http://localhost:2021/rest/bank/deduction", HttpMethod.POST,entity2,Void.class);
+					wallet.setMoney((wallet.getMoney()==null)?money:wallet.getMoney()+money);
+					daoWalletDAO.save(wallet);	
+					svTransactionService.saveTransaction(wallet.getUser(),money,"Nạp tiền vào ví");
+					return ResponseEntity.ok(wallet);		
+				}else {	
+					return ResponseEntity.badRequest().build();			
+				}
+			}else {
+				return ResponseEntity.notFound().build();	
+			}	
 		}else {
-			return ResponseEntity.notFound().build();	
-		}	
+			return ResponseEntity.noContent().build();
+		}
 	}
 
 	@Override
