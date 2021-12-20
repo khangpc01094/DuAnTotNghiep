@@ -28,8 +28,14 @@
 											<!-- <div class="underline"></div> -->
 											
 										</div>
-										<div class="input-data">
-											<input ng-model="form.username" name="username"  type="text" ng-minlength="6" ng-maxlength="15" ng-required="true" ng-pattern="/^[a-z0-9_-]{6,15}$/i" >					
+										<div class="input-data" ng-show="form.userid!=null">
+											<label style="margin-bottom: 30px; color: #4158d0;">Tên đăng nhập</label>										
+											<input ng-model="form.username" type="text" readonly>
+											<!-- <div class="underline"></div> -->
+											
+										</div>
+										<div class="input-data" ng-show="form.userid==null">
+											<input ng-model="form.username" name="username"  type="text" ng-minlength="6" ng-maxlength="30" ng-required="true" ng-pattern="/^[a-z0-9_-]{6,15}$/i" >					
 											<div class="underline"></div>
 											<label for="">Tên đăng nhập</label>
 											<div style="margin-bottom: 20px; color: red">
@@ -38,7 +44,7 @@
 													ng-show="form_user.username.$error.minlength">Tên
 													đăng nhập ít nhất phải 6 ký tự</span> <span class="error"
 													ng-show="form_user.username.$error.maxlength">Tên
-													đăng nhập tối đa 15 ký tự</span> <span
+													đăng nhập tối đa 30 ký tự</span> <span
 													ng-show="form_user.username.$dirty&&dk.username.$error.pattern">Không
 													đúng định dạng User</span>
 											</div>
@@ -70,9 +76,12 @@
 											</div>
 										</div>
 										<div class="input-data">
-											<input ng-model="form.phone"  type="text" >
+											<input ng-model="form.phone" name="phone"  type="text" ng-pattern="/^\+?(0|84)\d{9}$/">
 											<div class="underline"></div>
 											<label for="">Số điện thoại</label>
+											<div style="margin-bottom: 20px; color: red;">
+		                                        <span ng-show="form_user.phone.$dirty && form_user.phone.$invalid">Số điện thoại không đúng định dạng</span>
+		                                    </div>
 										</div>										
 										<div class="row">
 											<div class="col-sm-6">													

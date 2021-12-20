@@ -32,7 +32,8 @@ public class TransactionServiceImpl implements TransactionService{
 
 	@Override
 	public List<Transaction> getTransactionByDate(Date startDate, Date endDate) {
-		return daoTransactionDAO.getTransactionByDate(startDate,endDate);
+		String userId = req.getRemoteUser();
+		return daoTransactionDAO.getTransactionByDate(userId,startDate,endDate);
 	}
 
 	@Override

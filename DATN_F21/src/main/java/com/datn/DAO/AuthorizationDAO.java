@@ -13,6 +13,6 @@ public interface AuthorizationDAO extends JpaRepository<Authorization, Integer>{
 	@Query("SELECT auth.role FROM Authorization auth WHERE auth.user.userid=?1")
 	List<Role> findRoleByUserId(String userid);
 	
-	@Query("select a from Authorization a where a.user.userid = ?1 and a.role.id = 2")
+	@Query("select a from Authorization a where a.user.userid = ?1 and a.role.id = 'SELL'")
     Authorization getRole(String id);
 }

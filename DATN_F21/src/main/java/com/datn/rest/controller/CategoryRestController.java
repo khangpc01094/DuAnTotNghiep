@@ -7,6 +7,7 @@ import com.datn.service.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,11 +29,13 @@ public class CategoryRestController {
 		return svCategoryService.getFindAll();
 	}
 	
+	@PreAuthorize("hasRole('ADMI')")
 	@PostMapping()
 	public ResponseEntity<Category> create(@RequestBody Category category) {
 		return svCategoryService.create(category);
 	}
 	
+	@PreAuthorize("hasRole('ADMI')")
 	@PutMapping("{id}")
 	public  ResponseEntity<Category> update(@PathVariable("id") String id,@RequestBody Category category) {
 		return svCategoryService.update(category);

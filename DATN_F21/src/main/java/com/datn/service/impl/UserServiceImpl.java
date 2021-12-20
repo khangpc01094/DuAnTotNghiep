@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,15 +26,42 @@ import com.datn.service.RoleService;
 import com.datn.service.UserService;
 
 @Service
+<<<<<<< HEAD
 public class UserServiceImpl implements UserService {
 
+=======
+public class UserServiceImpl implements UserService{
+    @Autowired 
+	UsersDAO daoUsersDAO;
+	@Autowired 
+	HttpServletRequest req;
+	
+>>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 	@Autowired
 	UsersDAO daoUsersDAO;
 	@Autowired
 	HttpServletRequest req;
 
+<<<<<<< HEAD
 	@Autowired
 	AuthorizationService svAuth;
+=======
+    @Autowired
+    RoleService svRole;
+    
+    @Autowired
+    WalletDAO daoWalletDAO;
+	
+    @Override
+    public Users create(Users user) {
+        user.setUserid(idUser());
+      //Tạo ví cho người dùng
+        Users users = daoUsersDAO.save(user);
+        addWalletOfUser(users);
+        
+        return users;
+    }
+>>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 
 	@Autowired
 	RoleService svRole;
@@ -115,12 +143,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<Users> getAllUser() {
-		return daoUsersDAO.findAll();
+		List<Users> listUsers = daoUsersDAO.findAll().stream().filter(user->!user.getUserid().equals(req.getRemoteUser()) && !user.getUserid().equals("admin"))
+				.collect(Collectors.toList());	
+		return listUsers;
 	}
 
 	@Override
 	public List<Users> getFindUserByName(String name) {
-		return daoUsersDAO.findUserByName(name);
+		List<Users> listUsers = daoUsersDAO.findUserByName(name).stream().filter(user->!user.getUserid().equals(req.getRemoteUser()) && !user.getUserid().equals("admin"))
+				.collect(Collectors.toList());	
+		return listUsers;
 	}
 	// Trung
 //	@Override
@@ -145,8 +177,10 @@ public class UserServiceImpl implements UserService {
 			return ResponseEntity.badRequest().build();
 		}
 		user.setUserid(idUser());
+		
 		daoUsersDAO.save(user);
 		Authorization auth = new Authorization();
+<<<<<<< HEAD
 		Role rol = svRole.findById(1);
 		auth.setRole(rol);
 		auth.setUser(user);
@@ -154,6 +188,15 @@ public class UserServiceImpl implements UserService {
 		// Tạo ví cho người dùng
 		addWalletOfUser(user);
 		return ResponseEntity.ok(user);
+=======
+        Role rol = svRole.findById("BUYE");
+        auth.setRole(rol);
+        auth.setUser(user);
+        svAuth.Create(auth);
+        //Tạo ví cho người dùng
+        addWalletOfUser(user);
+		return ResponseEntity.ok(user);       
+>>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 	}
 
 	@Override
@@ -182,6 +225,7 @@ public class UserServiceImpl implements UserService {
 
 			daoUsersDAO.save(user);
 			Authorization auth = new Authorization();
+<<<<<<< HEAD
 			Role rol = svRole.findById(1);
 			auth.setRole(rol);
 			auth.setUser(user);
@@ -191,6 +235,17 @@ public class UserServiceImpl implements UserService {
 
 			return user;
 		} else {
+=======
+	        Role rol = svRole.findById("BUYE");
+	        auth.setRole(rol);
+	        auth.setUser(user);
+	        svAuth.Create(auth);
+	        //Tạo ví cho người dùng
+	        addWalletOfUser(user);
+	        
+	        return user;
+		}else {
+>>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 			Users user = daoUsersDAO.existsByUsername(username);
 			return user;
 		}

@@ -2,28 +2,25 @@ package com.datn.Controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.datn.DAO.ProductDAO;
 import com.datn.entity.Address;
 import com.datn.entity.Product;
-import com.datn.entity.Users;
 import com.datn.service.AddressService;
 import com.datn.service.CategoryService;
 import com.datn.service.OrderService;
@@ -89,11 +86,13 @@ public class HomeController {
 		return "/viewsUser/product-detail";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/index/cart")
 	public String getCart() {
 		return "/viewsUser/cart";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/index/checkout")
 	public String getCheckout() {
 		return "/viewsUser/checkout";
@@ -104,6 +103,7 @@ public class HomeController {
 		return "/viewsUser/register";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/my_account")
 	public String getMyAccount() {
 		return "/viewsUser/my_account";
@@ -121,6 +121,7 @@ public class HomeController {
 		return "/viewsUser/index";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/buyer/cart")
 	public String getCartUser() {
 		return "/viewsUser/cart";
@@ -140,6 +141,7 @@ public class HomeController {
 		}
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/order/save")
 	public String getOnes(@RequestParam("id") Integer address) {
 		svOrder.Save(address);

@@ -35,10 +35,10 @@
 											đúng định dạng Email</span>
 									 </div>
                                       <label>Số điện thoại:</label>                                      
-                                      <input style="border-radius: 5px;" ng-model="form.phone" type="text" name="txtPhone">
-                                      <div style="margin-top: -30px; margin-bottom: 20px; color: red">
-                                           <span ng-hide="form_information.txtPhone.$valid">Phải đúng định dạng số điện thoại</span>
-                                      </div>
+                                      <input style="border-radius: 5px;" ng-model="form.phone" type="text" ng-pattern="/^\+?(0|84)\d{9}$/" name="txtPhone">
+                                      <div style="margin-top: -30px; margin-bottom: 20px; color: red;">	                                  
+	                                        <span ng-show="form_information.txtPhone.$dirty && form_information.txtPhone.$invalid">Số điện thoại không đúng định dạng</span>
+	                                   </div>
                                       <label>Giới tính:</label></br>
                                       <div style="border-radius: 5px;"  class="gender">
                                           <div class="mt-15">

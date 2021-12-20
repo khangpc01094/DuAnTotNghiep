@@ -5,7 +5,7 @@
 	<main>	
 	<div class="tab-pane fade active show">
 		    <div class="ltn__myaccount-tab-content-inner">
-		        <div class="">
+		        <div class="" style="height: 600px; overflow: auto;">
 		            <table class="table">
 		                <thead>
 		                    <tr>
@@ -35,12 +35,12 @@
 									</th:block>
 								</td>
 		                        <td>[[${item.totalamount}]]</td>
-		                        <td><a th:href="@{|/account/editorder/${item.id}|}">Xem</a>
+		                        <td><a style="color: blue;" th:href="@{|/account/editorder/${item.id}|}">Chi Tiết</a>
 									<th:block th:if="${item.status} == 1">
-										<a th:href="@{|/order/orderRefuse/${item.id}|}">Hủy</a>
+										<a style="margin-left: 13px; color: orange;" th:href="@{|/order/orderRefuse/${item.id}|}">Hủy Đơn</a>
 									</th:block>
 									<th:block th:if="${item.status} == 2">
-										<a th:href="@{|/order/orderConfirm/${item.id}|}">Đã nhận hàng</a>
+										<a style="margin-left: 13px; color: green;" th:href="@{|/order/orderConfirm/${item.id}|}">Đã nhận hàng</a>
 									</th:block>
 								</td>
 		                    </tr>

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.datn.DAO.AuthorizationDAO;
 import com.datn.entity.Authorization;
 import com.datn.entity.Role;
@@ -17,6 +19,8 @@ public class AuthorizationServiceImpl implements AuthorizationService{
     @Autowired
 	AuthorizationDAO daoAuthorizationDAO;
 	
+    @Autowired 
+	HttpServletRequest req;
 	
 	@Override
 	public List<Role> findRoleByUserId(String userid) {
@@ -32,14 +36,21 @@ public class AuthorizationServiceImpl implements AuthorizationService{
 
 	@Override
 	public ResponseEntity<Authorization> create(Authorization auth) {
+		if(auth.getUser().getUserid().equals(req.getRemoteUser())) {
+			return ResponseEntity.badRequest().build();
+		}		
 		daoAuthorizationDAO.save(auth);
 		return ResponseEntity.ok(auth);
 	}
 
 	public ResponseEntity<Void> delete(Integer id) {
+		Authorization auth = daoAuthorizationDAO.getById(id);
 		if(!daoAuthorizationDAO.existsById(id)) {
 			return ResponseEntity.notFound().build();
 		}		
+		if(auth.getUser().getUserid().equals(req.getRemoteUser())){
+			return ResponseEntity.badRequest().build();
+		}
 		daoAuthorizationDAO.deleteById(id);
 		return ResponseEntity.ok().build();
 	}

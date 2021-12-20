@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,7 @@ public class AddressRestController {
 	@Autowired
 	HttpServletRequest req;
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
     @PostMapping("/add_address")
 	public Address create(@RequestBody Address address) {
 		Users a = svUser.getByid(req.getRemoteUser());
@@ -41,27 +43,32 @@ public class AddressRestController {
 		return svAddress.create(address);
     }
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/us")
 	public List<Address> demo2() {
 		String user = req.getRemoteUser();;
 		return svAddress.findByUserid(user);
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/{id}")
 	public Address getAddByid(@PathVariable("id") Integer id){
 		return svAddress.findByIdd(id);
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@GetMapping("/us/{id}")
 	public List<Address> demo2(@PathVariable("id") String id) {
 		return svAddress.findByUserid(id);
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@PutMapping("/buyer/edit_address")
 	public Address edit(@RequestBody Address address) {
 		return svAddress.create(address);
     }
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
 	@DeleteMapping("/buyer/del_address/{id}")
 	public Address delete(@PathVariable("id") Integer id) {	
 		Address ad = svAddress.findByIdd(id);

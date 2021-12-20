@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	BCryptPasswordEncoder pe;
 
+<<<<<<< HEAD
 //	@Autowired
 //	private UserDetailsService userDetailsService;
 
@@ -73,6 +74,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return authProvider;
 	}
 	
+=======
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(username -> {
+        	
+            try {
+                Users user = svUserService.findByUsername(username);
+                String password = pe.encode(user.getPassword());
+                String[] roles = svAuthorizationService.findRoleByUserId(user.getUserid()).stream()
+                        .map(role -> role.getId())
+                        .collect(Collectors.toList()).toArray(new String[0]);
+                return User.withUsername(user.getUserid()).password(password).roles(roles).build();
+            } catch (NoSuchElementException e) {
+                throw new UsernameNotFoundException(username + " not fount!");
+            }
+        });
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+//        http.authorizeRequests()
+//        .antMatchers("/rest/user/findall").authenticated()
+//         .antMatchers("/rest/user/findall").hasAnyRole("ADMI","BUYE");
+        // .anyRequest().permitAll();
+        //
+        http.formLogin()
+                .loginPage("/security/login/form")
+                .loginProcessingUrl("/security/login")
+                .defaultSuccessUrl("/index", false)
+                .failureUrl("/security/login/error");
+>>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 
 	@Autowired
 	private UserDetailsService jwtUserDetailsService;
@@ -168,5 +201,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 
+<<<<<<< HEAD
 
+=======
+    
+
+    public void loginFromOAuth2(OAuth2AuthenticationToken oauth2) {
+    	String username = oauth2.getName();
+    	String password = Long.toHexString(System.currentTimeMillis()); 
+        String fullname = oauth2.getPrincipal().getAttribute("name");
+        String email = oauth2.getPrincipal().getAttribute("email");
+          
+        Users user = svUserService.saveUserAuth2(username, password, fullname,email);
+        String passwordShow = pe.encode(user.getPassword());
+        String[] roles = svAuthorizationService.findRoleByUserId(user.getUserid()).stream()
+                .map(role -> role.getId())
+                .collect(Collectors.toList()).toArray(new String[0]);
+        
+        							
+        UserDetails userDetails = User.withUsername(user.getUserid()).password(passwordShow).roles(roles).build();
+                
+        Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(auth);
+    }
+    
+ 
+>>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 }

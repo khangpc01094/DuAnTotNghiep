@@ -9,6 +9,7 @@ app.controller("user-ctrl", function($scope, $http) {
 	$scope.no;
 	$scope.form = {
 		picture: 'user_default.png',
+		gender: true,
 	};
 	
 	
@@ -75,7 +76,9 @@ app.controller("user-ctrl", function($scope, $http) {
 		var item = angular.copy($scope.form);
 		$http.put(`/rest/user/information/update`, item).then(resp => {
 			if (resp.status == 200) {
-				$scope.initialize();
+				var index = $scope.items.findIndex(u => u.userid == item.userid);
+				$scope.items[index] = item;
+				//$scope.initialize();
 				return Swal.fire({
 					width: '400px',
 					title: 'Cập nhật thành công!',
@@ -161,8 +164,7 @@ app.controller("user-ctrl", function($scope, $http) {
 	
 	$scope.search = function(name) {	
 		if (name === undefined) {
-			$scope.initialize();
-			
+			$scope.initialize();			
 		}else{
 			
 			$http.get(`/rest/user/findbyname/${name}`).then(resp => {
@@ -171,7 +173,8 @@ app.controller("user-ctrl", function($scope, $http) {
 					item.birthday = new Date(item.birthday)
 				})
 			});
-		}		
+			$scope.pager.page = 0;
+		}	
 	}
 })
 
@@ -245,13 +248,16 @@ app.controller("store-ctrl", function($scope, $http) {
 					});		
 				})
 			});
+			$scope.pager.page = 0;
 		}
 	}
 	
 	$scope.update_status = function(item) {
 		$http.put(`/rest/store/update_status`, item).then(resp => {
 			if (resp.status == 200) {
-				$scope.search(keyname);
+				//$scope.search(keyname);
+				var index = $scope.items.findIndex(s => s.id == item.id);
+				$scope.items[index] = item;
 				return Swal.fire({
 					width: '400px',
 					title: 'Cập nhật trạng thái cửa hàng thành công!',
@@ -475,6 +481,14 @@ app.controller("authorization-ctrl", function($scope, $http) {
 				timer: 1500
 			})
 		}).catch(error =>{
+			if (error.status == 400) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Không thể cấp quyền cho chính mình!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
 			return Swal.fire({
 				width: '400px',
 				title: 'Lỗi cấp quyền!',
@@ -498,6 +512,22 @@ app.controller("authorization-ctrl", function($scope, $http) {
 				timer: 1500
 			})
 		}).catch(error =>{
+			if (error.status == 404) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Không tìm thấy quyền của người dùng!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
+			if (error.status == 400) {
+				return Swal.fire({
+					width: '400px',
+					title: 'Không thể thu hồi quyền chính mình!',
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				})
+			}
 			return Swal.fire({
 				width: '400px',
 				title: 'Lỗi thu hồi quyền!',
@@ -551,7 +581,9 @@ app.controller("authorization-ctrl", function($scope, $http) {
 			$http.get(`/rest/user/findbyname/${name}`).then(resp => {
 				$scope.users = resp.data;		
 			});
+			$scope.pager.page = 0;
 		}
+		
 	}
 	
 })
@@ -625,5 +657,6 @@ app.controller("statistical-ctrl", function($scope, $http) {
 		}).catch(error => {
 				alert("Lỗi");			
 		});
+		$scope.pager.page = 0;
 	}
 })

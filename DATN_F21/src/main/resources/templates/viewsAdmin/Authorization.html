@@ -24,6 +24,7 @@
 						<thead>
 							<tr>
 								<th scope="col">STT</th>
+								<th scope="col">Tên tài khoản</th>
 								<th scope="col">Tên người dùng</th>
 								<th ng-repeat="role in roles">{{role.role}}</th>
 							</tr>
@@ -31,6 +32,7 @@
 						<tbody>
 							<tr ng-repeat="user in pager.users">
 							   <th scope="row">{{$index + 1+no}}</th>
+							   <th scope="row">{{user.username}}</th>
 				               <th scope="row">{{user.fullname}}</th>
 				               <th ng-repeat="role in roles" class="text-center">
 				                   <input ng-checked="authority_of(user,role)" ng-click="authority_changed(user,role)" type="checkbox">

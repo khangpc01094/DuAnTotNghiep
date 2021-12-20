@@ -6,26 +6,25 @@
         <div class="tab-pane fade active show" ng-controller="buyer-ctrl">
             <div class="ltn__myaccount-tab-content-inner">
                 <div class="ltn__form-box">
-                    <form action="#" name="add_address" novalidate>
+                    <form name="add_address" novalidate>
                         <fieldset>
                             <legend>Địa Chỉ</legend>
+                              
                             <div class="row">
                                 <div class="col-md-6">
                                     <div>
-                                        <label>Họ và tên *:</label>
-                                        <input ng-model="form.fullname" type="text" name="fullname" 
-                                            ng-pattern="/^\d+$/" ng-required=true>
+                                        <label>Họ và tên *:</label>                                       
+                                        <input ng-model="form.fullname" type="text" name="fullname"  ng-required=true>      <!-- ng-pattern="/^\d+$/" -->                                        
                                         <div style="margin-top: -30px; margin-bottom: 20px; color: red;">
                                             <span ng-show="add_address.fullname.$error.required">Không bỏ trống Họ và tên</span>
-                                            <span ng-show="add_address.fullname.$dirty&&!add_address.fullname.$error.pattern">Họ và tên không đúng định dạng</span>
+                                           <!--  <span ng-show="add_address.fullname.$dirty&&!add_address.fullname.$error.pattern">Họ và tên không đúng định dạng</span> -->
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label>Số điện thoại *:</label>
-                                    <input ng-model="form.phone" type="text" name="phone" 
-                                        ng-pattern="/^\+?(0|84)\d{9}$/" ng-required=true>
+                                    <input ng-model="form.phone" type="text" name="phone" ng-pattern="/^\+?(0|84)\d{9}$/" ng-required=true>                                     
                                     <div style="margin-top: -30px; margin-bottom: 20px; color: red;">
                                         <span ng-show="add_address.phone.$error.required">Không bỏ trống Số điện thoại</span>
                                         <span ng-show="add_address.phone.$dirty && add_address.phone.$invalid">Số điện thoại không đúng định dạng</span>
@@ -34,16 +33,15 @@
 
                                 <div class="col-md-12">
                                     <label>Địa chỉ cụ thể *:</label>
-                                    <input type="text" ng-model="form.address" name="address" 
-                                    ng-pattern="/^\d+$/" ng-required=true>
+                                    <input type="text" ng-model="form.address" name="address"  ng-required=true>       <!-- ng-pattern="/^\d+$/" -->     
                                     <div style="margin-top: -30px; margin-bottom: 20px; color: red;">
                                         <span ng-show="add_address.address.$error.required">Không bỏ trống Địa chỉ</span>
-                                        <span ng-show="add_address.address.$dirty&&!add_address.address.$error.pattern">Địa chỉ không đúng định dạng</span>
+                                        <!-- <span ng-show="add_address.address.$dirty&&!add_address.address.$error.pattern">Địa chỉ không đúng định dạng</span> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="btn-wrapper text-center">
-                                <button class="btn bg-primary" type="submit" ng-click="addaddress()">Lưu địa chỉ</button>
+                                <button class="btn bg-primary" ng-click="add_address1()">Lưu địa chỉ</button>
                             </div>
                     </form>
                     </fieldset>

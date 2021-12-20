@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,52 +49,61 @@ public class SellerController {
 		return "/viewsSeller/demo";
 	}
 	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/formSeller")
 	public String getformSeller() {
 		return "/viewsSeller/allProduct";
 	}
 	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/allProduct")
 	public String getformAll() {
 		return "/viewsSeller/allProduct";
 	}
 	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/createProduct")
 	public String getformCreate() {
 		return "/viewsSeller/createProduct";
 	}
 	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/wait")
 	public String getformWait() {
 		return "/viewsSeller/wait";
 	}
 	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/sent")
 	public String getformSent() {
 		return "/viewsSeller/sent";
 	}
 	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/cancel")
 	public String getformCancel() {
 		return "/viewsSeller/cancel";
 	}
 	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/detail")
 	public String getformDetail() {
 		return "/viewsSeller/detail";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/confirmed")
 	public String getfromConfirmed(){
 		return "/viewsSeller/confirmed";
 	}
 	
-	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/statisCate")
 	public String formStatisCate() {
 		return "/viewsSeller/statisCate";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/Seller/statisCate")
 	public String getFormStatisCate(Model m){
 		String date1 = req.getParameter("date1");
@@ -107,11 +117,13 @@ public class SellerController {
 		return "/viewsSeller/statisCate";
 	}
 	
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/viewsSeller/statisInvoice")
 	public String formStatisInvoice() {
 		return "/viewsSeller/statisInvoice";
 	}
 
+	@PreAuthorize("hasAnyRole('BUYE','SELL')")
 	@GetMapping("/Seller/statisInvoice")
 	public String getFormStatisInvoice(Model m){
 		String date1 = req.getParameter("date1");
@@ -127,6 +139,7 @@ public class SellerController {
 		return "/viewsSeller/statisInvoice";
 	}
 	
+	//@PreAuthorize("hasRole('SELL')")
 	@GetMapping("/regisSeller")
 	public String getformRegis() {
 		String user = req.getRemoteUser();
@@ -140,6 +153,7 @@ public class SellerController {
 		
 	}
 	
+	@PreAuthorize("hasRole('SELL')")
 	@GetMapping("/viewsSeller/OrderDetail/{id}")
 	public String getfromDetail(@PathVariable("id") Integer id, Model model){
 		Order order = svOrder.getByid(id);

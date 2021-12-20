@@ -21,6 +21,7 @@ import com.datn.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,22 +59,25 @@ public class StoreRestController {
 	@Autowired
 	HttpServletRequest req;
     
+	@PreAuthorize("hasRole('ADMI')")
 	@GetMapping("/findall")
 	public List<Store> getAllStore(){
 		return svStoreService.getAllStore();
 	}
 	
+	@PreAuthorize("hasRole('ADMI')")
 	@GetMapping("/findbyname/{name}")
 	public List<Store> getFindStoreByName(@PathVariable("name") Optional<String> name){
 		return svStoreService.getFindStoreByName(name.get());
 	}
 
+	@PreAuthorize("isAuthenticated()")
     @PostMapping("/seller/regis")
 	public Store createStore(@RequestBody Store store) {
         Store st = svStoreService.create(store);
         Authorization auth = new Authorization();
         Users us = svUser.getByid(req.getRemoteUser());
-        Role rol = svRole.findById(2);
+        Role rol = svRole.findById("SELL");
         auth.setRole(rol);
         auth.setUser(us);
         svAuth.Create(auth);
@@ -117,11 +121,13 @@ public class StoreRestController {
 //		return svProductService.testne("%" + idp + "%", ids);
 //	}
 
+	@PreAuthorize("hasRole('SELL')")
 	@PostMapping()
 	public ResponseEntity<Product> postProduct(@RequestBody Product product) {
 		return svProductService.postProduct(product);
 	}
 
+	@PreAuthorize("hasRole('ADMI')")
 	@PutMapping("/update_status")
 	public  ResponseEntity<Store> updateStatus(@RequestBody Store store) {
 		return svStoreService.updateStatus(store);
