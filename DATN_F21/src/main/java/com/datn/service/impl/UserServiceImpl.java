@@ -26,26 +26,16 @@ import com.datn.service.RoleService;
 import com.datn.service.UserService;
 
 @Service
-<<<<<<< HEAD
-public class UserServiceImpl implements UserService {
 
-=======
 public class UserServiceImpl implements UserService{
     @Autowired 
 	UsersDAO daoUsersDAO;
 	@Autowired 
 	HttpServletRequest req;
 	
->>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
-	@Autowired
-	UsersDAO daoUsersDAO;
-	@Autowired
-	HttpServletRequest req;
-
-<<<<<<< HEAD
 	@Autowired
 	AuthorizationService svAuth;
-=======
+
     @Autowired
     RoleService svRole;
     
@@ -61,23 +51,8 @@ public class UserServiceImpl implements UserService{
         
         return users;
     }
->>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 
-	@Autowired
-	RoleService svRole;
-
-	@Autowired
-	WalletDAO daoWalletDAO;
-
-	@Override
-	public Users create(Users user) {
-		user.setUserid(idUser());
-		// Tạo ví cho người dùng
-//		addWalletOfUser(user);
-
-		return daoUsersDAO.save(user);
-	}
-
+	
 	// random id_user
 	public String idUser() {
 		int leftLimit = 48; // numeral '0'
@@ -180,15 +155,7 @@ public class UserServiceImpl implements UserService{
 		
 		daoUsersDAO.save(user);
 		Authorization auth = new Authorization();
-<<<<<<< HEAD
-		Role rol = svRole.findById(1);
-		auth.setRole(rol);
-		auth.setUser(user);
-		svAuth.Create(auth);
-		// Tạo ví cho người dùng
-		addWalletOfUser(user);
-		return ResponseEntity.ok(user);
-=======
+
         Role rol = svRole.findById("BUYE");
         auth.setRole(rol);
         auth.setUser(user);
@@ -196,7 +163,6 @@ public class UserServiceImpl implements UserService{
         //Tạo ví cho người dùng
         addWalletOfUser(user);
 		return ResponseEntity.ok(user);       
->>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 	}
 
 	@Override
@@ -225,17 +191,7 @@ public class UserServiceImpl implements UserService{
 
 			daoUsersDAO.save(user);
 			Authorization auth = new Authorization();
-<<<<<<< HEAD
-			Role rol = svRole.findById(1);
-			auth.setRole(rol);
-			auth.setUser(user);
-			svAuth.Create(auth);
-			// Tạo ví cho người dùng
-			addWalletOfUser(user);
 
-			return user;
-		} else {
-=======
 	        Role rol = svRole.findById("BUYE");
 	        auth.setRole(rol);
 	        auth.setUser(user);
@@ -245,7 +201,6 @@ public class UserServiceImpl implements UserService{
 	        
 	        return user;
 		}else {
->>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
 			Users user = daoUsersDAO.existsByUsername(username);
 			return user;
 		}

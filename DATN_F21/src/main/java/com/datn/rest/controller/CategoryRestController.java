@@ -29,13 +29,13 @@ public class CategoryRestController {
 		return svCategoryService.getFindAll();
 	}
 	
-	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
+	@PreAuthorize("hasRole('ADMI')")
 	@PostMapping()
 	public ResponseEntity<Category> create(@RequestBody Category category) {
 		return svCategoryService.create(category);
 	}
 	
-	@PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
+	@PreAuthorize("hasRole('ADMI')")
 	@PutMapping("{id}")
 	public  ResponseEntity<Category> update(@PathVariable("id") String id,@RequestBody Category category) {
 		return svCategoryService.update(category);

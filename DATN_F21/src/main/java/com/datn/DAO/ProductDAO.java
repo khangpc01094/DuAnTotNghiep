@@ -9,10 +9,10 @@ import com.datn.entity.Product;
 
 public interface ProductDAO extends JpaRepository<Product, Integer>{
 	
-	@Query("SELECT p FROM Product p WHERE p.status = true")
+	@Query("SELECT p FROM Product p WHERE p.status = true AND p.store.status = true")
 	List<Product> findAllStatusTrue();
 
-	@Query("SELECT p FROM Product p WHERE p.category.id=?1 AND p.status = true")
+	@Query("SELECT p FROM Product p WHERE p.category.id=?1 AND p.status = true AND p.store.status = true")
 	List<Product> findByCategoryIdStatusTrue(Integer cid);
 
 	@Query("SELECT count(d) FROM Product d WHERE d.store.id=?1")

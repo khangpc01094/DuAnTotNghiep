@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 
-	@PreAuthorize("hasAnyRole('BUYE','ADMI')")
+//	@PreAuthorize("hasAnyRole('BUYE','ADMI')")
+	@PreAuthorize("hasRole('ADMI')")
 	@GetMapping("/formAd")
 	public String getformAd() {
 		return "/viewsAdmin/ListUser";
@@ -19,7 +20,8 @@ public class AdminController {
 //		return "viewsAdmin/EditUser";
 //	}
 	
-@PreAuthorize("hasAnyRole('BUYE','ADMI')")
+//@PreAuthorize("hasAnyRole('BUYE','ADMI')")
+	@PreAuthorize("hasRole('ADMI')")
 	@GetMapping("/formAuth")
 	public String getformAuth() {
 		return "viewsAdmin/Authorization";
@@ -32,14 +34,16 @@ public class AdminController {
 		return "viewsAdmin/Category";
 	}
 	
-	@PreAuthorize("hasAnyRole('BUYE','ADMI')")
+//	@PreAuthorize("hasAnyRole('BUYE','ADMI')")
+	@PreAuthorize("hasRole('ADMI')")
 	@GetMapping("formStore")
 	public String getformStore()
 	{
 		return "viewsAdmin/StoreAd";
 	}
 	
-	@PreAuthorize("hasAnyRole('BUYE','ADMI')")
+//	@PreAuthorize("hasAnyRole('BUYE','ADMI')")
+	@PreAuthorize("hasRole('ADMI')")
 	@GetMapping("formStati")
 	public String getformStatistical()
 	{

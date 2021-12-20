@@ -22,11 +22,11 @@ public class TransactionRestController {
     
     @Autowired TransactionService svTransactionService;
     
-    @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
-    @GetMapping("/findall")
-    public List<Transaction> getFindAll(){
-    	return svTransactionService.getFindAll();
-    }
+//    @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
+//    @GetMapping("/findall")
+//    public List<Transaction> getFindAll(){
+//    	return svTransactionService.getFindAll();
+//    }
     
     @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
     @GetMapping("/byuserid")

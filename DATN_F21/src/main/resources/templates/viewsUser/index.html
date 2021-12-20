@@ -91,9 +91,11 @@
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
                                         <!-- ltn__product-item -->
+
                                         <div class="col-lg-4" th:each="product: ${sp}" th:object="${product}">
+                                            <a th:href="@{|/index/product-detail/${product.id}|}">
                                             <div style="width: 270px; height: 386px;" class="ltn__product-item ltn__product-item-3 text-center">
-                                                <a th:href="@{|/index/product-detail/${product.id}|}">
+                                                
                                                     <div style="width: 266px; height: 266px;" class="product-img">
                                                         <img th:src="@{|/assets/images/${product.images}|}" alt="#">
                                                         <div class="product-badge">
@@ -128,9 +130,12 @@
                                                             <span th:text = "*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')}"></span> VNĐ
                                                         </div>
                                                     </div>
-                                                </a>
+                                                
                                             </div>
+                                        </a>
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>

@@ -4,72 +4,18 @@
 		class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---"
 		ng-controller="buyer-ctrl">
 
-<<<<<<< HEAD
-		<!-- ltn__header-middle-area start -->
-		<div
-			class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9---"
-			style="background-color: #58ed58;">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4">
-						<div class="ltn__main-menu">
-							<ul>
-								<li><a href="/formAd">Admin</a></li>
-								<!-- th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}" -->
-								<li><a href="/regisSeller">Seller</a></li>
-								<li th:if="${#request.remoteUser}"><a href=""
-									style="color: white;"><i class="icon-user"></i>
-										[[${info.username}]]</a>
-								<li><a th:if="${#request.remoteUser}" href="#">
-										<div class="bell-noti">
-											<i class="fa fa-bell bell-noti-icon"
-												style="color: white; width: 30px; height: 25px"></i>
-											<div class="bell-noti-status"></div>
-										</div>
-								</a>
-									<ul>
-										<li ng-repeat="item in notification"><img alt="">
-											Ä�Æ¡n hÃ ng: {{item.order.address.fullname}}
-											<div ng-if="item.status == 1">Tráº¡ng thÃ¡i:Ä‘ang chá»�
-												xÃ¡c nháº­n</div>
-											<div ng-if="item.status == 2">Tráº¡ng thÃ¡i: Ä‘Ã£ xÃ¡c
-												nháº­n</div>
-											<div ng-if="item.status == 3">Tráº¡ng thÃ¡i: Ä‘Ã£ giao
-											</div>
-											<div ng-if="item.status == 4">Tráº¡ng thÃ¡i: Ä‘Ã£ há»§y
-											</div> {{item.dates | date:'yyyy-MM-dd HH:mm:ss '}}</li>
-										
-									</ul></li>
-								<li></li>
-							</ul>
-						</div>
-						<div class="site-logo-wrap">
-							<div class="site-logo">
-								<a href="/index"><img th:src="@{|/img/logo4.png|}"
-									alt="Logo" height="85px;" width="120%"
-									style="margin-left: -30px;"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<form id="#" method="get" action="/search" class="mt-30">
-							<input class="input-find" type="text" name="name"
-								style="border-radius: 5px;" required="required"
-								placeholder="TÃ¬m kiáº¿m sáº£n pháº©m...">
-							<button class="theme-btn-1 btn-find" type="submit"
-								style="border-radius: 5px;">
-=======
+
         <!-- ltn__header-middle-area start -->
         <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9---" style="background-color: #58ed58;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="ltn__main-menu">
-                            <ul>
+                            <ul th:if="${#request.remoteUser}">
                                 <li><a href="/formAd">Admin</a></li>
                                 <!-- th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}" -->
                                 <li><a href="/regisSeller">Seller</a></li>
-                                <li th:if="${#request.remoteUser}">
+                                <li >
                                     <a href="" style="color: white;"><i class="icon-user"></i> [[${info.username}]]</a>
                                     <li>
                                         <a th:if="${#request.remoteUser}" href="#">
@@ -109,7 +55,7 @@
                         <form id="#" method="get" action="/search" class="mt-30">
                             <input class="input-find" type="text" name="name" style="border-radius: 5px;" required="required" placeholder="Tìm kiếm sản phẩm...">
                             <button class="theme-btn-1 btn-find" type="submit" style="border-radius: 5px;">
->>>>>>> 99f75686a96e28349340798bdb8db9556cf55a2d
+
 								<i class="icon-search"></i>
 							</button>
 						</form>
@@ -122,16 +68,16 @@
 										class="icon-user"></i></a>
 									<ul>
 										<li th:if="${#request.remoteUser == null}"><a
-											href="/security/login/form">Ä�Äƒng nháº­p</a></li>
+											href="/security/login/form">Đăng nhập</a></li>
 										<li th:if="${#request.remoteUser == null}"><a
-											href="/register">Ä�Äƒng kÃ½</a></li>
+											href="/register">Đăng kí</a></li>
 										<li th:if="${#request.remoteUser == null}"><a
-											href="/forgot_password">QuÃªn máº­t kháº©u</a></li>
+											href="/forgot_password">Quên mật khẩu</a></li>
 
 										<li th:if="${#request.remoteUser}"><a
-											href="/account/information">TÃ i khoáº£n</a></li>
+											href="/account/information">Tài khoản</a></li>
 										<li th:if="${#request.remoteUser}"><a
-											href="/security/logoff">Ä�Äƒng xuáº¥t</a></li>
+											href="/security/logoff">Đăng xuất</a></li>
 									</ul></li>
 							</ul>
 						</div>
