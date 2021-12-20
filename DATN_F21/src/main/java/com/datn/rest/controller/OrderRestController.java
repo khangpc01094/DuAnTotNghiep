@@ -74,7 +74,7 @@ public class OrderRestController {
         return svOrder.getOrderStatusFour();
     }
 
-    @PreAuthorize("hasAnyRole('BUYE','SELL')")
+    @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
     @GetMapping("orderConfirm/{id}")
     public Order orderConfirm(@PathVariable("id") Integer id){
         return svOrder.orderConfirm(id);

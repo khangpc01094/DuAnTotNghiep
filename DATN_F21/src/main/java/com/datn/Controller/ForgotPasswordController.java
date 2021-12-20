@@ -115,6 +115,7 @@ public class ForgotPasswordController {
 				return "/viewsUser/reset_password_form";
 			} else {
 				
+<<<<<<< HEAD
 				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 				String encodedPassword = passwordEncoder.encode(password);
 				user.setPassword(encodedPassword);
@@ -125,6 +126,18 @@ public class ForgotPasswordController {
 //				user.setPassword(password);
 //				svUsers.save(user);
 				
+=======
+//				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//				String encodedPassword = passwordEncoder.encode(password);
+//				user.setPassword(encodedPassword);
+//				user.setResetPasswordToken(null);
+//				svUsers.save(user);
+				
+				user.setResetPasswordToken(null);
+				user.setPassword(password);
+				svUsers.save(user);
+				
+>>>>>>> 66e87c1ee28beabbc2ba80e58d3afcb08ff87872
 				model.addAttribute("message", "You have successfully changed your password.");
 				return "/viewsUser/login";
 			}
@@ -133,11 +146,14 @@ public class ForgotPasswordController {
 			return "/viewsUser/reset_password_form";
 		}
 //		return "/viewsUser/reset_password_form";
+<<<<<<< HEAD
 	}
 
 	// Going to reset page without a token redirects to login page
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ModelAndView handleMissingParams(MissingServletRequestParameterException ex) {
 		return new ModelAndView("redirect:/security/login/form");
+=======
+>>>>>>> 66e87c1ee28beabbc2ba80e58d3afcb08ff87872
 	}
 }

@@ -16,6 +16,7 @@ import com.datn.entity.Users;
 import com.datn.entity.Wallet;
 
 import com.datn.model.entity.MoneyModel;
+import com.datn.model.entity.WalletConfigModel;
 import com.datn.model.entity.WalletModel;
 import com.datn.service.TransactionService;
 import com.datn.service.WalletService;
@@ -36,6 +37,14 @@ public class WalletServiceImpl implements WalletService{
 		WalletModel walletModel = new WalletModel(wallet.getCardnumber(), wallet.getCardbrand(), wallet.getHoldername(), wallet.getCvv(), wallet.getCardexpiry());
 		HttpEntity<Object> entity = new HttpEntity<>(walletModel,headers);
 		Boolean status = client.exchange("http://localhost:2021/rest/bank/confirm", HttpMethod.POST,entity,Boolean.class).getBody();
+		return status;	
+	}
+	
+	private Boolean getStatusVerification(String  verification) {
+		HttpHeaders headers = new HttpHeaders();
+    	//headers.add("Authorization","Basic dXNlcjI6MTIz");
+		HttpEntity<Object> entity = new HttpEntity<>(verification,headers);
+		Boolean status = client.exchange("http://localhost:2021/rest/bank/confirm/verification", HttpMethod.POST,entity,Boolean.class).getBody();
 		return status;	
 	}
 	
@@ -86,28 +95,35 @@ public class WalletServiceImpl implements WalletService{
 	}
 
 	@Override
-	public ResponseEntity<Wallet> napTien(Double money) {
-		HttpHeaders headers = new HttpHeaders();
-    	//headers.add("Authorization","Basic dXNlcjI6MTIz");
+	public ResponseEntity<Wallet> napTien(Double money,String passord) {
+Wallet wallet = daoWalletDAO.findWalletByUserId(req.getRemoteUser());
 		
-		Wallet wallet = daoWalletDAO.findWalletByUserId(req.getRemoteUser());
-		if(getStatusConfirm(wallet)) {
-			HttpEntity<Object> entity = new HttpEntity<>(wallet.getCardnumber(),headers);
-			Double moneyInBank = client.exchange("http://localhost:2021/rest/bank/checkmoney", HttpMethod.POST,entity,Double.class).getBody();
+		if(wallet.getUser().getPassword().equals(passord)) {
+		
+			HttpHeaders headers = new HttpHeaders();
+	    	//headers.add("Authorization","Basic dXNlcjI6MTIz");
 			
-			if(money<=moneyInBank) {
-				HttpEntity<Object> entity2 = new HttpEntity<>(new MoneyModel(wallet.getCardnumber(),money),headers);
-				client.exchange("http://localhost:2021/rest/bank/deduction", HttpMethod.POST,entity2,Void.class);
-				wallet.setMoney((wallet.getMoney()==null)?money:wallet.getMoney()+money);
-				daoWalletDAO.save(wallet);	
-				svTransactionService.saveTransaction(wallet.getUser(),money,"Nạp tiền vào ví");
-				return ResponseEntity.ok(wallet);		
-			}else {	
-				return ResponseEntity.badRequest().build();			
-			}
+			
+			if(getStatusConfirm(wallet)) {
+				HttpEntity<Object> entity = new HttpEntity<>(wallet.getCardnumber(),headers);
+				Double moneyInBank = client.exchange("http://localhost:2021/rest/bank/checkmoney", HttpMethod.POST,entity,Double.class).getBody();
+				
+				if(money<=moneyInBank) {
+					HttpEntity<Object> entity2 = new HttpEntity<>(new MoneyModel(wallet.getCardnumber(),money),headers);
+					client.exchange("http://localhost:2021/rest/bank/deduction", HttpMethod.POST,entity2,Void.class);
+					wallet.setMoney((wallet.getMoney()==null)?money:wallet.getMoney()+money);
+					daoWalletDAO.save(wallet);	
+					svTransactionService.saveTransaction(wallet.getUser(),money,"Nạp tiền vào ví");
+					return ResponseEntity.ok(wallet);		
+				}else {	
+					return ResponseEntity.badRequest().build();			
+				}
+			}else {
+				return ResponseEntity.notFound().build();	
+			}	
 		}else {
-			return ResponseEntity.notFound().build();	
-		}	
+			return ResponseEntity.noContent().build();
+		}
 	}
 
 	@Override
@@ -122,5 +138,26 @@ public class WalletServiceImpl implements WalletService{
 		return ResponseEntity.ok().build();
 	}
 
+	
+	@Override
+	public ResponseEntity<Wallet> cartLinkConfig(WalletConfigModel walletConfigModel) {
+		Wallet wallet = new Wallet();
+		wallet.setId(walletConfigModel.getId());;
+		wallet.setUser(walletConfigModel.getUser());;
+		wallet.setCardnumber(walletConfigModel.getCardnumber());
+		wallet.setCardbrand(walletConfigModel.getCardbrand());
+		wallet.setHoldername(walletConfigModel.getHoldername());
+		wallet.setCvv(walletConfigModel.getCvv());
+		wallet.setCardexpiry(walletConfigModel.getCardexpiry());
+		wallet.setMoney(walletConfigModel.getMoney());
+		
+		Boolean status = getStatusVerification(walletConfigModel.getVerification());
+		if(status) {
+			daoWalletDAO.save(wallet);
+			return ResponseEntity.ok(wallet);
+		}else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 	
 }

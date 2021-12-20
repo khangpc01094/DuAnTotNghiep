@@ -43,4 +43,8 @@ public class BankRestController {
 		return svBankService.deductionMoney(moneyModel);
 	}
 
+	@PostMapping("/confirm/verification")
+	public Boolean getStatusVerification(@RequestBody String verification){
+		return svBankService.getStatusVerification(verification);		
+	}
 }

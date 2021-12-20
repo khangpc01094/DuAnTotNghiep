@@ -5,7 +5,7 @@
     <main style="background-color: white; margin-top: 10px" ng-controller="category-ctrl">
         <div class="row container_Category">
             <div class="col-sm-6">
-                <h5 style="color: orange; margin-top: 20px; font-size: 30px">Loáº¡i Sáº£n Pháº©m</h5>
+                <h5 style="color: orange; margin-top: 20px; font-size: 30px">Loại sản phẩm</h5>
                 <hr>
                 
                 <div class="tableCategory" ng-show="pager.items.length>0">
@@ -13,10 +13,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">HÃ¬nh</th>
-                                <th scope="col">MÃ£ loáº¡i</th>
-                                <th scope="col">TÃªn loáº¡i</th>
-                                <th scope="col">Tráº¡ng thÃ¡i</th>
+                                <th scope="col">Hình</th>
+                                <th scope="col">Mã loại</th>
+                                <th scope="col">Tên loại</th>
+                                <th scope="col">Trạng thái</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -26,7 +26,7 @@
                                 <td><img ng-src="{{'/img/category/' + item.picture}}" class="img-thumbnail rounded-circle" alt=""></td>
                                 <td>{{item.id}}</td>
                                 <td>{{item.name}}</td>
-                                <td>{{item.status?'Hoáº¡t Ä‘á»™ng':'KhÃ´ng hoáº¡t Ä‘á»™ng'}}</td>
+                                <td>{{item.status?'Hoạt động':'Không hoạt động'}}</td>
                                 <td>
                                     <div class="icon-sp">
                                         <a ng-click="edit(item)" href=""> 
@@ -53,42 +53,42 @@
 					  </nav>
 				</div>
 				<div style="color: rgb(0, 0, 0); background-color:#e5e5e5; padding-bottom:1px; padding-top: 10px; padding-left: 10px; padding-right: 5px; margin-left: 10px; margin-right: 10px;" ng-show="pager.items.length<1">
-						<h5>ChÆ°a cÃ³ loáº¡i sáº£n pháº©m nÃ o!</h5>				
+						<h5>Chưa có loại nào!</h5>				
 				</div>
             </div>
 
             <div class="col-sm-6">
                 <div class="border">
-                    <label class="Deatail" style="color: orange; margin-top: 8px; font-size: 30px">ThÃ´ng tin chi tiáº¿t</label>
+                    <label class="Deatail" style="color: orange; margin-top: 8px; font-size: 30px">Thông tin chi tiết</label>
                     <hr>
                     <form name="from_category">
-                        <label  class="image">HÃ¬nh áº£nh</label>
+                        <label  class="image">Hình ảnh</label>
                         <div class="header">
                             <img ng-src="{{'/img/category/'+ form.picture}}" class="img-thumbnail" alt="">                     
                            	<div style="margin-left: 122px;">									
 								<label class="custom-file-upload">
 								    <input type="file" onchange="angular.element(this).scope().imageChanged(this.files)"/>
-								    Chá»�n tá»‡p
+								    Chọn tệp
 								</label>		
 							</div>
                         </div>
                         <div class="body">
-                            <label for="">ID loáº¡i</label>
+                            <label for="">ID loạij</label>
                             <input ng-model="form.id" type="text" class="form-control" readonly>
-                            <label for="">TÃªn loáº¡i</label>
+                            <label for="">Tên loại</label>
                             <input ng-model="form.name" name="txtName" type="text" class="form-control" required>
-                            <span style="color: red;" ng-hide="from_category.txtName.$valid">KhÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng tÃªn loáº¡i sáº£n pháº©m</br></span>
-                            <label for="">Tráº¡ng thÃ¡i</label> <br>
+                            <span style="color: red;" ng-hide="from_category.txtName.$valid">Không có tên loại</br></span>
+                            <label for="">Trạng thái</label> <br>
                             <input ng-model="form.status" type="radio" checked class="radioCate" name="Category" ng-value="true"><label
-                                class="namecategory">KÃ­ch hoáº¡t</label>
+                                class="namecategory">Kích hoạt</label>
                             <input ng-model="form.status" type="radio" class="radioCate" name="Category" ng-value="false"><label
-                                class="namecategory">KhÃ´ng kÃ­ch hoáº¡t</label>
+                                class="namecategory">Không kích hoạt</label>
                         </div>
                         <div class="foodter">
                             <div class="btnc">
-                                <button ng-click="update()" class="btn2" >Cáº­p Nháº­t</button>
-                                <button ng-click="create()" class="btn2" type="submit">ThÃªm</button>
-                                <button ng-click="clear()" class="btn2" type="submit">LÃ m má»›i</button>
+                                <button ng-click="update()" class="btn2" >Cập nhật</button>
+                                <button ng-click="create()" class="btn2" type="submit">Thêm</button>
+                                <button ng-click="clear()" class="btn2" type="submit">Làm mới</button>
                             </div>
                         </div>
                     </form>
