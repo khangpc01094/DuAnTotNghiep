@@ -39,6 +39,7 @@ public class Users implements Serializable {
 	@Column(name = "reset_password_token")
 	private String resetPasswordToken;
 
+	public Boolean status;
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	public List<Address> addresss;

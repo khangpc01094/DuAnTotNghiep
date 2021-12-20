@@ -480,7 +480,7 @@ app.controller("cardlink-ctrl", function ($window,$scope, $http) {
     $scope.cartlink = function() {	
       
       var item = angular.copy($scope.form);
-      alert(item.cardexpiry)
+
       $http.put(`/rest/wallet/cartlink`, item).then(resp => {
 	        if (resp.status == 200) {		
 		          return Swal.fire({

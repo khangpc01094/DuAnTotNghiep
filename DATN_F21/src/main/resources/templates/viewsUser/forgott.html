@@ -1,62 +1,76 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/layoutUser/index :: dynamic(~{:: main})}">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{/layoutUser/index :: dynamic(~{:: main})}"
+>
+  <body style="background: linear-gradient(to bottom, #beedff, white)">
+    <main ng-controller="buyer-ctrl" th:object="${user}">
+      <div class="ltn__login-area pb-65 mt-40">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="text-center">
+                <img src="/img/banner/12.png" alt="404" />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="account-login-inner">
+                <h1 class="section-title text-center">
+                  QUÊN MẬT KHẨU <br />
+                  <label>[[${error}]]</label>
+                </h1>
 
-<body style="background: linear-gradient(to bottom, #beedff, white);">
-	<main ng-controller="buyer-ctrl" th:object="${user}">
-		<div class="ltn__login-area pb-65 mt-40">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="text-center">
-							<img src="/img/banner/12.png" alt="404" />
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="account-login-inner">
-							<h1 class="section-title text-center">
-								QUÊN MẬT KHẨU <br /> <label>[[${error}]]</label>
-							</h1>
-
-							<form th:action="@{/forgot_password}" method="post"
-								class="ltn__form-box contact-form-box" name="forgot" novalidate>
-								<!-- EMAIL -->
-								<div th:if="${error != null}">
-									<p class="text-danger">[[${error}]]</p>
-								</div>
-								<div th:if="${message != null}">
-									<p class="text-warning">[[${message}]]</p>
-								</div>
-								<div>
-									<p>We will be sending a reset password link to your email.</p>
-								</div>
-								<div class="form-group">
-									<input type="email" ng-model="email" placeholder="Email*"
-										name="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
-										ng-required="true" />
-									<div style="margin-top: -30px; margin-bottom: 20px; color: Red">
-										<span ng-show="forgot.email.$error.required">Không bỏ
-											trống Email</span> <span
-											ng-show="forgot.email.$dirty&&forgot.email.$error.pattern">Không
-											đúng định dạng Email</span>
-									</div>
-								</div>
-								<div class="btn-wrapper text-center">
-
-									<button class="theme-btn-1 btn reverse-color" type="submit">
-										SEND</button>
-
-								</div>
-							</form>
-							<!--  <div class="by-agree text-center">
-                                <a href="/security/login/form">Continue with Login</a>
-                            </div> -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
-</body>
-
+                <form
+                  th:action="@{/forgot_password}"
+                  method="post"
+                  class="ltn__form-box contact-form-box"
+                  name="forgot"
+                  novalidate
+                >
+                  <!-- EMAIL -->
+                  <div th:if="${error != null}">
+                    <p class="text-danger">[[${error}]]</p>
+                  </div>
+                  <div th:if="${message != null}">
+                    <p class="text-warning">[[${message}]]</p>
+                  </div>
+                  <div>
+                    <p>
+                      Chúng tôi sẽ gửi đến mail bạn đường dẫn đặt lại mật khẩu.
+                    </p>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      ng-model="email"
+                      placeholder="Email*"
+                      name="email"
+                      ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                      ng-required="true"
+                    />
+                    <div
+                      style="margin-top: -30px; margin-bottom: 20px; color: Red"
+                    >
+                      <span ng-show="forgot.email.$error.required"
+                        >Không bỏ trống Email</span
+                      >
+                      <span
+                        ng-show="forgot.email.$dirty&&forgot.email.$error.pattern"
+                        >Không đúng định dạng Email</span
+                      >
+                    </div>
+                  </div>
+                  <div class="btn-wrapper text-center">
+                    <button class="theme-btn-1 btn reverse-color" type="submit">
+                      SEND
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

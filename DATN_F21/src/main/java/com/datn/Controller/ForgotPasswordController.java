@@ -44,6 +44,7 @@ public class ForgotPasswordController {
 		String email = request.getParameter("email");
 		String token = RandomString.make(30);
 		Users user1 = svUsers.timUserByEmail(email);
+		user1.setStatus(true);
 		if (user1 == null) {
 			model.addAttribute("message", "Không tìm thấy tài khoản!");
 		} else {
@@ -51,12 +52,13 @@ public class ForgotPasswordController {
 				svUsers.updateResetPasswordToken(token, email);
 				String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
 				sendEmail(email, resetPasswordLink);
-				model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
+				model.addAttribute("message", "Chúng tôi đã gửi link đặt lại mật khẩu vào mail của bạn. Vui lòng kiểm tra!");
 			} catch (UnsupportedEncodingException | MessagingException e) {
 				model.addAttribute("error", "Error while sending email");
 			}
 			return "/viewsUser/forgott";
 		}
+		
 		return "/viewsUser/forgott";
 	}
 
@@ -66,7 +68,6 @@ public class ForgotPasswordController {
 		String email = request.getParameter("email");
 		helper.setFrom(email, "Cool Organic Support");
 		helper.setTo(recipientEmail);
-		System.err.println(link);
 
 		String subject = "Here's the link to reset your password";
 
@@ -80,6 +81,7 @@ public class ForgotPasswordController {
 		helper.setText(content, true);
 
 		mailSender.send(message);
+		
 	}
 
 	@GetMapping("/reset_password")
@@ -87,55 +89,43 @@ public class ForgotPasswordController {
 		Users user = svUsers.getByResetPasswordToken(token);
 		model.addAttribute("token", token);
 		if (user == null) {
-			model.addAttribute("message", "Invalid Token");
-			return "message";
+			return "/viewsUser/login";
 		}
 		return "/viewsUser/reset_password_form";
 	}
 
 	@PostMapping("/reset_pass")
 	public String processResetPassword(HttpServletRequest request, Model model) {
-		String userid = null;
 		String token = request.getParameter("token");
-		Users user = svUsers.getByResetPasswordToken(token);
 		String password = request.getParameter("password");
 		String confirmpassword = request.getParameter("confirmpassword");
-		
-		if(!password.equals(confirmpassword)){
-			userid = user.getUserid();
-			
-			model.addAttribute("message", "Mật khẩu xác nhận không đúng!");
-			
-			return "/viewsUser/reset_password_form";
-		}
-		
-		
-		Users user2 = new Users();
-		
+		Users user = svUsers.getByResetPasswordToken(token);
 		model.addAttribute("title", "Reset your password");
+
 		if (password.equals(confirmpassword)) {
-			if (userid == null) {
-				model.addAttribute("message", "Invalid Token");
+			if (user == null) {
+				model.addAttribute("message", "Token không hợp lệ");
+				model.addAttribute("token", token);
 				return "/viewsUser/reset_password_form";
 			} else {
-				
 //				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //				String encodedPassword = passwordEncoder.encode(password);
 //				user.setPassword(encodedPassword);
 //				user.setResetPasswordToken(null);
 //				svUsers.save(user);
-				
+
 				user.setResetPasswordToken(null);
 				user.setPassword(password);
+				user.setStatus(false);
 				svUsers.save(user);
-				
-				model.addAttribute("message", "You have successfully changed your password.");
+
+				model.addAttribute("message", "Mật khẩu của bạn đã thay đổi thành công!");
 				return "/viewsUser/login";
 			}
 		} else {
 			model.addAttribute("message", "Mật khẩu không khớp, vui lòng nhập lại mật khẩu!");
+			model.addAttribute("token", token);
 			return "/viewsUser/reset_password_form";
 		}
-//		return "/viewsUser/reset_password_form";
 	}
 }
