@@ -34,4 +34,8 @@ public class Bank implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date cardexpiry;
 	private double money;
+	
+	private String email;
+	private String verification;
+	private Date createverification;
 }

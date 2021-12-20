@@ -1,6 +1,7 @@
 package com.datn.service;
 
 import com.datn.entity.Wallet;
+import com.datn.model.entity.WalletConfigModel;
 
 import org.springframework.http.ResponseEntity;
 
@@ -18,4 +19,5 @@ public interface WalletService {
 
 	ResponseEntity<Void> unlink();
 
+	ResponseEntity<Wallet> cartLinkConfig(WalletConfigModel walletConfigModel);
 }

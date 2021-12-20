@@ -14,5 +14,7 @@ public interface BankService {
 	Double getConfirmBank(String cardNumber);
 	
 	Double deductionMoney(MoneyModel moneyModel);
+	
+	Boolean getStatusVerification(String verification);
 
 }

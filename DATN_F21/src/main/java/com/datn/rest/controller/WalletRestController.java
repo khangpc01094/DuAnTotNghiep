@@ -2,6 +2,7 @@ package com.datn.rest.controller;
 
 import com.datn.entity.Wallet;
 import com.datn.model.entity.TopupModel;
+import com.datn.model.entity.WalletConfigModel;
 import com.datn.service.WalletService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,12 @@ public class WalletRestController {
 	@PutMapping("/unlink")
 	public ResponseEntity<Void> unlink() {
 	   return svWalletService.unlink();
+	}
+    
+    @PreAuthorize("hasAnyRole('BUYE','SELL','ADMI')")
+	@PutMapping("/cartlink/config")
+	public ResponseEntity<Wallet> cartLinkConfig(@RequestBody WalletConfigModel walletConfigModel) {	
+    	System.err.println(walletConfigModel.getVerification());
+		return svWalletService.cartLinkConfig(walletConfigModel);
 	}
 }

@@ -480,15 +480,43 @@ app.controller("cardlink-ctrl", function ($window,$scope, $http) {
     $scope.cartlink = function() {	
       var item = angular.copy($scope.form);
       $http.put(`/rest/wallet/cartlink`, item).then(resp => {
-        if (resp.status == 200) {		
-          Swal.fire({
-            width: '400px',
-            title: 'Lưu thành công!',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 1500
-          })
-		  $window.location.href = '/account/wallet';	
+	        if (resp.status == 200) {		
+		          return Swal.fire({
+				  title: 'Nhập mã xác nhận trong email của thẻ',
+				  input: 'text',
+				  inputAttributes: {
+				    autocapitalize: 'off'
+				  },
+				  showCancelButton: true,
+				  confirmButtonText: 'Xác nhận',
+				  showLoaderOnConfirm: true,
+				  preConfirm: (login) => {				
+					     item.verification = login;									
+				      		$http.put(`/rest/wallet/cartlink/config`,item).then(resp => {
+						        if (resp.status == 200) {		
+							        Swal.fire({
+										width: '400px',
+										title: 'Liên kết thành công!',
+										icon: 'success',
+										showConfirmButton: false,
+										timer: 1500
+									 })
+									$window.location.href = '/account/wallet';
+							  	
+					        }
+						      }).catch(error => {
+						        if (error.status == 400) {		
+						          return Swal.fire({
+						            width: '400px',
+						            title: 'Mã xác nhận không chính xác!',
+						            icon: 'error',
+						            confirmButtonText: 'Ok',
+						          })
+						        }
+						      });
+					     
+				  },
+			})	
         }
       }).catch(error => {
         if (error.status == 400) {		
@@ -500,7 +528,7 @@ app.controller("cardlink-ctrl", function ($window,$scope, $http) {
           })
         }
       });
-    }  
+    }   
 });
 
 
